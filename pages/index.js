@@ -6,11 +6,11 @@ export default function Home() {
     return (
         <div>
             <Head>
-                <title>Create Next App</title>
+                <title>모닥불</title>
                 <meta name="description" content="" />
                 <link rel="icon" href="/" />
             </Head>
-            <h1>콘텐츠 영역입니다.</h1>
+            <h1>메인 페이지입니다.</h1>
         </div>
     );
 }

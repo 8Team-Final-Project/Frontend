@@ -1,5 +1,3 @@
-//예시파일
-
 // import { createAsyncThunk } from "@reduxjs/toolkit";
 // import { history } from "../configureStore";
 // import { freeBoardApi, freeCommentApi, searchApi } from "../../Shared/api";
