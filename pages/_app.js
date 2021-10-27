@@ -1,4 +1,7 @@
+import { wrapper } from "../src/Redux/configureStore";
 import "../styles/globals.css";
+
+//components
 import Header from "../src/Components/Layout/Header";
 import Footer from "../src/Components/Layout/Footer";
 
@@ -13,4 +16,5 @@ function MyApp({ Component, pageProps }) {
     );
 }
 
-export default MyApp;
+// withRedux 함수로 컴포넌트를 감싸준다.
+export default wrapper.withRedux(MyApp);
