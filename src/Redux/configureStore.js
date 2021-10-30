@@ -4,11 +4,15 @@ import { combineReducers } from "redux";
 
 //모듈 불러오기
 // import freeBoardSlice from "./Modules/freeBoardSlice";
+import eventSlice from "./Modules/eventSlice";
+import userSlice from "./Modules/userSlice";
 
 //리듀서 전달하기
 const reducer = combineReducers({
     //차곡차곡 리듀서 넣어주세용 ~~
     // freeBoard: freeBoardSlice.reducer,
+    event : eventSlice.reducer,
+    user : userSlice.reducer,
 });
 
 //미들웨어에 redux-logger 넣기!

@@ -1,27 +1,30 @@
 import React from "react";
 import EventPost from "../../src/Components/Layout/EventPost"
 import { useSelector, useDispatch } from "react-redux";
-import styled from "styled-components";
+import {useRouter} from "next/router";
+import styled from "styled-components";     
+import Link from "next/link"                                                                                
 
-const party = (props) => {
+const event = (props) => {
     const dispatch = useDispatch();
+    const router = useRouter();
 
-    const post_list = useSelector((state) => state.post.list);
-
-    const [post, setPost] = useState("");
-    const onChange = (e) => {
-        setPost(e.target.value);
-      };
-    const addPost = () => {
-        dispatch(commentActions.addCommentAPI(productId, comment));
-    }
+    const event_list = useSelector((state) => state.event.list);
 
     return (
         <React.Fragment>
             <h1>이번주 라면 꿀조합은?</h1>
-            <EventPost/>
+
+
+            <EventPost onClick={test}/>
+
+
+            <button onClick={() => {router.push('/event/edit/write')}}>router</button>
+            <Link  href={'/mypage'}>
+            <button>링크</button>
+            </Link>
         </React.Fragment>
     );
 };
 
-export default party;
+export default event;

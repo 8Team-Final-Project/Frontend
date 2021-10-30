@@ -1,5 +1,106 @@
-// import axios from "axios";
+import axios from "axios";
 
+const instance = axios.create({
+  // 백엔드 배포 주소
+  baseURL: "http://54.180.157.2",
+
+  // 제이슨 서버(npx json-server ./data.json --port 4000)
+  // baseURL: "http://localhost:4000",
+  
+});
+
+export const headers = {
+    "content-type": "application/json;charset=UTF-8",
+    accept: "application/json",
+};
+
+
+  export const eventPostApi = {
+        //이벤트 게시판 전체 불러오기
+        getEventList : data => instance.get("/api/v1/event/list"),
+
+        //이벤트 게시물 추가하기
+        addEventPost : data => instance.post("/api/v1/post", data),
+
+        //이벤트 게시물 불러오기
+         getEventPost: postId => instance.get("/api/v1/post/:postId"),
+
+        //이벤트 게시물 수정하기
+        editEventPost : postId => {`/api/v1/post/:postId`, postId},
+
+        //이벤트 게시물 삭제하기 
+        deleteEvetnPost: postId => instance.delete(`free/post/${postId}`),
+  };
+
+  export const userApi = {
+        // 회원 가입
+        signup: user => instance.post("/api/v1/users/signup", user),
+
+        // 로그인
+        login: user => instance.post("/api/v1/users/login", user)
+  }
+    
+
+
+
+
+
+
+
+
+  
+  // export const freeBoardApi = {
+//     //모든 자유게시판리스트 불러오기
+//     getList: data =>
+//         instance.get("free/post", {
+//             params: {
+//                 pageSize: data.pageSize,
+//                 pageNum: data.pageNum,
+//                 category: data?.category,
+//                 country_id: data?.country_id,
+//             },
+//         }),
+
+//     // 인기 게시물 불러오기
+
+//     getIssueList: data => instance.get("/issue"),
+
+//     //게시물추가하기
+//     addPost: post => instance.post("free/post", post),
+
+//     //게시물 불러오기
+//     getPost: post_id => instance.get(`free/post/${post_id}`),
+
+//     //게시물 수정하기
+//     editPost: post => {
+//         return instance.put(`free/post/${post.post_id}`, post);
+//     },
+//     //게시물 삭제하기
+//     deletePost: id_list => instance.delete(`free/post/${id_list.post_id}`),
+
+//     //게시물 좋아요 갯수 불러오기
+//     postLikeToggle: post_id => {
+//         return instance.get(`/free/post/${post_id}/like`);
+//     },
+// };
+
+
+
+    //     //게시물 수정하기
+    //     editPost: post => {
+    //         return instance.put(`free/post/${post.post_id}`, post);
+    //     },
+    //     //게시물 삭제하기
+    //     deletePost: id_list => instance.delete(`free/post/${id_list.post_id}`),
+    
+    //     //게시물 좋아요 갯수 불러오기
+    //     postLikeToggle: post_id => {
+    //         return instance.get(`/free/post/${post_id}/like`);
+    //     },
+    // };
+
+
+// import axios from "axios";
 // //추후 api 완성되면 authorization 연결해야함
 // import { getToken } from "./utils";
 
