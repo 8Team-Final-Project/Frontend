@@ -1,11 +1,125 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { postSignupList } from "../../src/Redux/Async/signupAsync";
+// import { actionCreators as userActions } from "../redux/modules/user";
 
-const signup = () => {
+
+const Signup = () => {
+    const dispatch = useDispatch();
+    
+    const [userEmail, setuserEmail] = React.useState("");
+    const [userNickname, setuserNickname] = React.useState("");
+    const [userPassword, setuserPassword] = React.useState("");
+    const [userconfirmPassword, setuserconfirmPassword] = React.useState("");
+
+
+    const setSignup = () => {
+    
+        const signup = {
+            userEmail : userEmail,
+            userNickname : userNickname,
+            userPassword : userPassword,
+            userconfirmPassword : userconfirmPassword
+        }
+        dispatch(postSignupList(signup))
+    };
+
+
+    const setCheckNick = () => {
+        const nickname = {
+            userNickname : userNickname
+        }
+        dispatch(postSignupList(nickname))
+    };
+
+    
+    const setCheckEmail = () => {
+        const email = {
+            userEmail : userEmail
+        }
+        dispatch(postSignupList(email))
+    };
+
+
     return (
-        <div>
-            <h1>회원가입페이지입니다.</h1>
+        <div style={{
+            paddingLeft: "10px"
+        }}>
+            <h1>회원가입</h1>
+
+            <div>
+                <p>아이디</p>
+                <input
+                    onChange={(e) => {
+                        console.log(e.target.value)
+                        setuserEmail(e.target.value);
+                      }}
+                      placeholder="이메일 형식으로 입력해주세요."
+                />
+                <button
+                    onClick={() => {
+                        console.log("이메일중복버튼")
+                        setCheckEmail()
+                    }}
+                >
+                    중복확인
+                </button>
+            </div>
+            
+            <div>
+                <p>닉네임</p>
+                <input
+                    onChange={(e) => {
+                        setuserNickname(e.target.value);
+                        }}
+                        placeholder="닉네임을 입력해주세요."
+                />
+                <button
+                    onClick={() => {
+                        console.log("닉네임중복버튼")
+                        setCheckNick()
+                    }}
+                >
+                    중복확인
+                </button>
+            </div>
+
+            <p>비밀번호</p>
+            <input
+                onChange={(e) => {
+                    setuserPassword(e.target.value);
+                    }}
+                    placeholder="비밀번호를 입력해주세요."
+            />
+
+            <p>비밀번호 확인</p>
+            <input
+                onChange={(e) => {
+                    setuserconfirmPassword(e.target.value);
+                    }}
+                    placeholder="비밀번호를 한번 더 입력해주세요."
+            />
+
+            <br/>
+            <br/>
+
+            <button>취소</button>
+            <button 
+                onClick={() => {
+                    console.log("회원가입버튼눌림")
+                    setSignup()
+                }}
+
+                style={{
+                    marginRight: "10px"
+                }}>
+
+                회원가입
+            </button>
+
+
         </div>
     );
 };
 
-export default signup;
+export default Signup;
