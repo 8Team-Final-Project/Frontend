@@ -2,17 +2,14 @@ import axios from "axios";
 
 const instance = axios.create({
   // 백엔드 배포 주소
-  baseURL: "http://54.180.157.2",
+  baseURL: "http://54.180.157.2:8000",
 
   // 제이슨 서버(npx json-server ./data.json --port 4000)
   // baseURL: "http://localhost:4000",
   
 });
 
-export const headers = {
-    "content-type": "application/json;charset=UTF-8",
-    accept: "application/json",
-};
+
 
 
   export const eventPostApi = {
@@ -20,25 +17,24 @@ export const headers = {
         getEventList : data => instance.get("/api/v1/event/list"),
 
         //이벤트 게시물 추가하기
-        addEventPost : data => instance.post("/api/v1/post", data),
+        addEventPost : data => instance.post("/api/v1/post", data,
+        {
+          headers : { 
+            "content-type": "application/json;charset=UTF-8",
+            accept: "application/json",
+            authorization:  `Bearer ${localStorage.getItem("token")}` },
+        }),
 
         //이벤트 게시물 불러오기
          getEventPost: postId => instance.get("/api/v1/post/:postId"),
 
         //이벤트 게시물 수정하기
-        editEventPost : postId => {`/api/v1/post/:postId`, postId},
+        editEventPost : postId => instance.put(`/api/v1/post/:postId`, postId),
 
         //이벤트 게시물 삭제하기 
         deleteEvetnPost: postId => instance.delete(`free/post/${postId}`),
   };
 
-  export const userApi = {
-        // 회원 가입
-        signup: user => instance.post("/api/v1/users/signup", user),
-
-        // 로그인
-        login: user => instance.post("/api/v1/users/login", user)
-  }
     
 
 
@@ -224,7 +220,6 @@ export const headers = {
 //         }),
 
 //     // 인기 게시물 불러오기
-
 //     getIssueList: data => instance.get("/issue"),
 
 //     //게시물추가하기
