@@ -1,7 +1,7 @@
-import React from "react";
+import React, {useEffect} from "react";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
-import { postCombinationList } from "../../src/Redux/Async/combinationAsync";
+import { addCombinationPostDB } from "../../src/Redux/Async/combinationAsync";
 
 //꿀조합 작성페이지
 const write = () => {
@@ -20,7 +20,7 @@ const write = () => {
             postImg : postImg,
             postTage : postTag
         }
-        dispatch(postCombinationList(postItem))
+        dispatch(addCombinationPostDB(postItem))
     }
 
     return (
@@ -38,7 +38,7 @@ const write = () => {
                 </CenterBox>
                 <CenterBox>
                     <input type="file"
-                    onChange={()=>{
+                    onChange={(e)=>{
                         console.log(e.target.value);
                         setImg(e.target.value)
                     }}
@@ -52,7 +52,7 @@ const write = () => {
                         height: "200px",
                         type: "text",
                     }}
-                    onChange={()=>{
+                    onChange={(e)=>{
                         console.log(e.target.value);
                         setContent(e.target.value)
                     }}
@@ -62,7 +62,7 @@ const write = () => {
                     <h2>해시태그</h2>
                     <WriteInput
                     placeholder="태그입력해"
-                    onChange={()=>{
+                    onChange={(e)=>{
                         console.log(e.target.value);
                         setTag(e.target.value)
                     }}
@@ -75,10 +75,11 @@ const write = () => {
                     <button 
                     onClick={()=>{
                         window.alert("취소호잇")
-                        setPost()
                     }}
                     >취소하기</button>
-                    <button >저장하기</button>
+                    <button 
+                    onClick={setPost}
+                    >저장하기</button>
                 </CenterBox>
             </WriteBox>
         </div>

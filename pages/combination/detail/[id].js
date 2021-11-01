@@ -1,8 +1,18 @@
 import React from "react";
 import styled from "styled-components";
+import { deleteCombinationPostDB } from "../../../src/Redux/Async/combinationAsync";
+import { useDispatch } from "react-redux";
 
 //꿀조합 상세페이지
 const PartyDetail = () => {
+
+    const dispatch = useDispatch();
+
+    const setDelete = () => {
+
+        dispatch(deleteCombinationPostDB(""))
+    }
+
     return (
         <div>
             <DetailBox>
@@ -29,7 +39,11 @@ const PartyDetail = () => {
                 </CenterBox>
                 <CenterBox>
                     <button>수정하기</button>
-                    <button>삭제하기</button>
+                    <button 
+                    onClick={()=>{
+                        
+                        setDelete()
+                    }}>삭제하기</button>
                 </CenterBox>
             </DetailBox>
         </div>

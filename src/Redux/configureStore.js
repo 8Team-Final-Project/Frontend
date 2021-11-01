@@ -3,19 +3,20 @@ import { createWrapper } from "next-redux-wrapper";
 import { combineReducers } from "redux";
 
 //모듈 불러오기
-import makeupSlice from "./Modules/makeupSlice";
-import contentSlice from "./Modules/contentSlice"
 import combinationSlice  from "./Modules/combinationSlice";
 import signupSlice from "./Modules/signupSlice";
+import loginSlice from "./Modules/loginSlice";
+import eventSlice from "./Modules/eventSlice"
+
 
 //리듀서 전달하기
 const reducer = combineReducers({
     //차곡차곡 리듀서 넣어주세용 ~~
-    makeup: makeupSlice.reducer,
-    content: contentSlice.reducer,
     combination: combinationSlice.reducer,
     signup: signupSlice.reducer,
     // freeBoard: freeBoardSlice.reducer,
+    event : eventSlice.reducer,
+    login: loginSlice.reducer,
 });
 
 //미들웨어에 redux-logger 넣기!
@@ -38,4 +39,3 @@ export const store = () =>
 export const wrapper = createWrapper(store, {
     debug: process.env.NODE_ENV !== "production",
 });
-

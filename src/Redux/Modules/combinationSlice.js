@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { postCombinationList } from "../Async/combinationAsync";
+import { addCombinationPostDB, patchCombinationPostDB, getCombinationList, deleteCombinationPostDB } from "../Async/combinationAsync";
 
 const initialState = {
     postTitle: "",
@@ -15,16 +15,55 @@ const combinationSlice = createSlice({
 
     //extraReducers 외부 작업을 참조(e.g 비동기 처리)
     extraReducers: {
-        //----자유게시판 목록 불러오는 리듀서
-        [postCombinationList.fulfilled]: (state, { payload }) => {
+        // 꿀조합 게시글 작성
+        [addCombinationPostDB.fulfilled]: (state, { payload }) => {
             state.list = payload;
             state.isFetching = false;
             state.errorMessage = null;
         },
-        [postCombinationList.pending]: (state, { payload }) => {
+        [addCombinationPostDB.pending]: (state, { payload }) => {
             state.isFetching = true;
         },
-        [postCombinationList.rejected]: (state, { payload: errorMessage }) => {
+        [addCombinationPostDB.rejected]: (state, { payload: errorMessage }) => {
+            state.isFetching = false;
+            state.errorMessage = errorMessage;
+        },
+        // 꿀조합 게시글 수정
+        [patchCombinationPostDB.fulfilled]: (state, { payload }) => {
+            state.list = payload;
+            state.isFetching = false;
+            state.errorMessage = null;
+        },
+        [patchCombinationPostDB.pending]: (state, { payload }) => {
+            state.isFetching = true;
+        },
+        [patchCombinationPostDB.rejected]: (state, { payload: errorMessage }) => {
+            state.isFetching = false;
+            state.errorMessage = errorMessage;
+        },
+        // 꿀조합 게시글 삭제
+        [deleteCombinationPostDB.fulfilled]: (state, { payload }) => {
+            state.list = payload;
+            state.isFetching = false;
+            state.errorMessage = null;
+        },
+        [deleteCombinationPostDB.pending]: (state, { payload }) => {
+            state.isFetching = true;
+        },
+        [deleteCombinationPostDB.rejected]: (state, { payload: errorMessage }) => {
+            state.isFetching = false;
+            state.errorMessage = errorMessage;
+        },
+        // 꿀조합 게시글 불러오기
+        [getCombinationList.fulfilled]: (state, { payload }) => {
+            state.list = payload;
+            state.isFetching = false;
+            state.errorMessage = null;
+        },
+        [getCombinationList.pending]: (state, { payload }) => {
+            state.isFetching = true;
+        },
+        [getCombinationList.rejected]: (state, { payload: errorMessage }) => {
             state.isFetching = false;
             state.errorMessage = errorMessage;
         },
