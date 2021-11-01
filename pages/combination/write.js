@@ -1,11 +1,10 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import { addCombinationPostDB } from "../../src/Redux/Async/combinationAsync";
 
 //꿀조합 작성페이지
 const write = () => {
-
     const dispatch = useDispatch();
 
     const [postTitle, setTitle] = React.useState("");
@@ -14,72 +13,69 @@ const write = () => {
     const [postTag, setTag] = React.useState("");
 
     const setPost = () => {
-        const postItem ={
-            postTitle : postTitle,
-            postContent : postContent,
-            postImg : postImg,
-            postTage : postTag
-        }
-        dispatch(addCombinationPostDB(postItem))
-    }
+        const postItem = {
+            postTitle: postTitle,
+            postContent: postContent,
+            postImg: postImg,
+            postTage: postTag,
+        };
+        dispatch(addCombinationPostDB(postItem));
+    };
 
     return (
         <div>
             <WriteBox>
                 <h1>꿀조합작성페이지</h1>
                 <CenterBox>
-                     <h2>제목</h2>
+                    <h2>제목</h2>
                     <WriteInput
-                    onChange={(e)=>{
-                        console.log(e.target.value);
-                        setTitle(e.target.value);
-                    }}
+                        onChange={e => {
+                            setTitle(e.target.value);
+                        }}
                     ></WriteInput>
                 </CenterBox>
                 <CenterBox>
-                    <input type="file"
-                    onChange={(e)=>{
-                        console.log(e.target.value);
-                        setImg(e.target.value)
-                    }}
+                    <input
+                        type="file"
+                        onChange={e => {
+                            setImg(e.target.value);
+                        }}
                     />
                     <div>10MB이하로 업로드 할 수 있어~</div>
                 </CenterBox>
                 <CenterBox>
                     <h2>내용</h2>
                     <WriteInput
-                    style={{
-                        height: "200px",
-                        type: "text",
-                    }}
-                    onChange={(e)=>{
-                        console.log(e.target.value);
-                        setContent(e.target.value)
-                    }}
+                        style={{
+                            height: "200px",
+                            type: "text",
+                        }}
+                        onChange={e => {
+                            setContent(e.target.value);
+                        }}
                     />
                 </CenterBox>
                 <CenterBox>
                     <h2>해시태그</h2>
                     <WriteInput
-                    placeholder="태그입력해"
-                    onChange={(e)=>{
-                        console.log(e.target.value);
-                        setTag(e.target.value)
-                    }}
-                   />
-                   <FlexBox>
-                      <div>태그1</div> <div>태그2</div>
-                   </FlexBox>
+                        placeholder="태그입력해"
+                        onChange={e => {
+                            setTag(e.target.value);
+                        }}
+                    />
+                    <FlexBox>
+                        <div>태그1</div> <div>태그2</div>
+                    </FlexBox>
                 </CenterBox>
                 <CenterBox>
-                    <button 
-                    onClick={()=>{
-                        window.alert("취소호잇")
-                    }}
-                    >취소하기</button>
-                    <button 
-                    onClick={setPost}
-                    >저장하기</button>
+                    <button
+                        onClick={() => {
+                            window.alert("취소호잇");
+                        }}
+                    >
+                        취소하기
+                    </button>
+                    <button onClick={setPost}>저장하기</button>
                 </CenterBox>
             </WriteBox>
         </div>
@@ -101,8 +97,8 @@ const WriteInput = styled.input`
     width: 350px;
 `;
 
-const FlexBox =styled.div`
-display: flex;
+const FlexBox = styled.div`
+    display: flex;
 `;
 
 export default write;

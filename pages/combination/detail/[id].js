@@ -1,17 +1,26 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
-import { deleteCombinationPostDB } from "../../../src/Redux/Async/combinationAsync";
+import {
+    deleteCombinationPostDB,
+    getCombinationPost,
+} from "../../../src/Redux/Async/combinationAsync";
 import { useDispatch } from "react-redux";
 
 //꿀조합 상세페이지
 const PartyDetail = () => {
-
     const dispatch = useDispatch();
 
-    const setDelete = () => {
+    useEffect(() => {
+        //나중에 postId 페이지에서 받아와서 고쳐야해요
+        const req = { postId: "617f698bf8ae35e2ceb31798" };
+        dispatch(getCombinationPost(req));
+    }, []);
 
-        dispatch(deleteCombinationPostDB(""))
-    }
+    const setDelete = () => {
+        //나중에 postId 페이지에서 받아와서 고쳐야해요
+        const req = { postId: "617f698bf8ae35e2ceb31798" };
+        dispatch(deleteCombinationPostDB(req));
+    };
 
     return (
         <div>
@@ -22,13 +31,12 @@ const PartyDetail = () => {
                 </CenterBox>
                 <CenterBox>
                     <FlexCenter>
-                        <div>#태그1</div><div>#태그2</div>
+                        <div>#태그1</div>
+                        <div>#태그2</div>
                     </FlexCenter>
                 </CenterBox>
                 <CenterBox>
-                    <DetailContent>
-                        내용~
-                    </DetailContent>
+                    <DetailContent>내용~</DetailContent>
                 </CenterBox>
                 <CenterBox>
                     <button>즐겨찾기</button>
@@ -39,11 +47,7 @@ const PartyDetail = () => {
                 </CenterBox>
                 <CenterBox>
                     <button>수정하기</button>
-                    <button 
-                    onClick={()=>{
-                        
-                        setDelete()
-                    }}>삭제하기</button>
+                    <button onClick={setDelete}>삭제하기</button>
                 </CenterBox>
             </DetailBox>
         </div>

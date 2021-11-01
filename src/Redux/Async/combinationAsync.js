@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { combinationPostApi } from "../../Shared/api"
+import { combinationPostApi } from "../../Shared/api";
 
 // 게시글 작성하기
 export const addCombinationPostDB = createAsyncThunk(
@@ -7,53 +7,44 @@ export const addCombinationPostDB = createAsyncThunk(
     async (data, thunkAPI) => {
         try {
             const response = await combinationPostApi.postCombinationPost(data);
-            console.log(response);
-            if (response.statusText === "OK") return response.data;
+            if (response.statusText === "OK") return response.data.newPost;
         } catch (err) {
-          console.log(err);
-            Sentry.captureException(`error, 자유게시판목록 로드 : ${err}`);
-            Swal.fire("에러", "네트워크 연결 상태를 확인해주세요.!", "error");
             return thunkAPI.rejectWithValue(err.response.message);
         }
     }
 );
-
 
 // 게시글 수정하기
 export const patchCombinationPostDB = createAsyncThunk(
     "combination/patchPost",
     async (data, thunkAPI) => {
         try {
-            const response = await combinationPostApi.patchCombinationPost(data);
+            const response = await combinationPostApi.patchCombinationPost(
+                data
+            );
             console.log(response);
             if (response.statusText === "OK") return response.data;
         } catch (err) {
-          console.log(err);
-            Sentry.captureException(`error, 자유게시판목록 로드 : ${err}`);
-            Swal.fire("에러", "네트워크 연결 상태를 확인해주세요.!", "error");
             return thunkAPI.rejectWithValue(err.response.message);
         }
     }
 );
-
 
 // 게시글 삭제하기
 export const deleteCombinationPostDB = createAsyncThunk(
     "combination/deletePost",
     async (data, thunkAPI) => {
         try {
-            const response = await combinationPostApi.deleteCombinationPost(data);
+            const response = await combinationPostApi.deleteCombinationPost(
+                data
+            );
             console.log(response);
             if (response.statusText === "OK") return response.data;
         } catch (err) {
-          console.log(err);
-            Sentry.captureException(`error, 자유게시판목록 로드 : ${err}`);
-            Swal.fire("에러", "네트워크 연결 상태를 확인해주세요.!", "error");
             return thunkAPI.rejectWithValue(err.response.message);
         }
     }
 );
-
 
 // 게시글 불러오기
 export const getCombinationList = createAsyncThunk(
@@ -64,9 +55,20 @@ export const getCombinationList = createAsyncThunk(
             console.log(response);
             if (response.statusText === "OK") return response.data;
         } catch (err) {
-          console.log(err);
-            Sentry.captureException(`error, 자유게시판목록 로드 : ${err}`);
-            Swal.fire("에러", "네트워크 연결 상태를 확인해주세요.!", "error");
+            return thunkAPI.rejectWithValue(err.response.message);
+        }
+    }
+);
+
+// 단일 게시글 불러오기
+export const getCombinationPost = createAsyncThunk(
+    "combination/getList",
+    async (data, thunkAPI) => {
+        try {
+            const response = await combinationPostApi.getCombinationPost(data);
+            console.log(response);
+            if (response.statusText === "OK") return response.data;
+        } catch (err) {
             return thunkAPI.rejectWithValue(err.response.message);
         }
     }
