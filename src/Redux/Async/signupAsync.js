@@ -2,14 +2,11 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 export const postSignupList = createAsyncThunk(
-    "signup/postList",
-
-    
+    "signup",
     async (data, thunkAPI) => {
-        
         try {
             const response = await axios.post(
-                "http://54.180.157.2/api/v1/users/signup",data
+                "http://54.180.157.2:8000/api/v1/users/signup",data
             );
             console.log(response)
             if (response.statusText === "OK") return response.data; 

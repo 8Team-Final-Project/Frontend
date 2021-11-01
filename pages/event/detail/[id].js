@@ -1,15 +1,29 @@
 import React from "react";
+import {useDispatch, useSelector} from "react-redux"
+import { getEventPostDB, deleteEventPostDB } from "../../../src/Redux/Async/eventAsync";
 
-//파티상세페이지
-const PartyDetail = () => {
+
+//이벤트상세페이지
+const EventDetail = (props) => {
+    const dispatch = useDispatch();
+
+
+    const event = useSelector((state) => state.event.post)
+    console.log(event);
+    React.useEffect(() => {
+        const res = { postId : "617fb1abf8ae35e2ceb3180f"};
+        dispatch(getEventPostDB(res));
+    }, [])
+
     return (
+        <React.Fragment>
         <div style={{textAlign:"center"}}>
             <img/>
-            <p>제목임</p>
+            <p>{ event && event.postTitle }</p>
             <br/>
             <p>#서브웨이</p>
             <br/>
-            <div>음~ 너무맛있다음~ 너무맛있다음~ 너무맛있다음~ 너무맛있다음~ 너무맛있다음~ 너무맛있다음~ 너무맛있다</div>
+            <div>{ event && event.postContent }</div>
             <br/>
             <button> 찜 </button>
             <button> 좋아요 </button>
@@ -17,7 +31,9 @@ const PartyDetail = () => {
             <br/>
             <br/>
             <button> 수정 </button>
-            <button> 삭제 </button>
+            <button onClick={(e)=>{dispatch(deleteEventPostDB(event.post))}}> 
+            삭제
+            </button>
             <br/>
             <br/>
             <input></input>
@@ -27,7 +43,9 @@ const PartyDetail = () => {
                 닉네임 댓글 
             </div>
         </div>
+        
+        </React.Fragment>
     );
 };
 
-export default PartyDetail;
+export default EventDetail;

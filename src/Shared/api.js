@@ -14,25 +14,42 @@ const instance = axios.create({
 
   export const eventPostApi = {
         //이벤트 게시판 전체 불러오기
-        getEventList : data => instance.get("/api/v1/event/list"),
-
+        getEventPostList : data => instance.get("/api/v1/event/list"),
+        
         //이벤트 게시물 추가하기
         addEventPost : data => instance.post("/api/v1/post", data,
         {
           headers : { 
             "content-type": "application/json;charset=UTF-8",
             accept: "application/json",
-            authorization:  `Bearer ${localStorage.getItem("token")}` },
+            authorization: `Bearer ${localStorage.getItem("token")}`}
         }),
 
         //이벤트 게시물 불러오기
-         getEventPost: postId => instance.get("/api/v1/post/:postId"),
+         getEventPost: ({postId}) => instance.get(`/api/v1/post/${postId}`, 
+            {
+              headers : { 
+                "content-type": "application/json;charset=UTF-8",
+                accept: "application/json",
+                authorization: `Bearer ${localStorage.getItem("token")}`}
+            }),
 
         //이벤트 게시물 수정하기
-        editEventPost : postId => instance.put(`/api/v1/post/:postId`, postId),
+        editEventPost : postId => instance.put(`/api/v1/post/:postId`, postId, 
+        {
+          headers : { 
+            "content-type": "application/json;charset=UTF-8",
+            accept: "application/json"}
+        }), 
 
         //이벤트 게시물 삭제하기 
-        deleteEvetnPost: postId => instance.delete(`free/post/${postId}`),
+        deleteEventPost: postId => instance.delete(`free/post/${postId}`, 
+        {
+          headers : { 
+            "content-type": "application/json;charset=UTF-8",
+            accept: "application/json",
+            authorization: `Bearer ${localStorage.getItem("token")}`}
+        }),
   };
 
     

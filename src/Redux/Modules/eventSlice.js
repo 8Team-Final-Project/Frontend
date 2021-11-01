@@ -2,10 +2,8 @@ import { createSlice } from "@reduxjs/toolkit";
 import { eventPostListDB, addEventPostDB, getEventPostDB, editEventPostDB, deleteEventPostDB } from "../Async/eventAsync";
 
 const initialState = {
-    postTitle: "서브웨이개꿀맛레시피",
-    postContent: "참깨빵위에순살고기",
-    postImg: "null",
-    postTag: "서브웨이"
+    list:[{}],
+    post:null,
 };
 
 const eventSlice = createSlice({
@@ -28,11 +26,11 @@ const eventSlice = createSlice({
             state.isFetching = false;
             state.errorMessage = errorMessage;
         },
-        
+
         //이벤트 게시글 추가 
         [addEventPostDB.fulfilled]: (state, { payload }) => {
-            state.list = payload;
-            state.isFetching = false;
+            console.log(payload);
+            state.list.unshift(payload);
             state.errorMessage = null;
         },
         [addEventPostDB.pending]: (state, { payload }) => {
@@ -45,7 +43,7 @@ const eventSlice = createSlice({
         
         //이벤트 게시글 조회
         [getEventPostDB.fulfilled]: (state, { payload }) => {
-            state.list = payload;
+            state.post = payload;
             state.isFetching = false;
             state.errorMessage = null;
         },
@@ -73,7 +71,7 @@ const eventSlice = createSlice({
         
         //이벤트 게시글 삭제
         [deleteEventPostDB.fulfilled]: (state, { payload }) => {
-            state.list = payload;
+            state.post = payload;
             state.isFetching = false;
             state.errorMessage = null;
         },

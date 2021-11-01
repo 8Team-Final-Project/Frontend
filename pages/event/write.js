@@ -10,12 +10,12 @@ const write = () => {
     const [postTitle, setPostTitle] = useState("");
     const [postContent, setPostContent] = useState("");
 
-      const addEventPost = () => {
-          const content = {
+    const addEventPost = () => {
+        const content = {
             postTitle : postTitle,
             postContent : postContent
-          }
-    dispatch(addEventPostDB(content));
+        }
+        dispatch(addEventPostDB(content));
     }
 
     return (
