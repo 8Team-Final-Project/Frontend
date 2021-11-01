@@ -45,8 +45,8 @@ export const combinationPostApi = {
         instance.patch(`/api/v1/post/postupdate/${post.postId}`, post),
 
     // 꿀조합 게시글 삭제하기
-    deleteCombinationPost: postId =>
-        instance.delete(`/api/v1/post/postdelete/${postId}`),
+    deleteCombinationPost: ({ postId }) =>
+        instance.patch(`/api/v1/post/postdelete/${postId}`),
 
     // 꿀조합 게시글 불러오기
     getCombinationList: () => instance.get("/api/v1/list"),

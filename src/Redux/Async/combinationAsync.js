@@ -62,7 +62,7 @@ export const getCombinationList = createAsyncThunk(
 
 // 단일 게시글 불러오기
 export const getCombinationPost = createAsyncThunk(
-    "combination/getList",
+    "combination/getPost",
     async (data, thunkAPI) => {
         try {
             const response = await combinationPostApi.getCombinationPost(data);
