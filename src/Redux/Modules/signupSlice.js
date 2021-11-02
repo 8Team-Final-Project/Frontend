@@ -6,7 +6,6 @@ const initialState = {
     isPatching: false,
     errorMessage: null,
 };
-
 const signupSlice = createSlice({
     name: "signup",
     initialState: initialState,

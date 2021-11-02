@@ -1,20 +1,17 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useDispatch } from "react-redux";
 import { postSignupList } from "../../src/Redux/Async/signupAsync";
-// import { actionCreators as userActions } from "../redux/modules/user";
 
-
-const Signup = () => {
-    const dispatch = useDispatch();
+const signup = () => {
     
+    const dispatch = useDispatch();
+
     const [userEmail, setuserEmail] = React.useState("");
     const [userNickname, setuserNickname] = React.useState("");
     const [userPassword, setuserPassword] = React.useState("");
     const [userconfirmPassword, setuserconfirmPassword] = React.useState("");
 
-
     const setSignup = () => {
-    
         const signup = {
             userEmail : userEmail,
             userNickname : userNickname,
@@ -24,7 +21,6 @@ const Signup = () => {
         dispatch(postSignupList(signup))
     };
 
-
     const setCheckNick = () => {
         const nickname = {
             userNickname : userNickname
@@ -32,7 +28,6 @@ const Signup = () => {
         dispatch(postSignupList(nickname))
     };
 
-    
     const setCheckEmail = () => {
         const email = {
             userEmail : userEmail
@@ -40,18 +35,15 @@ const Signup = () => {
         dispatch(postSignupList(email))
     };
 
-
     return (
         <div style={{
             paddingLeft: "10px"
         }}>
             <h1>회원가입</h1>
-
             <div>
                 <p>아이디</p>
                 <input
                     onChange={(e) => {
-                        console.log(e.target.value)
                         setuserEmail(e.target.value);
                       }}
                       placeholder="이메일 형식으로 입력해주세요."
@@ -122,4 +114,4 @@ const Signup = () => {
     );
 };
 
-export default Signup;
+export default signup;

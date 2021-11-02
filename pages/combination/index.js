@@ -1,18 +1,25 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
+import { useDispatch } from "react-redux";
+import { getCombinationList } from "../../src/Redux/Async/combinationAsync";
 
 //꿀조합 페이지
 const combination = () => {
+    const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(getCombinationList());
+    }, []);
     return (
         <div>
             <PageBox>
-            <div>추천태그 검색은 3가지까지 가능</div>
+                <div>추천태그 검색은 3가지까지 가능</div>
                 <FlexBox>
-                    <SearchInput></SearchInput><button>검색</button>
+                    <SearchInput></SearchInput>
+                    <button>검색</button>
                 </FlexBox>
-                    <div>
-                        <text>추천태그1</text> <text>추천태그2</text>
-                    </div>
+                <div>
+                    <text>추천태그1</text> <text>추천태그2</text>
+                </div>
                 <div>라면꿀조합 이벤트</div>
                 <PostBox>
                     <h3>이벤트 참여하기</h3>
@@ -20,14 +27,19 @@ const combination = () => {
                 <PostBox>
                     <FlexBox>
                         <PostImage>사진</PostImage>
-                        <FlexBox style={{
-                            flexDirection: "column"
-                        }}>
+                        <FlexBox
+                            style={{
+                                flexDirection: "column",
+                            }}
+                        >
                             <div>엽떡 + 허니콤보</div>
                             <FlexBox>
-                            <div>태그1</div><div>태그2</div>
-                            <div>좋아요</div><div>2</div>
-                            <div>싫어요</div><div>3</div>
+                                <div>태그1</div>
+                                <div>태그2</div>
+                                <div>좋아요</div>
+                                <div>2</div>
+                                <div>싫어요</div>
+                                <div>3</div>
                             </FlexBox>
                         </FlexBox>
                     </FlexBox>
@@ -35,14 +47,19 @@ const combination = () => {
                 <PostBox>
                     <FlexBox>
                         <PostImage>사진</PostImage>
-                        <FlexBox style={{
-                            flexDirection: "column"
-                        }}>
+                        <FlexBox
+                            style={{
+                                flexDirection: "column",
+                            }}
+                        >
                             <div>공화춘 + 불닭볶음면</div>
                             <FlexBox>
-                            <div>태그1</div><div>태그2</div>
-                            <div>좋아요</div><div>4</div>
-                            <div>싫어요</div><div>7</div>
+                                <div>태그1</div>
+                                <div>태그2</div>
+                                <div>좋아요</div>
+                                <div>4</div>
+                                <div>싫어요</div>
+                                <div>7</div>
                             </FlexBox>
                         </FlexBox>
                     </FlexBox>

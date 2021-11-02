@@ -2,7 +2,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 export const postSignupList = createAsyncThunk(
-    "signup",
+    "signup/postList",
     async (data, thunkAPI) => {
         try {
             const response = await axios.post(

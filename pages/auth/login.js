@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { getLoginList } from "../../src/Redux/Async/loginAsync";
 
 
-const Login = () => {
+const login = () => {
     const dispatch = useDispatch();
 
     const [userEmail, setuserEmail] = React.useState("");
@@ -16,8 +16,6 @@ const Login = () => {
         }
         dispatch(getLoginList(login))
     };
-
-
     return (
         <div>
             <h1>로그인</h1>
@@ -48,6 +46,6 @@ const Login = () => {
     );
 };
 
-export default Login;
+export default login;
 
 

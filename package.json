@@ -11,6 +11,8 @@
   "dependencies": {
     "@reduxjs/toolkit": "^1.6.2",
     "axios": "^0.24.0",
+    "babel-plugin-styled-components": "1.10.2",
+    "http-proxy-middleware": "^2.0.1",
     "next": "11.1.2",
     "next-redux-wrapper": "^7.0.5",
     "react": "17.0.2",
