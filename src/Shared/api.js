@@ -23,7 +23,7 @@ instance.interceptors.request.use(async config => {
 
   export const eventPostApi = {
         //이벤트 게시판 전체 불러오기
-        getEventPostList : data => instance.get("/api/v1/event/list", data),
+        getEventPostList : data => instance.get("/api/v1/event", data),
         
         //이벤트 게시물 추가하기
         addEventPost : data => instance.post("/api/v1/post", data),

@@ -1,7 +1,9 @@
 import React from "react";
+import styled from "styled-components";
 import {useDispatch, useSelector} from "react-redux"
 import { getEventPostDB, deleteEventPostDB } from "../../../src/Redux/Async/eventAsync";
 
+import DetailContentsBox from '../../../src/Components/Layout/DetailContentsBox';
 
 //이벤트상세페이지
 const EventDetail = (props) => {
@@ -17,35 +19,15 @@ const EventDetail = (props) => {
     
     return (
         <React.Fragment>
-        <div style={{textAlign:"center"}}>
-            <img/>
-            <p>{ event && event.postTitle }</p>
-            <br/>
-            <p>#서브웨이</p>
-            <br/>
-            <div>{ event && event.postContent }</div>
-            <br/>
-            <button> 찜 </button>
-            <button> 좋아요 </button>
-
-            <br/>
-            <br/>
-            <button> 수정 </button>
-            <button onClick={(e)=>{dispatch(deleteEventPostDB(event))}}>
-            삭제
-            </button>
-            <br/>
-            <br/>
-            <input></input>
-            
-            <button>댓글작성</button>
-            <div>
-                닉네임 댓글 
-            </div>
-        </div>
-        
+        <Wrap>
+            <DetailContentsBox/>
+        </Wrap>
         </React.Fragment>
     );
 };
+
+const Wrap = styled.div`
+    text-align : center;
+` 
 
 export default EventDetail;

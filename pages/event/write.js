@@ -20,7 +20,7 @@ const write = () => {
 
     return (
         <div style={{textAlign:"center"}}>
-            <h1>포스트 작성</h1>
+            <img/>사진
             제목
             <input onChange={(e) => {
                 console.log(e.target.value);
