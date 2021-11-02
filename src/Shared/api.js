@@ -2,17 +2,12 @@ import axios from "axios";
 
 const instance = axios.create({
   // 백엔드 배포 주소
-  baseURL: "http://54.180.157.2",
+  baseURL: "http://54.180.157.2:8000",
 
   // 제이슨 서버(npx json-server ./data.json --port 4000)
   // baseURL: "http://localhost:4000",
   
 });
-
-export const headers = {
-    "content-type": "application/json;charset=UTF-8",
-    accept: "application/json",
-};
 
 
   export const eventPostApi = {
@@ -34,10 +29,37 @@ export const headers = {
 
   export const userApi = {
         // 회원 가입
-        signup: user => instance.post("/api/v1/users/signup", user),
-
+        signup: user => 
+          instance.post("/api/v1/users/signup", user),
+          
+        // 이메일 중복 확인
+        checkemail: user => 
+          instance.post("/api/v1/users/checkemail", user),
+        
+        // 닉네임 중복 확인
+        checknick: user => 
+          instance.post("/api/v1/users/checknick", user),
+        
         // 로그인
-        login: user => instance.post("/api/v1/users/login", user)
+        login: user => 
+          instance.post("/api/v1/users/login", user),
+
+        // 로그인 유지
+        loginCheck: user => 
+          instance.get("/api/v1/users/logincheck", user, { 
+            headers : { "content-type": "application/json;charset=UTF-8", accept: "application/json", 
+            authorization: `Bearer ${localStorage.getItem("token")}`
+            }
+          }),
+        
+        // 로그아웃
+        logout: user => 
+          instance.post("/api/v1/users/logout", user, { 
+            headers : { "content-type": "application/json;charset=UTF-8", accept: "application/json", 
+            }, 
+          }),
+
+          
   }
     
 
