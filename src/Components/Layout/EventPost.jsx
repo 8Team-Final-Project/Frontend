@@ -14,7 +14,7 @@ const EventPost = (props) => {
                  style={{
                      width:"100px"
                      }}/>  
-                     <p>타이틀</p>
+                     <p>{props.postTitle}</p>
                      <br/><br/><br/>
                 태그 / 좋아요100 / 싫어요100
             </div>

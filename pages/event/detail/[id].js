@@ -6,15 +6,15 @@ import { getEventPostDB, deleteEventPostDB } from "../../../src/Redux/Async/even
 //이벤트상세페이지
 const EventDetail = (props) => {
     const dispatch = useDispatch();
-
-
     const event = useSelector((state) => state.event.post)
     console.log(event);
-    React.useEffect(() => {
-        const res = { postId : "617fb1abf8ae35e2ceb3180f"};
-        dispatch(getEventPostDB(res));
-    }, [])
 
+
+    React.useEffect(() => {
+        const response = { postId : "617fb1abf8ae35e2ceb3180f" };
+        dispatch(getEventPostDB(response));
+    }, [])
+    
     return (
         <React.Fragment>
         <div style={{textAlign:"center"}}>
@@ -27,11 +27,11 @@ const EventDetail = (props) => {
             <br/>
             <button> 찜 </button>
             <button> 좋아요 </button>
-            <button> 싫어요</button>
+
             <br/>
             <br/>
             <button> 수정 </button>
-            <button onClick={(e)=>{dispatch(deleteEventPostDB(event.post))}}> 
+            <button onClick={(e)=>{dispatch(deleteEventPostDB(event))}}>
             삭제
             </button>
             <br/>

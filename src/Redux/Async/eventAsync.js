@@ -8,7 +8,8 @@ export const eventPostListDB = createAsyncThunk(
     async (data, thunkAPI) => {
         try {
             const response = await eventPostApi.getEventPostList(data);
-            if(response.data.success) {return response.data};
+            console.log(response)
+            if(response.statusText==='OK') {return response.data};
         }
         catch (err) {
             return thunkAPI.rejectWithValue(err.response.message);
@@ -68,7 +69,6 @@ export const deleteEventPostDB = createAsyncThunk(
     async (data, thunkAPI) => {
         try {
             const response = await eventPostApi.deleteEventPost(data);
-            console.log(response);
             if(response.statusText === "OK") {
                 alert("게시물이 삭제되었습니다.");
                 return response.data.postId}

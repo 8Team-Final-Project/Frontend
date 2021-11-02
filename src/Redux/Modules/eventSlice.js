@@ -3,7 +3,7 @@ import { eventPostListDB, addEventPostDB, getEventPostDB, editEventPostDB, delet
 
 const initialState = {
     list:[{}],
-    post:null,
+
 };
 
 const eventSlice = createSlice({
@@ -15,7 +15,8 @@ const eventSlice = createSlice({
     extraReducers: {
         //이벤트 게시글 전체 조회
         [eventPostListDB.fulfilled]: (state, { payload }) => {
-            state.list = payload;
+            state.postlist = payload;
+            state.loaded = true;
             state.isFetching = false;
             state.errorMessage = null;
         },
@@ -83,7 +84,6 @@ const eventSlice = createSlice({
             state.errorMessage = errorMessage;
         },
         
-
     }   
 })
 
