@@ -1,7 +1,9 @@
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { getLoginList } from "../../src/Redux/Async/loginAsync";
-
+import { 
+    postLogin,
+    postLogout,
+} from "../../src/Redux/Async/userAsync";
 
 const login = () => {
     const dispatch = useDispatch();
@@ -9,13 +11,25 @@ const login = () => {
     const [userEmail, setuserEmail] = React.useState("");
     const [userPassword, setuserPassword] = React.useState("");
     
+    // 로그인 버튼
     const setLogin = () => {
         const login = {
             userEmail : userEmail,
             userPassword : userPassword
         }
-        dispatch(getLoginList(login))
+        dispatch(postLogin(login))
+    }
+
+    // 로그아웃 버튼
+    const setLogout = () => {
+        const logout = {
+            userEmail : userEmail,
+            userPassword : userPassword
+        }
+        dispatch(postLogout(logout))
+        localStorage.removeItem("token");
     };
+    
     return (
         <div>
             <h1>로그인</h1>
@@ -41,7 +55,14 @@ const login = () => {
                     console.log("로그인버튼눌림")
                     setLogin()
                 }}
-            >로그인하기</button>
+            >로그인</button>
+
+            <button
+                onClick={() => {
+                    console.log("로그아웃 버튼눌림")
+                    setLogout()
+                }}
+            >로그아웃</button>
         </div>
     );
 };

@@ -1,6 +1,11 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { postSignupList } from "../../src/Redux/Async/signupAsync";
+import { 
+    postSignup,
+    postCheckEmail,
+    postCheckNic,
+} from "../../src/Redux/Async/userAsync";
+// import { actionCreators as userActions } from "../redux/modules/user";
 
 const signup = () => {
     
@@ -18,21 +23,21 @@ const signup = () => {
             userPassword : userPassword,
             userconfirmPassword : userconfirmPassword
         }
-        dispatch(postSignupList(signup))
+        dispatch(postSignup(signup))
+    };
+
+    const setCheckEmail = () => {
+        const checkemail = {
+            userEmail : userEmail
+        }
+        dispatch(postCheckEmail(checkemail))
     };
 
     const setCheckNick = () => {
         const nickname = {
             userNickname : userNickname
         }
-        dispatch(postSignupList(nickname))
-    };
-
-    const setCheckEmail = () => {
-        const email = {
-            userEmail : userEmail
-        }
-        dispatch(postSignupList(email))
+        dispatch(postCheckNic(nickname))
     };
 
     return (
