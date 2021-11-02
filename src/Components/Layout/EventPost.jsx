@@ -10,13 +10,13 @@ const EventPost = (props) => {
                 height : "100px",
                 display : "flex",
         }}>
-                <img src="https://img1.daumcdn.net/thumb/C500x500.fpng/?fname=http://t1.daumcdn.net/brunch/service/guest/image/jhenA17EwA0hMPpjb9z2iEx2--0.png"
+                <img src={props.postImg}
                  style={{
                      width:"100px"
                      }}/>  
                      <p>{props.postTitle}</p>
                      <br/><br/><br/>
-                태그 / 좋아요100 / 싫어요100
+                {props.postTag} / 좋아요 {props.likeCnt}
             </div>
     </React.Fragment>
   );

@@ -30,4 +30,6 @@ const Wrap = styled.div`
     text-align : center;
 ` 
 
+
+
 export default EventDetail;

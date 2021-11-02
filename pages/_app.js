@@ -13,7 +13,6 @@ function MyApp({ Component, pageProps }) {
       <Wrapper>
         <Header />
         <Component {...pageProps} />
-        <Footer />
       </Wrapper>
     </GlobalThemeProvider>
   );
