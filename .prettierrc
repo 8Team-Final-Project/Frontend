@@ -1,5 +1,4 @@
 {
-    "extends": "next/core-web-vitals",
     "trailingComma": "none",
     "tabWidth": 2,
     "semi": true,
