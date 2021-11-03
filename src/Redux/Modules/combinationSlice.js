@@ -7,9 +7,9 @@ import {
     getCombinationPost,
 } from "../Async/combinationAsync";
 
-const initialState = {
-    //아직 불러오기 api가 완성되지 않아서 임의로 list 안에 객체 넣어두었습니다. 정상작동하면 빼면 됩니다.
-    list: [{}],
+const initialState = { 
+    // 정상작동하면 빼면 됩니다.
+    list: [],
     post: null,
 };
 

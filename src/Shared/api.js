@@ -36,8 +36,6 @@ instance.interceptors.request.use(async (config) => {
         deleteEventPost: postId => instance.patch(`/api/v1/event/eventdelete/${postId}`),
   };
 
-
-
 export const userApi = {
   // 회원 가입
   signup: (user) => instance.post("/api/v1/users/signup", user),
@@ -66,14 +64,16 @@ export const combinationPostApi = {
   // 꿀조합 게시글 수정하기
   patchCombinationPost: (post) => instance.patch(`/api/v1/post/postupdate/${post.postId}`, post),
 
+
   // 꿀조합 게시글 삭제하기
-  deleteCombinationPost: ({ postId }) => instance.patch(`/api/v1/post/postdelete/${postId}`),
+  deleteCombinationPost: postid =>
+  instance.patch(`/api/v1/post/postdelete/${postid}`),
 
   // 꿀조합 게시글 불러오기
-  getCombinationList: () => instance.get("/api/v1/list"),
+  getCombinationList: () => instance.get("/api/v1/post"),
 
   // 꿀조합 상세포스트 불러오기
-  getCombinationPost: ({ postId }) => instance.get(`/api/v1/post/${postId}`)
+  getCombinationPost: postid => instance.get(`/api/v1/post/${postid}`),
 };
 
 export const uploadApi = {
@@ -88,6 +88,5 @@ export const uploadApi = {
     const imgUrl = "";
     return imgUrl;
   }
-};
+}
 
-//참고 링크 https://github.com/hanghae99-final-3/UFO-frontend/blob/main/src/Shared/api.js

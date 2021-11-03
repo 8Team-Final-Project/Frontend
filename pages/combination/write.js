@@ -1,7 +1,8 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import { addCombinationPostDB } from "../../src/Redux/Async/combinationAsync";
+import router from "next/router";
 
 //꿀조합 작성페이지
 const write = () => {
@@ -17,7 +18,7 @@ const write = () => {
             postTitle: postTitle,
             postContent: postContent,
             postImg: postImg,
-            postTage: postTag,
+            postTag: postTag,
         };
         dispatch(addCombinationPostDB(postItem));
     };
@@ -70,12 +71,15 @@ const write = () => {
                 <CenterBox>
                     <button
                         onClick={() => {
-                            window.alert("취소호잇");
+                            {router.push("/combination")}
                         }}
                     >
                         취소하기
                     </button>
-                    <button onClick={setPost}>저장하기</button>
+                    <button onClick={()=>{
+                        setPost()
+                        {router.push("/combination")}
+                    }}>저장하기</button>
                 </CenterBox>
             </WriteBox>
         </div>

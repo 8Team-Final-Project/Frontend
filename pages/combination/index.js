@@ -1,14 +1,24 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getCombinationList } from "../../src/Redux/Async/combinationAsync";
+import Card from "../../src/Components/Card";
+import Tag from "../../src/Components/Tag";
+import FloatingBtn from "../../src/Components/FloatingBtn";
+import EventBtn from "../../src/Components/EventBtn";
+import router from "next/router";
 
 //꿀조합 페이지
 const combination = () => {
+
     const dispatch = useDispatch();
+
+    const postList = useSelector((state) => state.combination.list)
+
     useEffect(() => {
         dispatch(getCombinationList());
     }, []);
+    
     return (
         <div>
             <PageBox>
@@ -21,53 +31,27 @@ const combination = () => {
                     <text>추천태그1</text> <text>추천태그2</text>
                 </div>
                 <div>라면꿀조합 이벤트</div>
-                <PostBox>
-                    <h3>이벤트 참여하기</h3>
-                </PostBox>
-                <PostBox>
-                    <FlexBox>
-                        <PostImage>사진</PostImage>
-                        <FlexBox
-                            style={{
-                                flexDirection: "column",
-                            }}
-                        >
-                            <div>엽떡 + 허니콤보</div>
-                            <FlexBox>
-                                <div>태그1</div>
-                                <div>태그2</div>
-                                <div>좋아요</div>
-                                <div>2</div>
-                                <div>싫어요</div>
-                                <div>3</div>
-                            </FlexBox>
-                        </FlexBox>
-                    </FlexBox>
-                </PostBox>
-                <PostBox>
-                    <FlexBox>
-                        <PostImage>사진</PostImage>
-                        <FlexBox
-                            style={{
-                                flexDirection: "column",
-                            }}
-                        >
-                            <div>공화춘 + 불닭볶음면</div>
-                            <FlexBox>
-                                <div>태그1</div>
-                                <div>태그2</div>
-                                <div>좋아요</div>
-                                <div>4</div>
-                                <div>싫어요</div>
-                                <div>7</div>
-                            </FlexBox>
-                        </FlexBox>
-                    </FlexBox>
-                </PostBox>
+                {/* post는 객체하나 */}
+                {postList.map(post=><Card key={post.id} {...post}/>)}
+                <FloatingBtn></FloatingBtn>
+                <WriteBtn
+                onClick={()=>{
+                    {router.push("/combination/write")}
+                }}
+                >!글쓰기!</WriteBtn>
+                <EventBtn></EventBtn>
             </PageBox>
         </div>
     );
 };
+const WriteBtn = styled.button`
+  font-weight: bold;
+  font-size: 20px;
+  padding: 10px;
+  border-radius: 20px;
+  border: 1px solid black;
+  background-color: #FFFFFF;
+`;
 
 const FlexBox = styled.div`
     display: flex;
