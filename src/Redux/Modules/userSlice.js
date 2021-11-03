@@ -86,15 +86,12 @@ const userSlice = createSlice({
         },
 
         // 로그인 유지
-        [LoginCheck.pending]: (state, action) => {
+        [LoginCheck.pending]: (state, { payload }) => {
             state.isLogin = true;
         },
-        [LoginCheck.fulfilled]: (
-            state,
-            { payload: { password, ...user } },
-        ) => {
+        [LoginCheck.fulfilled]: (state, { payload }) => {
             state.isFetching = false;
-            state.user = user;
+            state.user = payload;
             state.isLogin = true;
             state.errorMessage = "";
         },
