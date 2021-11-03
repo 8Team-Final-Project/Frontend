@@ -29,7 +29,7 @@ instance.interceptors.request.use(async config => {
         addEventPost : data => instance.post("/api/v1/post", data),
 
         //이벤트 게시물 불러오기
-         getEventPost: ({postId}) => instance.get(`/api/v1/post/${postId}`),
+         getEventPost: postId => instance.get(`/api/v1/post/${postId}`),
 
         //이벤트 게시물 수정하기
         editEventPost : postId => instance.put(`/api/v1/post/:postId`, postId), 
@@ -37,7 +37,6 @@ instance.interceptors.request.use(async config => {
         //이벤트 게시물 삭제하기 
         deleteEventPost: postId => instance.delete(`free/post/${postId}`),
   };
-
 
   export const userApi = {
         // 회원 가입
@@ -63,13 +62,8 @@ instance.interceptors.request.use(async config => {
         // 로그아웃
         logout: user => 
           instance.post("/api/v1/users/logout", user),
-
-          
   }
     
-
-
-
 export const combinationPostApi = {
     // 꿀조합 게시글 작성하기
     postCombinationPost: post => instance.post("/api/v1/post", post),
@@ -79,14 +73,14 @@ export const combinationPostApi = {
         instance.patch(`/api/v1/post/postupdate/${post.postId}`, post),
 
     // 꿀조합 게시글 삭제하기
-    deleteCombinationPost: ({ postId }) =>
-        instance.patch(`/api/v1/post/postdelete/${postId}`),
+    deleteCombinationPost: postid =>
+        instance.patch(`/api/v1/post/postdelete/${postid}`),
 
     // 꿀조합 게시글 불러오기
-    getCombinationList: () => instance.get("/api/v1/list"),
+    getCombinationList: () => instance.get("/api/v1/post"),
 
     // 꿀조합 상세포스트 불러오기
-    getCombinationPost: ({ postId }) => instance.get(`/api/v1/post/${postId}`),
+    getCombinationPost: postid => instance.get(`/api/v1/post/${postid}`),
 };
 
 //참고 링크 https://github.com/hanghae99-final-3/UFO-frontend/blob/main/src/Shared/api.js

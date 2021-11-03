@@ -22,7 +22,7 @@ export const patchCombinationPostDB = createAsyncThunk(
             const response = await combinationPostApi.patchCombinationPost(
                 data
             );
-            console.log(response);
+            //console.log(response);
             if (response.statusText === "OK") return response.data;
         } catch (err) {
             return thunkAPI.rejectWithValue(err.response.message);
@@ -38,7 +38,7 @@ export const deleteCombinationPostDB = createAsyncThunk(
             const response = await combinationPostApi.deleteCombinationPost(
                 data
             );
-            console.log(response);
+            //console.log(response);
             if (response.statusText === "OK") return response.data;
         } catch (err) {
             return thunkAPI.rejectWithValue(err.response.message);
@@ -52,7 +52,7 @@ export const getCombinationList = createAsyncThunk(
     async (data, thunkAPI) => {
         try {
             const response = await combinationPostApi.getCombinationList(data);
-            console.log(response);
+            //console.log(response);
             if (response.statusText === "OK") return response.data;
         } catch (err) {
             return thunkAPI.rejectWithValue(err.response.message);
@@ -60,13 +60,13 @@ export const getCombinationList = createAsyncThunk(
     }
 );
 
-// 단일 게시글 불러오기
+// 게시물상세 불러오기
 export const getCombinationPost = createAsyncThunk(
     "combination/getPost",
     async (data, thunkAPI) => {
         try {
             const response = await combinationPostApi.getCombinationPost(data);
-            console.log(response);
+            //console.log(response);
             if (response.statusText === "OK") return response.data;
         } catch (err) {
             return thunkAPI.rejectWithValue(err.response.message);

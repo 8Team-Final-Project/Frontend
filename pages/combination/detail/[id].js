@@ -1,42 +1,45 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import {
     deleteCombinationPostDB,
     getCombinationPost,
 } from "../../../src/Redux/Async/combinationAsync";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import router from "next/router"
+
 
 //꿀조합 상세페이지
-const PartyDetail = () => {
+const PartyDetail = (props) => {
+
     const dispatch = useDispatch();
 
+    const postId = router.query.id
+
+    const postItem = useSelector((state) => state.combination.post)
+
     useEffect(() => {
-        //나중에 postId 페이지에서 받아와서 고쳐야해요
-        const req = { postId: "617f698bf8ae35e2ceb31798" };
-        dispatch(getCombinationPost(req));
+        dispatch(getCombinationPost(postId));
     }, []);
 
     const setDelete = () => {
-        //나중에 postId 페이지에서 받아와서 고쳐야해요
-        const req = { postId: "617f698bf8ae35e2ceb31798" };
-        dispatch(deleteCombinationPostDB(req));
+        dispatch(deleteCombinationPostDB(postId));
     };
 
     return (
         <div>
             <DetailBox>
-                <MainImg>사진</MainImg>
+                <MainImg>{postItem && postItem.postImg}</MainImg>
                 <CenterBox>
-                    <h3>제목:배고파</h3>
+                    <h3>{postItem && postItem.postTitle}</h3>
                 </CenterBox>
                 <CenterBox>
                     <FlexCenter>
-                        <div>#태그1</div>
-                        <div>#태그2</div>
+                        <div>{postItem && "#"+postItem.postTag}</div>
+                        <div></div>
                     </FlexCenter>
                 </CenterBox>
                 <CenterBox>
-                    <DetailContent>내용~</DetailContent>
+                    <DetailContent>{postItem && postItem.postContent}</DetailContent>
                 </CenterBox>
                 <CenterBox>
                     <button>즐겨찾기</button>
@@ -46,8 +49,13 @@ const PartyDetail = () => {
                     <button>싫어요!</button>
                 </CenterBox>
                 <CenterBox>
-                    <button>수정하기</button>
-                    <button onClick={setDelete}>삭제하기</button>
+                    <button 
+                    onClick={() =>{router.push(`/combination/edit/${postId}`)
+                    }}>수정하기</button>
+                    <button onClick={() => {
+                        setDelete()
+                        {router.push("/combination")}
+                    }}>삭제하기</button>
                 </CenterBox>
             </DetailBox>
         </div>
