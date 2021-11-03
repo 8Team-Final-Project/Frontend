@@ -7,6 +7,8 @@ import CircleImage from "../Shared/CircleImage";
 
 //isOpen : true면 보여주고, false면 모달이 닫힌다.
 //handleClose : isOpen을 false로 바꿔주는 함수를 넣어주면 된다.
+//handleSave : save시에 동작할 함수를 넣어주면 된다.
+
 export default function MyInfoEditModal({ isOpen, handleClose }) {
   const [userInfo, setUserInfo] = useState({ nickname: "", email: "", imgUrl: "" });
 
