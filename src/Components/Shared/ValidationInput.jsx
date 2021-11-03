@@ -56,7 +56,7 @@ export default function ValidationInput({
   return (
     <div>
       <Label>{label}</Label>
-      <TextField
+      <Input
         error={isError}
         id="standard-error-helper-text"
         helperText={helperText}
@@ -72,8 +72,13 @@ export default function ValidationInput({
 ValidationInput.defaultProps = {
   type: "text",
   label: "",
-  value: ""
+  value: "",
+  setValue: () => {}
 };
+
+const Input = styled(TextField)`
+  width: 100%;
+`;
 
 const Label = styled.span`
   color: #878787;
