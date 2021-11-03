@@ -26,16 +26,16 @@ instance.interceptors.request.use(async config => {
         getEventPostList : data => instance.get("/api/v1/event", data),
         
         //이벤트 게시물 추가하기
-        addEventPost : data => instance.post("/api/v1/post", data),
+        addEventPost : data => instance.post("/api/v1/event", data),
 
         //이벤트 게시물 불러오기
-         getEventPost: ({postId}) => instance.get(`/api/v1/post/${postId}`),
+        getEventPost: postId => instance.get(`/api/v1/event/${postId}`),
 
         //이벤트 게시물 수정하기
-        editEventPost : postId => instance.put(`/api/v1/post/:postId`, postId), 
+        editEventPost : post => instance.patch(`/api/v1/event/eventupdate/${post.postId}`, post), 
 
         //이벤트 게시물 삭제하기 
-        deleteEventPost: postId => instance.delete(`free/post/${postId}`),
+        deleteEventPost: postId => instance.patch(`/api/v1/event/eventdelete/${postId}`),
   };
 
 

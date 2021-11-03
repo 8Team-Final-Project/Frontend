@@ -3,7 +3,7 @@ import { eventPostListDB, addEventPostDB, getEventPostDB, editEventPostDB, delet
 
 const initialState = {
     list:[{}],
-
+    post:null
 };
 
 const eventSlice = createSlice({
@@ -30,7 +30,6 @@ const eventSlice = createSlice({
 
         //이벤트 게시글 추가 
         [addEventPostDB.fulfilled]: (state, { payload }) => {
-            console.log(payload);
             state.list.unshift(payload);
             state.errorMessage = null;
         },
@@ -43,7 +42,7 @@ const eventSlice = createSlice({
         },
         
         //이벤트 게시글 조회
-        [getEventPostDB.fulfilled]: (state, { payload }) => {
+        [getEventPostDB.fulfilled]: (state, { payload } ) => {
             state.post = payload;
             state.isFetching = false;
             state.errorMessage = null;
@@ -57,8 +56,8 @@ const eventSlice = createSlice({
         },
         
         //이벤트 게시글 수정 
-        [editEventPostDB.fulfilled]: (state, { payload }) => {
-            state.list = payload;
+        [editEventPostDB.fulfilled]: (state, {payload}) => {
+            state.post = payload;
             state.isFetching = false;
             state.errorMessage = null;
         },

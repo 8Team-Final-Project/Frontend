@@ -10,6 +10,7 @@ const write = () => {
     const [postTitle, setPostTitle] = useState("");
     const [postContent, setPostContent] = useState("");
 
+
     const addEventPost = () => {
         const content = {
             postTitle : postTitle,
@@ -20,20 +21,15 @@ const write = () => {
 
     return (
         <div style={{textAlign:"center"}}>
-            <img/>사진
+            <img/>사진<button>사진추가</button>
             제목
             <input onChange={(e) => {
-                console.log(e.target.value);
                 setPostTitle(e.target.value);
             }}/>
             <br/>
             <br/>
-            사진첨부?
-            <br/>
-            <br/>
             내용
             <input onChange={(e) => {
-                console.log(e.target.value);
                 setPostContent(e.target.value);
             }}/>
             <br/>

@@ -60,12 +60,9 @@ export const postLogin = createAsyncThunk(
   async (data, thunkAPI) => {
       try {
           const response = await userApi.login(data);
-          console.log(response)
           const token = response.data.token
-          console.log(token)
           localStorage.setItem("token", token)
           if(response.data.result==="success") {
-              console.log('😁😁😁😁😁')
               window.alert("로그인 완료!")
               return response.data.msg
             };

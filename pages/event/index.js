@@ -8,7 +8,6 @@ import styled from "styled-components";
 const event = (props) => {
     const post_list = useSelector((state) => state.event);
     const isloaded = useSelector((state) => state.event.loaded);
-    console.log(post_list)
     const dispatch = useDispatch();
     
     useEffect(()=>{

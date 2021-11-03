@@ -8,7 +8,6 @@ export const eventPostListDB = createAsyncThunk(
     async (data, thunkAPI) => {
         try {
             const response = await eventPostApi.getEventPostList(data);
-            console.log(response)
             if(response.statusText==='OK') {return response.data};
         }
         catch (err) {
@@ -24,7 +23,6 @@ export const addEventPostDB = createAsyncThunk(
     async (data, thunkAPI) => {
         try {
             const response = await eventPostApi.addEventPost(data);
-            console.log(response)
             if(response.data.success) return response.data.newPost;
         }
         catch (err) {
@@ -39,11 +37,10 @@ export const getEventPostDB = createAsyncThunk(
     async (data, thunkAPI) => {
         try{
             const response = await eventPostApi.getEventPost(data);
-            console.log(response);
             if(response.statusText==='OK') return response.data;
         }
         catch (err){
-            return thunkAPI.rejectWithValue(err.response.message);
+            return thunkAPI.rejectWithValue(err.message);
         }
     }
     
