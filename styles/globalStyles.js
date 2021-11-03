@@ -37,6 +37,10 @@ export const GlobalStyles = createGlobalStyle`
     outline: none;
     border: none;
     background: none;
+    cursor:pointer;
+  }
+  input{
+      outline: none;
   }
   a {
     margin:0;
