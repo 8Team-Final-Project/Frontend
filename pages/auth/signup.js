@@ -55,7 +55,6 @@ const signup = () => {
                 />
                 <button
                     onClick={() => {
-                        console.log("이메일중복버튼")
                         setCheckEmail()
                     }}
                 >
@@ -73,7 +72,6 @@ const signup = () => {
                 />
                 <button
                     onClick={() => {
-                        console.log("닉네임중복버튼")
                         setCheckNick()
                     }}
                 >
@@ -103,7 +101,6 @@ const signup = () => {
             <button>취소</button>
             <button 
                 onClick={() => {
-                    console.log("회원가입버튼눌림")
                     setSignup()
                 }}
 

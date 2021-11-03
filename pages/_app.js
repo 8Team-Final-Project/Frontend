@@ -16,8 +16,6 @@ function MyApp({ Component, pageProps }) {
   // next js 토큰 확인
   const [isToken,setIsToken] = useState(typeof window !=='undefined'? localStorage.getItem('token'):null)
   
-  // const isLogin = useSelector((state) => state.changeLoginStatus.isLogin);
-	// console.log('isLogin', isLogin)
 
   useEffect(() => {
     if(isToken) {

@@ -83,7 +83,6 @@ export const uploadApi = {
       formData.append(entry[0], entry[1]);
     }
     const response = await instance.post("http://54.180.157.2:8000/api/v1/post", formData);
-    console.log(response);
 
     const imgUrl = "";
     return imgUrl;

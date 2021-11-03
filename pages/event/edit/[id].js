@@ -1,6 +1,5 @@
 import React, {useState} from "react";
 import styled from "styled-components";
-
 import Router, { useRouter } from "next/router";
 import { useDispatch } from 'react-redux';
 import { editEventPostDB } from '../../../src/Redux/Async/eventAsync';

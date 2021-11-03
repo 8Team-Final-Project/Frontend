@@ -36,7 +36,6 @@ const login = () => {
             <h4>아이디</h4>
             <input
                 onChange={(e) => {
-                    console.log(e.target.value)
                     setuserEmail(e.target.value);
                   }}
                   placeholder="이메일 형식으로 입력해주세요."
@@ -52,14 +51,12 @@ const login = () => {
             
             <button
                 onClick={() => {
-                    console.log("로그인버튼눌림")
                     setLogin()
                 }}
             >로그인</button>
 
             <button
                 onClick={() => {
-                    console.log("로그아웃 버튼눌림")
                     setLogout()
                 }}
             >로그아웃</button>
