@@ -1,4 +1,8 @@
+import React,{useState,useEffect} from 'react'
 import { wrapper } from "../src/Redux/configureStore";
+import { useDispatch } from "react-redux";
+import { LoginCheck } from "../src/Redux/Async/userAsync"
+
 import styled from "styled-components";
 
 import GlobalThemeProvider from "../styles/GlobalThemeProvider";
@@ -9,6 +13,19 @@ import Footer from "../src/Components/Layout/Footer";
 
 //전체 레이아웃을 담당하는 컴포넌트입니다.
 function MyApp({ Component, pageProps }) {
+  const dispatch = useDispatch();
+  // next js 토큰 확인
+  const [isToken,setIsToken] = useState(typeof window !=='undefined'? localStorage.getItem('token'):null)
+  
+  // const isLogin = useSelector((state) => state.changeLoginStatus.isLogin);
+	// console.log('isLogin', isLogin)
+
+  useEffect(() => {
+    if(isToken) {
+      dispatch(LoginCheck());
+    }
+  },[isToken]);
+
   return (
     <GlobalThemeProvider>
       <Wrapper>

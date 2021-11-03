@@ -84,15 +84,12 @@ export const LoginCheck = createAsyncThunk(
         // const { userEmail: userEmail } = jwt(token);
         try {
             // 서버에 유저 정보 요청
-            const loginCheck = await userApi.loginCheck(data);
-            if (loginCheck.data.isLogin===true) {
-                return response.data.msg
-            } else {
-                return thunkAPI.rejectWithValue(loginCheck.data.errorMessage);
+            const response = await userApi.loginCheck(data);
+            if (response.data.isLogin===true) {
+                return response.data.userNickname
             }
         } catch (err) {
             // 에러 발생시 에러 메세지 반환
-            Sentry.captureException(`error, 유저로그인유무 : ${err}`);
             return thunkAPI.rejectWithValue(err.response.data.message);
         }
     }
