@@ -1,28 +1,25 @@
-import React from "react"
-import styled from "styled-components"
-import { useSelector } from "react-redux"
+import React from "react";
+import styled from "styled-components";
+import { useSelector } from "react-redux";
 
-const Tag = ({value})=> {
+const Tag = ({ value }) => {
   // 검색 기능에서 input 값을 가져와서 뿌려준다.
   // useState로 값을 받아오기
   // const SearchTag = useSelector((state) => state.list)
 
-  return (
-    <TagBox>
-      {value}
-    </TagBox>
-  )
-}
+  return <TagBox>{value}</TagBox>;
+};
 
 const TagBox = styled.div`
   background-color: #ffffff;
   display: inline-block;
-  padding: 5px;
+  font-size: 12px;
+  color: #3c3c3c;
+  padding: 2px 5px;
   width: auto;
-  height: 20px;
-  border-radius: 20px;
-  border: 1px solid black;
+  height: 27.41px;
+  border-radius: 74px;
+  border: 0.74px solid #d9d9d9;
 `;
 
-
-export default Tag
+export default Tag;

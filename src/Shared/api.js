@@ -18,24 +18,6 @@ instance.interceptors.request.use(async (config) => {
   return config;
 });
 
-
-  export const eventPostApi = {
-        //이벤트 게시판 전체 불러오기
-        getEventPostList : data => instance.get("/api/v1/event", data),
-        
-        //이벤트 게시물 추가하기
-        addEventPost : data => instance.post("/api/v1/event", data),
-
-        //이벤트 게시물 불러오기
-        getEventPost: postId => instance.get(`/api/v1/event/${postId}`),
-
-        //이벤트 게시물 수정하기
-        editEventPost : post => instance.patch(`/api/v1/event/eventupdate/${post.postId}`, post), 
-
-        //이벤트 게시물 삭제하기 
-        deleteEventPost: postId => instance.patch(`/api/v1/event/eventdelete/${postId}`),
-  };
-
 export const userApi = {
   // 회원 가입
   signup: (user) => instance.post("/api/v1/users/signup", user),
@@ -56,6 +38,26 @@ export const userApi = {
   // 로그아웃
   logout: (user) => instance.post("/api/v1/users/logout", user)
 };
+
+export const eventPostApi = {
+  //이벤트 게시판 전체 불러오기
+  getEventPostList : data => instance.get("/api/v1/event", data),
+        
+  //이벤트 게시물 추가하기
+  addEventPost : data => instance.post("/api/v1/event", data),
+
+  //이벤트 게시물 불러오기
+  getEventPost: postId => instance.get(`/api/v1/event/${postId}`),
+
+  //이벤트 게시물 수정하기
+  editEventPost : post => instance.patch(`/api/v1/event/eventupdate/${post.postId}`, post), 
+
+  //이벤트 게시물 삭제하기 
+  deleteEventPost: postId => instance.patch(`/api/v1/event/eventdelete/${postId}`),
+
+  likeEventPost : postId => instance.patch(`/api/v1/like/${postId}`),
+  };
+
 
 export const combinationPostApi = {
   // 꿀조합 게시글 작성하기

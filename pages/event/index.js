@@ -9,22 +9,30 @@ const event = (props) => {
     const post_list = useSelector((state) => state.event);
     const isloaded = useSelector((state) => state.event.loaded);
     const dispatch = useDispatch();
-    
     useEffect(()=>{
         dispatch(eventPostListDB());
     },[])
     
     return (
         <React.Fragment>
-            <h1>이번주 라면 꿀조합은?</h1>
+            <Eventname>이번주 라면 꿀조합은?</Eventname>
 
             {isloaded && (
                 <>
-                {post_list && post_list.postlist.map((p, idx) => {return (<EventPost {...p} key={p.pid}/>)})} 
+                {post_list && post_list.postlist.map((p) => {return (<EventPost {...p}/>)})} 
                 </>
             )}
         </React.Fragment>
     );
 };
+
+
+const Eventname = styled.p`
+    font-size : 24px;
+    font-weight : bold;
+    text-align : center;
+    margin-top : 33px;
+    margin-bottom : 16px;
+`
 
 export default event;

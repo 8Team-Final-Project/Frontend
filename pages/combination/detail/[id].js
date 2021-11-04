@@ -41,7 +41,6 @@ const PartyDetail = () => {
         </CenterBox>
         <CenterBox>
           <button>좋아요!</button>
-          <button>싫어요!</button>
         </CenterBox>
         <CenterBox>
           <button
