@@ -18,23 +18,22 @@ instance.interceptors.request.use(async (config) => {
   return config;
 });
 
+export const eventPostApi = {
+  //이벤트 게시판 전체 불러오기
+  getEventPostList: (data) => instance.get("/api/v1/event", data),
 
-  export const eventPostApi = {
-        //이벤트 게시판 전체 불러오기
-        getEventPostList : data => instance.get("/api/v1/event", data),
-        
-        //이벤트 게시물 추가하기
-        addEventPost : data => instance.post("/api/v1/event", data),
+  //이벤트 게시물 추가하기
+  addEventPost: (data) => instance.post("/api/v1/event", data),
 
-        //이벤트 게시물 불러오기
-        getEventPost: postId => instance.get(`/api/v1/event/${postId}`),
+  //이벤트 게시물 불러오기
+  getEventPost: (postId) => instance.get(`/api/v1/event/${postId}`),
 
-        //이벤트 게시물 수정하기
-        editEventPost : post => instance.patch(`/api/v1/event/eventupdate/${post.postId}`, post), 
+  //이벤트 게시물 수정하기
+  editEventPost: (post) => instance.patch(`/api/v1/event/eventupdate/${post.postId}`, post),
 
-        //이벤트 게시물 삭제하기 
-        deleteEventPost: postId => instance.patch(`/api/v1/event/eventdelete/${postId}`),
-  };
+  //이벤트 게시물 삭제하기
+  deleteEventPost: (postId) => instance.patch(`/api/v1/event/eventdelete/${postId}`)
+};
 
 export const userApi = {
   // 회원 가입
@@ -42,7 +41,6 @@ export const userApi = {
 
   // 이메일 중복 확인
   checkemail: (user) => instance.post("/api/v1/users/checkemail", user),
-
 
   // 닉네임 중복 확인
   checknick: (user) => instance.post("/api/v1/users/checknick", user),
@@ -64,28 +62,28 @@ export const combinationPostApi = {
   // 꿀조합 게시글 수정하기
   patchCombinationPost: (post) => instance.patch(`/api/v1/post/postupdate/${post.postId}`, post),
 
-
   // 꿀조합 게시글 삭제하기
-  deleteCombinationPost: postid =>
-  instance.patch(`/api/v1/post/postdelete/${postid}`),
+  deleteCombinationPost: (postid) => instance.patch(`/api/v1/post/postdelete/${postid}`),
 
   // 꿀조합 게시글 불러오기
   getCombinationList: () => instance.get("/api/v1/post"),
 
   // 꿀조합 상세포스트 불러오기
-  getCombinationPost: postid => instance.get(`/api/v1/post/${postid}`),
+  getCombinationPost: (postid) => instance.get(`/api/v1/post/${postid}`)
 };
 
 export const uploadApi = {
-  imageUpload: async (imgObj) => {
-    let formData = new FormData();
-    for (let entry of Object.entries(imgObj)) {
-      formData.append(entry[0], entry[1]);
+  imageUpload: async function (imgObj) {
+    try {
+      const req = { postImg: imgObj };
+      let formData = new FormData();
+      for (let entry of Object.entries(req)) {
+        formData.append(entry[0], entry[1]);
+      }
+      const response = await axios.post("http://54.180.157.2:8000/api/v1/post/uploadimg", formData);
+      if (response.statusText === "OK") return response;
+    } catch (err) {
+      alert(err);
     }
-    const response = await instance.post("http://54.180.157.2:8000/api/v1/post", formData);
-
-    const imgUrl = "";
-    return imgUrl;
   }
-}
-
+};
