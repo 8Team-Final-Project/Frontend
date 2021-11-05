@@ -1,5 +1,6 @@
 import React,{useEffect} from "react";
 import EventPost from "../../src/Components/Layout/EventPost"
+import FloatingButton from '../../src/Components/Button/FloatingButton';
 import { useSelector, useDispatch } from "react-redux";
 import { eventPostListDB } from '../../src/Redux/Async/eventAsync';
 import {useRouter} from "next/router";
@@ -22,6 +23,7 @@ const event = (props) => {
                 {post_list && post_list.postlist.map((p, idx) => {return (<EventPost {...p} key={p.pid}/>)})} 
                 </>
             )}
+            <FloatingButton/>
         </React.Fragment>
     );
 };
