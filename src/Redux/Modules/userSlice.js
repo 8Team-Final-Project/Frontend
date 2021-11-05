@@ -5,10 +5,10 @@ import {
     postCheckEmail,
     postCheckNic,
     postLogout,
-    LoginCheck
+    LoginCheck,
+    Me
  } from "../Async/userAsync";
 
- // 질문 이벤트 페이지에는 어떻게 생성 된건지?
 const initialState = {
     isPatching: false,
     errorMessage: null,
@@ -85,17 +85,17 @@ const userSlice = createSlice({
             state.errorMessage = errorMessage;
         },
 
-        // 로그인 유지
-        [LoginCheck.pending]: (state, { payload }) => {
-            state.isLogin = true;
-        },
-        [LoginCheck.fulfilled]: (state, { payload }) => {
+        // 로그인 체크 && 유저정보 가져오기
+        [Me.fulfilled]: (state, { payload }) => {
             state.isFetching = false;
             state.user = payload;
             state.isLogin = true;
             state.errorMessage = "";
         },
-        [LoginCheck.rejected]: (state, { payload: errorMessage }) => {
+        [Me.pending]: (state, { payload }) => {
+            state.isFetching = false;
+        },
+        [Me.rejected]: (state, { payload: errorMessage }) => {
             state.isFetching = false;
             state.errorMessage = errorMessage;
         },
