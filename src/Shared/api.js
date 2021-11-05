@@ -25,7 +25,6 @@ export const userApi = {
   // 이메일 중복 확인
   checkemail: (user) => instance.post("/api/v1/users/checkemail", user),
 
-
   // 닉네임 중복 확인
   checknick: (user) => instance.post("/api/v1/users/checknick", user),
 
@@ -41,21 +40,22 @@ export const userApi = {
 
 export const eventPostApi = {
   //이벤트 게시판 전체 불러오기
-  getEventPostList : data => instance.get("/api/v1/event", data),
+  getEventPostList : data => instance.get("/api/v1/post/", data),
         
   //이벤트 게시물 추가하기
-  addEventPost : data => instance.post("/api/v1/event", data),
+  addEventPost : data => instance.post("/api/v1/post", data),
 
   //이벤트 게시물 불러오기
-  getEventPost: postId => instance.get(`/api/v1/event/${postId}`),
+  getEventPost: postId => instance.get(`/api/v1/post/${postId}`),
 
   //이벤트 게시물 수정하기
-  editEventPost : post => instance.patch(`/api/v1/event/eventupdate/${post.postId}`, post), 
+  editEventPost : post => instance.patch(`/api/v1/post/postupdate/${post.postId}`, post), 
 
   //이벤트 게시물 삭제하기 
-  deleteEventPost: postId => instance.patch(`/api/v1/event/eventdelete/${postId}`),
+  deleteEventPost: postId => instance.patch(`/api/v1/post/postdelete/${postId}`),
 
   likeEventPost : postId => instance.patch(`/api/v1/like/${postId}`),
+
   };
 
 

@@ -1,9 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 import router from "next/router";
+import { useSelector } from "react-redux";
 import Tag from "../Tag";
 
 const EventPost = (props) => {
+  const isloaded = useSelector((state) => state.event.loaded);
   return (
     <CardBox
       onClick={() => {
@@ -16,6 +18,10 @@ const EventPost = (props) => {
         {props.postTag.map((tag, idx) => (
           <Tag key={idx} value={"#" + tag}></Tag>
         ))}
+        <Like>
+          <Heart src="/fullheart.png" />
+          <LikeCnt>{isloaded && <>{props.likeCnt}</>}</LikeCnt>
+        </Like>
       </RightBox>
     </CardBox>
   );
@@ -27,7 +33,7 @@ const PostTitle = styled.div`
 
 const CardBox = styled.div`
   border: 1px solid #e5e5e5;
-  margin: 10px auto;
+  margin: 15px auto;
   display: flex;
   width: 100%;
   height: 100px;
@@ -53,6 +59,26 @@ const RightBox = styled.div`
   width: 70%;
   height: 100px;
   border-radius: 0 10px 10px 0;
+`;
+
+const Like = styled.div`
+  display: flex;
+`;
+
+const Heart = styled.img`
+  display: block;
+  text-align: right;
+  width: 15px;
+  height: 13px;
+  margin-top: 10px;
+  margin-left: 190px;
+`;
+
+const LikeCnt = styled.span`
+  margin-top: 9px;
+  margin-left: 7px;
+  font-size: 10px;
+  color: red;
 `;
 
 export default EventPost;

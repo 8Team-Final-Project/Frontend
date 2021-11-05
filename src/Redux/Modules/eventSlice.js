@@ -102,6 +102,7 @@ const eventSlice = createSlice({
         //이벤트 게시글 좋아요
         [likeEventPostDB.fulfilled]: (state, { payload }) => {
             state.post = payload;
+            state.loaded = true;
             state.isFetching = false;
             state.errorMessage = null;
         },

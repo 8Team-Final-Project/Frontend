@@ -75,3 +75,23 @@ export const deleteEventPostDB = createAsyncThunk(
         }
     }
 )
+
+//이벤트 게시물 좋아요
+export const likeEventPostDB = createAsyncThunk(
+    "event/likePost",
+    async (data, thunkAPI) => {
+        try {
+            const response = await eventPostApi.likeEventPost(data);
+            if(response.statusText === "OK") {
+                if(response.data.likeState === true) {
+                    thunkAPI.dispatch(increaseLike());
+                }
+                else{
+                    thunkAPI.dispatch(decreaseLike());
+                }
+        }}
+        catch (err) {
+            return thunkAPI.rejectWithValue(err.response.message);
+        }
+    }
+)

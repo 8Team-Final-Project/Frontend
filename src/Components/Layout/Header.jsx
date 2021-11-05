@@ -15,56 +15,63 @@ const Header = () => {
           router.push("/");
         }}
       />
-      <span
-        onClick={() => {
-          router.push("/event");
-        }}
-      >
-        이벤트
-      </span>
-      <span
-        onClick={() => {
-          router.push("/combination");
-        }}
-      >
-        꿀조합
-      </span>
-      {!is_login && (
+      <Nav>
         <span
           onClick={() => {
-            router.push("/auth/login");
+            router.push("/event");
           }}
         >
-          로그인
+          이벤트
         </span>
-      )}
-      {is_login && (
         <span
           onClick={() => {
-            router.push("/mypage");
+            router.push("/combination");
           }}
         >
-          MY
+          꿀조합
         </span>
-      )}
+        {!is_login && (
+          <span
+            onClick={() => {
+              router.push("/auth/login");
+            }}
+          >
+            로그인
+          </span>
+        )}
+        {is_login && (
+          <span
+            onClick={() => {
+              router.push("/mypage");
+            }}
+          >
+            MY
+          </span>
+        )}
+      </Nav>
     </Wrap>
   );
 };
 
 const Wrap = styled.div`
   display: flex;
-
-  & span {
-    margin: 10px;
-    margin-top: 15px;
-  }
+  width: 100%;
 `;
 
 const LogoImg = styled.img`
-  margin-right: 72px;
-  margin-top: 8px;
-  width: 95px;
-  height: 33px;
+  position: relative;
+  width: 30%;
+  height: 5%;
+  top: 1%;
+`;
+
+const Nav = styled.span`
+  display: flex;
+  justify-content: flex-end;
+  & span {
+    margin: 11px;
+    margin-top: 15px;
+  }
 `;
 
 export default Header;
