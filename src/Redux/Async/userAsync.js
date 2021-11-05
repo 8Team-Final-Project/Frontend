@@ -98,7 +98,6 @@ export const Me = createAsyncThunk(
   async (data, thunkAPI) => {
       try {
           const response = await userApi.me(data);
-          console.log(response)
           if(response.statusText==="OK") {
               return response.data
             };

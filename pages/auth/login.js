@@ -73,7 +73,6 @@ const login = () => {
                 <RedButton 
                     onClick={() =>{
                         setLogin()
-                        console.log(setLogin)
                     }} 
                     value="로그인"
 

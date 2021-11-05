@@ -85,7 +85,6 @@ export const patchCombinationPostLike = createAsyncThunk(
     async (data, thunkAPI) => {
         try {
             const response = await combinationPostApi.patchCombinationLike(data);
-            console.log(response);
             if (response.statusText === "OK") return response.data;
         } catch (err) {
             return thunkAPI.rejectWithValue(err.response.message);
