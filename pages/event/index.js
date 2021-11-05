@@ -15,11 +15,11 @@ const event = (props) => {
     
     return (
         <React.Fragment>
-            <Eventname>이번주 라면 꿀조합은?</Eventname>
+            <EventName>이번주 라면 꿀조합은?</EventName>
 
             {isloaded && (
                 <>
-                {post_list && post_list.postlist.map((p) => {return (<EventPost {...p}/>)})} 
+                {post_list && post_list.postlist.map((p, idx) => {return (<EventPost {...p} key={p.pid}/>)})} 
                 </>
             )}
         </React.Fragment>
@@ -27,7 +27,7 @@ const event = (props) => {
 };
 
 
-const Eventname = styled.p`
+const EventName = styled.p`
     font-size : 24px;
     font-weight : bold;
     text-align : center;

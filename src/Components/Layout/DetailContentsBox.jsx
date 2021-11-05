@@ -2,13 +2,15 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import Router, { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
-import { getEventPostDB, deleteEventPostDB } from "../../Redux/Async/eventAsync";
+import { getEventPostDB, deleteEventPostDB, likeEventPostDB } from "../../Redux/Async/eventAsync";
 
 const DetailContentsBox = (props) => {
   const dispatch = useDispatch();
+
   const {
     query: { id }
   } = useRouter();
+
   const post = useSelector((state) => state.event.post);
 
   React.useEffect(() => {
@@ -21,6 +23,9 @@ const DetailContentsBox = (props) => {
   };
   const editpage = () => {
     Router.push(`/event/edit/${id}`);
+  };
+  const likeEventPost = () => {
+    dispatch(likeEventPostDB(id));
   };
 
   return (
@@ -40,6 +45,7 @@ const DetailContentsBox = (props) => {
 
         <button onClick={editpage}>수정</button>
         <button onClick={deleteEventPost}>삭제</button>
+        <button onClick={likeEventPost}>좋아요{post && post.likeCnt}</button>
       </Wrap>
     </React.Fragment>
   );

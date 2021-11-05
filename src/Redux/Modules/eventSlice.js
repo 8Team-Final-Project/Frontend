@@ -1,5 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { eventPostListDB, addEventPostDB, getEventPostDB, editEventPostDB, deleteEventPostDB } from "../Async/eventAsync";
+import { 
+    eventPostListDB, 
+    addEventPostDB, 
+    getEventPostDB, 
+    editEventPostDB, 
+    deleteEventPostDB, 
+    likeEventPostDB } from "../Async/eventAsync";
+
+
 
 const initialState = {
     list:[{}],
@@ -10,6 +18,14 @@ const eventSlice = createSlice({
     name : "event",
     initialState : initialState,
     reducers : {
+        increaseLike: (state, action) => {
+            state.post.likeCnt += 1;
+            state.post.likeState = true;
+        },
+        decreaseLike: (state, action) => {
+            state.post.likeCnt -= 1;
+            state.post.likeState = false;
+        },
     },
 
     extraReducers: {
@@ -79,6 +95,20 @@ const eventSlice = createSlice({
             state.isFetching = true;
         },
         [deleteEventPostDB.rejected]: (state, { payload: errorMessage }) => {
+            state.isFetching = false;
+            state.errorMessage = errorMessage;
+        },
+
+        //이벤트 게시글 좋아요
+        [likeEventPostDB.fulfilled]: (state, { payload }) => {
+            state.post = payload;
+            state.isFetching = false;
+            state.errorMessage = null;
+        },
+        [likeEventPostDB.pending]: (state, { payload }) => {
+            state.isFetching = true;
+        },
+        [likeEventPostDB.rejected]: (state, { payload: errorMessage }) => {
             state.isFetching = false;
             state.errorMessage = errorMessage;
         },
