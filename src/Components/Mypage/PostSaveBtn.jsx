@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
 const PostSaveBtn = ({value, onClick}) => {
@@ -8,22 +8,22 @@ const PostSaveBtn = ({value, onClick}) => {
   }
 
 
+const h1 = document.querySelector("div.hello:first-child h1");
+
+
   return(
     <>
-      <div style={{
-        display: "flex",
-        width: "100%"
-      }}>
+      <Container>
         <div>
           <PostButton clickMyPostBtn={() => {}}>작성한 글</PostButton>
-          <LeftLine />
+          <Line />
         </div>
       
         <div>
           <SaveButton clickSavePostBtn={() => {}}>저장한 글</SaveButton>
-          <LeftLine />
+          <Line />
         </div>
-      </div>
+      </Container>
     </>
   )
 }
@@ -33,22 +33,28 @@ PostSaveBtn.defaultProps = {
   onClick: ()=>{}
 };
 
+const Container = styled.div`
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+`
+
 const PostButton = styled.button`
-  width: 180px;
+  width: 100px;
   padding: 12px 0px;
   color: #FF7775;
   cursor: pointer;
 `
 
 const SaveButton = styled.button`
-  width: 180px;
+  width: 100px;
   padding: 12px 0px;
   color: #FF7775;
   cursor: pointer;
 `
 
-const LeftLine = styled.div`
-  width: 180px;
+const Line = styled.div`
+  width: 100%;
   height: 3px;
   background-color: #FF7775;
   /* display: none; */
