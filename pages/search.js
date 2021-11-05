@@ -23,16 +23,13 @@ export default function Search() {
     if (keyValue === "Space") {
       //스페이스바를 누르면 term을 태그목록에 추가하도록 한다.
 
-      // if (tagList.length >= 3) {
-      //   //태그목록은 3개까지만 추가하도록 한다.
-      //   setTerm("");
-      //   return alert("태그는 3개까지만 설정할 수 있어요");
-      // }
+      //값이 없으면 추가하지 않는다.
+      if (!e.target.value) return;
 
-      if (/^\s/g.test(e.target.value) === true) {
-        //tap이나 스페이스만 있을 때는 tagList에 저장하지 않는다.
+      if (tagList.length >= 3) {
+        //태그목록은 3개까지만 추가하도록 한다.
         setTerm("");
-        return;
+        return alert("태그는 3개까지만 설정할 수 있어요");
       }
 
       setTagList([...tagList, e.target.value.replace(/ /g, "")]);
