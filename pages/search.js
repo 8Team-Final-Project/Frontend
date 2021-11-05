@@ -12,7 +12,7 @@ import { BiX } from "react-icons/bi";
 
 export default function Search() {
   const [term, setTerm] = useState("");
-  const [tagList, setTagList] = useState([]);
+  let [tagList, setTagList] = useState([]);
 
   const deleteTag = (idx) => {
     setTagList(tagList.filter((tag, tagIdx) => tagIdx !== idx));
@@ -23,19 +23,16 @@ export default function Search() {
     if (keyValue === "Space") {
       //스페이스바를 누르면 term을 태그목록에 추가하도록 한다.
 
+      //값이 없으면 추가하지 않는다.
+      if (!e.target.value) return;
+
       if (tagList.length >= 3) {
         //태그목록은 3개까지만 추가하도록 한다.
         setTerm("");
         return alert("태그는 3개까지만 설정할 수 있어요");
       }
 
-      if (/^\s/g.test(term) === true) {
-        //tap이나 스페이스만 있을 때는 tagList에 저장하지 않는다.
-        alert("값을 입력해주세요!");
-        return setTerm("");
-      }
-
-      setTagList([...tagList, e.target.value.trim()]);
+      setTagList([...tagList, e.target.value.replace(/ /g, "")]);
       setTerm("");
     }
   };

@@ -1,22 +1,36 @@
-import React from "react";
+import React, { useRef } from "react";
 import styled from "styled-components";
+
+//api
+import { uploadApi } from "../../Shared/api";
+
+//icons
 import { BsCamera } from "react-icons/bs";
 
 //edit : 입력하면 수정용으로 바뀝니다.
 //saveUrl : 이미지 업로드 후 부모컴포넌트 state에 저장하기 위한 함수입니다. 부모컴포넌트에서 업로드 후 url을 저장할 setState 함수를 넣어주세요!
 //imgUrl : 보여줄 이미지 url을 넣어주면 됩니다.
 export default function RectangleImage({ edit, saveUrl, imgUrl }) {
-  const upload = () => {
-    //서버에 이미지 업로드하여 imgUrl을 받아오고, 그 값을 부모컴포넌트에 전달하는 함수입니다.
-    const url = "";
-    saveUrl(url);
+  const refFileInput = useRef(null);
+
+  const upload = (e) => {
+    //서버에 이미지 업로드하여 imgUrl을 받아와서 url을 저장시키는 함수입니다.
+
+    const fileObj = e.target.files[0];
+    const format = ["image/jpg", "image/jpeg", "image/png", "image/gif"];
+
+    //파일형식이 지정된 형식과 같다면 서버에 이미지업로드 요청을 보낸다.
+    if (format.includes(fileObj && fileObj.type)) {
+      uploadApi.imageUpload(fileObj).then((res) => saveUrl(res.data.postImg));
+    }
   };
 
   if (edit)
     return (
-      <ImageWrapper onClick={upload}>
-        <Image src={imgUrl} />
+      <ImageWrapper onClick={() => refFileInput.current.click()}>
+        <Image src={imgUrl && imgUrl} />
         <BsCamera />
+        <FileInput type="file" ref={refFileInput} onChange={upload} />
       </ImageWrapper>
     );
 
@@ -57,4 +71,8 @@ const ImageWrapper = styled.div`
     color: white;
     font-size: 40px;
   }
+`;
+
+const FileInput = styled.input`
+  display: none;
 `;

@@ -66,28 +66,32 @@ export const combinationPostApi = {
   // 꿀조합 게시글 수정하기
   patchCombinationPost: (post) => instance.patch(`/api/v1/post/postupdate/${post.postId}`, post),
 
-
   // 꿀조합 게시글 삭제하기
-  deleteCombinationPost: postid =>
-  instance.patch(`/api/v1/post/postdelete/${postid}`),
+  deleteCombinationPost: (postid) => instance.patch(`/api/v1/post/postdelete/${postid}`),
 
   // 꿀조합 게시글 불러오기
   getCombinationList: () => instance.get("/api/v1/post"),
 
   // 꿀조합 상세포스트 불러오기
-  getCombinationPost: postid => instance.get(`/api/v1/post/${postid}`),
+  getCombinationPost: (postid) => instance.get(`/api/v1/post/${postid}`)
 };
 
 export const uploadApi = {
-  imageUpload: async (imgObj) => {
-    let formData = new FormData();
-    for (let entry of Object.entries(imgObj)) {
-      formData.append(entry[0], entry[1]);
+  imageUpload: async function (imgObj) {
+    try {
+      const req = { postImg: imgObj };
+      let formData = new FormData();
+      for (let entry of Object.entries(req)) {
+        formData.append(entry[0], entry[1]);
+      }
+      const response = await axios.post("http://54.180.157.2:8000/api/v1/post/uploadimg", formData);
+      if (response.statusText === "OK") return response;
+    } catch (err) {
+      alert(err);
     }
-    const response = await instance.post("http://54.180.157.2:8000/api/v1/post", formData);
-
-    const imgUrl = "";
-    return imgUrl;
   }
-}
+};
 
+export const searchApi = {
+  searchTag: (tagList) => instance.get("/api/v1/condition", tagList)
+};
