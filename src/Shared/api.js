@@ -18,7 +18,6 @@ instance.interceptors.request.use(async (config) => {
   return config;
 });
 
-
   export const eventPostApi = {
         //이벤트 게시판 전체 불러오기
         getEventPostList : data => instance.get("/api/v1/event", data),
@@ -43,7 +42,6 @@ export const userApi = {
   // 이메일 중복 확인
   checkemail: (user) => instance.post("/api/v1/users/checkemail", user),
 
-
   // 닉네임 중복 확인
   checknick: (user) => instance.post("/api/v1/users/checknick", user),
 
@@ -64,16 +62,20 @@ export const combinationPostApi = {
   // 꿀조합 게시글 수정하기
   patchCombinationPost: (post) => instance.patch(`/api/v1/post/postupdate/${post.postId}`, post),
 
-
   // 꿀조합 게시글 삭제하기
-  deleteCombinationPost: postid =>
-  instance.patch(`/api/v1/post/postdelete/${postid}`),
+  deleteCombinationPost: postId => instance.patch(`/api/v1/post/postdelete/${postId}`),
 
   // 꿀조합 게시글 불러오기
-  getCombinationList: () => instance.get("/api/v1/post"),
+  getCombinationList: () => instance.get(`/api/v1/post/?page`),
 
   // 꿀조합 상세포스트 불러오기
-  getCombinationPost: postid => instance.get(`/api/v1/post/${postid}`),
+  getCombinationPost: postId => instance.get(`/api/v1/post/${postId}`),
+
+  // 꿀조합 게시물 찜 / 취소
+  patchCombinationSave: postId => instance.patch(`/api/v1/keep/${postId}`),
+
+  // 꿀조합 게시물 좋아요 / 취소
+  patchCombinationLike: postId => instance.patch(`/api/v1/like/${postId}`)
 };
 
 export const uploadApi = {

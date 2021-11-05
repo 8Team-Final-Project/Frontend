@@ -14,6 +14,7 @@ import { TextField } from "@mui/material";
 //successText : test 통과했을 때 나타나는 문구
 //errorText : test 실패했을 때 나타나는 문구
 //defaultText : 기본값 또는 빈값일때 나타나는 문구
+
 export default function ValidationInput({
   label,
   type,

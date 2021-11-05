@@ -19,9 +19,7 @@ export const patchCombinationPostDB = createAsyncThunk(
     "combination/patchPost",
     async (data, thunkAPI) => {
         try {
-            const response = await combinationPostApi.patchCombinationPost(
-                data
-            );
+            const response = await combinationPostApi.patchCombinationPost(data);
             if (response.statusText === "OK") return response.data;
         } catch (err) {
             return thunkAPI.rejectWithValue(err.response.message);
@@ -34,9 +32,7 @@ export const deleteCombinationPostDB = createAsyncThunk(
     "combination/deletePost",
     async (data, thunkAPI) => {
         try {
-            const response = await combinationPostApi.deleteCombinationPost(
-                data
-            );
+            const response = await combinationPostApi.deleteCombinationPost(data);
             if (response.statusText === "OK") return response.data;
         } catch (err) {
             return thunkAPI.rejectWithValue(err.response.message);
@@ -69,3 +65,33 @@ export const getCombinationPost = createAsyncThunk(
         }
     }
 );
+
+// 게시물 좋아요 / 취소
+export const patchCombinationPostSave = createAsyncThunk(
+    "combination/patchSave",
+    async (data, thunkAPI) => {
+        try {
+            const response = await combinationPostApi.patchCombinationSave(data);
+            if (response.statusText === "OK") return response.data;
+        } catch (err) {
+            return thunkAPI.rejectWithValue(err.response.message);
+        }
+    }
+);
+
+// 게시물 찜 / 취소
+export const patchCombinationPostLike = createAsyncThunk(
+    "combination/patchLike",
+    async (data, thunkAPI) => {
+        try {
+            const response = await combinationPostApi.patchCombinationLike(data);
+            console.log(response);
+            if (response.statusText === "OK") return response.data;
+        } catch (err) {
+            return thunkAPI.rejectWithValue(err.response.message);
+        }
+    }
+);
+
+
+

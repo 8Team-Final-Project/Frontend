@@ -1,26 +1,38 @@
 import React from "react"
 import styled from "styled-components"
 import { useSelector, useDispatch } from "react-redux"
-import router from "next/router"
+import { useRouter} from "next/router"
 import { getCombinationList } from "../Redux/Async/combinationAsync"
 import { combinationPostApi } from "../Shared/api"
 
 import Tag from './Tag.jsx'
+import { flexbox } from "@mui/system"
+import { dividerClasses } from "@mui/material"
 
 const Card = (props)=> {
-  const {src, postTag, postTitle} = props;
+  const {src, postTag, postTitle, likeCnt} = props;
 
   const styles = {
-    src:src
+    src: src
   }
   
+  const router = useRouter();
   return (
-    <CardBox onClick={() =>{router.push(`combination/detail/${props.id}`)
+    <CardBox onClick={() =>{router.push(`combination/detail/${props._id}`)
     }}>
       <LeftBox {...styles} ></LeftBox>
       <RightBox>
         <PostTitle>{postTitle}</PostTitle>
         {postTag.map((tag,idx)=><Tag key={idx} value={"#"+tag}></Tag>)}
+        <div 
+        style={{
+          display:"flex",
+          width:"30px",
+          margin: "5px 5px 5px auto"
+          }}>
+        <div><img src="/likeOn.png" /></div>
+        <div>{likeCnt}</div>
+        </div>
       </RightBox>
     </CardBox>
   )
@@ -33,6 +45,10 @@ Card.defaultProps = {
 const PostTitle = styled.div`
     
 `;
+const FlexBox = styled.div`
+  display: flex;
+`;
+
 
 const CardBox = styled.div`
   border: 1px solid #E5e5e5;

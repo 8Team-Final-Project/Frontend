@@ -2,11 +2,12 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import { addCombinationPostDB } from "../../src/Redux/Async/combinationAsync";
-import router from "next/router";
+import { useRouter } from "next/router";
 
 //꿀조합 작성페이지
 const write = () => {
     const dispatch = useDispatch();
+    const router = useRouter();
 
     const [postTitle, setTitle] = React.useState("");
     const [postContent, setContent] = React.useState("");
@@ -19,6 +20,10 @@ const write = () => {
             postContent: postContent,
             postImg: postImg,
             postTag: postTag,
+            mainlist: true,
+            event1list: false,
+            event2list: false,
+            event3list: false,
         };
         dispatch(addCombinationPostDB(postItem));
     };
@@ -73,8 +78,7 @@ const write = () => {
                         onClick={() => {
                             {router.push("/combination")}
                         }}
-                    >
-                        취소하기
+                    >취소하기
                     </button>
                     <button onClick={()=>{
                         setPost()

@@ -8,12 +8,14 @@ import { useRouter } from "next/router";
 const combinationEdit = () => {
   const disPatch = useDispatch();
 
+  const router = useRouter();
+
   const [postTitle, setTitle] = React.useState("");
   const [postContent, setContent] = React.useState("");
   const [postImg, setImg] = React.useState("");
   const [postTag, setTag] = React.useState("");
 
-  const postId = useRouter().query.id;
+  const postId = useRouter().query._id;
 
   const editPost = () => {
     const postItem = {
@@ -21,7 +23,12 @@ const combinationEdit = () => {
       postContent: postContent,
       postImg: postImg,
       postTag: postTag,
-      postId: postId
+      _Id: postId,
+      mainlist: true,
+      event1list: false,
+      event2list: false,
+      event3list: false,
+
     };
     disPatch(patchCombinationPostDB(postItem));
   };
