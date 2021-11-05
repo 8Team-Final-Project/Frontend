@@ -2,23 +2,27 @@ import React, { useState } from "react";
 import styled, { css } from "styled-components";
 import { TextField } from "@mui/material";
 
-//type : input의 type
-//label : input 제목
-//value : input 원본 value
-//maxValue : input이 가질 수 있는 최대 글자수
-//setValue : value가 바뀌면 부모컴포넌트에있는 state에 저장시키기 위한 함수
+//label : input 제목  ex)label='제목'
+//type : input의 type ex)type='password'
+//multiline : multiline이 true면, input이 많은 값을 담을 수 있는 textArea로 변경된다. ex) multiline
+//rows : multiline일 때만 필요한 props, textArea에서 사용할 높이만큼 적으면 된다. ex) rows={3}
 
-//regexCheck 또는 check함수 둘 중에 하나만 있으면 됩니다.
-//regexCheck : validation 할 정규표현식
+//value : input 원본 value  ex)value={state}
+//maxValue : input이 가질 수 있는 최대 글자수 ex)maxValue={10}
+//setValue : value가 바뀌면 부모컴포넌트에있는 state에 저장시키기 위한 함수 ex)setValue={setState}
 
-//successText : test 통과했을 때 나타나는 문구
-//errorText : test 실패했을 때 나타나는 문구
-//defaultText : 기본값 또는 빈값일때 나타나는 문구
+//regexCheck : validation 할 정규표현식 ex)regexCheck={/^[a-z0-9_-]{6,10}$/}
+
+//successText : test 통과했을 때 나타나는 문구 ex)successText = '통과했어요!'
+//errorText : test 실패했을 때 나타나는 문구  ex)errorText = '소문자만 적어주세요!'
+//defaultText : 기본값 또는 빈값일때 나타나는 문구  ex)defaultText = '제목을 적어주세요!'
 
 //important : important를 선언할 시에, 라벨 옆에 * 표시가 뜹니다.
 export default function ValidationInput({
   label,
   type,
+  multiline,
+  rows,
   value,
   maxValue,
   setValue,
@@ -67,6 +71,8 @@ export default function ValidationInput({
         type={type}
         onChange={HandleOnChange}
         value={value}
+        multiline={multiline ? true : false}
+        rows={rows && rows}
       />
     </div>
   );
@@ -77,7 +83,9 @@ ValidationInput.defaultProps = {
   label: "",
   value: "",
   setValue: () => {},
-  important: false
+  important: false,
+  multiline: false,
+  rows: 1
 };
 
 const Input = styled(TextField)`
