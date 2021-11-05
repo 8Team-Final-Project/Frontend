@@ -1,7 +1,7 @@
-import React,{useState,useEffect} from 'react'
+import React, { useState, useEffect } from "react";
 import { wrapper } from "../src/Redux/configureStore";
 import { useDispatch } from "react-redux";
-import { Me } from "../src/Redux/Async/userAsync"
+import { Me } from "../src/Redux/Async/userAsync";
 
 import styled from "styled-components";
 
@@ -14,14 +14,13 @@ import Header from "../src/Components/Layout/Header";
 function MyApp({ Component, pageProps }) {
   const dispatch = useDispatch();
   // next js 토큰 확인
-  const [isToken,setIsToken] = useState(typeof window !=='undefined'? localStorage.getItem('token'):null)
-  
+  const [isToken, setIsToken] = useState(typeof window !== "undefined" ? localStorage.getItem("token") : null);
 
   useEffect(() => {
-    if(isToken) {
+    if (isToken) {
       dispatch(Me());
     }
-  },[isToken]);
+  }, [isToken]);
 
   return (
     <GlobalThemeProvider>
@@ -34,8 +33,8 @@ function MyApp({ Component, pageProps }) {
 }
 
 const Wrapper = styled.div`
-  //App의 너비입니다.
-  width: 360px;
+  max-width: 500px;
+  padding: 5px 5px 100px 5px;
 `;
 
 // withRedux 함수로 컴포넌트를 감싸준다.

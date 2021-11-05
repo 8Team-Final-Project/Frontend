@@ -39,6 +39,7 @@ const CardBox = styled.div`
   height: 100px;
   border-radius: 10px;
   box-shadow: 5px 5px 10px #e5e5e5;
+  box-sizing: border-box;
 `;
 
 // 기본 사진 or 사진 받아오기
