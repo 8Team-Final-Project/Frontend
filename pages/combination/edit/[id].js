@@ -15,7 +15,7 @@ const combinationEdit = () => {
   const [postImg, setImg] = React.useState("");
   const [postTag, setTag] = React.useState("");
 
-  const postId = useRouter().query._id;
+  const postId = useRouter().query.id;
 
   const editPost = () => {
     const postItem = {
@@ -23,7 +23,7 @@ const combinationEdit = () => {
       postContent: postContent,
       postImg: postImg,
       postTag: postTag,
-      _Id: postId,
+      postId: postId,
       mainlist: true,
       event1list: false,
       event2list: false,
