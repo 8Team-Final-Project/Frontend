@@ -1,6 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import router from "next/router"
+import router from "next/router";
+import styled from "styled-components";
 
 //function
 import { 
@@ -68,7 +69,7 @@ const signup = () => {
 
     return (
         <div>
-            <div>
+            <MarginBottom>
                 <ConfirmValidationInput                 
                     label="닉네임" 
                     value={userNickname}    //벨류를 담는 state
@@ -82,9 +83,9 @@ const signup = () => {
                     maxValue={10}   //최대길이
                     //successText도 사용하면 성공했을때 텍스트를 보여줄 수 있어요
                 />
-            </div>
+            </MarginBottom>
 
-            <div>
+            <MarginBottom>
                 <ConfirmValidationInput
                     label="이메일"
                     value={userEmail}
@@ -96,15 +97,17 @@ const signup = () => {
                     errorText='2글자 이상 입력해주세요!'
                     defaultText='이메일을 입력해주세요!'
                 />
-            </div>
+            </MarginBottom>
 
-            <ValidationInput 
-                label="비밀번호" 
-                value={userPassword}
-                setValue={setuserPassword}
-                regexCheck={regex.password}
-                errorText='6글자 이상 입력해주세요!'
-            />
+            <MarginBottom>
+                <ValidationInput 
+                    label="비밀번호" 
+                    value={userPassword}
+                    setValue={setuserPassword}
+                    regexCheck={regex.password}
+                    errorText='6글자 이상 입력해주세요!'
+                />
+            </MarginBottom>
 
             <ValidationInput 
                 label="비밀번호 확인"
@@ -133,5 +136,9 @@ const signup = () => {
         </div>
     );
 };
+
+const MarginBottom = styled.div`
+    margin-bottom: 20px;
+`
 
 export default signup;
