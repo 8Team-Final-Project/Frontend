@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import styled from "@emotion/styled";
+import styled, { css } from "styled-components";
 import { TextField } from "@mui/material";
 
 //type : input의 type
@@ -14,6 +14,8 @@ import { TextField } from "@mui/material";
 //successText : test 통과했을 때 나타나는 문구
 //errorText : test 실패했을 때 나타나는 문구
 //defaultText : 기본값 또는 빈값일때 나타나는 문구
+
+//important : important를 선언할 시에, 라벨 옆에 * 표시가 뜹니다.
 export default function ValidationInput({
   label,
   type,
@@ -23,7 +25,8 @@ export default function ValidationInput({
   regexCheck,
   successText,
   errorText,
-  defaultText
+  defaultText,
+  important
 }) {
   const [isError, setIsError] = useState(true);
   const [helperText, setHelperText] = useState(defaultText);
@@ -55,7 +58,7 @@ export default function ValidationInput({
 
   return (
     <div>
-      <Label>{label}</Label>
+      <Label important={important && important}>{label}</Label>
       <Input
         error={isError}
         id="standard-error-helper-text"
@@ -73,7 +76,8 @@ ValidationInput.defaultProps = {
   type: "text",
   label: "",
   value: "",
-  setValue: () => {}
+  setValue: () => {},
+  important: false
 };
 
 const Input = styled(TextField)`
@@ -81,6 +85,20 @@ const Input = styled(TextField)`
 `;
 
 const Label = styled.span`
+  display: inline-block;
   color: #878787;
   font-size: 18px;
+  position: relative;
+  ::before {
+    ${({ important }) => important && importantStyle}
+  }
 `;
+
+const importantStyle = css({
+  position: "absolute",
+  content: "'*'",
+  right: -10,
+  top: 0,
+  color: "#FF7775",
+  fontSize: "18px"
+});
