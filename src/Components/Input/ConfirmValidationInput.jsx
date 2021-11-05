@@ -5,6 +5,7 @@ import { TextField } from "@mui/material";
 //handleValueCheck는 중복확인을 할 수 있는 api함수를 담아주면 됩니다.
 //isCheck는 부모로부터 중복확인 여부 state 값을 받아온다.
 //setIsCheck는 부모로부터 중복확인 여부 state를 변경시킬 수 있는 함수를 받아온다.
+
 export default function ConfirmValidationInput({
   label,
   type,

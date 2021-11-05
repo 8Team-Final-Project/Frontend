@@ -72,13 +72,19 @@ export const combinationPostApi = {
   patchCombinationPost: (post) => instance.patch(`/api/v1/post/postupdate/${post.postId}`, post),
 
   // 꿀조합 게시글 삭제하기
-  deleteCombinationPost: (postid) => instance.patch(`/api/v1/post/postdelete/${postid}`),
+  deleteCombinationPost: postId => instance.patch(`/api/v1/post/postdelete/${postId}`),
 
   // 꿀조합 게시글 불러오기
-  getCombinationList: () => instance.get("/api/v1/post"),
+  getCombinationList: () => instance.get(`/api/v1/post/?page`),
 
   // 꿀조합 상세포스트 불러오기
-  getCombinationPost: (postid) => instance.get(`/api/v1/post/${postid}`)
+  getCombinationPost: postId => instance.get(`/api/v1/post/${postId}`),
+
+  // 꿀조합 게시물 찜 / 취소
+  patchCombinationSave: postId => instance.patch(`/api/v1/keep/${postId}`),
+
+  // 꿀조합 게시물 좋아요 / 취소
+  patchCombinationLike: postId => instance.patch(`/api/v1/like/${postId}`)
 };
 
 export const uploadApi = {

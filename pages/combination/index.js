@@ -6,14 +6,17 @@ import Card from "../../src/Components/Card";
 import Tag from "../../src/Components/Tag";
 import FloatingBtn from "../../src/Components/FloatingBtn";
 import EventBtn from "../../src/Components/EventBtn";
-import router from "next/router";
+import{ useRouter } from "next/router";
 
 //꿀조합 페이지
 const combination = () => {
 
+    const router = useRouter()
+
     const dispatch = useDispatch();
 
     const postList = useSelector((state) => state.combination.list)
+
 
     useEffect(() => {
         dispatch(getCombinationList());
@@ -22,17 +25,18 @@ const combination = () => {
     return (
         <div>
             <PageBox>
+                <Logo src="/logo.png"></Logo>
                 <div>추천태그 검색은 3가지까지 가능</div>
                 <FlexBox>
                     <SearchInput></SearchInput>
                     <button>검색</button>
                 </FlexBox>
                 <div>
-                    <text>추천태그1</text> <text>추천태그2</text>
+                    <span>추천태그1</span> <span>추천태그2</span>
                 </div>
                 <div>라면꿀조합 이벤트</div>
                 {/* post는 객체하나 */}
-                {postList.map(post=><Card key={post.id} {...post}/>)}
+                {postList.map(postlist=><Card key={postlist._id} {...postlist}/>)}
                 <FloatingBtn></FloatingBtn>
                 <WriteBtn
                 onClick={()=>{
@@ -44,6 +48,11 @@ const combination = () => {
         </div>
     );
 };
+const Logo = styled.img`
+    /* width: 100px;
+    height: 50px; */
+`;
+
 const WriteBtn = styled.button`
   font-weight: bold;
   font-size: 20px;
@@ -58,7 +67,7 @@ const FlexBox = styled.div`
 `;
 const PageBox = styled.div`
     width: 400px;
-    height: 700px;
+    height: auto;
     border: 1px solid black;
     margin: auto;
 `;

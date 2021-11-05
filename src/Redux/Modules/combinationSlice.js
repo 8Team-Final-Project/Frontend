@@ -5,6 +5,8 @@ import {
     getCombinationList,
     deleteCombinationPostDB,
     getCombinationPost,
+    patchCombinationPostLike,
+    patchCombinationPostSave
 } from "../Async/combinationAsync";
 
 const initialState = { 
@@ -42,10 +44,7 @@ const combinationSlice = createSlice({
         [patchCombinationPostDB.pending]: (state, { payload }) => {
             state.isFetching = true;
         },
-        [patchCombinationPostDB.rejected]: (
-            state,
-            { payload: errorMessage }
-        ) => {
+        [patchCombinationPostDB.rejected]: (state, { payload: errorMessage }) => {
             state.isFetching = false;
             state.errorMessage = errorMessage;
         },
@@ -91,6 +90,40 @@ const combinationSlice = createSlice({
             state.isFetching = false;
             state.errorMessage = errorMessage;
         },
+        // 꿀조합 좋아요 / 취소
+        [patchCombinationPostLike.fulfilled]: (state, { payload: post }) => {
+            window.alert(post.msg)
+            if (post.msg === "좋아요 성공") {
+                 state.post.likeCnt += 1 
+            }
+            if (post.msg === "취소성공"){
+                state.post.likeCnt -=1
+            }
+            state.isFetching = false;
+            state.errorMessage = null;
+        },
+        [patchCombinationPostLike.pending]: (state, { payload }) => {
+            state.isFetching = true;
+        },
+        [patchCombinationPostLike.rejected]: (state, { payload: errorMessage }) => {
+            state.isFetching = false;
+            state.errorMessage = errorMessage;
+        },
+
+        // 꿀조합 게시물 찜 /취소
+        [patchCombinationPostSave.fulfilled]: (state, { payload: post}) => {
+            window.alert(post.msg)
+            state.isFetching = false;
+            state.errorMessage = null;
+        },
+        [patchCombinationPostSave.pending]: (state, { payload }) => {
+            state.isFetching = true;
+        },
+        [patchCombinationPostSave.rejected]: (state, { payload: errorMessage }) => {
+            state.isFetching = false;
+            state.errorMessage = errorMessage;
+        },
+        
     },
 });
 

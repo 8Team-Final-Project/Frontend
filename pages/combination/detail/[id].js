@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { deleteCombinationPostDB, getCombinationPost } from "../../../src/Redux/Async/combinationAsync";
+import { deleteCombinationPostDB, getCombinationPost, patchCombinationPostLike, patchCombinationPostSave } from "../../../src/Redux/Async/combinationAsync";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router";
 
@@ -8,8 +8,10 @@ import { useRouter } from "next/router";
 const PartyDetail = () => {
   const dispatch = useDispatch();
 
-  const postId = useRouter().query.id;
+  const router = useRouter();
 
+  const postId = useRouter().query.id;
+ 
   const postItem = useSelector((state) => state.combination.post);
 
   useEffect(() => {
@@ -19,6 +21,14 @@ const PartyDetail = () => {
   const setDelete = () => {
     dispatch(deleteCombinationPostDB(postId));
   };
+
+  const setPostSave = () => {
+    dispatch(patchCombinationPostSave(postId))
+  }
+
+  const setPostLike = () => {
+    dispatch(patchCombinationPostLike(postId))
+  }
 
   return (
     <div>
@@ -37,10 +47,20 @@ const PartyDetail = () => {
           <DetailContent>{postItem && postItem.postContent}</DetailContent>
         </CenterBox>
         <CenterBox>
-          <button>즐겨찾기</button>
+          <button
+          onClick={()=>{
+            router.push(`/combination/detail/${postId}`)
+            setPostSave()
+          }}
+          >즐겨찾기</button>
         </CenterBox>
-        <CenterBox>
-          <button>좋아요!</button>
+        <CenterBox style={{display:"flex"}}>
+          <button
+          onClick={()=>{
+            setPostLike();
+          }}
+          ><img src="/likeOn.png" /></button>
+          <div>{postItem && postItem.likeCnt}</div>
         </CenterBox>
         <CenterBox>
           <button
