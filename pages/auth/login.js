@@ -39,78 +39,45 @@ const login = () => {
     
     return (
         <Container>
-            <wrapContent>
-                <div>
+            <div>
+                <MarginBottom>
                     <ValidationInput 
                         value={userEmail}
                         setValue={setuserEmail}
                         label="이메일"
                     />
-                </div>
-                {/* <input
-                    onChange={(e) => {
-                        setuserEmail(e.target.value);
-                    }}
-                    placeholder="이메일 형식으로 입력해주세요."
-                /> */}
-                <div style={{
-                    marginBottom: "40px"
-                    }}
-                >
+                </MarginBottom>
+
+                <MarginBottom style={{ marginBottom: "40px" }}>
                     <ValidationInput 
                         label="비밀번호" 
                         value={userPassword}
                         setValue={setuserPassword}
                     />
-                </div>
-                {/* <input
-                    onChange={(e) => {
-                        setuserPassword(e.target.value);
-                    }}
-                    placeholder="비밀번호"
-                /> */}
+                </MarginBottom>
                 
-                <RedButton 
-                    onClick={() =>{
-                        setLogin()
-                        console.log(setLogin)
-                    }} 
-                    value="로그인"
+                    <RedButton 
+                        onClick={() =>{
+                            setLogin()
+                            console.log(setLogin)
+                        }} 
+                        value="로그인"
+                    />
 
-                />
                 <WhiteButton 
                     value="회원가입"
                     onClick={()=>router.push('/auth/signup')}
                 />
-
-                {/* <button
-                    onClick={() => {
-                        setLogin()
-                    }}
-                >로그인</button> */}
-
-                {/* <button
-                    onClick={() => {
-                        setLogout()
-                    }}
-                >로그아웃</button> */}
-            </wrapContent>
+            </div>
         </Container>
     );
 };
 
 const Container = styled.div`
-    position: relative;
-    width: 500px;
-    height: 400px;
+    position: center;
 `
-//왜 적용 안 되지
-const wrapContent = styled.div`
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    background: lightgoldenrodyellow;
+const MarginBottom = styled.div`
+    margin-bottom: 20px;
 `
 
 export default login;

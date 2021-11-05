@@ -14,23 +14,24 @@ const mypage = (props) => {
     
 
     return (
-        <div>
+        <Container>
             <CircleImage />
-            <div style={{
-                width: "100%",
-                // margin: "auto" 안 됨 
-            }}>
+            <div>
                 <h1>{userProfile&&userProfile.userNickname}</h1>
                 <P>{userProfile&&userProfile.userEmail}</P>
             </div>
             <PostSaveBtn />
             <Modal />
-        </div>
+        </Container>
     );
 };
 
 const P = styled.p`
     color: #B8B8B8;
+`
+
+const Container = styled.div`
+    text-align: center;
 `
 
 export default mypage;
