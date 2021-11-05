@@ -83,6 +83,7 @@ export const likeEventPostDB = createAsyncThunk(
         try {
             const response = await eventPostApi.likeEventPost(data);
             if(response.statusText === "OK") {
+                
                 if(response.data.likeState === true) {
                     thunkAPI.dispatch(increaseLike());
                 }

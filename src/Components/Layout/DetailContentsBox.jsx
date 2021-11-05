@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Router, { useRouter } from "next/router";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { useDispatch, useSelector } from "react-redux";
+import MenuButton from "../Shared/CommentEditDelete";
 import { getEventPostDB, deleteEventPostDB, likeEventPostDB } from "../../Redux/Async/eventAsync";
 
 import Box from "@mui/material/Box";
@@ -13,6 +14,7 @@ import Divider from "@mui/material/Divider";
 import ListItem from "@mui/material/ListItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
+import { red } from "@mui/material/colors";
 
 const DetailContentsBox = (props) => {
   const dispatch = useDispatch();
@@ -31,21 +33,20 @@ const DetailContentsBox = (props) => {
     dispatch(deleteEventPostDB(id));
     Router.push("/event");
   };
+
   const editpage = () => {
     Router.push(`/event/edit/${id}`);
   };
+
   const likeEventPost = () => {
     dispatch(likeEventPostDB(id));
   };
 
+  // 머테리얼 Drawer
   const [state, setState] = React.useState({
-    top: false,
-    left: false,
-    bottom: false,
-    right: false
+    bottom: false
   });
 
-  //Drawer
   const toggleDrawer = (anchor, open) => (event) => {
     if (event.type === "keydown" && (event.key === "Tab" || event.key === "Shift")) {
       return;
@@ -56,18 +57,14 @@ const DetailContentsBox = (props) => {
 
   const list = (anchor) => (
     <Box
-      sx={{ width: anchor === "top" || anchor === "bottom" ? "auto" : 250 }}
+      sx={{ width: anchor === "top" || anchor === "bottom" ? "auto" : "auto" }}
       role="presentation"
       onClick={toggleDrawer(anchor, false)}
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <Divider />
-      <List style={{ borderRadius: "1000px" }}>
-        {["수정", "삭제", "취소"].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
+      <List>
+        <MenuButton />
       </List>
     </Box>
   );
@@ -78,7 +75,7 @@ const DetailContentsBox = (props) => {
       <Title>
         {post && post.postTitle} <BsThreeDotsVertical />
       </Title>
-      <div style={{ borderRadius: "1000px" }}>
+      <div>
         {["bottom"].map((anchor) => (
           <React.Fragment key={anchor}>
             <Button onClick={toggleDrawer(anchor, true)}>{anchor}</Button>
@@ -89,19 +86,21 @@ const DetailContentsBox = (props) => {
         ))}
       </div>
 
-      <Intro> 취향 안타는 환상의 조합</Intro>
+      <Intro> {post && post.postSubtitle} </Intro>
 
       <Wrap>
         <Mix>
-          꿀조합<span>민초, 붕어빵, 취두부</span>
+          꿀조합<span>{post && post.postRecipe}</span>
         </Mix>
 
         <Recipe>레시피</Recipe>
         <Text> {post && post.postContent} </Text>
+        {post && post.postTag}
 
         <button onClick={editpage}>수정</button>
         <button onClick={deleteEventPost}>삭제</button>
-        <button onClick={likeEventPost}>좋아요{post && post.likeCnt}</button>
+
+        <button onClick={likeEventPost}>좋아요{post.likeCnt}</button>
       </Wrap>
     </React.Fragment>
   );

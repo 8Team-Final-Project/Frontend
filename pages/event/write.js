@@ -11,6 +11,8 @@ const write = () => {
     const dispatch = useDispatch();
 
     const [postTitle, setPostTitle] = useState("");
+    const [postSubtitle, setPostSubtitle ] = useState("");
+    const [postRecipe, setPostRecipe ] = useState("");
     const [postContent, setPostContent] = useState("");
     const [postTag, setPostTag] = useState();
     const [mainlist, setMainList] = useState(false);
@@ -22,6 +24,8 @@ const write = () => {
     const addEventPost = () => {
         const content = {
             postTitle : postTitle,
+            postSubtitle : postSubtitle,
+            postRecipe : postRecipe,
             postContent : postContent,
             postTag : postTag,
             mainlist: mainlist,
@@ -42,6 +46,20 @@ const write = () => {
                 setValue={setPostTitle}
             />
             <br/>
+            <CommonInput
+                important
+                label={"소개"}
+                value={postSubtitle}
+                setValue={setPostSubtitle}
+            />
+            <br/>
+            <CommonInput
+                important
+                label={"꿀조합"}
+                value={postRecipe}
+                setValue={setPostRecipe}
+            />
+            <br/>
             <CommonInput 
                 label={"내용"}
                 value={postContent}
@@ -54,11 +72,12 @@ const write = () => {
             <HashTagInput
                 important
                 label="해시태그"
-                // tagList={postTag}
-                // setTagList={setPostTag}
+                tagList={postTag}
+                setTagList={setPostTag}
             />
             <button onClick={()=>{router.push("/event")}}>취소</button>
             <button onClick={addEventPost}>저장</button>
+           
         </div>
     );
 };
