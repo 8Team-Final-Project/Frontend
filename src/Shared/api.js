@@ -40,7 +40,7 @@ export const userApi = {
 
 export const eventPostApi = {
   //이벤트 게시판 전체 불러오기
-  getEventPostList : data => instance.get("/api/v1/post/", data),
+  getEventPostList : data => instance.get("/api/v1/post/event1list", data),
         
   //이벤트 게시물 추가하기
   addEventPost : data => instance.post("/api/v1/post", data),
@@ -54,7 +54,9 @@ export const eventPostApi = {
   //이벤트 게시물 삭제하기 
   deleteEventPost: postId => instance.patch(`/api/v1/post/postdelete/${postId}`),
 
+  //좋아요 기능 
   likeEventPost : postId => instance.patch(`/api/v1/like/${postId}`),
+
 
   };
 

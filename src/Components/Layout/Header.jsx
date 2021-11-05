@@ -54,15 +54,15 @@ const Header = () => {
 };
 
 const Wrap = styled.div`
-  display: flex;
+  position: relative;
   width: 100%;
 `;
 
 const LogoImg = styled.img`
-  position: relative;
+  float: left;
   width: 30%;
   height: 5%;
-  top: 1%;
+  margin-top: 9px;
 `;
 
 const Nav = styled.span`
