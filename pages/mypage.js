@@ -16,9 +16,7 @@ const mypage = (props) => {
     return (
         <Container>
             <CircleImage />
-            <div style={{
-                width: "100%",
-            }}>
+            <div>
                 <h1>{userProfile&&userProfile.userNickname}</h1>
                 <P>{userProfile&&userProfile.userEmail}</P>
             </div>
