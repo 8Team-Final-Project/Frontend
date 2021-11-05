@@ -100,7 +100,7 @@ const DetailContentsBox = (props) => {
         <button onClick={editpage}>수정</button>
         <button onClick={deleteEventPost}>삭제</button>
 
-        <button onClick={likeEventPost}>좋아요{post.likeCnt}</button>
+        <button onClick={likeEventPost}>좋아요{post && post.likeCnt}</button>
       </Wrap>
     </React.Fragment>
   );
