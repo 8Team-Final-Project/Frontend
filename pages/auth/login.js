@@ -1,9 +1,16 @@
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
+import styled from "styled-components"
 import { 
     postLogin,
     postLogout,
 } from "../../src/Redux/Async/userAsync";
+
+import ValidationInput from "../../src/Components/Input/ValidationInput"
+import RedButton from "../../src/Components/Button/RedButton"
+import WhiteButton from "../../src/Components/Button/WhiteButton"
+
+import router from "next/router"
 
 const login = () => {
     const dispatch = useDispatch();
@@ -31,38 +38,80 @@ const login = () => {
     };
     
     return (
-        <div>
-            <h1>로그인</h1>
-            <h4>아이디</h4>
-            <input
-                onChange={(e) => {
-                    setuserEmail(e.target.value);
-                  }}
-                  placeholder="이메일 형식으로 입력해주세요."
-            />
-
-            <h4>비밀번호</h4>
-            <input
-                onChange={(e) => {
-                    setuserPassword(e.target.value);
+        <Container>
+            <wrapContent>
+                <div>
+                    <ValidationInput 
+                        value={userEmail}
+                        setValue={setuserEmail}
+                        label="이메일"
+                    />
+                </div>
+                {/* <input
+                    onChange={(e) => {
+                        setuserEmail(e.target.value);
                     }}
-                    placeholder="비밀번호를 입력해주세요."
-            />
-            
-            <button
-                onClick={() => {
-                    setLogin()
-                }}
-            >로그인</button>
+                    placeholder="이메일 형식으로 입력해주세요."
+                /> */}
+                <div style={{
+                    marginBottom: "40px"
+                    }}
+                >
+                    <ValidationInput 
+                        label="비밀번호" 
+                        value={userPassword}
+                        setValue={setuserPassword}
+                    />
+                </div>
+                {/* <input
+                    onChange={(e) => {
+                        setuserPassword(e.target.value);
+                    }}
+                    placeholder="비밀번호"
+                /> */}
+                
+                <RedButton 
+                    onClick={() =>{
+                        setLogin()
+                        console.log(setLogin)
+                    }} 
+                    value="로그인"
 
-            <button
-                onClick={() => {
-                    setLogout()
-                }}
-            >로그아웃</button>
-        </div>
+                />
+                <WhiteButton 
+                    value="회원가입"
+                    onClick={()=>router.push('/auth/signup')}
+                />
+
+                {/* <button
+                    onClick={() => {
+                        setLogin()
+                    }}
+                >로그인</button> */}
+
+                {/* <button
+                    onClick={() => {
+                        setLogout()
+                    }}
+                >로그아웃</button> */}
+            </wrapContent>
+        </Container>
     );
 };
+
+const Container = styled.div`
+    position: relative;
+    width: 500px;
+    height: 400px;
+`
+//왜 적용 안 되지
+const wrapContent = styled.div`
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background: lightgoldenrodyellow;
+`
 
 export default login;
 

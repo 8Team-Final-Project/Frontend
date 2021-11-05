@@ -1,7 +1,7 @@
 import React,{useState,useEffect} from 'react'
 import { wrapper } from "../src/Redux/configureStore";
 import { useDispatch } from "react-redux";
-import { LoginCheck } from "../src/Redux/Async/userAsync"
+import { Me } from "../src/Redux/Async/userAsync"
 
 import styled from "styled-components";
 
@@ -19,7 +19,7 @@ function MyApp({ Component, pageProps }) {
 
   useEffect(() => {
     if(isToken) {
-      dispatch(LoginCheck());
+      dispatch(Me());
     }
   },[isToken]);
 

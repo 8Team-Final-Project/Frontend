@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { userApi } from "../../Shared/api";
-import { useRouter } from "next/dist/client/router";
+import router from "next/router";
 
 // 미들웨어
 
@@ -13,9 +13,10 @@ export const postSignup = createAsyncThunk(
             if(response.data.result==='success') {
                 window.alert('회원가입 완료')
                 return response.data.msg
-            };
+            }; 
         } catch (err) {
             return thunkAPI.rejectWithValue(err.response.message);
+            
         }
     }
 );
@@ -63,33 +64,16 @@ export const postLogin = createAsyncThunk(
           localStorage.setItem("token", token)
           if(response.data.result==="success") {
               window.alert("로그인 완료!")
+              router.push('/')
               return response.data.msg
             };
       } catch (err) {
+          alert('로그인을 다시 시도해주세요!')
           return thunkAPI.rejectWithValue(err.response.message);
       }
   }
 );
 
-// 로그인 유지
-export const LoginCheck = createAsyncThunk(
-    "user/LoginCheck",
-    async (data, thunkAPI) => {
-        // 로컬 스토리지 토큰 불러오기
-        // const token = localStorage.getItem("token")
-        // const { userEmail: userEmail } = jwt(token);
-        try {
-            // 서버에 유저 정보 요청
-            const response = await userApi.loginCheck(data);
-            if (response.data.isLogin===true) {
-                return response.data.userNickname
-            }
-        } catch (err) {
-            // 에러 발생시 에러 메세지 반환
-            return thunkAPI.rejectWithValue(err.response.data.message);
-        }
-    }
-  );
 
 // 로그아웃
 export const postLogout = createAsyncThunk(
@@ -100,6 +84,23 @@ export const postLogout = createAsyncThunk(
           if(response.data.result==="success") {
               window.alert("로그아웃 완료")
               return response.data.msg
+            };
+      } catch (err) {
+          
+          return thunkAPI.rejectWithValue(err.response.message);
+      }
+  }
+);
+
+// 로그인체크 && 프로필
+export const Me = createAsyncThunk(
+  "user/profile",
+  async (data, thunkAPI) => {
+      try {
+          const response = await userApi.me(data);
+          console.log(response)
+          if(response.statusText==="OK") {
+              return response.data
             };
       } catch (err) {
           return thunkAPI.rejectWithValue(err.response.message);

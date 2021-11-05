@@ -35,7 +35,10 @@ export const userApi = {
   loginCheck: (user) => instance.get("/api/v1/users/logincheck", user),
 
   // 로그아웃
-  logout: (user) => instance.post("/api/v1/users/logout", user)
+  logout: (user) => instance.post("/api/v1/users/logout", user),
+  
+  // 프로필
+  me: (user) => instance.get("/api/v1/users/me", user)
 };
 
 export const eventPostApi = {
