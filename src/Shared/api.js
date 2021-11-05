@@ -87,3 +87,7 @@ export const uploadApi = {
     }
   }
 };
+
+export const searchApi = {
+  searchTag: (tagList) => instance.get("/api/v1/condition", tagList)
+};
