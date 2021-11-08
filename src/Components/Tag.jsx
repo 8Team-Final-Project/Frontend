@@ -20,6 +20,7 @@ const TagBox = styled.div`
   height: 27.41px;
   border-radius: 74px;
   border: 0.74px solid #d9d9d9;
+  box-sizing: border-box;
 `;
 
 export default Tag;

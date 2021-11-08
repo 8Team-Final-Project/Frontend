@@ -23,7 +23,7 @@ const Card = (props)=> {
       <LeftBox {...styles} ></LeftBox>
       <RightBox>
         <PostTitle>{postTitle}</PostTitle>
-        {postTag.map((tag,idx)=><Tag key={idx} value={"#"+tag}></Tag>)}
+        {postTag.map((tag,idx)=><Tag key={idx} value={"#"+[...tag]}></Tag>)}
         <div 
         style={{
           display:"flex",
@@ -54,16 +54,16 @@ const CardBox = styled.div`
   border: 1px solid #E5e5e5;
   margin: 10px auto;
   display: flex;
-  width: 85%;
-  height: 100px;
+  width: 95%;
+  height: 120px;
   border-radius: 10px;
   box-shadow: 5px 5px 10px #E5E5E5;
 `;
 
 // 기본 사진 or 사진 받아오기
 const LeftBox = styled.div`
-  width: 30%;
-  height: 100px;
+  width: 35%;
+  height: 120px;
   border-radius: 10px 0 0 10px ;
   background-color: green;
   background-image: url("${(props) => props.src}");
@@ -75,8 +75,8 @@ const LeftBox = styled.div`
 const RightBox = styled.div`
   padding: 10px;
   box-sizing: border-box;
-  width: 70%;
-  height: 100px;
+  width: 65%;
+  height: 120px;
   border-radius: 0 10px 10px 0;
 `;
 

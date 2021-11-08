@@ -9,9 +9,7 @@ const PartyDetail = () => {
   const dispatch = useDispatch();
 
   const router = useRouter();
-
   const postId = useRouter().query.id;
- 
   const postItem = useSelector((state) => state.combination.post);
 
   useEffect(() => {
@@ -60,7 +58,7 @@ const PartyDetail = () => {
             setPostLike();
           }}
           ><img src="/likeOn.png" /></button>
-          <div>{postItem && postItem.likeCnt}</div>
+          <div style={{color: "ff7775"}}>{postItem && postItem.likeCnt}</div>
         </CenterBox>
         <CenterBox>
           <button
