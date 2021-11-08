@@ -2,13 +2,11 @@ import React, { useEffect } from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { getCombinationList } from "../../src/Redux/Async/combinationAsync";
-import Card from "../../src/Components/Card";
-import Tag from "../../src/Components/Tag";
-import FloatingBtn from "../../src/Components/FloatingBtn";
-import EventBtn from "../../src/Components/EventBtn";
 import { useRouter } from "next/router";
+
 import Search from "../search";
-import PostSaveBtn from "../../src/Components/Mypage/PostSaveBtn";
+import Card from "../../src/Components/Card";
+import FloatingButton from "../../src/Components/Button/FloatingButton";
 
 
 //꿀조합 페이지
@@ -32,25 +30,15 @@ const combination = () => {
                 </div>
                 {/* post는 객체하나 */}
                 {postList && postList.map(postlist=><Card key={postlist._id} {...postlist}/>)}
-                <FloatingBtn></FloatingBtn>
-                <WriteBtn
+                <FloatingButton
                 onClick={()=>{
                     {router.push("/combination/write")}
                 }}
-                >!글쓰기!</WriteBtn>
+                ></FloatingButton>
             </PageBox>
         </div>
     );
 };
-
-const WriteBtn = styled.button`
-  font-weight: bold;
-  font-size: 20px;
-  padding: 10px;
-  border-radius: 20px;
-  border: 1px solid black;
-  background-color: #FFFFFF;
-`;
 
 const FlexBox = styled.div`
     display: flex;
@@ -60,9 +48,7 @@ const PageBox = styled.div`
     height: auto;
     margin: auto;
 `;
-const SearchInput = styled.input`
-    width: 350px;
-`;
+
 
 
 export default combination;

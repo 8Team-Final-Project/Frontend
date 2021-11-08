@@ -3,10 +3,12 @@ import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import { patchCombinationPostDB } from "../../../src/Redux/Async/combinationAsync";
 import { useRouter } from "next/router";
+
 import RectangleImage from "../../../src/Components/Shared/RectangleImage";
 import ValidationInput from "../../../src/Components/Input/ValidationInput";
 import RedButton from "../../../src/Components/Button/RedButton";
 import WhiteButton from "../../../src/Components/Button/WhiteButton";
+import HashTagWriteInput from "../../../src/Components/Input/HashTagWriteInput.jsx"
 
 //꿀조합 수정페이지
 const combinationEdit = () => {
@@ -18,6 +20,7 @@ const combinationEdit = () => {
   const [postContent, setContent] = React.useState("");
   const [postImg, setImg] = React.useState("");
   const [postTag, setTag] = React.useState("");
+  const [postRecipe, setRecipe] = React.useState("");
 
   const postId = useRouter().query.id;
 
@@ -25,6 +28,7 @@ const combinationEdit = () => {
     const postItem = {
       postTitle: postTitle,
       postContent: postContent,
+      postRecipe: postRecipe,
       postImg: postImg,
       postTag: postTag,
       postId: postId,
@@ -95,7 +99,7 @@ const combinationEdit = () => {
               /><RedButton 
                 value="저장"
                 onClick={()=>{
-                setPost()
+                editPost()
                 {router.push(`/combination/detail/${postId}`)}}}
               /></FlexBox>
         </CenterBox>

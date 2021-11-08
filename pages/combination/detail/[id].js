@@ -2,7 +2,9 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { deleteCombinationPostDB, getCombinationPost, patchCombinationPostLike, patchCombinationPostSave } from "../../../src/Redux/Async/combinationAsync";
 import { useDispatch, useSelector } from "react-redux";
-import { useRouter } from "next/router";
+import { useRouter} from "next/router";
+import { CopyToClipboard } from "react-copy-to-clipboard";
+
 
 //꿀조합 상세페이지
 const PartyDetail = () => {
@@ -12,6 +14,19 @@ const PartyDetail = () => {
   const postId = useRouter().query.id;
   const postItem = useSelector((state) => state.combination.post);
 
+  const shareUrl = window.location.href;
+
+  const [offLike, setOnLike] = useState(true);
+  const [offSave, setOnSave] = useState(true);
+
+  const likeClick = () => {
+    setOnLike(!offLike);
+  }
+
+  const saveClick = () => {
+    setOnSave(!offSave)
+  }
+  
   useEffect(() => {
     dispatch(getCombinationPost(postId));
   }, []);
@@ -44,22 +59,30 @@ const PartyDetail = () => {
         <CenterBox>
           <DetailContent>{postItem && postItem.postContent}</DetailContent>
         </CenterBox>
-        <CenterBox>
-          <button
+        
+          <FlexCenter>
+            <div>
+            <button
           onClick={()=>{
-            router.push(`/combination/detail/${postId}`)
+            saveClick()
             setPostSave()
-          }}
-          >즐겨찾기</button>
-        </CenterBox>
-        <CenterBox style={{display:"flex"}}>
+          }}>
+            {offSave && offSave ? <img src="/saveOn.svg" /> : <img src="/saveOff.svg" />}
+          </button>
+            </div>
+            <div style={{display:"flex"}}>
           <button
           onClick={()=>{
             setPostLike();
+            likeClick();
           }}
-          ><img src="/likeOn.png" /></button>
+          >
+            {offLike && offLike ? <img src="/likeOn.svg" /> : <img src="/likeOff.svg" />}
+          </button>
           <div style={{color: "ff7775"}}>{postItem && postItem.likeCnt}</div>
-        </CenterBox>
+        </div>
+          </FlexCenter>
+        
         <CenterBox>
           <button
             onClick={() => {
@@ -78,6 +101,14 @@ const PartyDetail = () => {
           >
             삭제하기
           </button>
+          <CopyToClipboard text={shareUrl}>
+          <button onClick={() =>{
+            window.alert("링크복사됨~")
+          }}>
+            공유하기
+          </button>
+          </CopyToClipboard>
+         
         </CenterBox>
       </DetailBox>
     </div>
@@ -85,6 +116,7 @@ const PartyDetail = () => {
 };
 const FlexCenter = styled.div`
   display: flex;
+  align-items: center;
 `;
 
 const CenterBox = styled.div`
