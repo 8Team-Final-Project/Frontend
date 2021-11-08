@@ -41,6 +41,7 @@ const BlackTagBox = styled.div`
   border-radius: 50px;
   border: 0.74px solid #d9d9d9;
   margin: 0px 8px 5px 0px;
+  box-sizing: border-box;
 `;
 
 export default Tag;
