@@ -106,3 +106,18 @@ export const Me = createAsyncThunk(
       }
   }
 );
+
+// 프로필 수정
+export const patchUserid = createAsyncThunk(
+    "/user/patchuserid",
+    async (data, thunkAPI) => {
+        try {
+            const response = await userApi.userid(data);
+            if(response.data.result==="success") {
+                return response.data.msg
+            };
+        } catch (err) {
+            return thunkAPI.rejectWithValue(err.response.message);
+        }
+    }
+);

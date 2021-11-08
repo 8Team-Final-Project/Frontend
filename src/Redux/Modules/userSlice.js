@@ -5,8 +5,8 @@ import {
     postCheckEmail,
     postCheckNic,
     postLogout,
-    LoginCheck,
-    Me
+    Me,
+    patchUserid
  } from "../Async/userAsync";
 
 const initialState = {
@@ -99,6 +99,19 @@ const userSlice = createSlice({
             state.isFetching = false;
             state.errorMessage = errorMessage;
         },
+
+        // 프로필 수정
+        [patchUserid.fulfilled]: (state, { payload }) => {
+            state.isFetching = false;
+            state.errorMessage = null;
+          },
+          [patchUserid.pending]: (state, { payload }) => {
+              state.isFetching = true;
+          },
+          [patchUserid.rejected]: (state, { payload: errorMessage }) => {
+              state.isFetching = false;
+              state.errorMessage = errorMessage;
+          },
     }
 });
 

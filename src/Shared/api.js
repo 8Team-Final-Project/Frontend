@@ -4,7 +4,7 @@ import { getToken } from "./util";
 // Axios 인스턴스 설정
 const instance = axios.create({
   // 백엔드 배포 주소
-  baseURL: "http://54.180.157.2:8000"
+  baseURL: "http://54.180.131.163"
 });
 
 //interceptor를 통한 header 설정
@@ -37,8 +37,11 @@ export const userApi = {
   // 로그아웃
   logout: (user) => instance.post("/api/v1/users/logout", user),
   
-  // 프로필
-  me: (user) => instance.get("/api/v1/users/me", user)
+  // 내 프로필
+  me: (user) => instance.get("/api/v1/users/me", user),
+
+  // 프로필 수정
+  userid: (user) => instance.patch("/api/v1/users/userid", user)
 };
 
 export const eventPostApi = {

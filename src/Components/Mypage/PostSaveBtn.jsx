@@ -1,18 +1,47 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 
-const PostSaveBtn = ({ value, onClick }) => {
+const PostSaveBtn = (props) => {
+  const [activeIndex, setActiveIndex] = useState(0);
+  
+  const tabClickHandler=(index)=>{
+    setActiveIndex(index)
+  }
+
+  const tabContArr=[
+    {
+        tabTitle:(
+            <PostButton className={activeIndex===0 ? "is-active" : ""} onClick={()=>tabClickHandler(0)}> 작성한 글 </PostButton>
+        ),
+        tabCont:(
+            <div> 작성한 글 내용 </div>
+        )
+    },
+    {
+        tabTitle:(
+            <SaveButton className={activeIndex===0 ? "is-active" : ""} onClick={()=>tabClickHandler(1)}> 저장한 글 </SaveButton>
+        ),
+        tabCont:(
+            <div> 저장한 글 내용 </div>
+        )
+    }
+];
+
+
+
   return (
     <>
       <Container>
         <div>
-          <PostButton clickMyPostBtn={() => {}}>작성한 글</PostButton>
-          <Line />
+        {
+          tabContArr.map((section, index)=>{
+            return section.tabTitle
+          })
+        }
         </div>
 
         <div>
-          <SaveButton clickSavePostBtn={() => {}}>저장한 글</SaveButton>
-          <Line />
+          { tabContArr[activeIndex].tabCont }
         </div>
       </Container>
     </>
@@ -25,14 +54,13 @@ PostSaveBtn.defaultProps = {
 };
 
 const Container = styled.div`
-  display: flex;
   width: 100%;
-  justify-content: space-between;
 `;
 
 const PostButton = styled.button`
   width: 100px;
   padding: 12px 0px;
+  font-size: 15px;
   color: #ff7775;
   cursor: pointer;
 `;
@@ -40,6 +68,7 @@ const PostButton = styled.button`
 const SaveButton = styled.button`
   width: 100px;
   padding: 12px 0px;
+  font-size: 15px;
   color: #ff7775;
   cursor: pointer;
 `;

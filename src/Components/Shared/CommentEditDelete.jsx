@@ -2,15 +2,30 @@ import React from "react";
 import styled from "styled-components";
 import WhiteButton from "../Button/WhiteButton";
 
-const CommentEditDelete = ({ value, onClick }) => {
-  return (
+
+//is_post 리턴: 이벤트 페이지 수정 모달
+//in_post none 리턴: 댓글 수정 모달
+const CommentEditDelete = ({ props, is_post }) => {
+
+
+  if(is_post) {
+    return (
+        <>
+          <EditButton>이벤트페이지 수정 모달</EditButton>
+          <DeleteButton>삭제</DeleteButton>
+
+          <WhiteButton margin="" value="취소" onClick={() => router.push("/auth/login")} />
+        </>
+      );
+    }
+    return (
     <>
-      <EditButton editHandler={() => {}}>수정</EditButton>
-      <DeleteButton deleteHandler={() => {}}>삭제</DeleteButton>
+      <EditButton onClick={editHandler}>댓글 수정 모달</EditButton>
+      <DeleteButton onClick={deleteHandler}>삭제</DeleteButton>
 
       <WhiteButton margin="" value="취소" onClick={() => router.push("/auth/login")} />
     </>
-  );
+    )
 };
 
 CommentEditDelete.defaultProps = {
