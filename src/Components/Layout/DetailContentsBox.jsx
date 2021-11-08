@@ -74,7 +74,7 @@ const DetailContentsBox = (props) => {
         {post && post.postTag.map((tag, idx) => <Tag is_detail key={idx} value={"#" + tag}></Tag>)}
       </Wrap>
       <Btn>
-        <LikeBtn src="/Vector.svg" />
+        <LikeBtn src="/Vector.svg" onClick={likeEventPost} />
         {post && post.likeCnt}
         <SaveBtn src="/Save.svg" />
       </Btn>
