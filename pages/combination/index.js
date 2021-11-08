@@ -18,8 +18,7 @@ const combination = () => {
 
     const dispatch = useDispatch();
 
-    const postList = useSelector((state) => state.combination.list)
-
+    const postList = useSelector((state) => state.combination.list[0])
     useEffect(() => {
         dispatch(getCombinationList());
     }, []);
@@ -32,7 +31,7 @@ const combination = () => {
                 <Search></Search>
                 </div>
                 {/* post는 객체하나 */}
-                {postList.map(postlist=><Card key={postlist._id} {...postlist}/>)}
+                {postList && postList.map(postlist=><Card key={postlist._id} {...postlist}/>)}
                 <FloatingBtn></FloatingBtn>
                 <WriteBtn
                 onClick={()=>{

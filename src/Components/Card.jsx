@@ -10,6 +10,7 @@ import { flexbox } from "@mui/system"
 import { dividerClasses } from "@mui/material"
 
 const Card = (props)=> {
+  
   const {src, postTag, postTitle, likeCnt} = props;
 
   const styles = {
@@ -23,7 +24,7 @@ const Card = (props)=> {
       <LeftBox {...styles} ></LeftBox>
       <RightBox>
         <PostTitle>{postTitle}</PostTitle>
-        {postTag.map((tag,idx)=><Tag key={idx} value={"#"+[...tag]}></Tag>)}
+        {postTag.map((tag,idx)=><Tag key={idx} value={"#"+tag}></Tag>)}
         <div 
         style={{
           display:"flex",
