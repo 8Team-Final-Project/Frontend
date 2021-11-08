@@ -37,7 +37,7 @@ const BlackTagBox = styled.div`
   padding: 10px;
   width: auto;
   height: 27px;
-  /* line-height: 27px; */
+  line-height: 5px;
   border-radius: 50px;
   border: 0.74px solid #d9d9d9;
   margin: 0px 8px 5px 0px;

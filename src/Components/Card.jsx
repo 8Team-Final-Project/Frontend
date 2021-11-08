@@ -1,72 +1,60 @@
-import React from "react"
-import styled from "styled-components"
-import { useSelector, useDispatch } from "react-redux"
-import { useRouter} from "next/router"
-import { getCombinationList } from "../Redux/Async/combinationAsync"
-import { combinationPostApi } from "../Shared/api"
+import React from "react";
+import styled from "styled-components";
+import { useSelector, useDispatch } from "react-redux";
+import { useRouter } from "next/router";
+import { getCombinationList } from "../Redux/Async/combinationAsync";
+import { combinationPostApi } from "../Shared/api";
 
-import Tag from './Tag.jsx'
-import { flexbox } from "@mui/system"
-import { dividerClasses } from "@mui/material"
+import Tag from "./Tag.jsx";
+import { flexbox } from "@mui/system";
+import { dividerClasses } from "@mui/material";
 
-const Card = (props)=> {
-  
-  const {src, postTag, postTitle, likeCnt} = props;
-
-  const styles = {
-    src: src
-  }
-  
+const Card = (props) => {
   const router = useRouter();
   return (
-    <CardBox onClick={() =>{router.push(`combination/detail/${props._id}`)
-    }}>
-      <LeftBox {...styles} ></LeftBox>
+    <CardBox
+      onClick={() => {
+        router.push(`combination/detail/${props._id}`);
+      }}
+    >
+      <LeftBox src={props.postImg} />
       <RightBox>
-        <PostTitle>{postTitle}</PostTitle>
-        {postTag.map((tag,idx)=><Tag key={idx} value={"#"+tag}></Tag>)}
-        <div 
-        style={{
-          display:"flex",
-          width:"30px",
-          margin: "5px 5px 5px auto"
-          }}>
-        <div><img src="/likeOn.png" /></div>
-        <div>{likeCnt}</div>
-        </div>
+        <PostTitle>{props && props.postTitle}</PostTitle>
+        {props.postTag.map((tag, idx) => (
+          <Tag key={idx} value={"#" + tag}></Tag>
+        ))}
+        <Like>
+          <Heart src="/fullheart.png" />
+          <LikeCnt>
+            <>{props.likeCnt}</>
+          </LikeCnt>
+        </Like>
       </RightBox>
     </CardBox>
-  )
-}
-
-Card.defaultProps = {
-  src: "https://images.chosun.com/resizer/KSeDjO0Ti_vR2jehZcixB4tciRM=/464x0/smart/cloudfront-ap-northeast-1.images.arcpublishing.com/chosun/NDW4SUJB7PJYLM3E7USJLZULMY.jpg",
-}
+  );
+};
 
 const PostTitle = styled.div`
-    
+  font-size: 16px;
+  margin-bottom: 7px;
 `;
-const FlexBox = styled.div`
-  display: flex;
-`;
-
 
 const CardBox = styled.div`
-  border: 1px solid #E5e5e5;
-  margin: 10px auto;
+  border: 1px solid #e5e5e5;
+  margin: 15px auto;
   display: flex;
-  width: 95%;
-  height: 120px;
+  width: 100%;
+  height: 100px;
   border-radius: 10px;
-  box-shadow: 5px 5px 10px #E5E5E5;
+  box-shadow: 5px 5px 10px #e5e5e5;
+  box-sizing: border-box;
 `;
 
 // 기본 사진 or 사진 받아오기
 const LeftBox = styled.div`
-  width: 35%;
-  height: 120px;
-  border-radius: 10px 0 0 10px ;
-  background-color: green;
+  width: 30%;
+  height: 100px;
+  border-radius: 10px 0 0 10px;
   background-image: url("${(props) => props.src}");
   background-position: center;
   background-size: cover;
@@ -76,10 +64,27 @@ const LeftBox = styled.div`
 const RightBox = styled.div`
   padding: 10px;
   box-sizing: border-box;
-  width: 65%;
-  height: 120px;
+  width: 70%;
+  height: 100px;
   border-radius: 0 10px 10px 0;
 `;
 
+const Like = styled.div`
+  display: flex;
+`;
 
-export default Card
+const Heart = styled.img`
+  display: block;
+  text-align: right;
+  width: 15px;
+  height: 13px;
+  margin-left: 85%;
+`;
+
+const LikeCnt = styled.span`
+  margin-left: 7px;
+  font-size: 10px;
+  color: red;
+`;
+
+export default Card;

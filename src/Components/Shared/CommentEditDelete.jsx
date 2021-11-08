@@ -1,13 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import Router, { useRouter } from "next/router";
-import WhiteButton from "../Button/WhiteButton";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { deleteEventPostDB, getEventPostDB } from "../../Redux/Async/eventAsync";
 
-const CommentEditDelete = ({ value, onClick }) => {
+const CommentEditDelete = ({ handleExit }) => {
   const dispatch = useDispatch();
-  const [modalIsOpen, setModalIsOpen] = useState(false);
   const {
     query: { id }
   } = useRouter();
@@ -25,23 +23,13 @@ const CommentEditDelete = ({ value, onClick }) => {
     Router.push("/event");
   };
 
-  // Close modal
-  const closeModal = () => {
-    setModalIsOpen(false);
-  };
-
   return (
     <>
       <EditButton onClick={editpage}>수정</EditButton>
       <DeleteButton onClick={deleteEventPost}>삭제</DeleteButton>
-      <CancelButton onClick={closeModal}>취소</CancelButton>
+      <CancelButton onClick={handleExit}>취소</CancelButton>
     </>
   );
-};
-
-CommentEditDelete.defaultProps = {
-  value: "",
-  onClick: () => {}
 };
 
 // 수정 버튼

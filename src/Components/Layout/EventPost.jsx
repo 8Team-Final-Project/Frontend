@@ -16,9 +16,11 @@ const EventPost = (props) => {
       <LeftBox src={props.postImg} />
       <RightBox>
         <PostTitle>{props && props.postTitle}</PostTitle>
-        {props.postTag.map((tag, idx) => (
-          <Tag key={idx} value={"#" + tag}></Tag>
-        ))}
+        <TagLine>
+          {props.postTag.map((tag, idx) => (
+            <Tag key={idx} value={"#" + tag}></Tag>
+          ))}
+        </TagLine>
         <Like>
           <Heart src="/fullheart.png" />
           <LikeCnt>{isloaded && <>{props.likeCnt}</>}</LikeCnt>
@@ -31,6 +33,21 @@ const EventPost = (props) => {
 const PostTitle = styled.div`
   font-size: 16px;
   margin-bottom: 7px;
+  overflow: hidden;
+  width: 260px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+`;
+
+const TagLine = styled.div`
+  overflow: scroll;
+  white-space: nowrap;
+  -ms-overflow-style: none;
+  height: 35px;
+  &::-webkit-scrollbar {
+    width: 0 !important;
+    display: none;
+  }
 `;
 
 const CardBox = styled.div`
@@ -73,6 +90,7 @@ const Heart = styled.img`
   width: 15px;
   height: 13px;
   margin-left: 85%;
+  margin-top: 1px;
 `;
 
 const LikeCnt = styled.span`

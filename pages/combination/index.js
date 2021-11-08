@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getCombinationList } from "../../src/Redux/Async/combinationAsync";
 import Card from "../../src/Components/Card";
 import Tag from "../../src/Components/Tag";
-import FloatingBtn from "../../src/Components/FloatingBtn";
+import FloatingButton from '../../src/Components/Button/FloatingButton';
 import EventBtn from "../../src/Components/EventBtn";
 import { useRouter } from "next/router";
 import Search from "../search";
@@ -22,6 +22,10 @@ const combination = () => {
     useEffect(() => {
         dispatch(getCombinationList());
     }, []);
+
+    const floatButton = () => {
+        router.push("/combination/write")
+    }
     
     return (
         <div>
@@ -32,12 +36,7 @@ const combination = () => {
                 </div>
                 {/* post는 객체하나 */}
                 {postList && postList.map(postlist=><Card key={postlist._id} {...postlist}/>)}
-                <FloatingBtn></FloatingBtn>
-                <WriteBtn
-                onClick={()=>{
-                    {router.push("/combination/write")}
-                }}
-                >!글쓰기!</WriteBtn>
+                <FloatingButton onClick={floatButton}/>
             </PageBox>
         </div>
     );

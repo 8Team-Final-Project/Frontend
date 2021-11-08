@@ -3,6 +3,7 @@ import Modal from "react-modal";
 import { useRef, useEffect } from "react";
 import styled from "styled-components";
 import Router, { useRouter } from "next/router";
+import { FaRegHeart } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { getEventPostDB, deleteEventPostDB, likeEventPostDB, editEventPostDB } from "../../Redux/Async/eventAsync";
 
@@ -21,20 +22,11 @@ const DetailContentsBox = (props) => {
   } = useRouter();
 
   const [modalIsOpen, setModalIsOpen] = useState(false);
-
   const post = useSelector((state) => state.event.post);
+
   React.useEffect(() => {
     if (id) dispatch(getEventPostDB(id));
   }, [id]);
-
-  const deleteEventPost = () => {
-    dispatch(deleteEventPostDB(id));
-    Router.push("/event");
-  };
-
-  const editpage = () => {
-    Router.push(`/event/edit/${id}`);
-  };
 
   const likeEventPost = () => {
     dispatch(likeEventPostDB(id));
@@ -50,12 +42,22 @@ const DetailContentsBox = (props) => {
     setModalIsOpen(false);
   };
 
+  const modalStyles = {
+    content: {
+      position: "fixed",
+      bottom: 0,
+      width: "100%"
+    }
+  };
+
   return (
     <React.Fragment>
       <PostImg src={post && post.postImg} />
       <Title>
-        {post && post.postTitle}
-        <BsThreeDotsVertical onClick={openModal} style={{ margin: "5px 0px 0px 50px", width: "20px" }} />
+        <strong>{post && post.postTitle}</strong>
+        <Menu>
+          <BsThreeDotsVertical onClick={openModal} />
+        </Menu>
       </Title>
       <Intro> {post && post.postSubtitle} </Intro>
 
@@ -70,14 +72,11 @@ const DetailContentsBox = (props) => {
           <Value> {post && post.postContent} </Value>
         </Content>
         {post && post.postTag.map((tag, idx) => <Tag is_detail key={idx} value={"#" + tag}></Tag>)}
-
-        {/* <button onClick={editpage}>수정</button>
-        <button onClick={deleteEventPost}>삭제</button> */}
       </Wrap>
       <Btn>
-        <LikeOffBtn src="/likeOff.png" onClick={likeEventPost} />
+        <LikeBtn src="/Vector.svg" />
         {post && post.likeCnt}
-        <SaveBtn src="/saveOff.png" />
+        <SaveBtn src="/Save.svg" />
       </Btn>
 
       <ModalFrame>
@@ -87,35 +86,36 @@ const DetailContentsBox = (props) => {
           ariaHideApp={false}
           contentLabel="Selected Option"
           className="Modal"
+          style={modalStyles}
         >
-          <div
-            style={{
-              position: "fixed",
-              bottom: 0,
-              width: "100%"
-            }}
-          >
-            <MenuButton />
-          </div>
+          <MenuButton handleExit={closeModal} />
         </Modal>
       </ModalFrame>
     </React.Fragment>
   );
 };
 
-const PostImg = styled.div`
-  width: 364px;
+const PostImg = styled.img`
+  width: 100%;
   height: 225px;
   margin-bottom: 36px;
+  margin-top: 31px;
   border-radius: 12px;
+  object-fit: cover;
 `;
 
-const Title = styled.p`
+const Title = styled.div`
   display: flex;
   justify-content: center;
   font-size: 24px;
   font-weight: bold;
   margin: 15px;
+`;
+
+const Menu = styled.div`
+  margin: 5px 0px 0px 50px;
+  font-size: 20px;
+  color: #b8b8b8;
 `;
 
 const Intro = styled.p`
@@ -129,9 +129,11 @@ const Wrap = styled.div`
 `;
 
 const Content = styled.div`
-  display: flex;
-  max-width: 100%;
+  width: 100%;
   margin-bottom: 45px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
 `;
 
 const Label = styled.span`
@@ -143,21 +145,23 @@ const Label = styled.span`
 `;
 
 const Value = styled.span`
+  display: inline-block;
   color: black;
   text-align: left;
-  width: calc(100% - 70px);
-  margin-left: 10;
+  width: calc(100% - 80px);
+  overflow-wrap: break-word;
 `;
 
 const Btn = styled.div`
   display: flex;
   justify-content: center;
   margin-top: 80px;
+  color: #b8b8b8;
 `;
 
-const LikeOffBtn = styled.img`
+const LikeBtn = styled.img`
   width: 30px;
-  margin-right: 15px;
+  margin-right: 11px;
 `;
 
 const SaveBtn = styled.img`

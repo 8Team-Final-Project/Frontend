@@ -6,7 +6,7 @@ import router from "next/router";
 export default function FloatingButton({ onClick }) {
   return (
     <Box>
-      <Floatbtn onClick={onClick} src="/floatbtn.png" />
+      <Floatbtn onClick={onClick} src="/FloatBtn.svg" />
     </Box>
   );
 }
