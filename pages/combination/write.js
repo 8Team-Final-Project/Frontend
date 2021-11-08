@@ -15,11 +15,11 @@ const write = () => {
     const dispatch = useDispatch();
     const router = useRouter();
 
-    const [postTitle, setTitle] = React.useState("");
-    const [postContent, setContent] = React.useState("");
-    const [postImg, setImg] = React.useState("");
-    const [postTag, setTag] = React.useState("");
-    const [postRecipe, setRecipe] = React.useState("");
+    const [postTitle, setTitle] = useState("");
+    const [postContent, setContent] = useState("");
+    const [postImg, setImg] = useState("");
+    const [postTag, setTag] = useState("");
+    const [postRecipe, setRecipe] = useState("");
 
     const setPost = () => {
         const postItem = {
