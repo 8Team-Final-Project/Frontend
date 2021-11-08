@@ -37,8 +37,11 @@ export const userApi = {
   // 로그아웃
   logout: (user) => instance.post("/api/v1/users/logout", user),
   
-  // 프로필
-  me: (user) => instance.get("/api/v1/users/me", user)
+  // 내 프로필
+  me: (user) => instance.get("/api/v1/users/me", user),
+
+  // 프로필 수정
+  userid: (user) => instance.patch("/api/v1/users/userid", user)
 };
 
 export const eventPostApi = {
