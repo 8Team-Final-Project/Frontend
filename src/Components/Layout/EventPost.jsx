@@ -6,6 +6,7 @@ import Tag from "../Tag";
 
 const EventPost = (props) => {
   const isloaded = useSelector((state) => state.event.loaded);
+
   return (
     <CardBox
       onClick={() => {
@@ -14,7 +15,7 @@ const EventPost = (props) => {
     >
       <LeftBox src={props.postImg} />
       <RightBox>
-        <PostTitle>{props.postTitle}</PostTitle>
+        <PostTitle>{props && props.postTitle}</PostTitle>
         {props.postTag.map((tag, idx) => (
           <Tag key={idx} value={"#" + tag}></Tag>
         ))}
@@ -29,6 +30,7 @@ const EventPost = (props) => {
 
 const PostTitle = styled.div`
   font-size: 16px;
+  margin-bottom: 7px;
 `;
 
 const CardBox = styled.div`
@@ -47,7 +49,6 @@ const LeftBox = styled.div`
   width: 30%;
   height: 100px;
   border-radius: 10px 0 0 10px;
-  /* background-color: green; */
   background-image: url("${(props) => props.src}");
   background-position: center;
   background-size: cover;
@@ -71,12 +72,10 @@ const Heart = styled.img`
   text-align: right;
   width: 15px;
   height: 13px;
-  margin-top: 10px;
-  margin-left: 190px;
+  margin-left: 85%;
 `;
 
 const LikeCnt = styled.span`
-  margin-top: 9px;
   margin-left: 7px;
   font-size: 10px;
   color: red;

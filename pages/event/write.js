@@ -1,17 +1,23 @@
 import React, {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import { addEventPostDB } from "../../src/Redux/Async/eventAsync" 
-import HashTagInput from "../../src/Components/Input/HashTagWriteInput"
-import CommonInput from "../../src/Components/Input/ValidationInput.jsx"
 import router from "next/router"
 import styled from "styled-components";
 
-//파티작성페이지
+//components
+import RectangleImage from '../../src/Components/Shared/RectangleImage';
+import WhiteButton from '../../src/Components/Button/WhiteButton';
+import RedButton from '../../src/Components/Button/RedButton';
+import CommonInput from "../../src/Components/Input/ValidationInput.jsx"
+import HashTagInput from "../../src/Components/Input/HashTagWriteInput"
+
+//이벤트 게시글 작성페이지
 const write = () => {
     const dispatch = useDispatch();
 
+
+    const [postImg, setPostImg] = useState("");
     const [postTitle, setPostTitle] = useState("");
-    const [postSubtitle, setPostSubtitle ] = useState("");
     const [postRecipe, setPostRecipe ] = useState("");
     const [postContent, setPostContent] = useState("");
     const [postTag, setPostTag] = useState();
@@ -23,8 +29,8 @@ const write = () => {
 
     const addEventPost = () => {
         const content = {
+            postImg: postImg,
             postTitle : postTitle,
-            postSubtitle : postSubtitle,
             postRecipe : postRecipe,
             postContent : postContent,
             postTag : postTag,
@@ -34,32 +40,35 @@ const write = () => {
             event3list: event3list
         }
         dispatch(addEventPostDB(content));
+        router.push("/event")
     }
 
     return (
         <div>
-            <img/>사진<button>사진추가</button>
+            <ImgMargin>
+            <RectangleImage
+            edit
+            saveUrl={setPostImg}
+            imgUrl={postImg? postImg : false}
+            />
+            </ImgMargin>
+            <InputMargin>
             <CommonInput
                 important
                 label={"제목"}
                 value={postTitle}
                 setValue={setPostTitle}
             />
-            <br/>
-            <CommonInput
-                important
-                label={"소개"}
-                value={postSubtitle}
-                setValue={setPostSubtitle}
-            />
-            <br/>
+            </InputMargin>
+            <InputMargin>
             <CommonInput
                 important
                 label={"꿀조합"}
                 value={postRecipe}
                 setValue={setPostRecipe}
             />
-            <br/>
+            </InputMargin>
+            <InputMargin>
             <CommonInput 
                 label={"내용"}
                 value={postContent}
@@ -68,20 +77,39 @@ const write = () => {
                 multiline
                 rows={3}
                 />
-                <br/>
+            </InputMargin>
+            <InputMargin>
             <HashTagInput
                 important
                 label="해시태그"
                 tagList={postTag}
                 setTagList={setPostTag}
             />
-            <button onClick={()=>{router.push("/event")}}>취소</button>
-            <button onClick={addEventPost}>저장</button>
-           
+            </InputMargin>
+            <Controls>
+                <WhiteButton onClick={()=>{router.push("/event")}} value='취소'/>
+                <RedButton onClick={addEventPost} value='저장'/>
+            </Controls>
+            
         </div>
     );
 };
 
+
+const ImgMargin = styled.div`
+  margin : 50px 0px;
+
+`
+const InputMargin = styled.div`
+  margin-bottom : 44px;
+
+`
+
+const Controls = styled.div`
+display:flex;
+margin-top : 100px;
+
+`
 
 
 export default write;

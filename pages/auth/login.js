@@ -5,12 +5,13 @@ import {
     postLogin,
     postLogout,
 } from "../../src/Redux/Async/userAsync";
+import router from "next/router"
 
+//Component
 import ValidationInput from "../../src/Components/Input/ValidationInput"
 import RedButton from "../../src/Components/Button/RedButton"
 import WhiteButton from "../../src/Components/Button/WhiteButton"
 
-import router from "next/router"
 
 const login = () => {
     const dispatch = useDispatch();
@@ -40,22 +41,20 @@ const login = () => {
     return (
         <Container>
             <div>
+                <MarginTop>
                 <MarginBottom>
                     <ValidationInput 
                         value={userEmail}
                         setValue={setuserEmail}
                         label="이메일"
                     />
-                </MarginBottom>
-
-                <MarginBottom style={{ marginBottom: "40px" }}>
                     <ValidationInput 
                         label="비밀번호" 
                         value={userPassword}
                         setValue={setuserPassword}
                     />
                 </MarginBottom>
-                
+                </MarginTop>
                     <RedButton 
                         onClick={() =>{
                             setLogin()
@@ -76,7 +75,10 @@ const Container = styled.div`
     position: center;
 `
 const MarginBottom = styled.div`
-    margin-bottom: 20px;
+    margin-bottom: 100px;
+`
+const MarginTop = styled.div`
+    margin-top : 100px;
 `
 
 export default login;

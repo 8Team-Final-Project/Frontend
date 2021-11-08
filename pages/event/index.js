@@ -3,16 +3,22 @@ import EventPost from "../../src/Components/Layout/EventPost"
 import FloatingButton from '../../src/Components/Button/FloatingButton';
 import { useSelector, useDispatch } from "react-redux";
 import { eventPostListDB } from '../../src/Redux/Async/eventAsync';
-import {useRouter} from "next/router";
+import router, {useRouter} from "next/router";
 import styled from "styled-components";
 
 const event = (props) => {
     const post_list = useSelector((state) => state.event);
     const isloaded = useSelector((state) => state.event.loaded);
+    console.log(post_list)
     const dispatch = useDispatch();
+    const floatButton = () => {
+        router.push("/event/write")
+    }
     useEffect(()=>{
         dispatch(eventPostListDB());
     },[])
+
+
     
     return (
         <React.Fragment>
@@ -20,10 +26,10 @@ const event = (props) => {
 
             {isloaded && (
                 <>
-                {post_list && post_list.postlist.map((p, idx) => {return (<EventPost {...p} key={p.pid}/>)})} 
+                {post_list && post_list.postlist[0].map((p, idx) => {return (<EventPost {...p} key={p.pid}/>)})} 
                 </>
             )}
-            <FloatingButton/>
+            <FloatingButton onClick={floatButton}/>
         </React.Fragment>
     );
 };

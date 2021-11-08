@@ -63,11 +63,13 @@ const LogoImg = styled.img`
   width: 30%;
   height: 5%;
   margin-top: 9px;
+  cursor: pointer;
 `;
 
 const Nav = styled.span`
   display: flex;
   justify-content: flex-end;
+  cursor: pointer;
   & span {
     margin: 11px;
     margin-top: 15px;
