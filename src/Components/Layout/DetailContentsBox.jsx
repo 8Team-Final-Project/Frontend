@@ -5,7 +5,13 @@ import styled from "styled-components";
 import Router, { useRouter } from "next/router";
 import { FaRegHeart } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
-import { getEventPostDB, deleteEventPostDB, likeEventPostDB, editEventPostDB } from "../../Redux/Async/eventAsync";
+import {
+  getEventPostDB,
+  deleteEventPostDB,
+  likeEventPostDB,
+  editEventPostDB,
+  saveEventPostDB
+} from "../../Redux/Async/eventAsync";
 
 //component
 import MenuButton from "../Shared/CommentEditDelete";
@@ -23,6 +29,16 @@ const DetailContentsBox = (props) => {
 
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const post = useSelector((state) => state.event.post);
+
+  const [offSave, setOnSave] = useState(true);
+
+  const saveClick = () => {
+    setOnSave(!offSave);
+  };
+
+  const setPostSave = () => {
+    dispatch(saveEventPostDB(id));
+  };
 
   React.useEffect(() => {
     if (id) dispatch(getEventPostDB(id));
@@ -76,7 +92,13 @@ const DetailContentsBox = (props) => {
       <Btn>
         <LikeBtn src="/Vector.svg" onClick={likeEventPost} />
         {post && post.likeCnt}
-        <SaveBtn src="/Save.svg" />
+        <SaveBtn
+          src="/Save.svg"
+          onClick={() => {
+            saveClick();
+            setPostSave();
+          }}
+        />
       </Btn>
 
       <ModalFrame>

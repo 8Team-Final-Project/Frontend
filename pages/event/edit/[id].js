@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { useRouter, router } from "next/router";
+import { useRouter} from "next/router";
 import { useDispatch, useSelector } from "react-redux";
 import { editEventPostDB } from "../../../src/Redux/Async/eventAsync";
 
@@ -15,6 +15,7 @@ import WhiteButton from '../../../src/Components/Button/WhiteButton';
 //파티수정페이지
 const PartyEdit = () => {
   const dispatch = useDispatch();
+  const router = useRouter();
   const postId = useRouter().query.id;
   const post = useSelector((state) => state.event.post)
 
@@ -47,7 +48,7 @@ const PartyEdit = () => {
     <CommonInput
         important
         label={"제목"}
-        value={post.postTitle, postTitle}
+        value={post && post.postTitle, postTitle}
         setValue={setPostTitle}
     />
     </InputMargin>
@@ -55,14 +56,14 @@ const PartyEdit = () => {
     <CommonInput
         important
         label={"꿀조합"}
-        value={post.postRecipe, postRecipe}
+        value={postRecipe}
         setValue={setPostRecipe}
     />
     </InputMargin>
     <InputMargin>
     <CommonInput 
         label={"내용"}
-        value={post.postContent}
+        value={post && post.postContent}
         setValue={setPostContent}
         important
         multiline
@@ -70,7 +71,7 @@ const PartyEdit = () => {
         />
     </InputMargin>
     <Controls>
-        <WhiteButton onClick={()=>{router.push("/event")}} value='취소'/>
+        <WhiteButton onClick={()=>{router.push(`/event/detail/${postId}`)}} value='취소'/>
         <RedButton onClick={editEventPost} value='저장'/>
     </Controls>
 </div>
@@ -88,7 +89,6 @@ const InputMargin = styled.div`
 const Controls = styled.div`
 display:flex;
 margin-top : 100px;
-
 `
 
 

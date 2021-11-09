@@ -62,8 +62,9 @@ export const eventPostApi = {
 
   //좋아요 기능 
   likeEventPost : postId => instance.patch(`/api/v1/like/${postId}`),
-
-
+  
+  //찜 기능 
+  saveEventPost : postId => instance.patch(`/api/v1/keep/${postId}`)
   };
 
 

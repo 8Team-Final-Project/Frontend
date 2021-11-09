@@ -14,7 +14,9 @@ const combination = () => {
 
     const router = useRouter()
 
+
     const dispatch = useDispatch();
+
 
     const postList = useSelector((state) => state.combination.list[0])
     useEffect(() => {
@@ -28,7 +30,6 @@ const combination = () => {
     return (
         <div>
             <PageBox>
-                <div>추천태그 검색은 3가지까지 가능</div>
                 <div>
                 <Search></Search>
                 </div>
@@ -39,6 +40,10 @@ const combination = () => {
         </div>
     );
 };
+
+const Info = styled.div`
+    margin-top : 10px;
+`
 
 const FlexBox = styled.div`
     display: flex;

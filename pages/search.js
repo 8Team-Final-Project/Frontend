@@ -75,6 +75,7 @@ export default function Search() {
 
 const MuiForm = styled(FormControl)`
   width: 100%;
+  margin : 30px 0px;
 `;
 
 const MuiInput = styled(Input)`

@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { eventPostListDB } from '../../src/Redux/Async/eventAsync';
 import router, {useRouter} from "next/router";
 import styled from "styled-components";
+import { useInView } from "react-intersection-observer"
 
 const event = (props) => {
     const post_list = useSelector((state) => state.event);
@@ -17,17 +18,19 @@ const event = (props) => {
         dispatch(eventPostListDB());
     },[])
 
-
+    const [ref, inView] = useInView()
     
     return (
         <React.Fragment>
             <EventName>이번주 라면 꿀조합은?</EventName>
-
+            <div ref={ref}>
             {isloaded && (
                 <>
                 {post_list && post_list.postlist[0].map((p, idx) => {return (<EventPost {...p} key={p.pid}/>)})} 
                 </>
             )}
+            {inView.toString()}
+            </div>
             <FloatingButton onClick={floatButton}/>
         </React.Fragment>
     );
