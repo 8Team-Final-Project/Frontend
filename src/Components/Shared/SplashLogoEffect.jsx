@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from "react";
 import lottie from "lottie-web";
 import styled from "styled-components";
 
-export default function LikeEffect() {
+export default function SplashLogoEffect() {
   const ref = useRef();
   useEffect(() => {
     lottie.loadAnimation({
@@ -10,7 +10,7 @@ export default function LikeEffect() {
       renderer: "svg",
       loop: false,
       autoplay: true,
-      animationData: require("../../Asset/lottie/like_effect.json")
+      animationData: require("../../Asset/lottie/splash_logo_effect.json")
     });
   }, []);
   return (
@@ -20,5 +20,10 @@ export default function LikeEffect() {
   );
 }
 
-const Container = styled.div``;
-const Lottie = styled.div``;
+const Container = styled.div`
+  width: 100%;
+`;
+const Lottie = styled.div`
+  width: 100%;
+  height: 100%;
+`;
