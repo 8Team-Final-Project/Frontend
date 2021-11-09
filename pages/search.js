@@ -10,6 +10,7 @@ import FormControl from "@mui/material/FormControl";
 import { BsSearch } from "react-icons/bs";
 import { BiX } from "react-icons/bi";
 import { searchApi } from "../src/Shared/api";
+import LogoEffect from "../src/Components/Shared/LogoEffect";
 
 export default function Search() {
   const [term, setTerm] = useState("");
@@ -74,6 +75,7 @@ export default function Search() {
             />
           </Tag>
         ))}
+        <LogoEffect />
       </TagWrapper>
     </div>
   );

@@ -16,6 +16,7 @@
         "axios": "^0.24.0",
         "lottie-web": "^5.7.14",
         "next": "11.1.2",
+        "next-pwa": "^5.4.0",
         "next-redux-wrapper": "^7.0.5",
         "react": "17.0.2",
         "react-copy-to-clipboard": "^5.0.4",
