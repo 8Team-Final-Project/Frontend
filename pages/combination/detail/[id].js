@@ -78,20 +78,21 @@ const PartyDetail = (props) => {
 
   return (
     <React.Fragment>
+      <Grid>
       <PostImg src={postItem && postItem.postImg} />
-      <FlexBox>
         <Title>
           <strong>{postItem && postItem.postTitle}</strong>
           <Menu>
             <BsThreeDotsVertical onClick={openModal} />
           </Menu>
         </Title>
-      </FlexBox>
+
       <Wrap>
         <Content>
           <Label>꿀조합</Label>
           <Value>{postItem && postItem.postRecipe}</Value>
         </Content>
+
         <Content>
           <Label>레시피</Label>
           <Value> {postItem && postItem.postContent} </Value>
@@ -134,6 +135,7 @@ const PartyDetail = (props) => {
           <TextBox>공유</TextBox>
         </IconBox>
       </Btn>
+      </Grid>
       <ModalFrame>
         <Modal
           isOpen={modalIsOpen}
@@ -149,6 +151,11 @@ const PartyDetail = (props) => {
     </React.Fragment>
   );
 };
+
+const Grid = styled.div`
+  text-align : center
+`
+
 const TextBox = styled.div`
   color: #b8b8b8;
   width: auto;
@@ -170,29 +177,23 @@ const PostImg = styled.img`
   border-radius: 12px;
   object-fit: cover;
 `;
-const FlexBox = styled.div`
-  display: flex;
-  justify-content: space-between;
-`;
 
 const Title = styled.div`
   display: flex;
   justify-content: center;
   font-size: 24px;
   font-weight: bold;
-  margin: 15px;
+  word-break: break-all;
+  margin: 0px 30px 62px 30px;
 `;
 
 const Menu = styled.div`
   margin: 5px 0px 0px 50px;
   font-size: 20px;
   color: #b8b8b8;
-`;
-
-const Intro = styled.p`
-  color: #b8b8b8;
-  font-size: 16px;
-  margin-bottom: 62px;
+  position: absolute;
+  right: 5%;
+  cursor: pointer;
 `;
 
 const Wrap = styled.div`
@@ -201,7 +202,7 @@ const Wrap = styled.div`
 
 const Content = styled.div`
   width: 100%;
-  margin-bottom: 45px;
+  margin-bottom: 15px;
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
@@ -221,7 +222,6 @@ const Value = styled.span`
   text-align: left;
   width: calc(100% - 80px);
   overflow-wrap: break-word;
-  font-size: 18px;
 `;
 
 const Btn = styled.div`

@@ -2,63 +2,72 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import styled from "styled-components";
-import EventPost from "../Layout/EventPost"
-
+import EventPost from "../Layout/EventPost";
 
 const PostSaveBtn = (props) => {
   const dispatch = useDispatch();
 
   const [activeIndex, setActiveIndex] = useState(0);
-  
-  const tabClickHandler=(index)=>{
-    setActiveIndex(index)
-  }
 
-   //작성글 불러오기
-   const post = useSelector((state) => state.user.user?.myPost);
+  const tabClickHandler = (index) => {
+    setActiveIndex(index);
+  };
 
-   //저장글 불러오기
-   const save = useSelector((state) => state.user.user?.keepPost);
+  //작성글 불러오기
+  const post = useSelector((state) => state.user.user?.myPost);
 
-  const tabContArr=[
+  //저장글 불러오기
+  const save = useSelector((state) => state.user.user?.keepPost);
+
+  const tabContArr = [
     {
-        tabTitle:(
-            <PostButton className={activeIndex===0 ? "is-active" : ""} onClick={()=>tabClickHandler(0)}> 작성한 글 </PostButton>
-        ),
-        tabCont:(
-            <>
-              {post && post.map((p) => {return (<EventPost {...p} key={p.id}/>)})}
-            </>
-        )
+      tabTitle: (
+        <Tab>
+          <PostButton className={activeIndex === 0 ? "is-active" : ""} onClick={() => tabClickHandler(0)}>
+            {" "}
+            작성한 글{" "}
+          </PostButton>
+        </Tab>
+      ),
+      tabCont: (
+        <>
+          {post &&
+            post.map((p) => {
+              return <EventPost {...p} key={p.id} />;
+            })}
+        </>
+      )
     },
     {
-        tabTitle:(
-            <SaveButton className={activeIndex===0 ? "is-active" : ""} onClick={()=>tabClickHandler(1)}> 저장한 글 </SaveButton>
-        ),
-        tabCont:(
-            <>
-              {save && save.map((p) => {return (<EventPost {...p} key={p.id}/>)})}
-            </>
-        )
+      tabTitle: (
+        <Tab>
+          <SaveButton className={activeIndex === 0 ? "is-active" : ""} onClick={() => tabClickHandler(1)}>
+            {" "}
+            저장한 글{" "}
+          </SaveButton>
+        </Tab>
+      ),
+      tabCont: (
+        <>
+          {save &&
+            save.map((p) => {
+              return <EventPost {...p} key={p.id} />;
+            })}
+        </>
+      )
     }
-];
-
-
+  ];
 
   return (
     <>
       <Container>
         <div>
-        {
-          tabContArr.map((section, index)=>{
-            return section.tabTitle
-          })
-        }
+          {tabContArr.map((section, index) => {
+            return section.tabTitle;
+          })}
         </div>
 
-        <div>
-          { tabContArr[activeIndex].tabCont }
-        </div>
+        <div>{tabContArr[activeIndex].tabCont}</div>
       </Container>
     </>
   );
@@ -68,6 +77,10 @@ PostSaveBtn.defaultProps = {
   value: "",
   onClick: () => {}
 };
+
+const Tab = styled.div`
+  text-align: center;
+`;
 
 const Container = styled.div`
   width: 100%;

@@ -75,7 +75,6 @@ const DetailContentsBox = (props) => {
           <BsThreeDotsVertical onClick={openModal} />
         </Menu>
       </Title>
-      <Intro> {post && post.postSubtitle} </Intro>
 
       <Wrap>
         <Content>
@@ -131,19 +130,17 @@ const Title = styled.div`
   justify-content: center;
   font-size: 24px;
   font-weight: bold;
-  margin: 15px;
+  word-break: break-all;
+  margin: 0px 30px 62px 30px;
 `;
 
 const Menu = styled.div`
   margin: 5px 0px 0px 50px;
   font-size: 20px;
   color: #b8b8b8;
-`;
-
-const Intro = styled.p`
-  color: #b8b8b8;
-  font-size: 16px;
-  margin-bottom: 62px;
+  position: absolute;
+  right: 5%;
+  cursor: pointer;
 `;
 
 const Wrap = styled.div`
@@ -152,7 +149,7 @@ const Wrap = styled.div`
 
 const Content = styled.div`
   width: 100%;
-  margin-bottom: 45px;
+  margin-bottom: 15px;
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
@@ -184,11 +181,13 @@ const Btn = styled.div`
 const LikeBtn = styled.img`
   width: 30px;
   margin-right: 11px;
+  cursor: pointer;
 `;
 
 const SaveBtn = styled.img`
   width: 20px;
   margin-left: 80px;
+  cursor: pointer;
 `;
 
 const ModalFrame = styled.div`
