@@ -60,8 +60,8 @@ const Wrap = styled.div`
 
 const LogoImg = styled.img`
   float: left;
-  width: 30%;
-  height: 5%;
+  width: 22%;
+  height: 3%;
   margin-top: 9px;
   cursor: pointer;
 `;
@@ -69,10 +69,10 @@ const LogoImg = styled.img`
 const Nav = styled.span`
   display: flex;
   justify-content: flex-end;
-  cursor: pointer;
+  font-size: 15px;
   & span {
-    margin: 11px;
-    margin-top: 15px;
+    margin: 4.5% 8%;
+    cursor: pointer;
   }
 `;
 

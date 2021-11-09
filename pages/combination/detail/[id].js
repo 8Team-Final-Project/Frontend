@@ -11,7 +11,7 @@ import { useRouter } from "next/router";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import Modal from "react-modal";
 
-import MenuButton from "../../../src/Components/Shared/CommentEditDelete";
+import MenuButton from "../../../src/Components/Shared/ModalEditDelete";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import Tag from "../../../src/Components/Tag.jsx";
 
@@ -24,15 +24,23 @@ const PartyDetail = (props) => {
   const postId = useRouter().query.id;
   const postItem = useSelector((state) => state.combination.post);
 
+  const userId = useSelector((state) => state.user.user?.userId);
+  const likeUserId = useSelector((state) => state.combination.post?.likeUser);
+
+  const saveUserId = useSelector((state) => state.combination.post?.keepUser);
+
+  const sameLikeId = likeUserId && likeUserId.filter((user) => user._id.includes(userId));
+
+  const sameKeepId = saveUserId && saveUserId.filter((user) => user._id.includes(userId)) === [] ? false : true;
+
   const [modalIsOpen, setModalIsOpen] = useState(false);
-  // const shareUrl = window.location.href;
 
-  const [offLike, setOnLike] = useState(true);
-  const [offSave, setOnSave] = useState(true);
+  const [offLike, setOnLike] = useState(false);
+  const [offSave, setOnSave] = useState(false);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (postId) dispatch(getCombinationPost(postId));
-  }, []);
+  }, [postId]);
 
   const likeClick = () => {
     setOnLike(!offLike);
@@ -41,10 +49,6 @@ const PartyDetail = (props) => {
   const saveClick = () => {
     setOnSave(!offSave);
   };
-
-  useEffect(() => {
-    dispatch(getCombinationPost(postId));
-  }, []);
 
   const setDelete = () => {
     dispatch(deleteCombinationPostDB(postId));
@@ -78,25 +82,28 @@ const PartyDetail = (props) => {
 
   return (
     <React.Fragment>
+      <Grid>
       <PostImg src={postItem && postItem.postImg} />
-      <FlexBox>
         <Title>
           <strong>{postItem && postItem.postTitle}</strong>
           <Menu>
             <BsThreeDotsVertical onClick={openModal} />
           </Menu>
         </Title>
-      </FlexBox>
+
       <Wrap>
         <Content>
           <Label>꿀조합</Label>
           <Value>{postItem && postItem.postRecipe}</Value>
         </Content>
+
         <Content>
           <Label>레시피</Label>
           <Value> {postItem && postItem.postContent} </Value>
         </Content>
-        {postItem && postItem.postTag.map((tag, idx) => <Tag is_detail key={idx} value={"#" + tag}></Tag>)}
+        <IconBox>
+          {postItem && postItem.postTag.map((tag, idx) => <Tag is_detail key={idx} value={"#" + tag}></Tag>)}
+        </IconBox>
       </Wrap>
       <Btn>
         <IconBox>
@@ -117,7 +124,7 @@ const PartyDetail = (props) => {
               setPostSave();
             }}
           >
-            {offSave && offSave ? <img src="/saveOn.svg" /> : <img src="/saveOff.svg" />}
+            {!sameKeepId ? <img src="/saveOff.svg" /> : <img src="/saveOn.svg" />}
           </button>
           <TextBox>저장</TextBox>
         </IconBox>
@@ -134,6 +141,7 @@ const PartyDetail = (props) => {
           <TextBox>공유</TextBox>
         </IconBox>
       </Btn>
+      </Grid>
       <ModalFrame>
         <Modal
           isOpen={modalIsOpen}
@@ -149,19 +157,22 @@ const PartyDetail = (props) => {
     </React.Fragment>
   );
 };
+
+const Grid = styled.div`
+  text-align : center
+`
+
 const TextBox = styled.div`
   color: #b8b8b8;
   width: auto;
   line-height: 45px;
   font-size: 18px;
 `;
-
 const IconBox = styled.div`
   display: flex;
   justify-content: center;
-  margin: auto 10px;
+  margin: auto 30px;
 `;
-
 const PostImg = styled.img`
   width: 100%;
   height: 225px;
@@ -170,38 +181,28 @@ const PostImg = styled.img`
   border-radius: 12px;
   object-fit: cover;
 `;
-const FlexBox = styled.div`
-  display: flex;
-  justify-content: space-between;
-`;
-
 const Title = styled.div`
   display: flex;
   justify-content: center;
   font-size: 24px;
   font-weight: bold;
-  margin: 15px;
+  word-break: break-all;
+  margin: 0px 30px 62px 30px;
 `;
-
 const Menu = styled.div`
   margin: 5px 0px 0px 50px;
   font-size: 20px;
   color: #b8b8b8;
+  position: absolute;
+  right: 5%;
+  cursor: pointer;
 `;
-
-const Intro = styled.p`
-  color: #b8b8b8;
-  font-size: 16px;
-  margin-bottom: 62px;
-`;
-
 const Wrap = styled.div`
   width: 100%;
 `;
-
 const Content = styled.div`
   width: 100%;
-  margin-bottom: 45px;
+  margin-bottom: 15px;
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
@@ -221,7 +222,6 @@ const Value = styled.span`
   text-align: left;
   width: calc(100% - 80px);
   overflow-wrap: break-word;
-  font-size: 18px;
 `;
 
 const Btn = styled.div`

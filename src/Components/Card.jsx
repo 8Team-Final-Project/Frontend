@@ -10,19 +10,30 @@ import { flexbox } from "@mui/system";
 import { dividerClasses } from "@mui/material";
 
 const Card = (props) => {
+
   const router = useRouter();
+
+  const { src, size } = props;
+
+  const styles = {
+    src: src,
+    size: size
+  };
+
   return (
     <CardBox
       onClick={() => {
         router.push(`combination/detail/${props._id}`);
       }}
     >
-      <LeftBox src={props.postImg} />
+      <LeftBox {...styles} src={props ? props.postImg : src} />
       <RightBox>
         <PostTitle>{props && props.postTitle}</PostTitle>
-        {props.postTag.map((tag, idx) => (
-          <Tag key={idx} value={"#" + tag}></Tag>
-        ))}
+        <TagLine>
+          {props.postTag.map((tag, idx) => (
+            <Tag key={idx} value={"#" + tag}></Tag>
+          ))}
+        </TagLine>
         <Like>
           <Heart src="/fullheart.png" />
           <LikeCnt>
@@ -34,9 +45,30 @@ const Card = (props) => {
   );
 };
 
+Card.defaultProps = {
+  shape: "circle",
+  src: "https://mean0images.s3.ap-northeast-2.amazonaws.com/4.jpeg",
+  size: 36
+};
+
 const PostTitle = styled.div`
   font-size: 16px;
   margin-bottom: 7px;
+  overflow: hidden;
+  width: 260px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+`;
+
+const TagLine = styled.div`
+  overflow: scroll;
+  white-space: nowrap;
+  -ms-overflow-style: none;
+  height: 35px;
+  &::-webkit-scrollbar {
+    width: 0 !important;
+    display: none;
+  }
 `;
 
 const CardBox = styled.div`
@@ -44,7 +76,7 @@ const CardBox = styled.div`
   margin: 15px auto;
   display: flex;
   width: 100%;
-  height: 100px;
+  height: 10%;
   border-radius: 10px;
   box-shadow: 5px 5px 10px #e5e5e5;
   box-sizing: border-box;
@@ -53,7 +85,7 @@ const CardBox = styled.div`
 // 기본 사진 or 사진 받아오기
 const LeftBox = styled.div`
   width: 30%;
-  height: 100px;
+  height: 105px;
   border-radius: 10px 0 0 10px;
   background-image: url("${(props) => props.src}");
   background-position: center;
@@ -71,6 +103,7 @@ const RightBox = styled.div`
 
 const Like = styled.div`
   display: flex;
+  margin-right: 10px;
 `;
 
 const Heart = styled.img`
@@ -79,6 +112,7 @@ const Heart = styled.img`
   width: 15px;
   height: 13px;
   margin-left: 85%;
+  margin-top: 1px;
 `;
 
 const LikeCnt = styled.span`

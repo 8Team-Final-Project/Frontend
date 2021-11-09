@@ -2,95 +2,73 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import { combinationPostApi } from "../../Shared/api";
 
 // 게시글 작성하기
-export const addCombinationPostDB = createAsyncThunk(
-    "combination/addPost",
-    async (data, thunkAPI) => {
-        try {
-            const response = await combinationPostApi.postCombinationPost(data);
-            if (response.statusText === "OK") return response.data.newPost;
-        } catch (err) {
-            return thunkAPI.rejectWithValue(err.response.message);
-        }
-    }
-);
+export const addCombinationPostDB = createAsyncThunk("combination/addPost", async (data, thunkAPI) => {
+  try {
+    const response = await combinationPostApi.postCombinationPost(data);
+    if (response.statusText === "OK") return response.data.newPost;
+  } catch (err) {
+    return thunkAPI.rejectWithValue(err.response.message);
+  }
+});
 
 // 게시글 수정하기
-export const patchCombinationPostDB = createAsyncThunk(
-    "combination/patchPost",
-    async (data, thunkAPI) => {
-        try {
-            const response = await combinationPostApi.patchCombinationPost(data);
-            if (response.statusText === "OK") return response.data;
-        } catch (err) {
-            return thunkAPI.rejectWithValue(err.response.message);
-        }
-    }
-);
+export const patchCombinationPostDB = createAsyncThunk("combination/patchPost", async (data, thunkAPI) => {
+  try {
+    const response = await combinationPostApi.patchCombinationPost(data);
+    if (response.statusText === "OK") return response.data;
+  } catch (err) {
+    return thunkAPI.rejectWithValue(err.response.message);
+  }
+});
 
 // 게시글 삭제하기
-export const deleteCombinationPostDB = createAsyncThunk(
-    "combination/deletePost",
-    async (data, thunkAPI) => {
-        try {
-            const response = await combinationPostApi.deleteCombinationPost(data);
-            if (response.statusText === "OK") return response.data;
-        } catch (err) {
-            return thunkAPI.rejectWithValue(err.response.message);
-        }
-    }
-);
+export const deleteCombinationPostDB = createAsyncThunk("combination/deletePost", async (data, thunkAPI) => {
+  try {
+    const response = await combinationPostApi.deleteCombinationPost(data);
+    if (response.statusText === "OK") return response.data;
+  } catch (err) {
+    return thunkAPI.rejectWithValue(err.response.message);
+  }
+});
 
 // 게시글 불러오기
-export const getCombinationList = createAsyncThunk(
-    "combination/getList",
-    async (data, thunkAPI) => {
-        try {
-            const response = await combinationPostApi.getCombinationList(data);
-            if (response.statusText === "OK") return response.data;
-        } catch (err) {
-            return thunkAPI.rejectWithValue(err.response.message);
-        }
-    }
-);
+export const getCombinationList = createAsyncThunk("combination/getList", async (data, thunkAPI) => {
+  try {
+    const response = await combinationPostApi.getCombinationList(data);
+    if (response.statusText === "OK") return response.data;
+  } catch (err) {
+    return thunkAPI.rejectWithValue(err.response.message);
+  }
+});
 
 // 게시물상세 불러오기
-export const getCombinationPost = createAsyncThunk(
-    "combination/getPost",
-    async (data, thunkAPI) => {
-        try {
-            const response = await combinationPostApi.getCombinationPost(data);
-            if (response.statusText === "OK") return response.data;
-        } catch (err) {
-            return thunkAPI.rejectWithValue(err.response.message);
-        }
-    }
-);
+export const getCombinationPost = createAsyncThunk("combination/getPost", async (data, thunkAPI) => {
+  try {
+    const response = await combinationPostApi.getCombinationPost(data);
+    if (response.statusText === "OK") return response.data;
+  } catch (err) {
+    return thunkAPI.rejectWithValue(err.response.message);
+  }
+});
 
 // 게시물 좋아요 / 취소
-export const patchCombinationPostSave = createAsyncThunk(
-    "combination/patchSave",
-    async (data, thunkAPI) => {
-        try {
-            const response = await combinationPostApi.patchCombinationSave(data);
-            if (response.statusText === "OK") return response.data;
-        } catch (err) {
-            return thunkAPI.rejectWithValue(err.response.message);
-        }
-    }
-);
+export const patchCombinationPostSave = createAsyncThunk("combination/patchSave", async (data, thunkAPI) => {
+  try {
+    const response = await combinationPostApi.patchCombinationSave(data);
+    if (response.statusText === "OK") return response.data;
+  } catch (err) {
+    return thunkAPI.rejectWithValue(err.response.message);
+  }
+});
 
 // 게시물 찜 / 취소
-export const patchCombinationPostLike = createAsyncThunk(
-    "combination/patchLike",
-    async (data, thunkAPI) => {
-        try {
-            const response = await combinationPostApi.patchCombinationLike(data);
-            if (response.statusText === "OK") return response.data;
-        } catch (err) {
-            return thunkAPI.rejectWithValue(err.response.message);
-        }
+export const patchCombinationPostLike = createAsyncThunk("combination/patchLike", async (data, thunkAPI) => {
+  try {
+    const response = await combinationPostApi.patchCombinationLike(data);
+    if (response.statusText === "OK") {
+      return;
     }
-);
-
-
-
+  } catch (err) {
+    return thunkAPI.rejectWithValue(err.response.message);
+  }
+});

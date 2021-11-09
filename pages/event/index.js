@@ -17,19 +17,16 @@ const event = (props) => {
     useEffect(()=>{
         dispatch(eventPostListDB());
     },[])
-
-    const [ref, inView] = useInView()
     
     return (
         <React.Fragment>
             <EventName>이번주 라면 꿀조합은?</EventName>
-            <div ref={ref}>
+            <div>
             {isloaded && (
                 <>
                 {post_list && post_list.postlist[0].map((p, idx) => {return (<EventPost {...p} key={p.pid}/>)})} 
                 </>
             )}
-            {inView.toString()}
             </div>
             <FloatingButton onClick={floatButton}/>
         </React.Fragment>

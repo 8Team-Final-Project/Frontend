@@ -27,7 +27,6 @@ const combination = () => {
   return (
     <div>
       <PageBox>
-        <div>추천태그 검색은 3가지까지 가능</div>
         <div>
           <Search></Search>
         </div>

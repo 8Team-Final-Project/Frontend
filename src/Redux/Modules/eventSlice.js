@@ -46,22 +46,6 @@ const eventSlice = createSlice({
             state.isFetching = false;
             state.errorMessage = errorMessage;
         },
-        // 무한스크롤
-        [infinityPostListDB.fulfilled]: (state, { payload }) => {
-            state.postlist = payload;
-            state.isFetching = false;
-            state.errorMessage = null;
-        },
-        [infinityPostListDB.pending]: (state, { payload }) => {
-            state.isFetching = true;
-        },
-        [infinityPostListDB.rejected]: (state, { payload: errorMessage }) => {
-            state.isFetching = false;
-            state.errorMessage = errorMessage;
-        },
-
-        
-
 
         //이벤트 게시글 추가 
         [addEventPostDB.fulfilled]: (state, { payload }) => {

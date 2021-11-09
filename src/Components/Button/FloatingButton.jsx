@@ -19,6 +19,6 @@ const Floatbtn = styled.img`
   position: fixed;
   right: 7%;
   bottom: 5%;
-  width: 70px;
+  width: 55px;
   cursor: pointer;
 `;
