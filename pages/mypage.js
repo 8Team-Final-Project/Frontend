@@ -39,9 +39,6 @@ const mypage = (props) => {
   return (
     <Container>
       <ProfileBox>
-        <MoreBtn>
-          <BsThreeDotsVertical/>
-        </MoreBtn>
         {/* 프로필 */}
         <CircleImage style={{
           position: "relative"

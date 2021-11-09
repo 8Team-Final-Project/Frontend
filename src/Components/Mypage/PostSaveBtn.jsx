@@ -33,7 +33,7 @@ const PostSaveBtn = (props) => {
     },
     {
         tabTitle:(
-            <SaveButton className={activeIndex===0 ? "is-active" : ""} onClick={()=>tabClickHandler(1)}> 저장한 글 </SaveButton>
+            <SaveButton className={activeIndex===1 ? "is-active" : ""} onClick={()=>tabClickHandler(1)}> 저장한 글 </SaveButton>
         ),
         tabCont:(
             <>
@@ -71,22 +71,33 @@ PostSaveBtn.defaultProps = {
 
 const Container = styled.div`
   width: 100%;
+
 `;
 
 const PostButton = styled.button`
   width: 100px;
   padding: 12px 0px;
   font-size: 15px;
-  color: #ff7775;
+  color: #b8b8b8;
   cursor: pointer;
+  border-bottom: 3px solid inherit;
+  &.is-active{
+    color:#ff7775;
+    border-bottom:3px solid #ff7775;
+  }
 `;
 
 const SaveButton = styled.button`
   width: 100px;
   padding: 12px 0px;
   font-size: 15px;
-  color: #ff7775;
+  color: #b8b8b8;
   cursor: pointer;
+  border-bottom : 3px solid inherit;
+  &.is-active{
+    color:#ff7775;
+    border-bottom:3px solid #ff7775;
+  }
 `;
 
 const Line = styled.div`
