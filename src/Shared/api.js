@@ -14,7 +14,7 @@ instance.interceptors.request.use(async (config) => {
   config.headers["Accept"] = "*/*";
 
   //getToken는 로컬 스토리지에 토큰이 있다면 반환한다 없다면 null 값 반환
-  config.headers["authorization"] = await getToken();
+  config.headers["Authorization"] = await getToken();
   return config;
 });
 
@@ -35,7 +35,7 @@ export const userApi = {
   loginCheck: (user) => instance.get("/api/v1/users/logincheck", user),
 
   // 로그아웃
-  logout: (user) => instance.post("/api/v1/users/logout", user),
+  logout: (user) => instance.get("/api/v1/users/logout", user),
   
   // 내 프로필
   me: (user) => instance.get("/api/v1/users/me", user),
