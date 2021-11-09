@@ -40,12 +40,10 @@ const PostSaveBtn = (props) => {
     },
     {
       tabTitle: (
-        <Tab>
-          <SaveButton className={activeIndex === 0 ? "is-active" : ""} onClick={() => tabClickHandler(1)}>
-            {" "}
-            저장한 글{" "}
-          </SaveButton>
-        </Tab>
+        <SaveButton className={activeIndex === 1 ? "is-active" : ""} onClick={() => tabClickHandler(1)}>
+          {" "}
+          저장한 글{" "}
+        </SaveButton>
       ),
       tabCont: (
         <>
@@ -61,11 +59,11 @@ const PostSaveBtn = (props) => {
   return (
     <>
       <Container>
-        <div>
+        <Center>
           {tabContArr.map((section, index) => {
             return section.tabTitle;
           })}
-        </div>
+        </Center>
 
         <div>{tabContArr[activeIndex].tabCont}</div>
       </Container>
@@ -78,7 +76,7 @@ PostSaveBtn.defaultProps = {
   onClick: () => {}
 };
 
-const Tab = styled.div`
+const Center = styled.div`
   text-align: center;
 `;
 
@@ -90,23 +88,26 @@ const PostButton = styled.button`
   width: 100px;
   padding: 12px 0px;
   font-size: 15px;
-  color: #ff7775;
+  color: #b8b8b8;
   cursor: pointer;
+  border-bottom: 3px solid inherit;
+  &.is-active {
+    color: #ff7775;
+    border-bottom: 3px solid #ff7775;
+  }
 `;
 
 const SaveButton = styled.button`
   width: 100px;
   padding: 12px 0px;
   font-size: 15px;
-  color: #ff7775;
+  color: #b8b8b8;
   cursor: pointer;
-`;
-
-const Line = styled.div`
-  width: 100%;
-  height: 3px;
-  background-color: #ff7775;
-  /* display: none; */
+  border-bottom: 3px solid inherit;
+  &.is-active {
+    color: #ff7775;
+    border-bottom: 3px solid #ff7775;
+  }
 `;
 
 export default PostSaveBtn;
