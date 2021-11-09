@@ -21,7 +21,6 @@ const PartyDetail = (props) => {
 
   const shareUrl = "kkuljohab.com" + useRouter().asPath;
 
-  console.log(shareUrl);
   const postId = useRouter().query.id;
   const postItem = useSelector((state) => state.combination.post);
 
