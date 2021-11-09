@@ -8,47 +8,43 @@ import Search from "../search";
 import Card from "../../src/Components/Card";
 import FloatingButton from "../../src/Components/Button/FloatingButton";
 
-
 //꿀조합 페이지
 const combination = () => {
+  const router = useRouter();
 
-    const router = useRouter()
+  const dispatch = useDispatch();
 
-    const dispatch = useDispatch();
+  const postList = useSelector((state) => state.combination.list[0]);
+  useEffect(() => {
+    dispatch(getCombinationList());
+  }, []);
 
-    const postList = useSelector((state) => state.combination.list[0])
-    useEffect(() => {
-        dispatch(getCombinationList());
-    }, []);
+  const floatButton = () => {
+    router.push("/combination/write");
+  };
 
-    const floatButton = () => {
-        router.push("/combination/write")
-    }
-    
-    return (
+  return (
+    <div>
+      <PageBox>
+        <div>추천태그 검색은 3가지까지 가능</div>
         <div>
-            <PageBox>
-                <div>추천태그 검색은 3가지까지 가능</div>
-                <div>
-                <Search></Search>
-                </div>
-                {/* post는 객체하나 */}
-                {postList && postList.map(postlist=><Card key={postlist._id} {...postlist}/>)}
-                <FloatingButton onClick={floatButton}/>
-            </PageBox>
+          <Search></Search>
         </div>
-    );
+        {/* post는 객체하나 */}
+        {postList && postList.map((postlist) => <Card key={postlist._id} {...postlist} />)}
+        <FloatingButton onClick={floatButton} />
+      </PageBox>
+    </div>
+  );
 };
 
 const FlexBox = styled.div`
-    display: flex;
+  display: flex;
 `;
 const PageBox = styled.div`
-    width: 100%;
-    height: auto;
-    margin: auto;
+  width: 100%;
+  height: auto;
+  margin: auto;
 `;
-
-
 
 export default combination;
