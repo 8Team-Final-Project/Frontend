@@ -21,39 +21,6 @@ export const postSignup = createAsyncThunk(
     }
 );
 
-// 이메일 중복 확인
-export const postCheckEmail = createAsyncThunk(
-    "/user/postCheckEmail",
-    async (data, thunkAPI) => {
-        try {
-            const response = await userApi.checkemail(data);
-            if(response.data.message==="사용 가능 이메일 입니다.") {
-                window.alert('사용 가능한 이메일입니다!')
-                return response.data.msg
-            };
-        } catch (err) {
-            return thunkAPI.rejectWithValue(err.response.message);
-        }
-    }
-);
-
-// 닉네임 중복 확인
-export const postCheckNic = createAsyncThunk(
-    "/user/postCheckNic",
-    async (data, thunkAPI) => {
-        try {
-            const response = await userApi.checknick(data);
-            if(response.data.message==="사용 가능한 닉네임 입니다.") {
-                window.alert('사용 가능한 닉네임입니다!')
-                return response.data.msg
-            };
-        } catch (err) {
-            return thunkAPI.rejectWithValue(err.response.message);
-        }
-    }
-);
-
-
 // 로그인
 export const postLogin = createAsyncThunk(
   "user/postLogin",
@@ -83,6 +50,7 @@ export const postLogout = createAsyncThunk(
           const response = await userApi.logout(data);
           if(response.data.result==="success") {
               window.alert("로그아웃 완료")
+                localStorage.removeItem("token");
               return response.data.msg
             };
       } catch (err) {
@@ -105,4 +73,19 @@ export const Me = createAsyncThunk(
           return thunkAPI.rejectWithValue(err.response.message);
       }
   }
+);
+
+// 프로필 수정
+export const patchUserid = createAsyncThunk(
+    "/user/patchuserid",
+    async (data, thunkAPI) => {
+        try {
+            const response = await userApi.userid(data);
+            if(response.data.result==="success") {
+                return response.data.msg
+            };
+        } catch (err) {
+            return thunkAPI.rejectWithValue(err.response.message);
+        }
+    }
 );

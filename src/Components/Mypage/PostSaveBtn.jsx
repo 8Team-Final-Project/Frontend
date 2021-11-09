@@ -1,18 +1,63 @@
 import React, { useState } from "react";
-import styled from "styled-components";
+import { useDispatch, useSelector } from "react-redux";
 
-const PostSaveBtn = ({ value, onClick }) => {
+import styled from "styled-components";
+import EventPost from "../Layout/EventPost"
+
+
+const PostSaveBtn = (props) => {
+  const dispatch = useDispatch();
+
+  const [activeIndex, setActiveIndex] = useState(0);
+  
+  const tabClickHandler=(index)=>{
+    setActiveIndex(index)
+  }
+
+   //작성글 불러오기
+   const post = useSelector((state) => state.user.user?.myPost);
+
+   //저장글 불러오기
+   const save = useSelector((state) => state.user.user?.keepPost);
+
+  const tabContArr=[
+    {
+        tabTitle:(
+            <PostButton className={activeIndex===0 ? "is-active" : ""} onClick={()=>tabClickHandler(0)}> 작성한 글 </PostButton>
+        ),
+        tabCont:(
+            <>
+              {post && post.map((p) => {return (<EventPost {...p} key={p.id}/>)})}
+            </>
+        )
+    },
+    {
+        tabTitle:(
+            <SaveButton className={activeIndex===0 ? "is-active" : ""} onClick={()=>tabClickHandler(1)}> 저장한 글 </SaveButton>
+        ),
+        tabCont:(
+            <>
+              {save && save.map((p) => {return (<EventPost {...p} key={p.id}/>)})}
+            </>
+        )
+    }
+];
+
+
+
   return (
     <>
       <Container>
         <div>
-          <PostButton clickMyPostBtn={() => {}}>작성한 글</PostButton>
-          <Line />
+        {
+          tabContArr.map((section, index)=>{
+            return section.tabTitle
+          })
+        }
         </div>
 
         <div>
-          <SaveButton clickSavePostBtn={() => {}}>저장한 글</SaveButton>
-          <Line />
+          { tabContArr[activeIndex].tabCont }
         </div>
       </Container>
     </>
@@ -25,14 +70,13 @@ PostSaveBtn.defaultProps = {
 };
 
 const Container = styled.div`
-  display: flex;
   width: 100%;
-  justify-content: space-between;
 `;
 
 const PostButton = styled.button`
   width: 100px;
   padding: 12px 0px;
+  font-size: 15px;
   color: #ff7775;
   cursor: pointer;
 `;
@@ -40,6 +84,7 @@ const PostButton = styled.button`
 const SaveButton = styled.button`
   width: 100px;
   padding: 12px 0px;
+  font-size: 15px;
   color: #ff7775;
   cursor: pointer;
 `;

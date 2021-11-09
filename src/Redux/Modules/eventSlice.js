@@ -1,11 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { 
     eventPostListDB, 
+    infinityPostListDB,
     addEventPostDB, 
     getEventPostDB, 
     editEventPostDB, 
     deleteEventPostDB, 
-    likeEventPostDB } from "../Async/eventAsync";
+    likeEventPostDB,
+    saveEventPostDB
+     } from "../Async/eventAsync";
 
 
 
@@ -43,6 +46,22 @@ const eventSlice = createSlice({
             state.isFetching = false;
             state.errorMessage = errorMessage;
         },
+        // 무한스크롤
+        [infinityPostListDB.fulfilled]: (state, { payload }) => {
+            state.postlist = payload;
+            state.isFetching = false;
+            state.errorMessage = null;
+        },
+        [infinityPostListDB.pending]: (state, { payload }) => {
+            state.isFetching = true;
+        },
+        [infinityPostListDB.rejected]: (state, { payload: errorMessage }) => {
+            state.isFetching = false;
+            state.errorMessage = errorMessage;
+        },
+
+        
+
 
         //이벤트 게시글 추가 
         [addEventPostDB.fulfilled]: (state, { payload }) => {
@@ -110,6 +129,20 @@ const eventSlice = createSlice({
             state.isFetching = true;
         },
         [likeEventPostDB.rejected]: (state, { payload: errorMessage }) => {
+            state.isFetching = false;
+            state.errorMessage = errorMessage;
+        },
+
+        //이벤트 게시글 찜
+        [saveEventPostDB.fulfilled]: (state, { payload }) => {
+            state.post = payload;
+            state.isFetching = false;
+            state.errorMessage = null;
+        },
+        [saveEventPostDB.pending]: (state, { payload }) => {
+            state.isFetching = true;
+        },
+        [saveEventPostDB.rejected]: (state, { payload: errorMessage }) => {
             state.isFetching = false;
             state.errorMessage = errorMessage;
         },

@@ -34,7 +34,9 @@ function MyApp({ Component, pageProps }) {
 
 const Wrapper = styled.div`
   max-width: 500px;
+  width: 100vw;
   padding: 5px 5px 100px 5px;
+  box-sizing: border-box;
 `;
 
 // withRedux 함수로 컴포넌트를 감싸준다.

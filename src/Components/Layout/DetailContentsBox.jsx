@@ -1,19 +1,23 @@
 import React, { useState } from "react";
+import Modal from "react-modal";
+import { useRef, useEffect } from "react";
 import styled from "styled-components";
 import Router, { useRouter } from "next/router";
-import { BsThreeDotsVertical } from "react-icons/bs";
+import { FaRegHeart } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
-import MenuButton from "../Shared/CommentEditDelete";
-import { getEventPostDB, deleteEventPostDB, likeEventPostDB } from "../../Redux/Async/eventAsync";
+import {
+  getEventPostDB,
+  deleteEventPostDB,
+  likeEventPostDB,
+  editEventPostDB,
+  saveEventPostDB
+} from "../../Redux/Async/eventAsync";
 
-import Box from "@mui/material/Box";
-import Drawer from "@mui/material/Drawer";
-import Button from "@mui/material/Button";
-import List from "@mui/material/List";
-import Divider from "@mui/material/Divider";
-import ListItem from "@mui/material/ListItem";
-import ListItemIcon from "@mui/material/ListItemIcon";
-import ListItemText from "@mui/material/ListItemText";
+//component
+import MenuButton from "../Shared/CommentEditDelete";
+import { BsThreeDotsVertical } from "react-icons/bs";
+import Tag from "../Tag";
+import HeartOff from "../../../public/likeOff.png";
 import { red } from "@mui/material/colors";
 
 const DetailContentsBox = (props) => {
@@ -23,100 +27,117 @@ const DetailContentsBox = (props) => {
     query: { id }
   } = useRouter();
 
+  const [modalIsOpen, setModalIsOpen] = useState(false);
   const post = useSelector((state) => state.event.post);
+
+  const [offSave, setOnSave] = useState(true);
+
+  const saveClick = () => {
+    setOnSave(!offSave);
+  };
+
+  const setPostSave = () => {
+    dispatch(saveEventPostDB(id));
+  };
 
   React.useEffect(() => {
     if (id) dispatch(getEventPostDB(id));
   }, [id]);
 
-  const deleteEventPost = () => {
-    dispatch(deleteEventPostDB(id));
-    Router.push("/event");
-  };
-
-  const editpage = () => {
-    Router.push(`/event/edit/${id}`);
-  };
-
   const likeEventPost = () => {
     dispatch(likeEventPostDB(id));
   };
 
-  // 머테리얼 Drawer
-  const [state, setState] = React.useState({
-    bottom: false
-  });
-
-  const toggleDrawer = (anchor, open) => (event) => {
-    if (event.type === "keydown" && (event.key === "Tab" || event.key === "Shift")) {
-      return;
-    }
-
-    setState({ ...state, [anchor]: open });
+  // Open modal
+  const openModal = (e) => {
+    setModalIsOpen(true);
   };
 
-  const list = (anchor) => (
-    <Box
-      sx={{ width: anchor === "top" || anchor === "bottom" ? "auto" : "auto" }}
-      role="presentation"
-      onClick={toggleDrawer(anchor, false)}
-      onKeyDown={toggleDrawer(anchor, false)}
-    >
-      <Divider />
-      <List>
-        <MenuButton />
-      </List>
-    </Box>
-  );
+  // Close modal
+  const closeModal = () => {
+    setModalIsOpen(false);
+  };
+
+  const modalStyles = {
+    content: {
+      position: "fixed",
+      bottom: 0,
+      width: "100%"
+    }
+  };
 
   return (
     <React.Fragment>
       <PostImg src={post && post.postImg} />
       <Title>
-        {post && post.postTitle} <BsThreeDotsVertical />
+        <strong>{post && post.postTitle}</strong>
+        <Menu>
+          <BsThreeDotsVertical onClick={openModal} />
+        </Menu>
       </Title>
-      <div>
-        {["bottom"].map((anchor) => (
-          <React.Fragment key={anchor}>
-            <Button onClick={toggleDrawer(anchor, true)}>{anchor}</Button>
-            <Drawer anchor={anchor} open={state[anchor]} onClose={toggleDrawer(anchor, false)}>
-              {list(anchor)}
-            </Drawer>
-          </React.Fragment>
-        ))}
-      </div>
-
       <Intro> {post && post.postSubtitle} </Intro>
 
       <Wrap>
-        <Mix>
-          꿀조합<span>{post && post.postRecipe}</span>
-        </Mix>
+        <Content>
+          <Label>꿀조합</Label>
+          <Value>{post && post.postRecipe}</Value>
+        </Content>
 
-        <Recipe>레시피</Recipe>
-        <Text> {post && post.postContent} </Text>
-        {post && post.postTag}
-
-        <button onClick={editpage}>수정</button>
-        <button onClick={deleteEventPost}>삭제</button>
-
-        <button onClick={likeEventPost}>좋아요{post && post.likeCnt}</button>
+        <Content>
+          <Label>레시피</Label>
+          <Value> {post && post.postContent} </Value>
+        </Content>
+        {post && post.postTag.map((tag, idx) => <Tag is_detail key={idx} value={"#" + tag}></Tag>)}
       </Wrap>
+      <Btn>
+        <LikeBtn src="/Vector.svg" onClick={likeEventPost} />
+        {post && post.likeCnt}
+        <SaveBtn
+          src="/Save.svg"
+          onClick={() => {
+            saveClick();
+            setPostSave();
+          }}
+        />
+      </Btn>
+
+      <ModalFrame>
+        <Modal
+          isOpen={modalIsOpen}
+          onRequestClose={props.clearSelectedOption}
+          ariaHideApp={false}
+          contentLabel="Selected Option"
+          className="Modal"
+          style={modalStyles}
+        >
+          <MenuButton handleExit={closeModal} />
+        </Modal>
+      </ModalFrame>
     </React.Fragment>
   );
 };
 
-const PostImg = styled.div`
-  width: 364px;
+const PostImg = styled.img`
+  width: 100%;
   height: 225px;
   margin-bottom: 36px;
+  margin-top: 31px;
   border-radius: 12px;
+  object-fit: cover;
 `;
 
-const Title = styled.p`
+const Title = styled.div`
+  display: flex;
+  justify-content: center;
   font-size: 24px;
   font-weight: bold;
   margin: 15px;
+`;
+
+const Menu = styled.div`
+  margin: 5px 0px 0px 50px;
+  font-size: 20px;
+  color: #b8b8b8;
 `;
 
 const Intro = styled.p`
@@ -129,29 +150,50 @@ const Wrap = styled.div`
   width: 100%;
 `;
 
-const Mix = styled.div`
-  display: flex;
-  text-align: left;
-  color: #878787;
+const Content = styled.div`
+  width: 100%;
   margin-bottom: 45px;
-
-  & span {
-    color: black;
-    margin-left: 24px;
-  }
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
 `;
 
-const Recipe = styled.p`
-  text-align: left;
+const Label = styled.span`
+  display: inline-block;
   color: #878787;
-  margin-bottom: 20px;
+  text-align: left;
+  margin-bottom: 45px;
+  width: 70px;
 `;
 
-const Text = styled.p`
+const Value = styled.span`
+  display: inline-block;
   color: black;
   text-align: left;
+  width: calc(100% - 80px);
+  overflow-wrap: break-word;
 `;
 
-const HeartImg = styled.img``;
+const Btn = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-top: 80px;
+  color: #b8b8b8;
+`;
+
+const LikeBtn = styled.img`
+  width: 30px;
+  margin-right: 11px;
+`;
+
+const SaveBtn = styled.img`
+  width: 20px;
+  margin-left: 80px;
+`;
+
+const ModalFrame = styled.div`
+  max-width: 400px;
+  max-height: 400px;
+`;
 
 export default DetailContentsBox;

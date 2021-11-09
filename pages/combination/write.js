@@ -3,16 +3,23 @@ import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import { addCombinationPostDB } from "../../src/Redux/Async/combinationAsync";
 import { useRouter } from "next/router";
+import HashTagWriteInput from "../../src/Components/Input/HashTagWriteInput";
+import RectangleImage from "../../src/Components/Shared/RectangleImage";
+import ValidationInput from "../../src/Components/Input/ValidationInput"
+import RedButton from "../../src/Components/Button/RedButton";
+import WhiteButton from "../../src/Components/Button/WhiteButton";
 
 //꿀조합 작성페이지
 const write = () => {
+
     const dispatch = useDispatch();
     const router = useRouter();
 
-    const [postTitle, setTitle] = React.useState("");
-    const [postContent, setContent] = React.useState("");
-    const [postImg, setImg] = React.useState("");
-    const [postTag, setTag] = React.useState("");
+    const [postTitle, setTitle] = useState("");
+    const [postContent, setContent] = useState("");
+    const [postImg, setImg] = useState("");
+    const [postTag, setTag] = useState("");
+    const [postRecipe, setRecipe] = useState("");
 
     const setPost = () => {
         const postItem = {
@@ -20,6 +27,7 @@ const write = () => {
             postContent: postContent,
             postImg: postImg,
             postTag: postTag,
+            postRecipe: postRecipe,
             mainlist: true,
             event1list: false,
             event2list: false,
@@ -31,80 +39,83 @@ const write = () => {
     return (
         <div>
             <WriteBox>
-                <h1>꿀조합작성페이지</h1>
                 <CenterBox>
-                    <h2>제목</h2>
-                    <WriteInput
-                        onChange={e => {
-                            setTitle(e.target.value);
-                        }}
-                    ></WriteInput>
+                    <RectangleImage
+                      edit
+                      imgUrl={postImg? postImg : false}
+                      saveUrl={setImg}
+                    ></RectangleImage>
                 </CenterBox>
                 <CenterBox>
-                    <input
-                        type="file"
-                        onChange={e => {
-                            setImg(e.target.value);
-                        }}
-                    />
-                    <div>10MB이하로 업로드 할 수 있어~</div>
+                    <ValidationInput
+                      label="제목을 입력해주세요"
+                      value={postTitle}
+                      setValue={setTitle}
+                      maxValue={10}
+                      defaultText
+                      important
+                    ></ValidationInput>
                 </CenterBox>
                 <CenterBox>
-                    <h2>내용</h2>
-                    <WriteInput
-                        style={{
-                            height: "200px",
-                            type: "text",
-                        }}
-                        onChange={e => {
-                            setContent(e.target.value);
-                        }}
+                    <ValidationInput
+                      label="재료를 입력해주세요"
+                      value={postRecipe}
+                      setValue={setRecipe}
+                      maxValue={15}
+                      defaultText
+                      important
+                    ></ValidationInput>
+                </CenterBox>
+                <CenterBox>
+                    <ValidationInput
+                      label="내용을 입력해주세요"
+                      value={postContent}
+                      setValue={setContent}
+                      maxValue={99}
+                      defaultText
+                      important
+                      multiline
+                      rows={5}
+                    ></ValidationInput>
+                </CenterBox>
+                <CenterBox>
+                    <HashTagWriteInput
+                        tagList= {[...postTag]}
+                        setTagList={setTag}
+                        label="해시태그를 입력해주세요"
+                        important
                     />
                 </CenterBox>
                 <CenterBox>
-                    <h2>해시태그</h2>
-                    <WriteInput
-                        placeholder="태그입력해"
-                        onChange={e => {
-                            setTag(e.target.value);
-                        }}
-                    />
                     <FlexBox>
-                        <div>태그1</div> <div>태그2</div>
-                    </FlexBox>
-                </CenterBox>
-                <CenterBox>
-                    <button
+                        <WhiteButton 
+                        value="취소"
                         onClick={() => {
                             {router.push("/combination")}
                         }}
-                    >취소하기
-                    </button>
-                    <button onClick={()=>{
-                        setPost()
-                        {router.push("/combination")}
-                    }}>저장하기</button>
+                        />
+                        <RedButton 
+                        value="저장"
+                        onClick={()=>{
+                            setPost()
+                            {router.push("/combination")}
+                        }}/> 
+                    </FlexBox>
                 </CenterBox>
             </WriteBox>
         </div>
     );
 };
 const CenterBox = styled.div`
-    width: 350px;
+    width: 90%;
     margin: 10px auto;
 `;
 
 const WriteBox = styled.div`
-    width: 400px;
-    height: 700px;
-    border: 1px solid black;
+    width: 100%;
+    height: auto;
     margin: auto;
 `;
-
-const WriteInput = styled.input`
-    width: 350px;
-`;
-
 const FlexBox = styled.div`
     display: flex;
 `;

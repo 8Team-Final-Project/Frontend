@@ -3,22 +3,22 @@ import styled from "styled-components";
 import Box from "@mui/material/Box";
 import router from "next/router";
 
-export default function FloatingButton() {
+export default function FloatingButton({ onClick }) {
   return (
     <Box>
-      <Floatbtn
-        src="/floatbtn.png"
-        onClick={() => {
-          router.push("/event/write");
-        }}
-      />
+      <Floatbtn onClick={onClick} src="/FloatBtn.svg" />
     </Box>
   );
 }
 
+FloatingButton.defaultProps = {
+  onClick: () => {}
+};
+
 const Floatbtn = styled.img`
-  position: absolute;
+  position: fixed;
   right: 7%;
-  top: 85%;
-  width: 17%;
+  bottom: 5%;
+  width: 70px;
+  cursor: pointer;
 `;

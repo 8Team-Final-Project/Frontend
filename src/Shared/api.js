@@ -4,7 +4,7 @@ import { getToken } from "./util";
 // Axios 인스턴스 설정
 const instance = axios.create({
   // 백엔드 배포 주소
-  baseURL: "http://54.180.157.2:8000"
+  baseURL: "http://54.180.131.163"
 });
 
 //interceptor를 통한 header 설정
@@ -14,7 +14,7 @@ instance.interceptors.request.use(async (config) => {
   config.headers["Accept"] = "*/*";
 
   //getToken는 로컬 스토리지에 토큰이 있다면 반환한다 없다면 null 값 반환
-  config.headers["authorization"] = await getToken();
+  config.headers["Authorization"] = await getToken();
   return config;
 });
 
@@ -35,34 +35,38 @@ export const userApi = {
   loginCheck: (user) => instance.get("/api/v1/users/logincheck", user),
 
   // 로그아웃
-  logout: (user) => instance.post("/api/v1/users/logout", user),
+  logout: (user) => instance.get("/api/v1/users/logout", user),
   
-  // 프로필
-  me: (user) => instance.get("/api/v1/users/me", user)
+  // 내 프로필
+  me: (user) => instance.get("/api/v1/users/me", user),
+
+  // 프로필 수정
+  userid: (user) => instance.patch("/api/v1/users/userid", user)
 };
 
 export const eventPostApi = {
   //이벤트 게시판 전체 불러오기
-  getEventPostList : data => instance.get("/api/v1/post/event1list", data),
-        
+  getEventPostList: (data) => instance.get("/api/v1/post/event1list", data),
+
   //이벤트 게시물 추가하기
-  addEventPost : data => instance.post("/api/v1/post", data),
+  addEventPost: (data) => instance.post("/api/v1/post", data),
 
   //이벤트 게시물 불러오기
-  getEventPost: postId => instance.get(`/api/v1/post/${postId}`),
+  getEventPost: (postId) => instance.get(`/api/v1/post/${postId}`),
 
   //이벤트 게시물 수정하기
-  editEventPost : post => instance.patch(`/api/v1/post/postupdate/${post.postId}`, post), 
+  editEventPost: (post) => instance.patch(`/api/v1/post/postupdate/${post.postId}`, post),
 
-  //이벤트 게시물 삭제하기 
-  deleteEventPost: postId => instance.patch(`/api/v1/post/postdelete/${postId}`),
+  //이벤트 게시물 삭제하기
+  deleteEventPost: (postId) => instance.patch(`/api/v1/post/postdelete/${postId}`),
 
   //좋아요 기능 
   likeEventPost : postId => instance.patch(`/api/v1/like/${postId}`),
-
-
-  };
-
+  
+  //찜 기능 
+  saveEventPost : postId => instance.patch(`/api/v1/keep/${postId}`),
+  
+};
 
 export const combinationPostApi = {
   // 꿀조합 게시글 작성하기
@@ -72,19 +76,19 @@ export const combinationPostApi = {
   patchCombinationPost: (post) => instance.patch(`/api/v1/post/postupdate/${post.postId}`, post),
 
   // 꿀조합 게시글 삭제하기
-  deleteCombinationPost: postId => instance.patch(`/api/v1/post/postdelete/${postId}`),
+  deleteCombinationPost: (postId) => instance.patch(`/api/v1/post/postdelete/${postId}`),
 
   // 꿀조합 게시글 불러오기
   getCombinationList: () => instance.get(`/api/v1/post/?page`),
 
   // 꿀조합 상세포스트 불러오기
-  getCombinationPost: postId => instance.get(`/api/v1/post/${postId}`),
+  getCombinationPost: (postId) => instance.get(`/api/v1/post/${postId}`),
 
   // 꿀조합 게시물 찜 / 취소
-  patchCombinationSave: postId => instance.patch(`/api/v1/keep/${postId}`),
+  patchCombinationSave: (postId) => instance.patch(`/api/v1/keep/${postId}`),
 
   // 꿀조합 게시물 좋아요 / 취소
-  patchCombinationLike: postId => instance.patch(`/api/v1/like/${postId}`)
+  patchCombinationLike: (postId) => instance.patch(`/api/v1/like/${postId}`)
 };
 
 export const uploadApi = {
@@ -95,7 +99,7 @@ export const uploadApi = {
       for (let entry of Object.entries(req)) {
         formData.append(entry[0], entry[1]);
       }
-      const response = await axios.post("http://54.180.157.2:8000/api/v1/post/uploadimg", formData);
+      const response = await axios.post("http://54.180.131.163/api/v1/post/uploadimg", formData);
       if (response.statusText === "OK") return response;
     } catch (err) {
       alert(err);
@@ -103,6 +107,23 @@ export const uploadApi = {
   }
 };
 
+//search api
 export const searchApi = {
-  searchTag: (tagList) => instance.get("/api/v1/condition", tagList)
+  searchTag: async function (tagList) {
+    try {
+      const req = {
+        page: "1",
+        option: "posttag1",
+        content: tagList[0],
+        option2: "posttag2",
+        content2: tagList[1],
+        option3: "posttag3",
+        contnet3: tagList[2]
+      };
+      const res = await instance.get("/api/v1/post/posttag", { params: req });
+      if (res.statusText === "OK") return res.data;
+    } catch (err) {
+      alert(err);
+    }
+  }
 };

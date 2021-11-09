@@ -16,6 +16,20 @@ export const eventPostListDB = createAsyncThunk(
     }
 );
 
+// 무한스크롤
+export const infinityPostListDB = createAsyncThunk(
+    "event/getPostList/infinity",
+    async (data, thunkAPI) => {
+        try {
+            const response = await eventPostApi.getEventPostList(data);
+            if(response.statusText==='OK') {return response.data};
+        }
+        catch (err) {
+            return thunkAPI.rejectWithValue(err.response.message);
+        }
+    }
+);
+
 
 // 이벤트 게시물 추가하기
 export const addEventPostDB = createAsyncThunk(
@@ -96,3 +110,15 @@ export const likeEventPostDB = createAsyncThunk(
         }
     }
 )
+
+export const saveEventPostDB = createAsyncThunk(
+    "event/savePost",
+    async (data, thunkAPI) => {
+        try {
+            const response = await eventPostApi.saveEventPost(data);
+            if (response.statusText === "OK") return response.data;
+        } catch (err) {
+            return thunkAPI.rejectWithValue(err.response.message);
+        }
+    }
+);

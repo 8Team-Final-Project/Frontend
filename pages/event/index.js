@@ -3,27 +3,35 @@ import EventPost from "../../src/Components/Layout/EventPost"
 import FloatingButton from '../../src/Components/Button/FloatingButton';
 import { useSelector, useDispatch } from "react-redux";
 import { eventPostListDB } from '../../src/Redux/Async/eventAsync';
-import {useRouter} from "next/router";
+import router, {useRouter} from "next/router";
 import styled from "styled-components";
+import { useInView } from "react-intersection-observer"
 
 const event = (props) => {
     const post_list = useSelector((state) => state.event);
     const isloaded = useSelector((state) => state.event.loaded);
     const dispatch = useDispatch();
+    const floatButton = () => {
+        router.push("/event/write")
+    }
     useEffect(()=>{
         dispatch(eventPostListDB());
     },[])
+
+    const [ref, inView] = useInView()
     
     return (
         <React.Fragment>
             <EventName>이번주 라면 꿀조합은?</EventName>
-
+            <div ref={ref}>
             {isloaded && (
                 <>
-                {post_list && post_list.postlist.map((p, idx) => {return (<EventPost {...p} key={p.pid}/>)})} 
+                {post_list && post_list.postlist[0].map((p, idx) => {return (<EventPost {...p} key={p.pid}/>)})} 
                 </>
             )}
-            <FloatingButton/>
+            {inView.toString()}
+            </div>
+            <FloatingButton onClick={floatButton}/>
         </React.Fragment>
     );
 };

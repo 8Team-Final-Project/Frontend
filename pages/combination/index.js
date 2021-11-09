@@ -2,88 +2,54 @@ import React, { useEffect } from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { getCombinationList } from "../../src/Redux/Async/combinationAsync";
+import { useRouter } from "next/router";
+
+import Search from "../search";
 import Card from "../../src/Components/Card";
-import Tag from "../../src/Components/Tag";
-import FloatingBtn from "../../src/Components/FloatingBtn";
-import EventBtn from "../../src/Components/EventBtn";
-import{ useRouter } from "next/router";
+import FloatingButton from "../../src/Components/Button/FloatingButton";
 
 //꿀조합 페이지
 const combination = () => {
+  const router = useRouter();
 
-    const router = useRouter()
+  const dispatch = useDispatch();
 
-    const dispatch = useDispatch();
+  const postList = useSelector((state) => state.combination.list[0]);
+  useEffect(() => {
+    dispatch(getCombinationList());
+  }, []);
 
-    const postList = useSelector((state) => state.combination.list)
+  const floatButton = () => {
+    router.push("/combination/write");
+  };
 
 
-    useEffect(() => {
-        dispatch(getCombinationList());
-    }, []);
-    
-    return (
+  return (
+    <div>
+      <PageBox>
+        <div>추천태그 검색은 3가지까지 가능</div>
         <div>
-            <PageBox>
-                <Logo src="/logo.png"></Logo>
-                <div>추천태그 검색은 3가지까지 가능</div>
-                <FlexBox>
-                    <SearchInput></SearchInput>
-                    <button>검색</button>
-                </FlexBox>
-                <div>
-                    <span>추천태그1</span> <span>추천태그2</span>
-                </div>
-                <div>라면꿀조합 이벤트</div>
-                {/* post는 객체하나 */}
-                {postList.map(postlist=><Card key={postlist._id} {...postlist}/>)}
-                <FloatingBtn></FloatingBtn>
-                <WriteBtn
-                onClick={()=>{
-                    {router.push("/combination/write")}
-                }}
-                >!글쓰기!</WriteBtn>
-                <EventBtn></EventBtn>
-            </PageBox>
+          <Search></Search>
         </div>
-    );
+        {/* post는 객체하나 */}
+        {postList && postList.map((postlist) => <Card key={postlist._id} {...postlist} />)}
+        <FloatingButton onClick={floatButton} />
+      </PageBox>
+    </div>
+  );
 };
-const Logo = styled.img`
-    /* width: 100px;
-    height: 50px; */
-`;
 
-const WriteBtn = styled.button`
-  font-weight: bold;
-  font-size: 20px;
-  padding: 10px;
-  border-radius: 20px;
-  border: 1px solid black;
-  background-color: #FFFFFF;
-`;
+const Info = styled.div`
+    margin-top : 10px;
+`
 
 const FlexBox = styled.div`
-    display: flex;
+  display: flex;
 `;
 const PageBox = styled.div`
-    width: 400px;
-    height: auto;
-    border: 1px solid black;
-    margin: auto;
-`;
-const SearchInput = styled.input`
-    width: 350px;
-`;
-const PostBox = styled.div`
-    width: 350px;
-    height: 70px;
-    border: 1px solid black;
-    margin: 5px auto;
-`;
-const PostImage = styled.div`
-    width: 45px;
-    height: 45px;
-    border: 1px solid black;
+  width: 100%;
+  height: auto;
+  margin: auto;
 `;
 
 export default combination;
