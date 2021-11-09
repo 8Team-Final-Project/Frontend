@@ -22,12 +22,10 @@ const PostSaveBtn = (props) => {
   const tabContArr = [
     {
       tabTitle: (
-        <Tab>
-          <PostButton className={activeIndex === 0 ? "is-active" : ""} onClick={() => tabClickHandler(0)}>
-            {" "}
-            작성한 글{" "}
-          </PostButton>
-        </Tab>
+        <PostButton className={activeIndex === 0 ? "is-active" : ""} onClick={() => tabClickHandler(0)}>
+          {" "}
+          작성한 글{" "}
+        </PostButton>
       ),
       tabCont: (
         <>

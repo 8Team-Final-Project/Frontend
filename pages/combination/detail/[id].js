@@ -80,15 +80,6 @@ const PartyDetail = (props) => {
     }
   };
 
-  if (sameKeepId) {
-    console.log(sameKeepId);
-    console.log("있어있어");
-  }
-  if (!sameKeepId) {
-    console.log(sameKeepId);
-    console.log("없어없어");
-  }
-
   return (
     <React.Fragment>
       <Grid>
