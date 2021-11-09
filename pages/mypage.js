@@ -37,34 +37,38 @@ const mypage = (props) => {
   };
 
   return (
-    <Container>
+    <>
       <ProfileBox>
-        {/* 프로필 */}
-        <CircleImage style={{
-          position: "relative"
-        }} />
+        
+        <ProfileCenter>
 
-        {/* 프로필 수정 버튼 배경 */}
-        <ProfileEdit>
-          {/* 프로필 수정 버튼 연필 */}
-          <Button onClick={ ()=>{ setModalOpen(true) } }><FaPencilAlt style={{
-            color: "white",
-            fontSize: "20px"
-          }} /></Button>
-        </ProfileEdit>
+          <ProfileCircle> {/* 프로필 감싸는 박스*/}
+            <CircleImage /> {/* 프로필 */}
+          </ProfileCircle>
+          
+          <ProfileEdit> {/* 프로필 수정 버튼 배경 */}
+            <PenBox> {/* 연필 아이콘 감싸는 박스 */}
+              <PencilAlt onClick={ ()=>{ setModalOpen(true) } }> {/* 연필 아이콘 감싸는 버튼 */}
+                <FaPencilAlt /> {/* 연필 아이콘*/}
+              </PencilAlt>
+            </PenBox>
+          </ProfileEdit>
+
+        </ProfileCenter>
+
       </ProfileBox>
 
-      <div>
+      <Center>
         <h1>{userProfile && userProfile.userNickname}</h1>
         <P>{userProfile && userProfile.userEmail}</P>
-      </div>
 
-      <button 
+        <button 
           onClick={() =>{
             setLogout()
           }} 
           value="로그아웃"
-      >로그아웃</button>
+        >로그아웃</button>
+      </Center>
 
 
       {/* 프로필 수정 */}
@@ -73,9 +77,7 @@ const mypage = (props) => {
       
       {/* 작성글 저장글 */}
       <PostSaveBtn />
-
-      {/* <CommentEditDelete /> */}
-    </Container>
+    </>
   );
 };
 
@@ -84,30 +86,53 @@ const P = styled.p`
 `;
 
 const Container = styled.div`
-  text-align: center;
+  /* text-align: center; */
 `;
 
 const ProfileBox = styled.div`
-  position: relative;
-  height: 150px;
-`
-
-const MoreBtn = styled.div`
-  position: absolute;
   display: flex;
+  justify-content: center;
+  height: 150px;
+  position: relative;
 `
 
+const ProfileCenter = styled.div`
+  
+`
+
+//프로필 이미지 원 박스
+const ProfileCircle = styled.div`
+  margin: auto;
+`
+//프로필 이미지 원 안에 펜
+const PenBox = styled.div`
+  position: absolute;
+  margin-left: -5px;
+  margin-top: 9px;
+`
+
+//프로필 수정 버튼 배경
 const ProfileEdit = styled.div`
   background-color: #FF7775;
   width:40px;
   height:40px;
   border-radius: 50px;
-  position: relative; left:265px; top: -50px;
+  position: relative;
+  top: -30%;
+  left: 70%;
+  `
+const PencilAlt = styled.button`
+  color: white;
+  font-size: 20px;
+  position: absolute;
+  margin-left: 10px;
+  align: center;
 `
 
-const Button = styled.button`
-  position: absolute; right: 4px; top: 9px;
+const Center = styled.div`
+  text-align: center;
 `
+
 
 
 export default mypage;

@@ -41,20 +41,20 @@ const PostSaveBtn = (props) => {
             </>
         )
     }
-];
+  ];
 
 
 
   return (
     <>
       <Container>
-        <div>
+        <Center>
         {
           tabContArr.map((section, index)=>{
             return section.tabTitle
           })
         }
-        </div>
+        </Center>
 
         <div>
           { tabContArr[activeIndex].tabCont }
@@ -64,14 +64,19 @@ const PostSaveBtn = (props) => {
   );
 };
 
+
+
 PostSaveBtn.defaultProps = {
   value: "",
   onClick: () => {}
 };
 
+const Center = styled.div`
+  text-align: center;
+`
+
 const Container = styled.div`
   width: 100%;
-
 `;
 
 const PostButton = styled.button`
@@ -98,13 +103,6 @@ const SaveButton = styled.button`
     color:#ff7775;
     border-bottom:3px solid #ff7775;
   }
-`;
-
-const Line = styled.div`
-  width: 100%;
-  height: 3px;
-  background-color: #ff7775;
-  /* display: none; */
 `;
 
 export default PostSaveBtn;
