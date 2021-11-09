@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "@emotion/styled";
 
 //materia-ui
@@ -9,10 +9,17 @@ import FormControl from "@mui/material/FormControl";
 //icon
 import { BsSearch } from "react-icons/bs";
 import { BiX } from "react-icons/bi";
+import { searchApi } from "../src/Shared/api";
+import LogoEffect from "../src/Components/Shared/LogoEffect";
 
 export default function Search() {
   const [term, setTerm] = useState("");
-  let [tagList, setTagList] = useState([]);
+  const [tagList, setTagList] = useState([]);
+  const [resultList, setResultList] = useState([]);
+
+  useEffect(() => {
+    searchApi.searchTag(tagList).then((res) => setResultList(res));
+  }, [tagList]);
 
   const deleteTag = (idx) => {
     setTagList(tagList.filter((tag, tagIdx) => tagIdx !== idx));
@@ -68,6 +75,7 @@ export default function Search() {
             />
           </Tag>
         ))}
+        <LogoEffect />
       </TagWrapper>
     </div>
   );
