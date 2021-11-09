@@ -1,5 +1,8 @@
 module.exports = {
-  reactStrictMode: true
+  reactStrictMode: true,
+  future: {
+    webpack5: false
+  }
 };
 
 const withPWA = require("next-pwa");
