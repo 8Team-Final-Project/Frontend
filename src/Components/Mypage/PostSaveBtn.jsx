@@ -1,12 +1,24 @@
 import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+
 import styled from "styled-components";
+import EventPost from "../Layout/EventPost"
+
 
 const PostSaveBtn = (props) => {
+  const dispatch = useDispatch();
+
   const [activeIndex, setActiveIndex] = useState(0);
   
   const tabClickHandler=(index)=>{
     setActiveIndex(index)
   }
+
+   //작성글 불러오기
+   const post = useSelector((state) => state.user.user?.myPost);
+
+   //저장글 불러오기
+   const save = useSelector((state) => state.user.user?.keepPost);
 
   const tabContArr=[
     {
@@ -14,7 +26,9 @@ const PostSaveBtn = (props) => {
             <PostButton className={activeIndex===0 ? "is-active" : ""} onClick={()=>tabClickHandler(0)}> 작성한 글 </PostButton>
         ),
         tabCont:(
-            <div> 작성한 글 내용 </div>
+            <>
+              {post && post.map((p) => {return (<EventPost {...p} key={p.id}/>)})}
+            </>
         )
     },
     {
@@ -22,7 +36,9 @@ const PostSaveBtn = (props) => {
             <SaveButton className={activeIndex===0 ? "is-active" : ""} onClick={()=>tabClickHandler(1)}> 저장한 글 </SaveButton>
         ),
         tabCont:(
-            <div> 저장한 글 내용 </div>
+            <>
+              {save && save.map((p) => {return (<EventPost {...p} key={p.id}/>)})}
+            </>
         )
     }
 ];
