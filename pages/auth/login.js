@@ -3,7 +3,6 @@ import { useDispatch } from "react-redux";
 import styled from "styled-components"
 import { 
     postLogin,
-    postLogout,
 } from "../../src/Redux/Async/userAsync";
 import router from "next/router"
 
@@ -28,15 +27,7 @@ const login = () => {
         dispatch(postLogin(login))
     }
 
-    // 로그아웃 버튼
-    const setLogout = () => {
-        const logout = {
-            userEmail : userEmail,
-            userPassword : userPassword
-        }
-        dispatch(postLogout(logout))
-        localStorage.removeItem("token");
-    };
+    
     
     return (
         <Container>
