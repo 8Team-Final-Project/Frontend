@@ -1,12 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 import router from "next/router";
-import { useSelector } from "react-redux";
 import Tag from "../Tag";
+import { useSelector } from "react-redux";
 
 const EventPost = (props) => {
-  const isloaded = useSelector((state) => state.event.loaded);
-
   return (
     <CardBox
       onClick={() => {
@@ -23,7 +21,9 @@ const EventPost = (props) => {
         </TagLine>
         <Like>
           <Heart src="/fullheart.png" />
-          <LikeCnt>{isloaded && <>{props.likeCnt}</>}</LikeCnt>
+          <LikeCnt>
+            <>{props.likeCnt}</>
+          </LikeCnt>
         </Like>
       </RightBox>
     </CardBox>
@@ -55,7 +55,7 @@ const CardBox = styled.div`
   margin: 15px auto;
   display: flex;
   width: 100%;
-  height: 100px;
+  height: 10%;
   border-radius: 10px;
   box-shadow: 5px 5px 10px #e5e5e5;
   box-sizing: border-box;
@@ -64,7 +64,7 @@ const CardBox = styled.div`
 // 기본 사진 or 사진 받아오기
 const LeftBox = styled.div`
   width: 30%;
-  height: 100px;
+  height: 105px;
   border-radius: 10px 0 0 10px;
   background-image: url("${(props) => props.src}");
   background-position: center;
@@ -82,6 +82,7 @@ const RightBox = styled.div`
 
 const Like = styled.div`
   display: flex;
+  margin-right: 10px;
 `;
 
 const Heart = styled.img`

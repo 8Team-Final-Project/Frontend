@@ -2,23 +2,9 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import { eventPostApi } from "../../Shared/api";
 
 // 미들웨어
-// 이벤트게시물 리스트 전체 불러오기
+// 이벤트게시물 리스트 전체 불러오기(무한스크롤)
 export const eventPostListDB = createAsyncThunk(
     "event/getPostList",
-    async (data, thunkAPI) => {
-        try {
-            const response = await eventPostApi.getEventPostList(data);
-            if(response.statusText==='OK') {return response.data};
-        }
-        catch (err) {
-            return thunkAPI.rejectWithValue(err.response.message);
-        }
-    }
-);
-
-// 무한스크롤
-export const infinityPostListDB = createAsyncThunk(
-    "event/getPostList/infinity",
     async (data, thunkAPI) => {
         try {
             const response = await eventPostApi.getEventPostList(data);

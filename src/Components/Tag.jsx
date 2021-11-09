@@ -21,7 +21,7 @@ const RedTagBox = styled.div`
   display: inline-block;
   font-size: 16px;
   color: #ff7775;
-  padding: 7px 15px 0.01px;
+  padding: 5px 15px 0.01px;
   width: auto;
   height: 27.41px;
   border-radius: 74px;
@@ -32,7 +32,7 @@ const RedTagBox = styled.div`
 const BlackTagBox = styled.div`
   background-color: #ffffff;
   display: inline-block;
-  font-size: 16px;
+  font-size: 12px;
   color: #3c3c3c;
   padding: 10px;
   width: auto;

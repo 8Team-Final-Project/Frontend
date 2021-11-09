@@ -4,7 +4,7 @@ import { getToken } from "./util";
 // Axios 인스턴스 설정
 const instance = axios.create({
   // 백엔드 배포 주소
-  baseURL: "http://54.180.131.163"
+  baseURL: "http://13.209.227.1"
 });
 
 //interceptor를 통한 header 설정
@@ -36,7 +36,7 @@ export const userApi = {
 
   // 로그아웃
   logout: (user) => instance.get("/api/v1/users/logout", user),
-  
+
   // 내 프로필
   me: (user) => instance.get("/api/v1/users/me", user),
 
@@ -60,12 +60,11 @@ export const eventPostApi = {
   //이벤트 게시물 삭제하기
   deleteEventPost: (postId) => instance.patch(`/api/v1/post/postdelete/${postId}`),
 
-  //좋아요 기능 
-  likeEventPost : postId => instance.patch(`/api/v1/like/${postId}`),
-  
-  //찜 기능 
-  saveEventPost : postId => instance.patch(`/api/v1/keep/${postId}`),
-  
+  //좋아요 기능
+  likeEventPost: (postId) => instance.patch(`/api/v1/like/${postId}`),
+
+  //찜 기능
+  saveEventPost: (postId) => instance.patch(`/api/v1/keep/${postId}`)
 };
 
 export const combinationPostApi = {
