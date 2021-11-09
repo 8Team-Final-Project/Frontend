@@ -19,7 +19,7 @@ const Tag = (props) => {
 const RedTagBox = styled.div`
   background-color: #ffffff;
   display: inline-block;
-  font-size: 12px;
+  font-size: 16px;
   color: #ff7775;
   padding: 7px 15px 0.01px;
   width: auto;
@@ -32,7 +32,7 @@ const RedTagBox = styled.div`
 const BlackTagBox = styled.div`
   background-color: #ffffff;
   display: inline-block;
-  font-size: 12px;
+  font-size: 16px;
   color: #3c3c3c;
   padding: 10px;
   width: auto;

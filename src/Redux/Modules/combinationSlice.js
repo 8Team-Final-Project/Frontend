@@ -93,7 +93,7 @@ const combinationSlice = createSlice({
         // 꿀조합 좋아요 / 취소
         [patchCombinationPostLike.fulfilled]: (state, { payload: post }) => {
             window.alert(post.msg)
-            if (post.msg === "좋아요 성공") {
+            if (post.msg === "좋아요성공") {
                  state.post.likeCnt += 1 
             }
             if (post.msg === "취소성공"){
