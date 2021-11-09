@@ -10,6 +10,7 @@ import { flexbox } from "@mui/system";
 import { dividerClasses } from "@mui/material";
 
 const Card = (props) => {
+
   const router = useRouter();
 
   const { src, size } = props;
