@@ -10,20 +10,17 @@ import MyInfoEditModal from "../src/Components/Mypage/MyInfoEditModal";
 
 import { useSelector } from "react-redux";
 import { FaPencilAlt } from "react-icons/fa"
-import { BsThreeDotsVertical } from "react-icons/bs";
 
 
-import { postLogout } from "../src/Redux/Async/userAsync";
 
-// import router from "next/router"
 
 //마이페이지 첫 렌더링시 메이블린 api 가져와서 list에 저장하기
 const mypage = (props) => {
   const dispatch = useDispatch();
 
   //로그아웃
-  const [userEmail, setuserEmail] = React.useState("");
-  const [userPassword, setuserPassword] = React.useState("");
+  // const [userEmail, setuserEmail] = React.useState("");
+  // const [userPassword, setuserPassword] = React.useState("");
 
   //닉네임, 이메일 불러오기
   const userProfile = useSelector((state) => state.user.user);
@@ -31,10 +28,7 @@ const mypage = (props) => {
   //수정 모달창
   const [modalOpen, setModalOpen] = useState(false)
 
-  // 로그아웃 버튼
-  const setLogout = () => {
-    dispatch(postLogout())
-  };
+  
 
   return (
     <>
@@ -62,12 +56,7 @@ const mypage = (props) => {
         <h1>{userProfile && userProfile.userNickname}</h1>
         <P>{userProfile && userProfile.userEmail}</P>
 
-        <button 
-          onClick={() =>{
-            setLogout()
-          }} 
-          value="로그아웃"
-        >로그아웃</button>
+        
       </Center>
 
 
