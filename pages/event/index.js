@@ -29,24 +29,6 @@ const event = (props) => {
     );
 };
 
-  return (
-    <React.Fragment>
-      <EventName>이번주 라면 꿀조합은?</EventName>
-      <div>
-        {isloaded && (
-          <>
-            {post_list &&
-              post_list.postlist[0].map((p, idx) => {
-                return <EventPost {...p} key={p.pid} />;
-              })}
-          </>
-        )}
-      </div>
-      <FloatingButton onClick={floatButton} />
-    </React.Fragment>
-  );
-};
-
 const EventName = styled.p`
   font-size: 24px;
   font-weight: bold;

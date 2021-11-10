@@ -4,7 +4,6 @@ import Box from "@mui/material/Box";
 import router from "next/router";
 
 export default function FloatingButton({ onClick, locationX }) {
-  console.log(locationX);
   return (
     <Box>
       <Floatbtn onClick={onClick} locationX={locationX && locationX} src="/FloatBtn.svg" />

@@ -48,7 +48,6 @@ export const postLogout = createAsyncThunk(
   async (data, thunkAPI) => {
       try {
           const response = await userApi.logout(data);
-          console.log(response)
           if(response.data.success===true) {
             window.alert("로그아웃 완료")
             localStorage.removeItem("token");

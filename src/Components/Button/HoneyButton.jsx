@@ -3,7 +3,6 @@ import styled from "styled-components";
 import logoIcon from "../../Asset/icons/logo_icon.svg";
 
 const HoneyButton = ({ value, onClick, main }) => {
-  console.log(logoIcon);
   return (
     <HButton onClick={onClick} main={main}>
       {value}
