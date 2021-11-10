@@ -4,7 +4,7 @@ import { getToken } from "./util";
 // Axios 인스턴스 설정
 const instance = axios.create({
   // 백엔드 배포 주소
-  baseURL: "http://13.209.227.1"
+  baseURL: "http://54.180.137.99"
 });
 
 //interceptor를 통한 header 설정
@@ -75,7 +75,7 @@ export const combinationPostApi = {
   patchCombinationPost: (post) => instance.patch(`/api/v1/post/postupdate/${post.postId}`, post),
 
   // 꿀조합 게시글 삭제하기
-  deleteCombinationPost: (postId) => instance.patch(`/api/v1/post/postdelete/${postId}`),
+  deleteCombinationPost: (postId) => instance.delete(`/api/v1/post/postdelete/${postId}`),
 
   // 꿀조합 게시글 불러오기
   getCombinationList: () => instance.get(`/api/v1/post/?page`),
