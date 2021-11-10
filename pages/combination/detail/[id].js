@@ -50,10 +50,6 @@ const PartyDetail = (props) => {
     setOnSave(!offSave);
   };
 
-  const setDelete = () => {
-    dispatch(deleteCombinationPostDB(postId));
-  };
-
   const setPostSave = () => {
     dispatch(patchCombinationPostSave(postId));
   };
@@ -83,7 +79,7 @@ const PartyDetail = (props) => {
   return (
     <React.Fragment>
       <Grid>
-      <PostImg src={postItem && postItem.postImg} />
+        <PostImg src={postItem && postItem.postImg} />
         <Title>
           <strong>{postItem && postItem.postTitle}</strong>
           {postItem?.userId === userId && (
@@ -93,56 +89,56 @@ const PartyDetail = (props) => {
           )}
         </Title>
 
-      <Wrap>
-        <Content>
-          <Label>꿀조합</Label>
-          <Value>{postItem && postItem.postRecipe}</Value>
-        </Content>
+        <Wrap>
+          <Content>
+            <Label>꿀조합</Label>
+            <Value>{postItem && postItem.postRecipe}</Value>
+          </Content>
 
-        <Content>
-          <Label>레시피</Label>
-          <Value> {postItem && postItem.postContent} </Value>
-        </Content>
-        <IconBox>
-          {postItem && postItem.postTag.map((tag, idx) => <Tag is_detail key={idx} value={"#" + tag}></Tag>)}
-        </IconBox>
-      </Wrap>
-      <Btn>
-        <IconBox>
-          <button
-            onClick={() => {
-              setPostLike();
-              likeClick();
-            }}
-          >
-            {offLike && offLike ? <img src="/likeOn.svg" /> : <img src="/likeOff.svg" />}
-          </button>
-          <TextBox>{postItem && postItem.likeCnt}</TextBox>
-        </IconBox>
-        <IconBox>
-          <button
-            onClick={() => {
-              saveClick();
-              setPostSave();
-            }}
-          >
-            {!sameKeepId ? <img src="/saveOff.svg" /> : <img src="/saveOn.svg" />}
-          </button>
-          <TextBox>저장</TextBox>
-        </IconBox>
-        <IconBox>
-          <CopyToClipboard text={shareUrl}>
+          <Content>
+            <Label>레시피</Label>
+            <Value> {postItem && postItem.postContent} </Value>
+          </Content>
+          <IconBox>
+            {postItem && postItem.postTag.map((tag, idx) => <Tag is_detail key={idx} value={"#" + tag}></Tag>)}
+          </IconBox>
+        </Wrap>
+        {/* <Btn>
+          <IconBox>
             <button
               onClick={() => {
-                window.alert("링크복사됨~");
+                setPostLike();
+                likeClick();
               }}
             >
-              <img src="/shareBtn.svg" />
+              {offLike && offLike ? <img src="/likeOn.svg" /> : <img src="/likeOff.svg" />}
             </button>
-          </CopyToClipboard>
-          <TextBox>공유</TextBox>
-        </IconBox>
-      </Btn>
+            <TextBox>{postItem && postItem.likeCnt}</TextBox>
+          </IconBox>
+          <IconBox>
+            <button
+              onClick={() => {
+                saveClick();
+                setPostSave();
+              }}
+            >
+              {!sameKeepId ? <img src="/saveOff.svg" /> : <img src="/saveOn.svg" />}
+            </button>
+            <TextBox>저장</TextBox>
+          </IconBox>
+          <IconBox>
+            <CopyToClipboard text={shareUrl}>
+              <button
+                onClick={() => {
+                  window.alert("링크복사됨~");
+                }}
+              >
+                <img src="/shareBtn.svg" />
+              </button>
+            </CopyToClipboard>
+            <TextBox>공유</TextBox>
+          </IconBox>
+        </Btn> */}
       </Grid>
 
       <ModalFrame>
@@ -162,8 +158,8 @@ const PartyDetail = (props) => {
 };
 
 const Grid = styled.div`
-  text-align : center
-`
+  text-align: center;
+`;
 
 const TextBox = styled.div`
   color: #b8b8b8;

@@ -22,10 +22,10 @@ const EventPost = (props) => {
           ))}
         </TagLine>
         <Like>
-          <Heart src="/fullheart.png" />
+          {/* <Heart src="/fullheart.png" />
           <LikeCnt>
             <>{props.likeCnt}</>
-          </LikeCnt>
+          </LikeCnt> */}
         </Like>
       </RightBox>
     </CardBox>
@@ -37,7 +37,7 @@ EventPost.defaultProps = {
 };
 
 const PostTitle = styled.div`
-  font-size: 16px;
+  font-size: 18px;
   margin-bottom: 7px;
   overflow: hidden;
   width: 260px;
