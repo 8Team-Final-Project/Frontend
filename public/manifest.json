@@ -3,9 +3,10 @@
     "short_name": "꿀조합",
     "theme_color": "#ffd86b",
     "background_color": "#ffffff",
-    "display": "browser",
+    "display": "fullscreen",
     "scope": "/",
     "start_url": "/",
+    "prefer_related_applications" :true,
     "icons": [
     {
     "src": "\/android-icon-36x36.png",
