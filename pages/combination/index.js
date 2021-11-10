@@ -19,9 +19,7 @@ const combination = () => {
     dispatch(getCombinationList());
   }, []);
 
-  const floatButton = () => {
-    router.push("/combination/write");
-  };
+
 
 
   return (
@@ -32,7 +30,6 @@ const combination = () => {
         </div>
         {/* post는 객체하나 */}
         {postList && postList.map((postlist) => <Card key={postlist._id} {...postlist} />)}
-        <FloatingButton onClick={floatButton} />
       </PageBox>
     </div>
   );

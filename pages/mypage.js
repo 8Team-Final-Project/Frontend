@@ -67,7 +67,7 @@ const mypage = (props) => {
             setLogout()
           }} 
           value="로그아웃"
-        >로그아웃</button>
+        ></button>
       </Center>
 
 
@@ -131,6 +131,7 @@ const PencilAlt = styled.button`
 
 const Center = styled.div`
   text-align: center;
+  margin-bottom : 6%;
 `
 
 

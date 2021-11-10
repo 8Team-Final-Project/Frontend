@@ -3,15 +3,8 @@ import Modal from "react-modal";
 import { useRef, useEffect } from "react";
 import styled from "styled-components";
 import Router, { useRouter } from "next/router";
-import { FaRegHeart } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  getEventPostDB,
-  deleteEventPostDB,
-  likeEventPostDB,
-  editEventPostDB,
-  saveEventPostDB
-} from "../../Redux/Async/eventAsync";
+import { getEventPostDB, likeEventPostDB, saveEventPostDB } from "../../Redux/Async/eventAsync";
 
 //component
 import MenuButton from "../Shared/CommentEditDelete";
@@ -23,12 +16,15 @@ import { red } from "@mui/material/colors";
 const DetailContentsBox = (props) => {
   const dispatch = useDispatch();
 
+  const { src } = props;
+
   const {
     query: { id }
   } = useRouter();
 
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const post = useSelector((state) => state.event.post);
+  const user = useSelector((state) => state.user.user?.userId);
 
   const [offSave, setOnSave] = useState(true);
 
@@ -68,12 +64,14 @@ const DetailContentsBox = (props) => {
 
   return (
     <React.Fragment>
-      <PostImg src={post && post.postImg} />
+      <PostImg src={post?.postImg ? post.postImg : src} />
       <Title>
         <strong>{post && post.postTitle}</strong>
-        <Menu>
-          <BsThreeDotsVertical onClick={openModal} />
-        </Menu>
+        {post?.userId === user && (
+          <Menu>
+            <BsThreeDotsVertical onClick={openModal} />
+          </Menu>
+        )}
       </Title>
 
       <Wrap>
@@ -98,6 +96,7 @@ const DetailContentsBox = (props) => {
             setPostSave();
           }}
         />
+        저장
       </Btn>
 
       <ModalFrame>
@@ -116,6 +115,10 @@ const DetailContentsBox = (props) => {
   );
 };
 
+DetailContentsBox.defaultProps = {
+  src: "/android-icon-192x192.png"
+};
+
 const PostImg = styled.img`
   width: 100%;
   height: 225px;
@@ -131,16 +134,19 @@ const Title = styled.div`
   font-size: 24px;
   font-weight: bold;
   word-break: break-all;
-  margin: 0px 30px 62px 30px;
+  margin: 0px 0px 62px 0px;
+  position: relative;
 `;
 
 const Menu = styled.div`
-  margin: 5px 0px 0px 50px;
+  display: inline-block;
+  line-height: 1;
   font-size: 20px;
   color: #b8b8b8;
-  position: absolute;
-  right: 5%;
+  text-align: end;
   cursor: pointer;
+  position: absolute;
+  right: 0;
 `;
 
 const Wrap = styled.div`
@@ -180,14 +186,19 @@ const Btn = styled.div`
 
 const LikeBtn = styled.img`
   width: 30px;
-  margin-right: 11px;
+  margin-right: 10px;
   cursor: pointer;
 `;
 
 const SaveBtn = styled.img`
   width: 20px;
-  margin-left: 80px;
+  margin: 0px 10px 0px 50px;
   cursor: pointer;
+`;
+
+const ShareBtn = styled.img`
+  width: 30px;
+  margin: 0px 10px 0px 50px;
 `;
 
 const ModalFrame = styled.div`

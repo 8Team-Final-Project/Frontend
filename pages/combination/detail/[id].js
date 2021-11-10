@@ -86,9 +86,11 @@ const PartyDetail = (props) => {
       <PostImg src={postItem && postItem.postImg} />
         <Title>
           <strong>{postItem && postItem.postTitle}</strong>
+          {postItem?.userId === userId && (
           <Menu>
             <BsThreeDotsVertical onClick={openModal} />
           </Menu>
+          )}
         </Title>
 
       <Wrap>
@@ -142,6 +144,7 @@ const PartyDetail = (props) => {
         </IconBox>
       </Btn>
       </Grid>
+
       <ModalFrame>
         <Modal
           isOpen={modalIsOpen}

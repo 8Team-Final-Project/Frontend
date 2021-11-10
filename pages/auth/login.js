@@ -32,20 +32,22 @@ const login = () => {
     return (
         <Container>
             <div>
-                <MarginTop>
-                <MarginBottom>
+                <Margin>
+                    <InputWrap>
                     <ValidationInput 
                         value={userEmail}
                         setValue={setuserEmail}
                         label="이메일"
                     />
+                        </InputWrap>
+                        <InputWrap>
                     <ValidationInput 
                         label="비밀번호" 
                         value={userPassword}
                         setValue={setuserPassword}
                     />
-                </MarginBottom>
-                </MarginTop>
+                    </InputWrap>
+                </Margin>
                     <RedButton 
                         onClick={() =>{
                             setLogin()
@@ -65,11 +67,13 @@ const login = () => {
 const Container = styled.div`
     position: center;
 `
-const MarginBottom = styled.div`
-    margin-bottom: 100px;
+
+const Margin = styled.div`
+    margin: 27% 0px;
 `
-const MarginTop = styled.div`
-    margin-top : 100px;
+
+const InputWrap = styled.div`
+   margin-bottom : 11%;
 `
 
 export default login;

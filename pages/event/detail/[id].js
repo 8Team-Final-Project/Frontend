@@ -3,7 +3,7 @@ import styled from "styled-components";
 import {useDispatch, useSelector} from "react-redux"
 import { getEventPostDB, deleteEventPostDB } from "../../../src/Redux/Async/eventAsync";
 
-import DetailContentsBox from '../../../src/Components/Layout/DetailContentsBox';
+import DetailContentsBox from '../../../src/Components/Event/DetailContentsBox';
 
 //이벤트상세페이지
 const EventDetail = (props) => {
