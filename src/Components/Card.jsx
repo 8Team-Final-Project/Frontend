@@ -10,15 +10,9 @@ import { flexbox } from "@mui/system";
 import { dividerClasses } from "@mui/material";
 
 const Card = (props) => {
-
   const router = useRouter();
 
-  const { src, size } = props;
-
-  const styles = {
-    src: src,
-    size: size
-  };
+  const { src } = props;
 
   return (
     <CardBox
@@ -26,7 +20,7 @@ const Card = (props) => {
         router.push(`combination/detail/${props._id}`);
       }}
     >
-      <LeftBox {...styles} src={props ? props.postImg : src} />
+      <LeftBox src={props.postImg ? props.postImg : src} />
       <RightBox>
         <PostTitle>{props && props.postTitle}</PostTitle>
         <TagLine>
@@ -35,10 +29,10 @@ const Card = (props) => {
           ))}
         </TagLine>
         <Like>
-          <Heart src="/fullheart.png" />
+          {/* <Heart src="/fullheart.png" />
           <LikeCnt>
             <>{props.likeCnt}</>
-          </LikeCnt>
+          </LikeCnt> */}
         </Like>
       </RightBox>
     </CardBox>
@@ -46,13 +40,11 @@ const Card = (props) => {
 };
 
 Card.defaultProps = {
-  shape: "circle",
-  src: "https://mean0images.s3.ap-northeast-2.amazonaws.com/4.jpeg",
-  size: 36
+  src: "/android-icon-192x192.png"
 };
 
 const PostTitle = styled.div`
-  font-size: 16px;
+  font-size: 18px;
   margin-bottom: 7px;
   overflow: hidden;
   width: 260px;
@@ -80,6 +72,7 @@ const CardBox = styled.div`
   border-radius: 10px;
   box-shadow: 5px 5px 10px #e5e5e5;
   box-sizing: border-box;
+  cursor: pointer;
 `;
 
 // 기본 사진 or 사진 받아오기

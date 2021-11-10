@@ -70,6 +70,7 @@ const signup = () => {
     return (
         <div>
             <MarginBottom>
+                <InputWrap>
                 <ConfirmValidationInput                 
                     label="닉네임" 
                     value={userNickname}    //벨류를 담는 state
@@ -83,9 +84,8 @@ const signup = () => {
                     maxValue={10}   //최대길이
                     //successText도 사용하면 성공했을때 텍스트를 보여줄 수 있어요
                 />
-            </MarginBottom>
-
-            <MarginBottom>
+                </InputWrap>
+                <InputWrap>
                 <ConfirmValidationInput
                     label="이메일"
                     value={userEmail}
@@ -97,9 +97,8 @@ const signup = () => {
                     errorText='2글자 이상 입력해주세요!'
                     defaultText='이메일을 입력해주세요!'
                 />
-            </MarginBottom>
-
-            <MarginBottom>
+                </InputWrap>
+                <InputWrap>
                 <ValidationInput 
                     label="비밀번호" 
                     value={userPassword}
@@ -107,13 +106,15 @@ const signup = () => {
                     regexCheck={regex.password}
                     errorText='6글자 이상 입력해주세요!'
                 />
-            </MarginBottom>
-
-            <ValidationInput 
+                </InputWrap>
+                <InputWrap>
+                <ValidationInput 
                 label="비밀번호 확인"
                 value={userconfirmPassword}
                 setValue={setuserconfirmPassword}
-            />
+                />
+                </InputWrap>
+            </MarginBottom>
 
             <br/>
             <br/>
@@ -138,7 +139,11 @@ const signup = () => {
 };
 
 const MarginBottom = styled.div`
-    margin-bottom: 20px;
+    margin: 12% 0px;
+`
+const InputWrap = styled.div`
+    margin-bottom : 12%;
+
 `
 
 export default signup;

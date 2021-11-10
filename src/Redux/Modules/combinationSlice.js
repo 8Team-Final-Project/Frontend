@@ -64,6 +64,7 @@ const combinationSlice = createSlice({
     // 꿀조합 게시글 전체 리스트 불러오기
     [getCombinationList.fulfilled]: (state, { payload: postList }) => {
       state.list = postList;
+      state.loaded = true;
       state.isFetching = false;
       state.errorMessage = null;
     },
