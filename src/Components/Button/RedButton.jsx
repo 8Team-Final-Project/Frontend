@@ -18,6 +18,9 @@ const RButton = styled.button`
   background-color: #FF7775;
   padding: 12px 0px;
   border-radius: 10px;
+  color: #f0f0f0;
+  font-weight: bold;
+  font-size: 18px;
   cursor:pointer
 `
 

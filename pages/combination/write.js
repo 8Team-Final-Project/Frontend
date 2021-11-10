@@ -8,6 +8,7 @@ import RectangleImage from "../../src/Components/Shared/RectangleImage";
 import ValidationInput from "../../src/Components/Input/ValidationInput";
 import RedButton from "../../src/Components/Button/RedButton";
 import WhiteButton from "../../src/Components/Button/WhiteButton";
+import LikeEffect from "../../src/Components/Shared/LikeEffect";
 
 //꿀조합 작성페이지
 const write = () => {
@@ -33,19 +34,15 @@ const write = () => {
       event3list: false
     };
     if (!postTitle) {
-      alert("제목을 입력해주세요");
       return;
     }
     if (!postRecipe) {
-      alert("재료를 입력해주세요");
       return;
     }
     if (!postContent) {
-      alert("내용을 입력해주세요");
       return;
     }
     if (!postTag) {
-      alert("태그를 추가해주세요");
       return;
     }
     dispatch(addCombinationPostDB(postItem));
@@ -59,44 +56,51 @@ const write = () => {
           <RectangleImage edit imgUrl={postImg ? postImg : false} saveUrl={setImg}></RectangleImage>
         </CenterBox>
         <CenterBox>
+          <LikeEffect></LikeEffect>
           <ValidationInput
-            label="제목을 입력해주세요"
+            label="나의 꿀조합"
             value={postTitle}
             setValue={setTitle}
             maxValue={15}
-            defaultText
+            defaultText="제목을 입력해주세요"
             important
           ></ValidationInput>
         </CenterBox>
         <CenterBox>
           <ValidationInput
-            label="꿀조합 재료를 입력해주세요"
+            label="꿀조합 재료"
             value={postRecipe}
             setValue={setRecipe}
             maxValue={15}
-            defaultText
+            defaultText="꿀조합 재료를 입력해주세요"
             important
           ></ValidationInput>
         </CenterBox>
         <CenterBox>
           <ValidationInput
-            label="꿀조합 비법을 입력해주세요"
+            label="꿀조합 비법"
             value={postContent}
             setValue={setContent}
             maxValue={99}
-            defaultText
+            defaultText="꿀조합 비법을 설명해주세요"
             important
             multiline
             rows={3}
           ></ValidationInput>
         </CenterBox>
         <CenterBox>
-          <HashTagWriteInput tagList={[...postTag]} setTagList={setTag} label="해시태그를 추가해주세요" important />
+          <HashTagWriteInput
+            tagList={[...postTag]}
+            setTagList={setTag}
+            label="해시태그"
+            placeholder="입력후 스페이스바 딸깍"
+            important
+          />
         </CenterBox>
         <CenterBox>
           <FlexBox>
             <WhiteButton
-              value="취소하기"
+              value="취소"
               onClick={() => {
                 {
                   router.push("/combination");
@@ -104,7 +108,7 @@ const write = () => {
               }}
             />
             <RedButton
-              value="작성하기"
+              value="작성"
               onClick={() => {
                 setPost();
               }}

@@ -20,6 +20,9 @@ const WButton = styled.button`
   background-color: #F8F8F8;
   padding: 12px 0px;
   border-radius: 10px;
+  color: #878787;
+  font-size: 18px;
+  font-weight: bold;
   cursor:pointer
 `
 

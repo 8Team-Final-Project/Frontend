@@ -38,19 +38,15 @@ const write = () => {
       event3list: event3list
     };
     if (!postTitle) {
-      alert("제목을 입력해주세요");
       return;
     }
     if (!postRecipe) {
-      alert("재료를 입력해주세요");
       return;
     }
     if (!postContent) {
-      alert("내용을 입력해주세요");
       return;
     }
     if (!postTag) {
-      alert("태그를 추가해주세요");
       return;
     }
     dispatch(addEventPostDB(content));
@@ -64,23 +60,42 @@ const write = () => {
           <RectangleImage edit saveUrl={setPostImg} imgUrl={postImg ? postImg : false} />
         </CenterBox>
         <CenterBox>
-          <CommonInput important label={"제목을 입력해주세요"} value={postTitle} setValue={setPostTitle} />
-        </CenterBox>
-        <CenterBox>
-          <CommonInput important label={"꿀조합 재료를 입력해주세요"} value={postRecipe} setValue={setPostRecipe} />
+          <CommonInput
+            defaultText="제목을 입력해주세요"
+            important
+            label={"나의 꿀조합"}
+            value={postTitle}
+            setValue={setPostTitle}
+          />
         </CenterBox>
         <CenterBox>
           <CommonInput
-            label={"꿀조합 비법을 입력해주세요"}
+            defaultText="꿀조합 재료를 입력해주세요"
+            important
+            label={"꿀조합 재료"}
+            value={postRecipe}
+            setValue={setPostRecipe}
+          />
+        </CenterBox>
+        <CenterBox>
+          <CommonInput
+            label={"꿀조합 비법"}
             value={postContent}
             setValue={setPostContent}
+            defaultText="꿀조합 비법을 설명해주세요"
             important
             multiline
             rows={3}
           />
         </CenterBox>
         <CenterBox>
-          <HashTagInput important label="해시태그를 추가해주세요" tagList={postTag} setTagList={setPostTag} />
+          <HashTagInput
+            important
+            label="해시태그"
+            tagList={postTag}
+            placeholder="입력후 스페이스바 딸깍"
+            setTagList={setPostTag}
+          />
         </CenterBox>
         <CenterBox>
           <FlexBox>
@@ -88,9 +103,9 @@ const write = () => {
               onClick={() => {
                 router.push("/event");
               }}
-              value="취소하기"
+              value="취소"
             />
-            <RedButton onClick={addEventPost} value="저장하기" />
+            <RedButton onClick={addEventPost} value="저장" />
           </FlexBox>
         </CenterBox>
       </WriteBox>
