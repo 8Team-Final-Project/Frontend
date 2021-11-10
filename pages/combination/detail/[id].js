@@ -18,6 +18,7 @@ import Tag from "../../../src/Components/Tag.jsx";
 //꿀조합 상세페이지
 const PartyDetail = (props) => {
   const dispatch = useDispatch();
+  const { src } = props;
 
   const shareUrl = "kkuljohab.com" + useRouter().asPath;
 
@@ -79,7 +80,7 @@ const PartyDetail = (props) => {
   return (
     <React.Fragment>
       <Grid>
-        <PostImg src={postItem && postItem.postImg} />
+        <PostImg src={postItem?.postImg ? postItem.postImg : src} />
         <Title>
           <strong>{postItem && postItem.postTitle}</strong>
           {postItem?.userId === userId && (
@@ -157,6 +158,10 @@ const PartyDetail = (props) => {
   );
 };
 
+PartyDetail.defaultProps = {
+  src: "/android-icon-192x192.png"
+};
+
 const Grid = styled.div`
   text-align: center;
 `;
@@ -180,25 +185,32 @@ const PostImg = styled.img`
   border-radius: 12px;
   object-fit: cover;
 `;
+
 const Title = styled.div`
   display: flex;
   justify-content: center;
   font-size: 24px;
   font-weight: bold;
   word-break: break-all;
-  margin: 0px 30px 62px 30px;
+  margin: 0px 0px 62px 0px;
+  position: relative;
 `;
+
 const Menu = styled.div`
-  margin: 5px 0px 0px 50px;
+  display: inline-block;
+  line-height: 1;
   font-size: 20px;
   color: #b8b8b8;
-  position: absolute;
-  right: 5%;
+  text-align: end;
   cursor: pointer;
+  position: absolute;
+  right: 0;
 `;
+
 const Wrap = styled.div`
   width: 100%;
 `;
+
 const Content = styled.div`
   width: 100%;
   margin-bottom: 15px;
