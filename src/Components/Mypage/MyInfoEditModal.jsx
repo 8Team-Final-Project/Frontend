@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import { useDispatch } from "react-redux";
+
 
 //components
 import Modal from "../Shared/Modal";
 import CircleImage from "../Shared/CircleImage";
+import { postLogout } from "../../Redux/Async/userAsync";
 
 //isOpen : true면 보여주고, false면 모달이 닫힌다.
 //handleClose : isOpen을 false로 바꿔주는 함수를 넣어주면 된다.
@@ -24,6 +27,14 @@ export default function MyInfoEditModal({ isOpen, handleClose }) {
     handleClose();
   };
 
+  const dispatch = useDispatch();
+
+  // 로그아웃 버튼
+  const setLogout = () => {
+    dispatch(postLogout())
+  };
+
+
   return (
     <Modal isOpen={isOpen} handleClose={handleClose} isHideDefaultClose height="380px">
       <Container>
@@ -33,6 +44,12 @@ export default function MyInfoEditModal({ isOpen, handleClose }) {
             <NicknameInput placeholder="닉네임을 입력해주세요" value={userInfo.nickname} />
             <EmailInput placeholder="이메일을 입력해주세요" value={userInfo.email} />
           </InputArea>
+          <button 
+            onClick={() =>{
+              setLogout()
+            }} 
+            value="로그아웃"
+          >로그아웃</button>
         </Content>
         <Controls>
           <button onClick={handleClose}>취소</button>

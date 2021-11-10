@@ -5,13 +5,15 @@ import Tag from "../Tag";
 import { useSelector } from "react-redux";
 
 const EventPost = (props) => {
+  const { src } = props;
+
   return (
     <CardBox
       onClick={() => {
         router.push(`event/detail/${props._id}`);
       }}
     >
-      <LeftBox src={props.postImg} />
+      <LeftBox src={props.postImg ? props.postImg : src} />
       <RightBox>
         <PostTitle>{props && props.postTitle}</PostTitle>
         <TagLine>
@@ -20,18 +22,22 @@ const EventPost = (props) => {
           ))}
         </TagLine>
         <Like>
-          <Heart src="/fullheart.png" />
+          {/* <Heart src="/fullheart.png" />
           <LikeCnt>
             <>{props.likeCnt}</>
-          </LikeCnt>
+          </LikeCnt> */}
         </Like>
       </RightBox>
     </CardBox>
   );
 };
 
+EventPost.defaultProps = {
+  src: "/android-icon-192x192.png"
+};
+
 const PostTitle = styled.div`
-  font-size: 16px;
+  font-size: 18px;
   margin-bottom: 7px;
   overflow: hidden;
   width: 260px;
@@ -59,6 +65,7 @@ const CardBox = styled.div`
   border-radius: 10px;
   box-shadow: 5px 5px 10px #e5e5e5;
   box-sizing: border-box;
+  cursor: pointer;
 `;
 
 // 기본 사진 or 사진 받아오기

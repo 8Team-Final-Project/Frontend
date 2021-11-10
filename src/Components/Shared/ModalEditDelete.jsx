@@ -32,6 +32,7 @@ const CommentEditDelete = ({ handleExit }) => {
   );
 };
 
+
 // 수정 버튼
 const EditButton = styled.button`
   width: 100%;

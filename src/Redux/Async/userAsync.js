@@ -48,9 +48,10 @@ export const postLogout = createAsyncThunk(
   async (data, thunkAPI) => {
       try {
           const response = await userApi.logout(data);
-          if(response.data.result==="success") {
-              window.alert("로그아웃 완료")
-                localStorage.removeItem("token");
+          if(response.data.success===true) {
+            window.alert("로그아웃 완료")
+            localStorage.removeItem("token");
+            router.push('/')
               return response.data.msg
             };
       } catch (err) {

@@ -6,10 +6,15 @@ import { editEventPostDB } from "../../../src/Redux/Async/eventAsync";
 
 //Component
 import RectangleImage from '../../../src/Components/Shared/RectangleImage';
-import CommonInput from "../../../src/Components/Input/ValidationInput";
+import ValidationInput from "../../../src/Components/Input/ValidationInput";
 import RedButton from '../../../src/Components/Button/RedButton';
 import WhiteButton from '../../../src/Components/Button/WhiteButton';
+import { getStepLabelUtilityClass } from '@mui/material';
 
+//주의사항
+//수정페이지에서 새로고침하면 post가 날아간다. => useEffect에 미들웨어를 넣어서 새로고침해도 state 유지..?? getPost
+//인풋창에 어떻게 원본값을 넣어줄것인가 => useEffect를 통해서 post정보가 리덕스스토어에 있으면, setState. state값을 input value에 넣어준다.
+//인풋에 원본값이 있는 상태에서 어떻게 수정이 가능하게 할 것 인가? => input값을 담아줄 state를 만들어준다. 
 
 
 //파티수정페이지
@@ -24,6 +29,10 @@ const PartyEdit = () => {
   const [postRecipe, setPostRecipe] = useState("");
   const [postContent, setPostContent] = useState("");
 
+  // useEffect(() => {
+  //   if(postId) 
+  // })
+
   const editEventPost = () => {
     const content = {
       postImg : postImg,
@@ -35,6 +44,8 @@ const PartyEdit = () => {
     dispatch(editEventPostDB(content));
   };
 
+
+
   return (
     <div>
     <ImgMargin>
@@ -45,15 +56,15 @@ const PartyEdit = () => {
             />
     </ImgMargin>
     <InputMargin>
-    <CommonInput
+    <ValidationInput
         important
         label={"제목"}
-        value={post && post.postTitle, postTitle}
+        value={postTitle}
         setValue={setPostTitle}
     />
     </InputMargin>
     <InputMargin>
-    <CommonInput
+    <ValidationInput
         important
         label={"꿀조합"}
         value={postRecipe}
@@ -61,7 +72,7 @@ const PartyEdit = () => {
     />
     </InputMargin>
     <InputMargin>
-    <CommonInput 
+    <ValidationInput 
         label={"내용"}
         value={post && post.postContent}
         setValue={setPostContent}

@@ -11,20 +11,34 @@ import { BsSearch } from "react-icons/bs";
 import { BiX } from "react-icons/bi";
 import { searchApi } from "../src/Shared/api";
 
+//components
+import Card from "../src/Components/Card";
+
 export default function Search() {
-  const [term, setTerm] = useState("");
-  const [tagList, setTagList] = useState([]);
-  const [resultList, setResultList] = useState([]);
+  const [term, setTerm] = useState(""); //검색어가 담기는 곳
+  const [tagList, setTagList] = useState([]); //태그목록이 담기는 곳
+  const [resultList, setResultList] = useState([]); //태그검색결과가 담기는 곳
+
+  //추천태그에 들어갈 항목
+  const recommandedTagList = ["스타벅스", "서브웨이", "편의점", "다이어터", "엽떡", "라면"];
 
   useEffect(() => {
-    searchApi.searchTag(tagList).then((res) => setResultList(res));
+    if (tagList.length === 0) return setResultList([]);
+
+    if (tagList.length > 0) {
+      searchApi.searchTag(tagList).then((res) => {
+        setResultList(res);
+      });
+    }
   }, [tagList]);
 
   const deleteTag = (idx) => {
+    //x버튼을 누르면 태그목록에서 단일 태그가 사라지게하는 함수
     setTagList(tagList.filter((tag, tagIdx) => tagIdx !== idx));
   };
 
   const handleOnKeyUp = (e) => {
+    //검색어 입력 후, 스페이스바 입력시 검색어가 태그목록에 추가되는 함수
     const { code: keyValue } = e;
     if (keyValue === "Space") {
       //스페이스바를 누르면 term을 태그목록에 추가하도록 한다.
@@ -44,11 +58,18 @@ export default function Search() {
   };
 
   const handleOnChange = (e) => {
+    //검색어 값을 state 안에 담아주는 함수
     setTerm(e.target.value);
   };
 
+  const clickRecommendedTag = (keyword) => {
+    //추천태그를 클릭하면 태그목록에 담는 함수
+    if (tagList.length >= 3) return alert("태그는 3개까지만 설정할 수 있어요");
+    setTagList([...tagList, keyword]);
+  };
+
   return (
-    <div>
+    <Container>
       <MuiForm variant="standard">
         <MuiInput
           id="input-with-icon-adornment"
@@ -75,13 +96,62 @@ export default function Search() {
           </Tag>
         ))}
       </TagWrapper>
-    </div>
+      <RecommendedTagWrapper>
+        <Label>추천태그</Label>
+        <RecommandedTagBox>
+          {recommandedTagList.map((tag, idx) => (
+            <RecommandedTag key={idx} onClick={() => clickRecommendedTag(tag)}>
+              #{tag}
+            </RecommandedTag>
+          ))}
+        </RecommandedTagBox>
+      </RecommendedTagWrapper>
+
+      <PostWrapper>{resultList[0] && resultList[0].map((post) => <Card key={post._id} {...post} />)}</PostWrapper>
+    </Container>
   );
 }
 
+const RecommendedTagWrapper = styled.div`
+  margin-top: 70px;
+`;
+const Label = styled.span`
+  color: #b8b8b8;
+  font-size: 14px;
+`;
+const RecommandedTagBox = styled.div``;
+const RecommandedTag = styled.button`
+  border: 1px solid #b8b8b8;
+  display: inline-flex;
+  justify-content: center;
+  min-width: 50px;
+  padding: 5px;
+  height: 40px;
+  border-radius: 100px;
+  box-sizing: border-box;
+  color: #b8b8b8;
+  align-items: center;
+  line-height: 1;
+  margin-right: 10px;
+  margin-top: 10px;
+  transition: all 0.2s ease-in-out;
+  :hover {
+    color: #ff7775;
+    border: 1px solid #ff7775;
+  }
+`;
+
+const PostWrapper = styled.div``;
+
+const Post = styled.div`
+  border: 1px solid black;
+`;
+
+const Container = styled.div``;
+
 const MuiForm = styled(FormControl)`
   width: 100%;
-  margin : 30px 0px;
+  margin-top: 30px;
 `;
 
 const MuiInput = styled(Input)`

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import styled from "styled-components";
-import EventPost from "../Layout/EventPost";
+import EventPost from "../Event/EventPost";
 
 const PostSaveBtn = (props) => {
   const dispatch = useDispatch();

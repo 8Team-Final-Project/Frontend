@@ -3,10 +3,10 @@ import styled from "styled-components";
 import Box from "@mui/material/Box";
 import router from "next/router";
 
-export default function FloatingButton({ onClick }) {
+export default function FloatingButton({ onClick, locationX }) {
   return (
     <Box>
-      <Floatbtn onClick={onClick} src="/FloatBtn.svg" />
+      <Floatbtn onClick={onClick} locationX={locationX && locationX} src="/FloatBtn.svg" />
     </Box>
   );
 }
@@ -17,7 +17,7 @@ FloatingButton.defaultProps = {
 
 const Floatbtn = styled.img`
   position: fixed;
-  right: 7%;
+  right: ${({ locationX }) => locationX && `calc(100vw - ${locationX}px);`};
   bottom: 5%;
   width: 55px;
   cursor: pointer;

@@ -14,7 +14,7 @@ import { BiX } from "react-icons/bi";
 //setTagList : 부모컴포넌트의 tagList를 변경시켜주는 함수 ex)setTagList={setState}
 //label : 제목  ex)label='제목'
 //important : true면 *가 표시된다.  ex)important
-export default function HashTagInput({ tagList, setTagList, important, label }) {
+export default function HashTagInput({ tagList, setTagList, important, label, placeholder }) {
   const [term, setTerm] = useState("");
   const [isError, setIsError] = useState(true);
   const maxValue = 10; //최대글자수는 10자로 하겠습니다 :-)
@@ -64,6 +64,7 @@ export default function HashTagInput({ tagList, setTagList, important, label }) 
           onKeyUp={handleOnKeyUp}
           onChange={handleOnChange}
           value={term}
+          placeholder={placeholder}
         />
       </MuiForm>
       <TagWrapper>

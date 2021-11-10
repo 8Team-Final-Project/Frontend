@@ -4,7 +4,7 @@ import { getToken } from "./util";
 // Axios 인스턴스 설정
 const instance = axios.create({
   // 백엔드 배포 주소
-  baseURL: "http://13.209.227.1"
+  baseURL: "http://54.180.137.99"
 });
 
 //interceptor를 통한 header 설정
@@ -58,7 +58,7 @@ export const eventPostApi = {
   editEventPost: (post) => instance.patch(`/api/v1/post/postupdate/${post.postId}`, post),
 
   //이벤트 게시물 삭제하기
-  deleteEventPost: (postId) => instance.patch(`/api/v1/post/postdelete/${postId}`),
+  deleteEventPost: (postId) => instance.delete(`/api/v1/post/postdelete/${postId}`),
 
   //좋아요 기능
   likeEventPost: (postId) => instance.patch(`/api/v1/like/${postId}`),
@@ -75,7 +75,7 @@ export const combinationPostApi = {
   patchCombinationPost: (post) => instance.patch(`/api/v1/post/postupdate/${post.postId}`, post),
 
   // 꿀조합 게시글 삭제하기
-  deleteCombinationPost: (postId) => instance.patch(`/api/v1/post/postdelete/${postId}`),
+  deleteCombinationPost: (postId) => instance.delete(`/api/v1/post/postdelete/${postId}`),
 
   // 꿀조합 게시글 불러오기
   getCombinationList: () => instance.get(`/api/v1/post/?page`),
@@ -98,7 +98,7 @@ export const uploadApi = {
       for (let entry of Object.entries(req)) {
         formData.append(entry[0], entry[1]);
       }
-      const response = await axios.post("http://54.180.131.163/api/v1/post/uploadimg", formData);
+      const response = await axios.post("http://54.180.137.99/api/v1/post/uploadimg", formData);
       if (response.statusText === "OK") return response;
     } catch (err) {
       alert(err);
@@ -115,9 +115,9 @@ export const searchApi = {
         option: "posttag1",
         content: tagList[0],
         option2: "posttag2",
-        content2: tagList[1],
+        content2: tagList[1] ? tagList[1] : " ",
         option3: "posttag3",
-        contnet3: tagList[2]
+        contnet3: tagList[2] ? tagList[2] : " "
       };
       const res = await instance.get("/api/v1/post/posttag", { params: req });
       if (res.statusText === "OK") return res.data;
