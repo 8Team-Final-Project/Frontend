@@ -56,23 +56,26 @@ const Header = () => {
 const Wrap = styled.div`
   position: relative;
   width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 `;
 
 const LogoImg = styled.img`
-  float: left;
-  width: 22%;
-  height: 3%;
-  margin-top: 9px;
+  width: 95px;
   cursor: pointer;
+  left: 0;
 `;
 
-const Nav = styled.span`
-  display: flex;
-  justify-content: flex-end;
+const Nav = styled.div`
   font-size: 15px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
   & span {
-    margin: 4.5% 8%;
     cursor: pointer;
+    width: 100%;
+    text-align: end;
   }
 `;
 
