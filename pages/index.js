@@ -58,7 +58,7 @@ export default function Home() {
           <RedButton main onClick={() => router.push("/event")} value="이벤트 보러 가기" />
         </DescriptionArea>
       </Container>
-      <Container>
+      {/* <Container>
         <DescriptionArea>
           <Image width="80px" height="90px" src={questionIcon.src} />
           <Description>
@@ -68,7 +68,7 @@ export default function Home() {
             <p>문의해주세요!</p>
           </Description>
         </DescriptionArea>
-      </Container>
+      </Container> */}
     </div>
   );
 }
