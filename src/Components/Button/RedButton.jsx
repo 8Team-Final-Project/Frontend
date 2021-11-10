@@ -1,13 +1,20 @@
 import React from "react";
 import styled from "styled-components";
+import mask from "../../Asset/icons/main_event_bnt_mask.svg";
 
-const RedButton = ({ value, onClick }) => {
-  return <RButton onClick={onClick}>{value}</RButton>;
+const RedButton = ({ main, value, onClick }) => {
+  return (
+    <RButton onClick={onClick} main={main}>
+      {value}
+      {main && <img src={mask.src} />}
+    </RButton>
+  );
 };
 
 RedButton.defaultProps = {
   value: "",
-  onClick: () => {}
+  onClick: () => {},
+  main: false
 };
 
 const RButton = styled.button`
@@ -19,6 +26,14 @@ const RButton = styled.button`
   color: white;
   font-size: 15px;
   cursor: pointer;
+  ${({ main }) => main && `position:relative;`};
+  img {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+  }
 `;
 
 export default RedButton;

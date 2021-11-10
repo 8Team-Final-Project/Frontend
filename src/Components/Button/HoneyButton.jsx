@@ -1,25 +1,37 @@
-import React from 'react';
+import React from "react";
 import styled from "styled-components";
+import logoIcon from "../../Asset/icons/logo_icon.svg";
 
-const HoneyButton = ({value, onClick}) => {
-  return(
-      <HButton onClick={onClick}>{value}</HButton>
-  )
-}
+const HoneyButton = ({ value, onClick, main }) => {
+  console.log(logoIcon);
+  return (
+    <HButton onClick={onClick} main={main}>
+      {value}
+      {main && <img src={logoIcon.src} />}
+    </HButton>
+  );
+};
 
 HoneyButton.defaultProps = {
-  value: '',
-  onClick: ()=>{}
+  value: "",
+  onClick: () => {},
+  main: false
 };
 
 const HButton = styled.button`
   width: 100%;
   height: 75px;
-  background-color: #FFD86B;
+  background-color: #ffd86b;
   padding: 12px 0px;
   border-radius: 10px;
-  cursor:pointer
-`
-
+  cursor: pointer;
+  ${({ main }) => main && `position:relative;`}
+  img {
+    height: 100%;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+  }
+`;
 
 export default HoneyButton;

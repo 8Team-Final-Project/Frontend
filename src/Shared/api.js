@@ -115,9 +115,9 @@ export const searchApi = {
         option: "posttag1",
         content: tagList[0],
         option2: "posttag2",
-        content2: tagList[1],
+        content2: tagList[1] ? tagList[1] : " ",
         option3: "posttag3",
-        contnet3: tagList[2]
+        contnet3: tagList[2] ? tagList[2] : " "
       };
       const res = await instance.get("/api/v1/post/posttag", { params: req });
       if (res.statusText === "OK") return res.data;
