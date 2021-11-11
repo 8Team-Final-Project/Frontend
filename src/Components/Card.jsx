@@ -1,13 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import { useSelector, useDispatch } from "react-redux";
 import { useRouter } from "next/router";
-import { getCombinationList } from "../Redux/Async/combinationAsync";
-import { combinationPostApi } from "../Shared/api";
 
-import Tag from "./Tag.jsx";
-import { flexbox } from "@mui/system";
-import { dividerClasses } from "@mui/material";
+import Tag from "./Tag";
 
 const Card = (props) => {
   const router = useRouter();
