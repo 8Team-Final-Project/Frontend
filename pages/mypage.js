@@ -42,7 +42,7 @@ const mypage = (props) => {
               >
                 {" "}
                 {/* 연필 아이콘 감싸는 버튼 */}
-                <FaPencilAlt /> {/* 연필 아이콘*/}
+                <img src="/pen-icon.svg"/> {/* 연필 아이콘*/}
               </PencilAlt>
             </PenBox>
           </ProfileEdit>
@@ -67,9 +67,6 @@ const P = styled.p`
   color: #b8b8b8;
 `;
 
-const Container = styled.div`
-  /* text-align: center; */
-`;
 
 const ProfileBox = styled.div`
   display: flex;
@@ -88,7 +85,7 @@ const ProfileCircle = styled.div`
 const PenBox = styled.div`
   position: absolute;
   margin-left: -5px;
-  margin-top: 9px;
+  margin-top: 7px;
 `;
 
 //프로필 수정 버튼 배경
