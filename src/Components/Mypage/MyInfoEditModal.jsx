@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { patchUserid } from "../../Redux/Async/userAsync";
 
 //components
 import Modal from "../Shared/Modal";
@@ -12,25 +13,42 @@ import { postLogout } from "../../Redux/Async/userAsync";
 //handleSave : save시에 동작할 함수를 넣어주면 된다.
 
 export default function MyInfoEditModal({ isOpen, handleClose }) {
-  const [userInfo, setUserInfo] = useState({ nickname: "", email: "", imgUrl: "" });
-  //추후 로그인유지를 통해 유저정보를 받아오게되면 유저정보를 setUserInfo 해주면 됨!
+  const dispatch = useDispatch();
+  const [nickname, setNickname] = useState(""); //닉네임의 변경과 저장을 위한 state
+  const [userEmail, setUserEmail] = useState(""); //이메일 변경과 저장을 위한 state
+
+  const nicknameFromStore = useSelector((state) => state.user.user?.userNickname);
+  const emailFromsStore = useSelector((state) => state.user.user?.userEmail);
+
+  useEffect(() => {
+    if (nicknameFromStore && nicknameFromStore !== nickname) setNickname(nicknameFromStore);
+    if (emailFromsStore && emailFromsStore !== userEmail) setUserEmail(emailFromsStore);
+  }, [nicknameFromStore, emailFromsStore]);
 
   const saveUrl = (imgUrl) => {
     //프로필 사진 url 저장하는 함수
-    setUserInfo({ ...userInfo, imgUrl });
+    setUserImgUrl(imgUrl);
   };
 
   const handleSave = () => {
     //유저정보수정하는 함수
-    handleClose();
-  };
+    const editProfile = {
+      userNickname: nickname,
+      userEmail: userEmail
+    };
+    dispatch(patchUserid(editProfile));
 
-  const dispatch = useDispatch();
+    // handleClose();
+  };
 
   // 로그아웃 버튼
   const setLogout = () => {
     dispatch(postLogout());
   };
+
+  //[]유저의 닉네임, 이메일을 받아와서 input에 넣어주기
+  //[x]input의 값이 변화되게 하기
+  //[]저장버튼을 누르면 프로필 수정이 되게 하기
 
   return (
     <Modal isOpen={isOpen} handleClose={handleClose} isHideDefaultClose height="380px">
@@ -38,8 +56,16 @@ export default function MyInfoEditModal({ isOpen, handleClose }) {
         <Content>
           <CircleImage imgUrl={false} saveUrl={saveUrl} edit />
           <InputArea>
-            <NicknameInput placeholder="닉네임을 입력해주세요" value={userInfo.nickname} />
-            <EmailInput placeholder="이메일을 입력해주세요" value={userInfo.email} />
+            <NicknameInput
+              placeholder="닉네임을 입력해주세요"
+              value={nickname}
+              onChange={(e) => setNickname(e.target.value)}
+            />
+            <EmailInput
+              placeholder="이메일을 입력해주세요"
+              value={userEmail}
+              onChange={(e) => setUserEmail(e.target.value)}
+            />
           </InputArea>
           <button
             onClick={() => {
@@ -52,7 +78,11 @@ export default function MyInfoEditModal({ isOpen, handleClose }) {
         </Content>
         <Controls>
           <button onClick={handleClose}>취소</button>
-          <button onClick={handleSave} handleClose>
+          <button
+            onClick={() => {
+              handleSave();
+            }}
+          >
             저장
           </button>
         </Controls>
