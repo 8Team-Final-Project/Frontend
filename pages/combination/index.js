@@ -17,7 +17,7 @@ const combination = () => {
   const postList = useSelector((state) => state.combination.list[0]);
   useEffect(() => {
     dispatch(getCombinationList(postList));
-  }, [postList]);
+  }, []);
 
 
 

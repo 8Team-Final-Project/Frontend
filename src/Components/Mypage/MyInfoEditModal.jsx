@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
 
-
 //components
 import Modal from "../Shared/Modal";
 import CircleImage from "../Shared/CircleImage";
@@ -14,7 +13,6 @@ import { postLogout } from "../../Redux/Async/userAsync";
 
 export default function MyInfoEditModal({ isOpen, handleClose }) {
   const [userInfo, setUserInfo] = useState({ nickname: "", email: "", imgUrl: "" });
-
   //추후 로그인유지를 통해 유저정보를 받아오게되면 유저정보를 setUserInfo 해주면 됨!
 
   const saveUrl = (imgUrl) => {
@@ -31,9 +29,8 @@ export default function MyInfoEditModal({ isOpen, handleClose }) {
 
   // 로그아웃 버튼
   const setLogout = () => {
-    dispatch(postLogout())
+    dispatch(postLogout());
   };
-
 
   return (
     <Modal isOpen={isOpen} handleClose={handleClose} isHideDefaultClose height="380px">
@@ -44,16 +41,20 @@ export default function MyInfoEditModal({ isOpen, handleClose }) {
             <NicknameInput placeholder="닉네임을 입력해주세요" value={userInfo.nickname} />
             <EmailInput placeholder="이메일을 입력해주세요" value={userInfo.email} />
           </InputArea>
-          <button 
-            onClick={() =>{
-              setLogout()
-            }} 
+          <button
+            onClick={() => {
+              setLogout();
+            }}
             value="로그아웃"
-          >로그아웃</button>
+          >
+            로그아웃
+          </button>
         </Content>
         <Controls>
           <button onClick={handleClose}>취소</button>
-          <button onClick={handleSave}>저장</button>
+          <button onClick={handleSave} handleClose>
+            저장
+          </button>
         </Controls>
       </Container>
     </Modal>
