@@ -20,7 +20,7 @@ export default function AppDownloadBtn() {
     }
 
     //설치가 되어있지않다면 버튼을 보여준다.
-    if (!deferredPrompt) setBtnOn(true);
+    setBtnOn(true);
   }, []);
 
   const installApp = () => {
@@ -42,6 +42,8 @@ export default function AppDownloadBtn() {
   };
 
   return (
-    <>{btnOn ? <HoneyButton onClick={installApp} value="다운로드" /> : <WhiteButton disable value="다운로드 완료" />}</>
+    <>
+      {btnOn ? <HoneyButton onClick={installApp} value="다운로드" /> : <WhiteButton disabled value="다운로드 완료" />}
+    </>
   );
 }

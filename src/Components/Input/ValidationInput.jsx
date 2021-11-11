@@ -33,7 +33,7 @@ export default function ValidationInput({
   defaultText,
   important
 }) {
-  const [isError, setIsError] = useState(true);
+  const [isError, setIsError] = useState(false);
   const [helperText, setHelperText] = useState(defaultText);
 
   const HandleOnChange = (e) => {
@@ -48,7 +48,7 @@ export default function ValidationInput({
       return setHelperText(defaultText);
     }
 
-    if(e.target.value.length > 0 ) setHelperText(" ")
+    if (e.target.value.length > 0) setHelperText(" ");
 
     if (regexCheck) {
       // 정규표현식체크가 통과되면 successText를 송출하고 아니면 errorText를 송출한다
@@ -88,7 +88,7 @@ ValidationInput.defaultProps = {
   setValue: () => {},
   important: false,
   multiline: false,
-  rows: 1,
+  rows: 1
 };
 
 const Input = styled(TextField)`

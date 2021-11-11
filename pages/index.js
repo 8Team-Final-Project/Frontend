@@ -21,7 +21,7 @@ export default function Home() {
   return (
     <div>
       <Head>
-        <title>모닥불</title>
+        <title>꿀조합</title>
         <meta name="description" content="" />
         <link rel="icon" href="/" />
       </Head>
