@@ -73,7 +73,6 @@ const userSlice = createSlice({
 
     // 프로필 수정
     [patchUserid.fulfilled]: (state, { payload }) => {
-      state.user = payload
       state.isFetching = false;
       state.errorMessage = null;
     },
@@ -86,7 +85,5 @@ const userSlice = createSlice({
     }
   }
 });
-
-// export const {} = userSlice.actions;
 
 export default userSlice;

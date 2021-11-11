@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
-import { patchUserid } from "../../Redux/Async/userAsync";
+import { patchUserid, Me} from "../../Redux/Async/userAsync";
 
 //components
 import Modal from "../Shared/Modal";
@@ -16,6 +16,8 @@ export default function MyInfoEditModal({ isOpen, handleClose }) {
   const dispatch = useDispatch();
   const [nickname, setNickname] = useState(""); //닉네임의 변경과 저장을 위한 state
   const [userEmail, setUserEmail] = useState(""); //이메일 변경과 저장을 위한 state
+  const inputRef = React.useRef(null);
+  inputRef.current.focus();
 
   const nicknameFromStore = useSelector((state) => state.user.user?.userNickname);
   const emailFromsStore = useSelector((state) => state.user.user?.userEmail);
@@ -25,21 +27,22 @@ export default function MyInfoEditModal({ isOpen, handleClose }) {
     if (emailFromsStore && emailFromsStore !== userEmail) setUserEmail(emailFromsStore);
   }, [nicknameFromStore, emailFromsStore]);
 
+  // 마이페이지에 수정 프로필 불러오기
+  useEffect(() => dispatch(Me()));
+  
+
   const saveUrl = (imgUrl) => {
-    //프로필 사진 url 저장하는 함수
+    // 프로필 사진 url 저장하는 함수
     setUserImgUrl(imgUrl);
   };
 
   const handleSave = () => {
-    //유저정보수정하는 함수
+    // 유저 정보 수정하는 함수
     const editProfile = {
       userNickname: nickname,
       userEmail: userEmail
     };
     dispatch(patchUserid(editProfile));
-
-    
-    // handleClose();
   };
 
   // 로그아웃 버튼
@@ -60,6 +63,7 @@ export default function MyInfoEditModal({ isOpen, handleClose }) {
             <NicknameInput
               placeholder="닉네임을 입력해주세요"
               value={nickname}
+              ref = {inputRef}
               onChange={(e) => setNickname(e.target.value)}
             />
             <EmailInput
@@ -81,6 +85,7 @@ export default function MyInfoEditModal({ isOpen, handleClose }) {
           <button onClick={handleClose}>취소</button>
           <button onClick={() => {
                     handleSave();
+                    handleClose();
                   }}>저장
           </button>
         </Controls>
