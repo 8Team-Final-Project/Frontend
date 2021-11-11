@@ -7,9 +7,12 @@ import RedButton from "../src/Components/Button/RedButton";
 import HoneyButton from "../src/Components/Button/HoneyButton";
 
 //images
-import eventBnr1 from "../src/Asset/Images/main-event-bnr1.png";
-import eventBnr2 from "../src/Asset/Images/main-event-bnr2.png";
-import eventBnr3 from "../src/Asset/Images/main-event-bnr3.png";
+import mainBnr from "../src/Asset/Images/main_bnr.png";
+import eventBnr1 from "../src/Asset/Images/main_event_bnr1.png";
+import eventBnr2 from "../src/Asset/Images/main_event_bnr2.png";
+import eventBnr3 from "../src/Asset/Images/main_event_bnr3.png";
+import fishBread from "../src/Asset/Images/fish_bread.png";
+import ramen from "../src/Asset/Images/ramen.png";
 
 //icons
 import questionIcon from "../src/Asset/icons/question_icon.svg";
@@ -30,8 +33,7 @@ export default function Home() {
           <Title>세상의 모든 꿀조합을 찾아서</Title>
         </TitleArea>
         <DescriptionArea>
-          {/* combination_bnr 넣어야할 자리 */}
-          <Image />
+          <Image src={mainBnr.src} width="100%" />
           <Description>나만의 꿀조합 레시피를 다함께 즐겨요!</Description>
           <HoneyButton main onClick={() => router.push("/combination")} value="꿀조합 보러 가기" />
         </DescriptionArea>
@@ -42,8 +44,16 @@ export default function Home() {
           <Title>나만의 꿀조합 자랑하기</Title>
         </TitleArea>
         <DescriptionArea>
-          {/* event_bnr 넣어야할 자리 */}
-          <Image />
+          <EventBnr>
+            <EventBnrBox>
+              <Image src={ramen.src} width="100%" />
+              <Tag>#라면냠냠</Tag>
+            </EventBnrBox>
+            <EventBnrBox>
+              <Image src={fishBread.src} width="100%" />
+              <Tag>#붕어빵냠냠</Tag>
+            </EventBnrBox>
+          </EventBnr>
           <Description>
             <p>진행되는 이벤트 주제에 맞는 꿀조합을 지정 태그와 함께 업로드 해주세요!</p>
           </Description>
@@ -76,6 +86,9 @@ export default function Home() {
 const Container = styled.div`
   width: 100%;
   padding: 60px 0 100px 0;
+  &:last-child {
+    padding-bottom: 0;
+  }
 `;
 
 const TitleArea = styled.div`
@@ -123,4 +136,27 @@ const Description = styled.div`
   a {
     display: inline-block;
   }
+`;
+
+const EventBnr = styled.div`
+  display: flex;
+`;
+
+const EventBnrBox = styled.div`
+  width: 100%;
+`;
+
+const Tag = styled.span`
+  border: 1px solid #ff7775;
+  display: inline-flex;
+  min-width: 50px;
+  padding: 5px;
+  height: 40px;
+  border-radius: 100px;
+  box-sizing: border-box;
+  color: #ff7775;
+  align-items: center;
+  line-height: 1;
+  margin-right: 10px;
+  margin-top: 10px;
 `;
