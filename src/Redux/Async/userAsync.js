@@ -62,10 +62,13 @@ export const Me = createAsyncThunk("user/profile", async (data, thunkAPI) => {
 });
 
 // 프로필 수정
-export const patchUserid = createAsyncThunk("/user/patchuserid", async (data, thunkAPI) => {
-  try {
-    const response = await userApi.userid(data);
-    if (response.data.result === "success") {
+export const patchUserid = createAsyncThunk(
+  "/user/patchuserid", async (data, thunkAPI) => {
+    try {
+      const response = await userApi.userid(data);
+      console.log(response)
+    if (response.data.status === 200) {
+      window.alert("프로필 수정 완료!");
       return response.data.msg;
     }
   } catch (err) {

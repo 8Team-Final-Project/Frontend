@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
+import { patchUserid } from "../../Redux/Async/userAsync";
 
 //components
 import Modal from "../Shared/Modal";
@@ -31,7 +32,14 @@ export default function MyInfoEditModal({ isOpen, handleClose }) {
 
   const handleSave = () => {
     //유저정보수정하는 함수
-    handleClose();
+    const editProfile = {
+      userNickname: nickname,
+      userEmail: userEmail
+    };
+    dispatch(patchUserid(editProfile));
+
+    
+    // handleClose();
   };
 
   // 로그아웃 버튼
@@ -71,7 +79,10 @@ export default function MyInfoEditModal({ isOpen, handleClose }) {
         </Content>
         <Controls>
           <button onClick={handleClose}>취소</button>
-          <button onClick={handleSave}>저장</button>
+          <button onClick={() => {
+                    handleSave();
+                  }}>저장
+          </button>
         </Controls>
       </Container>
     </Modal>
