@@ -20,7 +20,7 @@ export default function ConfirmValidationInput({
   isCheck,
   setIsCheck
 }) {
-  const [isError, setIsError] = useState(true);
+  const [isError, setIsError] = useState(false);
   const [isCheckOn, setIsCheckOn] = useState(false); //중복체크를 on 할 것인지 안할것인지 판별 여부
   const [helperText, setHelperText] = useState(defaultText);
 
