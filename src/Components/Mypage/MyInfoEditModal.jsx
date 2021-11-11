@@ -10,7 +10,7 @@ import ConfirmValidationInput from "../Input/ConfirmValidationInput";
 import WhiteButton from "../Button/WhiteButton";
 
 //api
-import { postLogout } from "../../Redux/Async/userAsync";
+import { postLogout, patchUserid } from "../../Redux/Async/userAsync";
 import { userApi } from "../../Shared/api";
 
 //regex
@@ -47,6 +47,11 @@ export default function MyInfoEditModal({ isOpen, handleClose }) {
 
   const handleSave = () => {
     //유저정보수정하는 함수
+    const editProfile = {
+      userNickname: nickname,
+      userEmail: userEmail
+    };
+    dispatch(patchUserid(editProfile));
     handleClose();
   };
 
@@ -58,7 +63,7 @@ export default function MyInfoEditModal({ isOpen, handleClose }) {
   const handleCheckNickname = () => {
     //유저네임 중복체크하는 함수
     const nickname = {
-      userNickname
+      userNickname: nickname
     };
     //여기서 바로 api 연결해서, 사용가능한 것으로 확인되면 바로 setIsCheckNickname을 true로 바꿔줍니다. isCheckNickname이 true면 방금처럼 '확인' 으로 바뀝니다.
     userApi

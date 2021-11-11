@@ -73,6 +73,8 @@ const userSlice = createSlice({
 
     // 프로필 수정
     [patchUserid.fulfilled]: (state, { payload }) => {
+      state.user.userNickname = payload.userNickname;
+      state.user.userEmail = payload.userEmail;
       state.isFetching = false;
       state.errorMessage = null;
     },
