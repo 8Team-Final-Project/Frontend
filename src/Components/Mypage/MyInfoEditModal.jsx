@@ -16,8 +16,7 @@ export default function MyInfoEditModal({ isOpen, handleClose }) {
   const dispatch = useDispatch();
   const [nickname, setNickname] = useState(""); //닉네임의 변경과 저장을 위한 state
   const [userEmail, setUserEmail] = useState(""); //이메일 변경과 저장을 위한 state
-  const inputRef = React.useRef(null);
-  inputRef.current.focus();
+  
 
   const nicknameFromStore = useSelector((state) => state.user.user?.userNickname);
   const emailFromsStore = useSelector((state) => state.user.user?.userEmail);
@@ -63,7 +62,6 @@ export default function MyInfoEditModal({ isOpen, handleClose }) {
             <NicknameInput
               placeholder="닉네임을 입력해주세요"
               value={nickname}
-              ref = {inputRef}
               onChange={(e) => setNickname(e.target.value)}
             />
             <EmailInput
