@@ -18,13 +18,11 @@ import { getStepLabelUtilityClass } from '@mui/material';
 
 
 //이벤트게시물 수정페이지
-const PartyEdit = () => {
+const EventPostEdit = () => {
   const dispatch = useDispatch();
   const router = useRouter();
   const postId = useRouter().query.id;
   const post = useSelector((state) => state.event.post)
-  console.log(post)
-
 
   const [postImg, setPostImg] = useState("");
   const [postTitle, setPostTitle] = useState("");
@@ -120,4 +118,4 @@ margin-top : 100px;
 `
 
 
-export default PartyEdit;
+export default EventPostEdit;
