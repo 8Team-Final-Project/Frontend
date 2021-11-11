@@ -40,6 +40,8 @@ class MyDocument extends Document {
             name="viewport"
             content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"
           />
+          {/* 네이버  */}
+          <meta name="naver-site-verification" content="2065f954cd85cd82fd176fe2f128779664829f79" />
           <meta name="description" content="세상의 모든 음식 조합들을 만나보세요!" />
           <meta name="keywords" content="꿀조합" />
           <title>세상의 모든 음식 조합 - 꿀조합</title>
