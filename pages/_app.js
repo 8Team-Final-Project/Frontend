@@ -74,6 +74,7 @@ const Wrapper = styled.div`
   width: 100vw;
   padding: 5px 5px 100px 5px;
   box-sizing: border-box;
+  padding: 10px 30px 0 30px;
 `;
 
 // withRedux 함수로 컴포넌트를 감싸준다.
