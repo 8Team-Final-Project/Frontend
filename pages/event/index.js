@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import EventPost from "../../src/Components/Event/EventPost";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 import { eventPostListDB } from "../../src/Redux/Async/eventAsync";
