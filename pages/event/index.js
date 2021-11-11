@@ -1,24 +1,36 @@
-import React,{useEffect} from "react";
-import EventPost from "../../src/Components/Event/EventPost"
+import React, { useEffect } from "react";
+import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 import { eventPostListDB } from "../../src/Redux/Async/eventAsync";
-import router, { useRouter } from "next/router";
-import styled from "styled-components";
-import { useInView } from "react-intersection-observer";
+import { useRouter } from "next/router";
+
+//component
+import EventPost from "../../src/Components/Event/EventPost"
+
 
 const event = (props) => {
+    const router = useRouter();
+    const dispatch = useDispatch();
     const post_list = useSelector((state) => state.event);
     const isloaded = useSelector((state) => state.event.loaded);
-    const dispatch = useDispatch();
 
     useEffect(()=>{
         dispatch(eventPostListDB());
     },[])
     
+    const goEventInfo = () => {
+        return router.push("/event/info")
+    }
+    
     return (
         <React.Fragment>
-            <EventName>이번주 라면 꿀조합은?</EventName>
-            <div>
+            <EventName>이번주 붕어빵 꿀조합은?</EventName>
+            <WrapBanner>
+                <BannerImg src="/eventbanner.svg"
+                onClick={goEventInfo}/>
+            </WrapBanner>
+
+            <div >
             {isloaded && (
                 <>
                 {post_list && post_list.postlist[0].map((p, idx) => {return (<EventPost {...p} key={p.pid}/>)})} 
@@ -36,5 +48,26 @@ const EventName = styled.p`
   margin-top: 33px;
   margin-bottom: 16px;
 `;
+
+
+const WrapBanner = styled.div`
+    width :100%;
+    position : relative;
+`
+
+const BannerImg = styled.img`
+    width : 100%;
+
+`
+const DownBannerImg = styled.img`
+    width : 30px;
+    display : inline-block;
+    right : 40%;
+    position : absolute;
+`
+
+const EvnetImg = styled.img`
+
+`
 
 export default event;

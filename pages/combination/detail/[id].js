@@ -14,10 +14,12 @@ import Modal from "react-modal";
 import MenuButton from "../../../src/Components/Shared/ModalEditDelete";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import Tag from "../../../src/Components/Tag.jsx";
+import PostBasicProfile from "../../../src/Asset/Images/post-basic-profile.svg";
 
 //꿀조합 상세페이지
 const PartyDetail = (props) => {
   const dispatch = useDispatch();
+  const { src, imgUrl } = props;
 
   const shareUrl = "kkuljohab.com" + useRouter().asPath;
 
@@ -79,14 +81,21 @@ const PartyDetail = (props) => {
   return (
     <React.Fragment>
       <Grid>
-        <PostImg src={postItem && postItem.postImg} />
+        <FlexBox>
+          <Image src={imgUrl} />
+          <UserBox>
+            <NickName>{postItem && postItem.userNickname}</NickName>
+            <PostingDate>{postItem && postItem.createDate}</PostingDate>
+          </UserBox>
+          {postItem?.userId === userId && (
+            <Menu>
+              <BsThreeDotsVertical style={{ right: 0 }} onClick={openModal} />
+            </Menu>
+          )}
+        </FlexBox>
+        <PostImg src={postItem?.postImg ? postItem.postImg : src} />
         <Title>
           <strong>{postItem && postItem.postTitle}</strong>
-          {postItem?.userId === userId && (
-          <Menu>
-            <BsThreeDotsVertical onClick={openModal} />
-          </Menu>
-          )}
         </Title>
 
         <Wrap>
@@ -156,6 +165,41 @@ const PartyDetail = (props) => {
     </React.Fragment>
   );
 };
+PartyDetail.defaultProps = {
+  imgUrl: PostBasicProfile.src
+};
+
+const Image = styled.img`
+  margin-right: 15px;
+  width: 44px;
+  height: 44px;
+  object-fit: none;
+  border-radius: 50%;
+`;
+
+const NickName = styled.div`
+  font-size: 16px;
+  color: #898a8d;
+  text-align: start;
+`;
+
+const PostingDate = styled.div`
+  font-size: 12px;
+  color: #b8b8b8;
+`;
+
+const FlexBox = styled.div`
+  display: flex;
+  padding: 10px 15px;
+`;
+
+const UserBox = styled.div`
+  display: table-column;
+`;
+
+PartyDetail.defaultProps = {
+  src: "/android-icon-192x192.png"
+};
 
 const Grid = styled.div`
   text-align: center;
@@ -167,6 +211,7 @@ const TextBox = styled.div`
   line-height: 45px;
   font-size: 18px;
 `;
+
 const IconBox = styled.div`
   display: flex;
   justify-content: center;
@@ -174,31 +219,37 @@ const IconBox = styled.div`
 `;
 const PostImg = styled.img`
   width: 100%;
-  height: 225px;
-  margin-bottom: 36px;
-  margin-top: 31px;
-  border-radius: 12px;
+  height: 100%;
+  margin: 10px 0;
   object-fit: cover;
 `;
+
 const Title = styled.div`
-  display: flex;
-  justify-content: center;
+  // display: flex;
   font-size: 24px;
   font-weight: bold;
   word-break: break-all;
-  margin: 0px 30px 62px 30px;
+  margin: 0 15px;
+  position: relative;
 `;
+
 const Menu = styled.div`
-  margin: 5px 0px 0px 50px;
+  //display: inline-block;
+  //line-height: 1;
+  align-items: flex-end;
   font-size: 20px;
   color: #b8b8b8;
-  position: absolute;
-  right: 5%;
+  //text-align: end;
   cursor: pointer;
+  //position: absolute;
+  //right: 0;
+  flex-grow: 2;
 `;
+
 const Wrap = styled.div`
   width: 100%;
 `;
+
 const Content = styled.div`
   width: 100%;
   margin-bottom: 15px;

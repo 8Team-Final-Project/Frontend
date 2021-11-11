@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { useRouter} from "next/router";
 import { useDispatch, useSelector } from "react-redux";
-import { editEventPostDB } from "../../../src/Redux/Async/eventAsync";
+import { editEventPostDB, getEventPostDB } from "../../../src/Redux/Async/eventAsync";
 
 //Component
 import RectangleImage from '../../../src/Components/Shared/RectangleImage';
@@ -17,8 +17,8 @@ import { getStepLabelUtilityClass } from '@mui/material';
 //인풋에 원본값이 있는 상태에서 어떻게 수정이 가능하게 할 것 인가? => input값을 담아줄 state를 만들어준다. 
 
 
-//파티수정페이지
-const PartyEdit = () => {
+//이벤트게시물 수정페이지
+const EventPostEdit = () => {
   const dispatch = useDispatch();
   const router = useRouter();
   const postId = useRouter().query.id;
@@ -29,9 +29,20 @@ const PartyEdit = () => {
   const [postRecipe, setPostRecipe] = useState("");
   const [postContent, setPostContent] = useState("");
 
-  // useEffect(() => {
-  //   if(postId) 
-  // })
+  const getPostImg = useSelector((state) => state.event.post?.postImg)
+  const getPostTitle = useSelector((state) => state.event.post?.postTitle)
+  const getPostRecipe = useSelector((state) => state.event.post?.postRecipe)
+  const getPostContent = useSelector((state) => state.event.post?.postContent)
+
+
+  React.useEffect(() => {
+    if (getPostImg && getPostImg !== postImg) setPostImg(getPostImg);
+    if (getPostTitle && getPostTitle !== postTitle) setPostTitle(getPostTitle);
+    if (getPostRecipe && getPostRecipe !== postRecipe) setPostImg(getPostRecipe);
+    if (getPostContent && getPostContent !== postContent) setPostContent(getPostContent);
+  },[getPostImg, getPostTitle, getPostRecipe, getPostContent])
+
+
 
   const editEventPost = () => {
     const content = {
@@ -53,6 +64,7 @@ const PartyEdit = () => {
             edit
             saveUrl={setPostImg}
             imgUrl={postImg? postImg : false}
+            onChange = {setPostImg}
             />
     </ImgMargin>
     <InputMargin>
@@ -61,6 +73,7 @@ const PartyEdit = () => {
         label={"제목"}
         value={postTitle}
         setValue={setPostTitle}
+        onChange = {(e) => setPostTitle(e.target.value)}
     />
     </InputMargin>
     <InputMargin>
@@ -69,13 +82,15 @@ const PartyEdit = () => {
         label={"꿀조합"}
         value={postRecipe}
         setValue={setPostRecipe}
+        onChange = {(e) => setPostRecipe(e.target.value)}
     />
     </InputMargin>
     <InputMargin>
     <ValidationInput 
         label={"내용"}
-        value={post && post.postContent}
+        value={postContent}
         setValue={setPostContent}
+        onChange = {(e) => setPostContent(e.target.value)}
         important
         multiline
         rows={3}
@@ -103,4 +118,4 @@ margin-top : 100px;
 `
 
 
-export default PartyEdit;
+export default EventPostEdit;

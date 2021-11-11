@@ -1,13 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import { useSelector, useDispatch } from "react-redux";
 import { useRouter } from "next/router";
-import { getCombinationList } from "../Redux/Async/combinationAsync";
-import { combinationPostApi } from "../Shared/api";
 
-import Tag from "./Tag.jsx";
-import { flexbox } from "@mui/system";
-import { dividerClasses } from "@mui/material";
+import Tag from "./Tag";
 
 const Card = (props) => {
   const router = useRouter();
@@ -47,7 +42,7 @@ const PostTitle = styled.div`
   font-size: 18px;
   margin-bottom: 7px;
   overflow: hidden;
-  width: 260px;
+  width: calc(100% - 10px);
   text-overflow: ellipsis;
   white-space: nowrap;
 `;
