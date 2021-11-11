@@ -74,7 +74,8 @@ export default function MyInfoEditModal({ isOpen, handleClose }) {
           setIsCheckNickname(true);
         }
       })
-      .catch((err) => alert(err));
+      .catch((err) => alert("사용 중인 닉네임입니다"));
+
   };
 
   const handleCheckEmail = () => {
@@ -91,7 +92,8 @@ export default function MyInfoEditModal({ isOpen, handleClose }) {
           setIsCheckEmail(true);
         }
       })
-      .catch((err) => alert(err));
+      .catch((err) => alert("사용 중인 이메일입니다"));
+
   };
 
   return (
