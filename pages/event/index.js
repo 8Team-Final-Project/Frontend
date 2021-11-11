@@ -1,4 +1,5 @@
-import React,{useEffect, useCallback, useState} from "react";
+import React, { useEffect } from "react";
+import EventPost from "../../src/Components/Event/EventPost";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 import { eventPostListDB } from "../../src/Redux/Async/eventAsync";
@@ -21,11 +22,6 @@ const event = (props) => {
     const goEventInfo = () => {
         return router.push("/event/info")
     }
-    
-
-
-
-
     
     return (
         <React.Fragment>

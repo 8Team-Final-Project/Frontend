@@ -7,6 +7,9 @@ import { uploadApi } from "../../Shared/api";
 //icons
 import { BsCamera } from "react-icons/bs";
 
+// image 
+import BasicProfile from "../../Asset/Images/basic-profile.svg";
+
 //edit : 입력하면 수정용으로 바뀝니다.
 //saveUrl : 이미지 업로드 후 부모컴포넌트 state에 저장하기 위한 함수입니다. 부모컴포넌트에서 업로드 후 url을 저장할 setState 함수를 넣어주세요!
 //imgUrl : 보여줄 이미지 url을 넣어주면 됩니다.
@@ -38,8 +41,7 @@ export default function CircleImage({ edit, saveUrl, imgUrl }) {
 }
 
 CircleImage.defaultProps = {
-  imgUrl:
-    "https://images.unsplash.com/photo-1612000529646-f424a2aa1bff?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1170&q=80",
+  imgUrl: BasicProfile.src,
   saveUrl: () => {},
   edit: false
 };
@@ -47,8 +49,9 @@ CircleImage.defaultProps = {
 const Image = styled.img`
   width: 130px;
   height: 130px;
-  object-fit: cover;
+  object-fit: none;
   border-radius: 50%;
+  border: 1px solid #B8B8B8;
 `;
 
 const ImageWrapper = styled.div`

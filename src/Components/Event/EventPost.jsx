@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 import router from "next/router";
 import Tag from "../Tag";
-import { useSelector } from "react-redux";
 
 const EventPost = (props) => {
   const { src } = props;

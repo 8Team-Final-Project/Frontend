@@ -56,7 +56,6 @@ const write = () => {
           <RectangleImage edit imgUrl={postImg ? postImg : false} saveUrl={setImg}></RectangleImage>
         </CenterBox>
         <CenterBox>
-          <LikeEffect></LikeEffect>
           <ValidationInput
             label="나의 꿀조합"
             value={postTitle}

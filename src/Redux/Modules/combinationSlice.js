@@ -10,7 +10,6 @@ import {
 } from "../Async/combinationAsync";
 
 const initialState = {
-  // 정상작동하면 빼면 됩니다.
   list: [],
   post: null
 };
@@ -24,7 +23,7 @@ const combinationSlice = createSlice({
   extraReducers: {
     // 꿀조합 게시글 작성
     [addCombinationPostDB.fulfilled]: (state, { payload: post }) => {
-      state.list.unshift(post);
+      state.list[0].unshift(post);
       state.isFetching = false;
       state.errorMessage = null;
     },
