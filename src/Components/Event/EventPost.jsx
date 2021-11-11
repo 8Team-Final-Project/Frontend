@@ -17,15 +17,15 @@ const EventPost = (props) => {
       <RightBox>
         <PostTitle>{props && props.postTitle}</PostTitle>
         <TagLine>
-          {props.postTag.map((tag, idx) => (
+          {props.postTag?.map((tag, idx) => (
             <Tag key={idx} value={"#" + tag}></Tag>
           ))}
         </TagLine>
         <Like>
-          {/* <Heart src="/fullheart.png" />
+          <Heart src="/fullheart.png" />
           <LikeCnt>
             <>{props.likeCnt}</>
-          </LikeCnt> */}
+          </LikeCnt>
         </Like>
       </RightBox>
     </CardBox>
@@ -40,7 +40,7 @@ const PostTitle = styled.div`
   font-size: 18px;
   margin-bottom: 7px;
   overflow: hidden;
-  width: 260px;
+  width: calc(100% - 10px);
   text-overflow: ellipsis;
   white-space: nowrap;
 `;

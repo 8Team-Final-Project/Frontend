@@ -47,7 +47,7 @@ const PostTitle = styled.div`
   font-size: 18px;
   margin-bottom: 7px;
   overflow: hidden;
-  width: 260px;
+  width: calc(100% - 10px);
   text-overflow: ellipsis;
   white-space: nowrap;
 `;
