@@ -5,6 +5,7 @@ import styled from "styled-components";
 //components
 import RedButton from "../src/Components/Button/RedButton";
 import HoneyButton from "../src/Components/Button/HoneyButton";
+import AppDownloadBtn from "../src/Components/Shared/AppDownloadBtn";
 
 //images
 import eventBnr1 from "../src/Asset/Images/main-event-bnr1.png";
@@ -24,6 +25,8 @@ export default function Home() {
         <meta name="description" content="" />
         <link rel="icon" href="/" />
       </Head>
+
+      {/* 꿀조합 소개 */}
       <Container>
         <TitleArea>
           <SubTitle>입맛이 달라도 OK!</SubTitle>
@@ -36,6 +39,8 @@ export default function Home() {
           <HoneyButton main onClick={() => router.push("/combination")} value="꿀조합 보러 가기" />
         </DescriptionArea>
       </Container>
+
+      {/* 이벤트 */}
       <Container>
         <TitleArea>
           <SubTitle>아무도 몰랐을걸?</SubTitle>
@@ -58,6 +63,8 @@ export default function Home() {
           <RedButton main onClick={() => router.push("/event")} value="이벤트 보러 가기" />
         </DescriptionArea>
       </Container>
+
+      {/* 문의  */}
       {/* <Container>
         <DescriptionArea>
           <Image width="80px" height="90px" src={questionIcon.src} />
@@ -69,6 +76,17 @@ export default function Home() {
           </Description>
         </DescriptionArea>
       </Container> */}
+
+      {/* 다운로드 */}
+      <Container>
+        <DescriptionArea>
+          <Description>
+            <p>앱을 다운로드하여,</p>
+            <p>더욱 편하게 사용해보세요!</p>
+          </Description>
+          <AppDownloadBtn />
+        </DescriptionArea>
+      </Container>
     </div>
   );
 }
