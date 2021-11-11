@@ -1,12 +1,20 @@
+//myinfoeditmodal
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
-import { patchUserid, Me } from "../../Redux/Async/userAsync";
 
 //components
 import Modal from "../Shared/Modal";
 import CircleImage from "../Shared/CircleImage";
+import ConfirmValidationInput from "../Input/ConfirmValidationInput";
+import WhiteButton from "../Button/WhiteButton";
+
+//api
 import { postLogout } from "../../Redux/Async/userAsync";
+import { userApi } from "../../Shared/api";
+
+//regex
+import regex from "../../Shared/regex";
 
 //isOpen : true면 보여주고, false면 모달이 닫힌다.
 //handleClose : isOpen을 false로 바꿔주는 함수를 넣어주면 된다.
@@ -14,32 +22,32 @@ import { postLogout } from "../../Redux/Async/userAsync";
 
 export default function MyInfoEditModal({ isOpen, handleClose }) {
   const dispatch = useDispatch();
+  //input 값을 담는 state
   const [nickname, setNickname] = useState(""); //닉네임의 변경과 저장을 위한 state
   const [userEmail, setUserEmail] = useState(""); //이메일 변경과 저장을 위한 state
 
+  //중복체크했는지 안했는지 여부값
+  const [isCheckNickname, setIsCheckNickname] = useState(false);
+  const [isCheckEmail, setIsCheckEmail] = React.useState(false);
+
+  //기존 유저정보값
   const nicknameFromStore = useSelector((state) => state.user.user?.userNickname);
   const emailFromsStore = useSelector((state) => state.user.user?.userEmail);
 
   useEffect(() => {
+    //기존 유저네임,유저이메일을 state에 저장하는 함수
     if (nicknameFromStore && nicknameFromStore !== nickname) setNickname(nicknameFromStore);
     if (emailFromsStore && emailFromsStore !== userEmail) setUserEmail(emailFromsStore);
   }, [nicknameFromStore, emailFromsStore]);
 
-  // 마이페이지에 수정 프로필 불러오기
-  useEffect(() => dispatch(Me()));
-
   const saveUrl = (imgUrl) => {
-    // 프로필 사진 url 저장하는 함수
+    //프로필 사진 url 저장하는 함수
     setUserImgUrl(imgUrl);
   };
 
   const handleSave = () => {
-    // 유저 정보 수정하는 함수
-    const editProfile = {
-      userNickname: nickname,
-      userEmail: userEmail
-    };
-    dispatch(patchUserid(editProfile));
+    //유저정보수정하는 함수
+    handleClose();
   };
 
   // 로그아웃 버튼
@@ -47,46 +55,73 @@ export default function MyInfoEditModal({ isOpen, handleClose }) {
     dispatch(postLogout());
   };
 
-  //[]유저의 닉네임, 이메일을 받아와서 input에 넣어주기
-  //[x]input의 값이 변화되게 하기
-  //[]저장버튼을 누르면 프로필 수정이 되게 하기
+  const handleCheckNickname = () => {
+    //유저네임 중복체크하는 함수
+    const nickname = {
+      userNickname
+    };
+    //여기서 바로 api 연결해서, 사용가능한 것으로 확인되면 바로 setIsCheckNickname을 true로 바꿔줍니다. isCheckNickname이 true면 방금처럼 '확인' 으로 바뀝니다.
+    userApi
+      .checknick(nickname)
+      .then((res) => {
+        if (res.statusText === "OK") {
+          alert("사용가능한 닉네임입니다");
+          setIsCheckNickname(true);
+        }
+      })
+      .catch((err) => alert(err));
+  };
+
+  const handleCheckEmail = () => {
+    //유저이메일 중복체크하는 함수
+    const checkemail = {
+      userEmail
+    };
+
+    userApi
+      .checkemail(checkemail)
+      .then((res) => {
+        if (res.statusText === "OK") {
+          alert("사용 가능한 이메일입니다");
+          setIsCheckEmail(true);
+        }
+      })
+      .catch((err) => alert(err));
+  };
 
   return (
-    <Modal isOpen={isOpen} handleClose={handleClose} isHideDefaultClose height="380px">
+    <Modal isOpen={isOpen} handleClose={handleClose} isHideDefaultClose height="auto" width="100%">
       <Container>
         <Content>
           <CircleImage imgUrl={false} saveUrl={saveUrl} edit />
           <InputArea>
-            <NicknameInput
-              placeholder="닉네임을 입력해주세요"
+            <ConfirmValidationInput
               value={nickname}
-              onChange={(e) => setNickname(e.target.value)}
+              setValue={setNickname}
+              handleValueCheck={handleCheckNickname} //서버랑 연결해서 ok뜨면 true로 바꿔주는 함수 만들기
+              isCheck={isCheckNickname} //check했는지 안했는지 담는 state
+              setIsCheck={setIsCheckNickname} //isCheck를 변경시키는 setState
+              regexCheck={regex.nickname} //정규식 shared/regex 에서 가져와서 사용하세요.
+              errorText="3글자 이상부터 가능해요!" //식이랑 맞지 않을때 보여줄 텍스트
+              defaultText="닉네임을 입력해주세요!" //아무것도 적히지 않았을때 보여줄 텍스트
+              maxValue={10}
             />
-            <EmailInput
-              placeholder="이메일을 입력해주세요"
+            <ConfirmValidationInput
               value={userEmail}
-              onChange={(e) => setUserEmail(e.target.value)}
+              setValue={setUserEmail}
+              handleValueCheck={handleCheckEmail}
+              isCheck={isCheckEmail}
+              setIsCheck={setIsCheckEmail}
+              regexCheck={regex.email}
+              errorText="2글자 이상 입력해주세요!"
+              defaultText="이메일을 입력해주세요!"
             />
           </InputArea>
-          <button
-            onClick={() => {
-              setLogout();
-            }}
-            value="로그아웃"
-          >
-            로그아웃
-          </button>
+          <WhiteButton value="로그아웃" onClick={setLogout} />
         </Content>
         <Controls>
           <button onClick={handleClose}>취소</button>
-          <button
-            onClick={() => {
-              handleSave();
-              handleClose();
-            }}
-          >
-            저장
-          </button>
+          <button onClick={handleSave}>저장</button>
         </Controls>
       </Container>
     </Modal>
@@ -116,6 +151,7 @@ const Content = styled.div`
   align-items: center;
   flex-direction: column;
   height: 100%;
+  padding: 50px 25px 38px 25px;
 `;
 
 const InputArea = styled.div`
@@ -123,22 +159,11 @@ const InputArea = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  width: 100%;
 
   input {
     margin-top: 26px;
-    border: none;
-    outline: none;
-    text-align: center;
   }
-`;
-
-const NicknameInput = styled.input`
-  font-size: 24px;
-  color: #3c3c3c;
-`;
-const EmailInput = styled.input`
-  font-size: 24px;
-  color: #b8b8b8;
 `;
 
 const Controls = styled.div`
