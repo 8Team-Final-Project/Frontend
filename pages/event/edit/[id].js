@@ -24,6 +24,8 @@ const PartyEdit = () => {
   const postId = useRouter().query.id;
   const post = useSelector((state) => state.event.post)
   console.log(post)
+
+
   const [postImg, setPostImg] = useState("");
   const [postTitle, setPostTitle] = useState("");
   const [postRecipe, setPostRecipe] = useState("");
@@ -34,13 +36,13 @@ const PartyEdit = () => {
   const getPostRecipe = useSelector((state) => state.event.post?.postRecipe)
   const getPostContent = useSelector((state) => state.event.post?.postContent)
 
+
   React.useEffect(() => {
     if (getPostImg && getPostImg !== postImg) setPostImg(getPostImg);
     if (getPostTitle && getPostTitle !== postTitle) setPostTitle(getPostTitle);
     if (getPostRecipe && getPostRecipe !== postRecipe) setPostImg(getPostRecipe);
     if (getPostContent && getPostContent !== postContent) setPostContent(getPostContent);
   },[getPostImg, getPostTitle, getPostRecipe, getPostContent])
-
 
 
 
@@ -64,7 +66,7 @@ const PartyEdit = () => {
             edit
             saveUrl={setPostImg}
             imgUrl={postImg? postImg : false}
-            onChange = {(e) => setPostImg(e.target.value)}
+            onChange = {setPostImg}
             />
     </ImgMargin>
     <InputMargin>
@@ -73,7 +75,6 @@ const PartyEdit = () => {
         label={"제목"}
         value={postTitle}
         setValue={setPostTitle}
-        // onClick={handleTitle}
         onChange = {(e) => setPostTitle(e.target.value)}
     />
     </InputMargin>
@@ -82,7 +83,7 @@ const PartyEdit = () => {
         important
         label={"꿀조합"}
         value={postRecipe}
-        // setValue={setPostRecipe}
+        setValue={setPostRecipe}
         onChange = {(e) => setPostRecipe(e.target.value)}
     />
     </InputMargin>
@@ -90,7 +91,7 @@ const PartyEdit = () => {
     <ValidationInput 
         label={"내용"}
         value={postContent}
-        // setValue={setPostContent}
+        setValue={setPostContent}
         onChange = {(e) => setPostContent(e.target.value)}
         important
         multiline
