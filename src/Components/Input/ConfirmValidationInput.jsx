@@ -1,3 +1,4 @@
+//Confirmvalidationinput
 import React, { useState } from "react";
 import styled from "@emotion/styled";
 import { TextField } from "@mui/material";
@@ -88,11 +89,13 @@ ConfirmValidationInput.defaultProps = {
   setValue: () => {},
   isCheck: false,
   setIsCheck: () => {},
-  handleValueCheck: () => {}
+  handleValueCheck: () => {},
+  successText: " "
 };
 
 const Container = styled.div`
   position: relative;
+  width: 100%;
 `;
 
 const Label = styled.span`
