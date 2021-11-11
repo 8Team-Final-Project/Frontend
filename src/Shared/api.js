@@ -4,7 +4,7 @@ import { getToken } from "./util";
 // Axios 인스턴스 설정
 const instance = axios.create({
   // 백엔드 배포 주소
-  baseURL: "https://www.kkuljohap.shop/"
+  baseURL: "https://kkuljohap.shop"
 });
 
 //interceptor를 통한 header 설정
@@ -15,7 +15,7 @@ instance.interceptors.request.use(async (config) => {
 
   //getToken는 로컬 스토리지에 토큰이 있다면 반환한다 없다면 null 값 반환
   config.headers["Authorization"] = await getToken();
-  config.headers["withCredentials"] = true;
+
   return config;
 });
 
@@ -47,7 +47,7 @@ export const userApi = {
 
 export const eventPostApi = {
   //이벤트 게시판 전체 불러오기
-  getEventPostList: (data) => instance.get("/api/v1/post/event1list", data, { withCredentials: true }),
+  getEventPostList: (data) => instance.get("/api/v1/post/event1list", data),
 
   //이벤트 게시물 추가하기
   addEventPost: (data) => instance.post("/api/v1/post", data),
