@@ -16,7 +16,7 @@ import { BiX } from "react-icons/bi";
 //important : true면 *가 표시된다.  ex)important
 export default function HashTagInput({ tagList, setTagList, important, label, placeholder }) {
   const [term, setTerm] = useState("");
-  const [isError, setIsError] = useState(true);
+  const [isError, setIsError] = useState(false);
   const maxValue = 10; //최대글자수는 10자로 하겠습니다 :-)
 
   const deleteTag = (idx) => {

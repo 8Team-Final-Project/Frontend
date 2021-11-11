@@ -13,6 +13,7 @@ import { BsCamera } from "react-icons/bs";
 //imgUrl : 보여줄 이미지 url을 넣어주면 됩니다.
 export default function RectangleImage({ edit, saveUrl, imgUrl }) {
   const refFileInput = useRef(null);
+  const container = useRef(null);
   const [height, setHeight] = useState(0);
 
   const upload = (e) => {
@@ -29,6 +30,8 @@ export default function RectangleImage({ edit, saveUrl, imgUrl }) {
 
   useEffect(() => {
     //컴포넌트의 width 크기와 height를 동일하게 맞춰주는 함수입니다.
+    setHeight(container.current.offsetWidth);
+
     window.addEventListener("resize", () => {
       setHeight(container.current.offsetWidth);
     });
