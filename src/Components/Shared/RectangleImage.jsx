@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import styled from "styled-components";
 
 //api
@@ -13,6 +13,7 @@ import { BsCamera } from "react-icons/bs";
 //imgUrl : 보여줄 이미지 url을 넣어주면 됩니다.
 export default function RectangleImage({ edit, saveUrl, imgUrl }) {
   const refFileInput = useRef(null);
+  const [height, setHeight] = useState(0);
 
   const upload = (e) => {
     //서버에 이미지 업로드하여 imgUrl을 받아와서 url을 저장시키는 함수입니다.
@@ -26,9 +27,17 @@ export default function RectangleImage({ edit, saveUrl, imgUrl }) {
     }
   };
 
+  useEffect(() => {
+    //컴포넌트의 width 크기와 height를 동일하게 맞춰주는 함수입니다.
+    window.addEventListener("resize", () => {
+      setHeight(container.current.offsetWidth);
+    });
+    return window.removeEventListener("resize", () => {});
+  }, []);
+
   if (edit)
     return (
-      <ImageWrapper onClick={() => refFileInput.current.click()}>
+      <ImageWrapper onClick={() => refFileInput.current.click()} ref={container} height={height}>
         <Image src={imgUrl && imgUrl} />
         <BsCamera />
         <FileInput type="file" ref={refFileInput} onChange={upload} />
@@ -47,7 +56,6 @@ RectangleImage.defaultProps = {
 
 const Image = styled.img`
   width: 100%;
-  height: 225px;
   object-fit: cover;
   border-radius: 12px;
 `;
@@ -55,7 +63,7 @@ const Image = styled.img`
 const ImageWrapper = styled.div`
   position: relative;
   width: 100%;
-  height: 225px;
+  height: ${({ height }) => height && `${height}px`};
   cursor: pointer;
   &::before {
     position: absolute;
