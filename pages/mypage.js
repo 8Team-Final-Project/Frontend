@@ -67,6 +67,7 @@ const ProfileBox = styled.div`
   justify-content: center;
   height: 150px;
   position: relative;
+  margin-top: 50px;
 `;
 
 const ProfileCenter = styled.div``;

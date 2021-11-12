@@ -199,5 +199,5 @@ const Controls = styled.div`
 
 const LogoutBtn = styled.div`
   color: #b8b8b8;
-  margin: 10px; 0 0 0;
+  margin: 30px 0 10px 0;
 `
