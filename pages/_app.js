@@ -59,7 +59,9 @@ function MyApp({ Component, pageProps }) {
   return (
     <GlobalThemeProvider>
       <Wrapper ref={container}>
+        <HeaderWrap>
         <Header />
+        </HeaderWrap>
         <Component {...pageProps} />
         {router.pathname === "/event" || router.pathname === "/combination" ? (
           <FloatingButton onClick={floatButton} locationX={locationX} />
@@ -72,10 +74,12 @@ function MyApp({ Component, pageProps }) {
 const Wrapper = styled.div`
   max-width: 500px;
   width: 100vw;
-  padding: 5px 5px 100px 5px;
   box-sizing: border-box;
-  padding: 10px 30px 0 30px;
 `;
+
+const HeaderWrap = styled.div`
+  margin : 5%;
+`
 
 // withRedux 함수로 컴포넌트를 감싸준다.
 export default wrapper.withRedux(MyApp);

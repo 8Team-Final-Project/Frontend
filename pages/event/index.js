@@ -30,13 +30,13 @@ const event = (props) => {
                 onClick={goEventInfo}/>
             </WrapBanner>
 
-            <div >
+            <CardWrap>
             {isloaded && (
                 <>
                 {post_list && post_list.postlist[0].map((p, idx) => {return (<EventPost {...p} key={p.pid}/>)})} 
                 </>
             )}
-            </div>
+            </CardWrap>
         </React.Fragment>
     );
 };
@@ -59,15 +59,8 @@ const BannerImg = styled.img`
     width : 100%;
 
 `
-const DownBannerImg = styled.img`
-    width : 30px;
-    display : inline-block;
-    right : 40%;
-    position : absolute;
-`
-
-const EvnetImg = styled.img`
-
+const CardWrap = styled.div`
+    margin : 0px 3%;
 `
 
 export default event;

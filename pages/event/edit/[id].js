@@ -34,6 +34,8 @@ const EventPostEdit = () => {
   const getPostRecipe = useSelector((state) => state.event.post?.postRecipe)
   const getPostContent = useSelector((state) => state.event.post?.postContent)
 
+  console.log(getPostImg)
+  console.log(getPostTitle)
 
   React.useEffect(() => {
     if (getPostImg && getPostImg !== postImg) setPostImg(getPostImg);

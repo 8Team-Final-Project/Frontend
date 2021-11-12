@@ -23,6 +23,7 @@ const HButton = styled.button`
   background-color: #ffd86b;
   padding: 12px 0px;
   border-radius: 10px;
+  font-size: 16px;
   cursor: pointer;
   ${({ main }) => main && `position:relative;`}
   img {
