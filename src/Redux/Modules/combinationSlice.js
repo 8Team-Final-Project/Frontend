@@ -92,9 +92,11 @@ const combinationSlice = createSlice({
       window.alert(post.msg);
       if (post.msg === "좋아요성공") {
         state.post.likeCnt += 1;
+        state.post.likeStatus = true;
       }
       if (post.msg === "취소성공") {
         state.post.likeCnt -= 1;
+        state.post.likeStatus = false;
       }
       state.isFetching = false;
       state.errorMessage = null;
@@ -108,8 +110,14 @@ const combinationSlice = createSlice({
     },
 
     // 꿀조합 게시물 찜 /취소
-    [patchCombinationPostSave.fulfilled]: (state, { payload }) => {
-      window.alert(payload.msg);
+    [patchCombinationPostSave.fulfilled]: (state, { payload: post }) => {
+      window.alert(post.msg);
+      if (post.msg === "게시물이 찜 되었습니다") {
+        state.post.keepStatus = true;
+      }
+      if (post.msg === "게시물이 찜이 취소 되었습니다") {
+        state.post.keepStatus = false;
+      }
       state.isFetching = false;
       state.errorMessage = null;
     },

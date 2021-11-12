@@ -11,10 +11,18 @@ import { useRouter } from "next/router";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import Modal from "react-modal";
 
+// components
 import MenuButton from "../../../src/Components/Shared/ModalEditDelete";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import Tag from "../../../src/Components/Tag.jsx";
 import PostBasicProfile from "../../../src/Asset/Images/post-basic-profile.svg";
+
+// img
+import likeOn from "../../../src/Asset/Images/likeOn.svg";
+import likeOff from "../../../src/Asset/Images/likeOff.svg";
+import saveOn from "../../../src/Asset/Images/saveOn.svg";
+import saveOff from "../../../src/Asset/Images/saveOff.svg";
+import shareOn from "../../../src/Asset/Images/shareOn.svg";
 
 //꿀조합 상세페이지
 const PartyDetail = (props) => {
@@ -28,30 +36,15 @@ const PartyDetail = (props) => {
   const postItem = useSelector((state) => state.combination.post);
 
   const userId = useSelector((state) => state.user.user?.userId);
-  const likeUserId = useSelector((state) => state.combination.post?.likeUser);
 
-  const saveUserId = useSelector((state) => state.combination.post?.keepUser);
-
-  const sameLikeId = likeUserId && likeUserId.filter((user) => user._id.includes(userId));
-
-  const sameKeepId = saveUserId && saveUserId.filter((user) => user._id.includes(userId)) === [] ? false : true;
+  const likeUserId = useSelector((state) => state.combination.post?.likeStatus);
+  const saveUserId = useSelector((state) => state.combination.post?.keepStatus);
 
   const [modalIsOpen, setModalIsOpen] = useState(false);
-
-  const [offLike, setOnLike] = useState(false);
-  const [offSave, setOnSave] = useState(false);
 
   useEffect(() => {
     if (postId) dispatch(getCombinationPost(postId));
   }, [postId]);
-
-  const likeClick = () => {
-    setOnLike(!offLike);
-  };
-
-  const saveClick = () => {
-    setOnSave(!offSave);
-  };
 
   const setPostSave = () => {
     dispatch(patchCombinationPostSave(postId));
@@ -103,7 +96,6 @@ const PartyDetail = (props) => {
           <Label>꿀조합</Label>
           <Value>{postItem && postItem.postRecipe}</Value>
         </Content>
-
         <Content>
           <Label>레시피</Label>
           <Recipe> {postItem && postItem.postContent}</Recipe>
@@ -111,43 +103,40 @@ const PartyDetail = (props) => {
         <IconBox>
           {postItem && postItem.postTag.map((tag, idx) => <Tag is_detail key={idx} value={"#" + tag}></Tag>)}
         </IconBox>
-
-        {/* <Btn>
+        <Btn>
           <IconBox>
             <button
               onClick={() => {
                 setPostLike();
-                likeClick();
               }}
             >
-              {offLike && offLike ? <img src="/likeOn.svg" /> : <img src="/likeOff.svg" />}
+              {likeUserId && likeUserId == true ? <img src={likeOn.src} /> : <img src={likeOff.src} />}
             </button>
             <TextBox>{postItem && postItem.likeCnt}</TextBox>
           </IconBox>
-          <IconBox>
-            <button
-              onClick={() => {
-                saveClick();
-                setPostSave();
-              }}
-            >
-              {!sameKeepId ? <img src="/saveOff.svg" /> : <img src="/saveOn.svg" />}
-            </button>
-            <TextBox>저장</TextBox>
-          </IconBox>
-          <IconBox>
-            <CopyToClipboard text={shareUrl}>
+          <IconBoxFlex>
+            <IconBox>
               <button
                 onClick={() => {
-                  window.alert("링크복사됨~");
+                  setPostSave();
                 }}
               >
-                <img src="/shareBtn.svg" />
+                {saveUserId && saveUserId == true ? <img src={saveOn.src} /> : <img src={saveOff.src} />}
               </button>
-            </CopyToClipboard>
-            <TextBox>공유</TextBox>
-          </IconBox>
-        </Btn> */}
+            </IconBox>
+            <IconBox>
+              <CopyToClipboard text={shareUrl}>
+                <button
+                  onClick={() => {
+                    window.alert("링크복사됨~");
+                  }}
+                >
+                  <img src={shareOn.src} />
+                </button>
+              </CopyToClipboard>
+            </IconBox>
+          </IconBoxFlex>
+        </Btn>
       </Grid>
 
       <ModalFrame>
@@ -168,7 +157,7 @@ const PartyDetail = (props) => {
 PartyDetail.defaultProps = {};
 
 const Image = styled.img`
-  margin-right: 15px;
+  margin-right: 10px;
   width: 44px;
   height: 44px;
   object-fit: none;
@@ -187,9 +176,11 @@ const PostingDate = styled.div`
 `;
 
 const FlexBox = styled.div`
+  width: 100%;
   display: flex;
-  padding: 10px 20px;
-  margin: 10px 0 0 0;
+  margin-top: 20px;
+  padding-top: 15px;
+  border-top: 0.5px solid #e5e5e5;
 `;
 
 const UserBox = styled.div`
@@ -213,9 +204,15 @@ const TextBox = styled.div`
 
 const IconBox = styled.div`
   display: flex;
+  align-items: center;
   justify-content: center;
-  margin: auto 20px;
 `;
+
+const IconBoxFlex = styled.div`
+  display: flex;
+  margin: 0 0 0 auto;
+`;
+
 const PostImg = styled.img`
   width: 100%;
   height: 100%;
@@ -235,12 +232,9 @@ const Title = styled.div`
 const Menu = styled.div`
   font-size: 20px;
   color: #b8b8b8;
-  display: flex;
-  justify-content: end;
-`;
-
-const Wrap = styled.div`
-  width: 100%;
+  margin: 0 0 0 auto;
+  align-items: center;
+  line-height: 2.3;
 `;
 
 const Content = styled.div`
@@ -274,19 +268,11 @@ const Recipe = styled.span`
 
 const Btn = styled.div`
   display: flex;
-  justify-content: center;
-  margin-top: 80px;
+  align-items: center;
+  margin-top: 20px;
   color: #b8b8b8;
-`;
-
-const LikeBtn = styled.img`
-  width: 30px;
-  margin-right: 11px;
-`;
-
-const SaveBtn = styled.img`
-  width: 20px;
-  margin-left: 80px;
+  border-top: 0.5px solid #e5e5e5;
+  border-bottom: 0.5px solid #e5e5e5;
 `;
 
 const ModalFrame = styled.div`

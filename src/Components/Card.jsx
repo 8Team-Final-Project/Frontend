@@ -2,7 +2,12 @@ import React from "react";
 import styled from "styled-components";
 import { useRouter } from "next/router";
 
+// components
 import Tag from "./Tag";
+
+// img
+import likeOn from "../Asset/Images/likeOn.svg"
+import likeOff from "../Asset/Images/likeOff.svg"
 
 const Card = (props) => {
   const router = useRouter();
@@ -24,10 +29,10 @@ const Card = (props) => {
           ))}
         </TagLine>
         <Like>
-          {/* <Heart src="/fullheart.png" />
+          {props.likeCnt && props.likeCnt == 0 ? <Heart src={likeOff.src} /> : <Heart src={likeOn.src} />}
           <LikeCnt>
-            <>{props.likeCnt}</>
-          </LikeCnt> */}
+            <>{props.likeCnt && props.likeCnt}</>
+          </LikeCnt>
         </Like>
       </RightBox>
     </CardBox>

@@ -52,22 +52,24 @@ export const getCombinationPost = createAsyncThunk("combination/getPost", async 
 });
 
 // 게시물 좋아요 / 취소
-export const patchCombinationPostSave = createAsyncThunk("combination/patchSave", async (data, thunkAPI) => {
+export const patchCombinationPostLike = createAsyncThunk("combination/patchLike", async (data, thunkAPI) => {
   try {
-    const response = await combinationPostApi.patchCombinationSave(data);
-    if (response.statusText === "OK") return response.data;
+    const response = await combinationPostApi.patchCombinationLike(data);
+
+    if (response.statusText === "OK") {
+      return response.data;
+    }
   } catch (err) {
     return thunkAPI.rejectWithValue(err.response.message);
   }
 });
 
 // 게시물 찜 / 취소
-export const patchCombinationPostLike = createAsyncThunk("combination/patchLike", async (data, thunkAPI) => {
+export const patchCombinationPostSave = createAsyncThunk("combination/patchSave", async (data, thunkAPI) => {
   try {
-    const response = await combinationPostApi.patchCombinationLike(data);
-    const res = thunkAPI.getState().post;
+    const response = await combinationPostApi.patchCombinationSave(data);
     if (response.statusText === "OK") {
-      return;
+      return response.data;
     }
   } catch (err) {
     return thunkAPI.rejectWithValue(err.response.message);
