@@ -10,6 +10,7 @@ export const postSignup = createAsyncThunk("/user/postSignup", async (data, thun
     const response = await userApi.signup(data);
     if (response.data.result === "success") {
       window.alert("회원가입 완료");
+      router.push('/auth/login')
       return response.data.msg;
     }
   } catch (err) {
@@ -29,7 +30,7 @@ export const postLogin = createAsyncThunk("user/postLogin", async (data, thunkAP
       return response.data.msg;
     }
   } catch (err) {
-    alert("로그인을 다시 시도해주세요!");
+    alert("로그인을 다시 시도해 주세요!");
     return thunkAPI.rejectWithValue(err.response.message);
   }
 });
@@ -62,13 +63,12 @@ export const Me = createAsyncThunk("user/profile", async (data, thunkAPI) => {
 });
 
 // 프로필 수정
-export const patchUserid = createAsyncThunk(
-  "/user/patchuserid", async (data, thunkAPI) => {
-    try {
-      const response = await userApi.userid(data);
-      window.alert("프로필 수정 완료!");
-    if (response.data.status === 200) {
-      return response.data.msg;
+export const patchUserid = createAsyncThunk("/user/patchuserid", async (data, thunkAPI) => {
+  try {
+    const response = await userApi.userid(data);
+    window.alert("프로필 수정 완료!");
+    if (response.statusText === "OK") {
+      return data;
     }
   } catch (err) {
     return thunkAPI.rejectWithValue(err.response.message);

@@ -45,20 +45,21 @@ const login = () => {
                         label="비밀번호" 
                         value={userPassword}
                         setValue={setuserPassword}
+                        type="password"
+
                     />
                     </InputWrap>
                 </Margin>
                     <RedButton 
                         onClick={() =>{
                             setLogin()
-                        }} 
+                        }}
                         value="로그인"
                     />
 
-                <WhiteButton 
-                    value="회원가입"
-                    onClick={()=>router.push('/auth/signup')}
-                />
+                <SignupBtn onClick={()=>router.push('/auth/signup')}>
+                    회원가입
+                </SignupBtn>
             </div>
         </Container>
     );
@@ -74,6 +75,13 @@ const Margin = styled.div`
 
 const InputWrap = styled.div`
    margin-bottom : 11%;
+`
+
+const SignupBtn = styled.div`
+    color: #b8b8b8;
+    text-align: center;
+    margin: 30px;
+
 `
 
 export default login;

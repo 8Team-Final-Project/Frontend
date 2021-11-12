@@ -55,7 +55,7 @@ const signup = () => {
             userNickname
         }
         //여기서 바로 api 연결해서, 사용가능한 것으로 확인되면 바로 setIsCheckNickname을 true로 바꿔줍니다. isCheckNickname이 true면 방금처럼 '확인' 으로 바뀝니다.
-        userApi.checknick(nickname).then(res=>{if(res.statusText==='OK'){alert('사용가능한 닉네임입니다'); setIsCheckNickname(true);}}).catch(err=>alert(err))
+        userApi.checknick(nickname).then(res=>{if(res.statusText==='OK'){alert('사용 가능한 닉네임 입니다'); setIsCheckNickname(true);}}).catch(err=>alert(err))
     };
 
     const handleCheckEmail = () => {
@@ -80,7 +80,7 @@ const signup = () => {
                     setIsCheck={setIsCheckNickname} //isCheck를 변경시키는 setState
                     regexCheck={regex.nickname} //정규식 shared/regex 에서 가져와서 사용하세요.
                     errorText='3글자 이상부터 가능해요!'    //식이랑 맞지 않을때 보여줄 텍스트
-                    defaultText='닉네임을 입력해주세요!'    //아무것도 적히지 않았을때 보여줄 텍스트
+                    defaultText='닉네임을 입력해 주세요!'    //아무것도 적히지 않았을때 보여줄 텍스트
                     maxValue={10}   //최대길이
                     //successText도 사용하면 성공했을때 텍스트를 보여줄 수 있어요
                 />
@@ -94,8 +94,8 @@ const signup = () => {
                     isCheck={isCheckEmail} 
                     setIsCheck={setIsCheckEmail}
                     regexCheck={regex.email}
-                    errorText='2글자 이상 입력해주세요!'
-                    defaultText='이메일을 입력해주세요!'
+                    errorText='2글자 이상 입력해 주세요!'
+                    defaultText='이메일을 입력해 주세요!'
                 />
                 </InputWrap>
                 <InputWrap>
@@ -104,7 +104,8 @@ const signup = () => {
                     value={userPassword}
                     setValue={setuserPassword}
                     regexCheck={regex.password}
-                    errorText='6글자 이상 입력해주세요!'
+                    errorText='6글자 이상 입력해 주세요!'
+                    type="password"
                 />
                 </InputWrap>
                 <InputWrap>
@@ -112,6 +113,7 @@ const signup = () => {
                 label="비밀번호 확인"
                 value={userconfirmPassword}
                 setValue={setuserconfirmPassword}
+                type="password"
                 />
                 </InputWrap>
             </MarginBottom>
@@ -130,10 +132,12 @@ const signup = () => {
                 }}
             />
             <br/>
+            <Center>
             <WhiteButton
                 value="취소"
                 onClick={() => router.push('/')}
             />
+            </Center>
         </div>
     );
 };
@@ -144,6 +148,10 @@ const MarginBottom = styled.div`
 const InputWrap = styled.div`
     margin-bottom : 12%;
 
+`
+
+const Center = styled.div`
+    margin: auto;
 `
 
 export default signup;

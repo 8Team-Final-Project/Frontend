@@ -1,12 +1,10 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 import styled from "styled-components";
 import EventPost from "../Event/EventPost";
 
 const PostSaveBtn = (props) => {
-  const dispatch = useDispatch();
-
   const [activeIndex, setActiveIndex] = useState(0);
 
   const tabClickHandler = (index) => {
@@ -23,8 +21,7 @@ const PostSaveBtn = (props) => {
     {
       tabTitle: (
         <PostButton className={activeIndex === 0 ? "is-active" : ""} onClick={() => tabClickHandler(0)}>
-          {" "}
-          작성한 글{" "}
+          작성한 글
         </PostButton>
       ),
       tabCont: (
@@ -39,8 +36,7 @@ const PostSaveBtn = (props) => {
     {
       tabTitle: (
         <SaveButton className={activeIndex === 1 ? "is-active" : ""} onClick={() => tabClickHandler(1)}>
-          {" "}
-          저장한 글{" "}
+          저장한 글
         </SaveButton>
       ),
       tabCont: (
