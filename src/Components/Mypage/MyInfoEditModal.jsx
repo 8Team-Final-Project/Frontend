@@ -27,8 +27,8 @@ export default function MyInfoEditModal({ isOpen, handleClose }) {
   const [userEmail, setUserEmail] = useState(""); //이메일 변경과 저장을 위한 state
 
   //중복체크했는지 안했는지 여부값
-  const [isCheckNickname, setIsCheckNickname] = useState(false);
-  const [isCheckEmail, setIsCheckEmail] = React.useState(false);
+  const [isCheckNickname, setIsCheckNickname] = useState(true);
+  const [isCheckEmail, setIsCheckEmail] = useState(true);
 
   //기존 유저정보값
   const nicknameFromStore = useSelector((state) => state.user.user?.userNickname);
@@ -47,12 +47,17 @@ export default function MyInfoEditModal({ isOpen, handleClose }) {
 
   const handleSave = () => {
     //유저정보수정하는 함수
-    const editProfile = {
-      userNickname: nickname,
-      userEmail: userEmail
-    };
-    dispatch(patchUserid(editProfile));
-    handleClose();
+    if(isCheckEmail === true && isCheckNickname === true) {
+      const editProfile = {
+        userNickname: nickname,
+        userEmail: userEmail
+      };
+      dispatch(patchUserid(editProfile));
+      handleClose();
+    }
+    if(isCheckEmail === false || isCheckNickname === false){
+      alert("중복 확인을 체크해주세요!")
+    }
   };
 
   // 로그아웃 버튼
@@ -124,7 +129,7 @@ export default function MyInfoEditModal({ isOpen, handleClose }) {
               defaultText="이메일을 입력해주세요!"
             />
           </InputArea>
-          <WhiteButton value="로그아웃" onClick={setLogout} />
+          <LogoutBtn onClick={setLogout}>로그아웃</LogoutBtn>
         </Content>
         <Controls>
           <button onClick={handleClose}>취소</button>
@@ -191,3 +196,8 @@ const Controls = styled.div`
     color: #ff7775;
   }
 `;
+
+const LogoutBtn = styled.div`
+  color: #b8b8b8;
+  margin: 10px; 0 0 0;
+`
