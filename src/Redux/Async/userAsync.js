@@ -10,6 +10,7 @@ export const postSignup = createAsyncThunk("/user/postSignup", async (data, thun
     const response = await userApi.signup(data);
     if (response.data.result === "success") {
       window.alert("회원가입 완료");
+      router.push('/auth/login')
       return response.data.msg;
     }
   } catch (err) {
@@ -29,7 +30,7 @@ export const postLogin = createAsyncThunk("user/postLogin", async (data, thunkAP
       return response.data.msg;
     }
   } catch (err) {
-    alert("로그인을 다시 시도해주세요!");
+    alert("로그인을 다시 시도해 주세요!");
     return thunkAPI.rejectWithValue(err.response.message);
   }
 });
