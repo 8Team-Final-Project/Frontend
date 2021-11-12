@@ -8,12 +8,12 @@ import HoneyButton from "../src/Components/Button/HoneyButton";
 import AppDownloadBtn from "../src/Components/Shared/AppDownloadBtn";
 
 //images
-import mainBnr from "../src/Asset/Images/main_bnr.png";
+import mainBnr from "../src/Asset/Images/main_bnr.svg";
 import eventBnr1 from "../src/Asset/Images/main_event_bnr1.png";
 import eventBnr2 from "../src/Asset/Images/main_event_bnr2.png";
 import eventBnr3 from "../src/Asset/Images/main_event_bnr3.png";
-import fishBread from "../src/Asset/Images/fish_bread.png";
-import ramen from "../src/Asset/Images/ramen.png";
+import fishBread from "../src/Asset/Images/fish_bread.svg";
+import ramen from "../src/Asset/Images/ramen.svg";
 
 //icons
 import questionIcon from "../src/Asset/icons/question_icon.svg";

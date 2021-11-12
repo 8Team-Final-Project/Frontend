@@ -36,10 +36,10 @@ position : absolute;
 `
 const Btn = styled.div`
     /* margin : 100px; */
-    width : 80%;
+    width : 100%;
     align-content : center;
     position : absolute;
-    margin : 330% 9%
+    margin : 335% 5%
 `
 
 

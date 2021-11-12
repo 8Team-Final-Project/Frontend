@@ -18,7 +18,7 @@ RedButton.defaultProps = {
 };
 
 const RButton = styled.button`
-  width: 100%;
+  width: 90%;
   height: 70px;
   background-color: #ff7775;
   padding: 12px 0px;

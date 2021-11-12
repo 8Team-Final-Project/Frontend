@@ -18,12 +18,12 @@ HoneyButton.defaultProps = {
 };
 
 const HButton = styled.button`
-  width: 100%;
+  width: 90%;
   height: 75px;
   background-color: #ffd86b;
   padding: 12px 0px;
   border-radius: 10px;
-  font-size: 16px;
+  font-size: 18px;
   cursor: pointer;
   ${({ main }) => main && `position:relative;`}
   img {
