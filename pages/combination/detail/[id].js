@@ -19,7 +19,8 @@ import PostBasicProfile from "../../../src/Asset/Images/post-basic-profile.svg";
 //꿀조합 상세페이지
 const PartyDetail = (props) => {
   const dispatch = useDispatch();
-  const { src, imgUrl } = props;
+
+  const { src } = props;
 
   const shareUrl = "kkuljohab.com" + useRouter().asPath;
 
@@ -82,14 +83,14 @@ const PartyDetail = (props) => {
     <React.Fragment>
       <Grid>
         <FlexBox>
-          <Image src={imgUrl} />
+          <Image src={PostBasicProfile.src} />
           <UserBox>
             <NickName>{postItem && postItem.userNickname}</NickName>
             <PostingDate>{postItem && postItem.createDate}</PostingDate>
           </UserBox>
           {postItem?.userId === userId && (
             <Menu>
-              <BsThreeDotsVertical style={{ right: 0 }} onClick={openModal} />
+              <BsThreeDotsVertical onClick={openModal} />
             </Menu>
           )}
         </FlexBox>
@@ -98,20 +99,19 @@ const PartyDetail = (props) => {
           <strong>{postItem && postItem.postTitle}</strong>
         </Title>
 
-        <Wrap>
-          <Content>
-            <Label>꿀조합</Label>
-            <Value>{postItem && postItem.postRecipe}</Value>
-          </Content>
+        <Content>
+          <Label>꿀조합</Label>
+          <Value>{postItem && postItem.postRecipe}</Value>
+        </Content>
 
-          <Content>
-            <Label>레시피</Label>
-            <Value> {postItem && postItem.postContent} </Value>
-          </Content>
-          <IconBox>
-            {postItem && postItem.postTag.map((tag, idx) => <Tag is_detail key={idx} value={"#" + tag}></Tag>)}
-          </IconBox>
-        </Wrap>
+        <Content>
+          <Label>레시피</Label>
+          <Recipe> {postItem && postItem.postContent}</Recipe>
+        </Content>
+        <IconBox>
+          {postItem && postItem.postTag.map((tag, idx) => <Tag is_detail key={idx} value={"#" + tag}></Tag>)}
+        </IconBox>
+
         {/* <Btn>
           <IconBox>
             <button
@@ -165,16 +165,14 @@ const PartyDetail = (props) => {
     </React.Fragment>
   );
 };
-PartyDetail.defaultProps = {
-  imgUrl: PostBasicProfile.src
-};
+PartyDetail.defaultProps = {};
 
 const Image = styled.img`
   margin-right: 15px;
   width: 44px;
   height: 44px;
   object-fit: none;
-  border-radius: 50%;
+  border-radius: 30px;
 `;
 
 const NickName = styled.div`
@@ -190,7 +188,8 @@ const PostingDate = styled.div`
 
 const FlexBox = styled.div`
   display: flex;
-  padding: 10px 15px;
+  padding: 10px 20px;
+  margin: 10px 0 0 0;
 `;
 
 const UserBox = styled.div`
@@ -215,7 +214,7 @@ const TextBox = styled.div`
 const IconBox = styled.div`
   display: flex;
   justify-content: center;
-  margin: auto 30px;
+  margin: auto 20px;
 `;
 const PostImg = styled.img`
   width: 100%;
@@ -225,25 +224,19 @@ const PostImg = styled.img`
 `;
 
 const Title = styled.div`
-  // display: flex;
+  display: flex;
   font-size: 24px;
   font-weight: bold;
   word-break: break-all;
-  margin: 0 15px;
+  margin: 5px 15px 17px;
   position: relative;
 `;
 
 const Menu = styled.div`
-  //display: inline-block;
-  //line-height: 1;
-  align-items: flex-end;
   font-size: 20px;
   color: #b8b8b8;
-  //text-align: end;
-  cursor: pointer;
-  //position: absolute;
-  //right: 0;
-  flex-grow: 2;
+  display: flex;
+  justify-content: end;
 `;
 
 const Wrap = styled.div`
@@ -251,27 +244,32 @@ const Wrap = styled.div`
 `;
 
 const Content = styled.div`
-  width: 100%;
-  margin-bottom: 15px;
   display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
+  width: 95%;
+  margin: 10px;
+  font-size: 18px;
 `;
 
 const Label = styled.span`
   display: inline-block;
   color: #878787;
-  text-align: left;
-  margin-bottom: 45px;
   width: 70px;
 `;
 
 const Value = styled.span`
   display: inline-block;
-  color: black;
-  text-align: left;
-  width: calc(100% - 80px);
-  overflow-wrap: break-word;
+  width: 100%;
+  padding-left: 10px;
+  text-align: start;
+`;
+
+const Recipe = styled.span`
+  display: inline-block;
+  width: 100%;
+  height: 5vh;
+  padding-left: 10px;
+  text-align: start;
+  word-wrap: break-word;
 `;
 
 const Btn = styled.div`
