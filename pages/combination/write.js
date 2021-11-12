@@ -3,6 +3,8 @@ import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import { addCombinationPostDB } from "../../src/Redux/Async/combinationAsync";
 import { useRouter } from "next/router";
+
+// componets
 import HashTagWriteInput from "../../src/Components/Input/HashTagWriteInput";
 import RectangleImage from "../../src/Components/Shared/RectangleImage";
 import ValidationInput from "../../src/Components/Input/ValidationInput";

@@ -26,7 +26,7 @@ const RedTagBox = styled.div`
   height: 27.41px;
   border-radius: 74px;
   border: 2px solid #ff7775;
-  margin: 0px 10px 5px 0px;
+  margin: 0px 20px 5px 0px;
 `;
 
 const BlackTagBox = styled.div`
