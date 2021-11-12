@@ -14,10 +14,10 @@ WhiteButton.defaultProps = {
 const WButton = styled.button`
   width: 100%;
   height: 70px;
-  background-color: #fff;
+  background-color: #F8F8F8;
   padding: 12px 0px;
   border-radius: 10px;
-  color: #b8b8b8;
+  color: #868686;
   font-size: 15px;
   cursor: pointer;
 `;
