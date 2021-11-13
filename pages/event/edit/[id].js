@@ -40,6 +40,7 @@ const EventPostEdit = () => {
     if (getPostContent && getPostContent !== postContent) setPostContent(getPostContent);
   }, [getPostImg, getPostTitle, getPostRecipe, getPostContent]);
 
+  
   const editEventPost = () => {
     const content = {
       postImg: postImg,
@@ -49,6 +50,7 @@ const EventPostEdit = () => {
       postId: postId
     };
     dispatch(editEventPostDB(content));
+    router.push(`/event/detail/${postId}`)
   };
 
   return (

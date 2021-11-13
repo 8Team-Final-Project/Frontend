@@ -16,11 +16,11 @@ import HeartOff from "../../../public/likeOff.png";
 import { red } from "@mui/material/colors";
 
 //img
-import likeOn from "../../../src/Asset/Images/likeOn.svg";
-import likeOff from "../../../src/Asset/Images/likeOff.svg";
-import saveOn from "../../../src/Asset/Images/saveOn.svg";
-import saveOff from "../../../src/Asset/Images/saveOff.svg";
-import shareOn from "../../../src/Asset/Images/shareOn.svg";
+import likeOn from "../../Asset/Images/likeOn.svg";
+import likeOff from "../../Asset/Images/likeOff.svg";
+import saveOn from "../../Asset/Images/saveOn.svg";
+import saveOff from "../../Asset/Images/saveOff.svg";
+import shareOn from "../../Asset/Images/shareOn.svg";
 
 const DetailContentsBox = (props) => {
   const dispatch = useDispatch();
@@ -37,8 +37,8 @@ const DetailContentsBox = (props) => {
   const post = useSelector((state) => state.event.post);
   const user = useSelector((state) => state.user.user?.userId);
 
-  const likeUserId = useSelector((state) => state.combination.post?.likeStatus);
-  const saveUserId = useSelector((state) => state.combination.post?.keepStatus);
+  const likeUserId = useSelector((state) => state.event.post?.likeStatus);
+  const saveUserId = useSelector((state) => state.event.post?.keepStatus);
 
   const setPostSave = () => {
     dispatch(saveEventPostDB(id));

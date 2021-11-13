@@ -8,11 +8,9 @@ import RectangleImage from "../../../src/Components/Shared/RectangleImage";
 import ValidationInput from "../../../src/Components/Input/ValidationInput";
 import RedButton from "../../../src/Components/Button/RedButton";
 import WhiteButton from "../../../src/Components/Button/WhiteButton";
-import HashTagWriteInput from "../../../src/Components/Input/HashTagWriteInput.jsx"
 
 //꿀조합 수정페이지
 const combinationEdit = () => {
-  
   const disPatch = useDispatch();
   const router = useRouter();
   const postId = useRouter().query.id;
@@ -38,19 +36,14 @@ const combinationEdit = () => {
 
   const editPost = () => {
     const postItem = {
-      postTitle: postTitle,
-      postContent: postContent,
-      postRecipe: postRecipe,
       postImg: postImg,
-      postTag: postTag,
+      postTitle: postTitle,
+      postRecipe: postRecipe,
+      postContent: postContent,
       postId: postId,
-      mainlist: true,
-      event1list: false,
-      event2list: false,
-      event3list: false,
-
     };
     disPatch(patchCombinationPostDB(postItem));
+    router.push(`/combination/detail/${postId}`)
   };
 
   return (
