@@ -51,11 +51,11 @@ export default function Home() {
         <DescriptionArea>
           <EventBnr>
             <EventBnrBox>
-              <Image src={ramen.src} width="100%" />
+              <Image src={ramen.src} width="85%" />
               <Tag>#라면냠냠</Tag>
             </EventBnrBox>
             <EventBnrBox>
-              <Image src={fishBread.src} width="100%" />
+              <Image src={fishBread.src} width="85%" />
               <Tag>#붕어빵냠냠</Tag>
             </EventBnrBox>
           </EventBnr>
@@ -149,7 +149,7 @@ const Btn = styled.div`
 `
 
 const Image = styled.img`
-  vertical-align: bottom;
+  /* vertical-align: bottom; */
 `;
 
 const Description = styled.div`
@@ -168,6 +168,9 @@ const EventBnr = styled.div`
 
 const EventBnrBox = styled.div`
   width: 100%;
+  margin-left: 23px;
+  margin-right: 23px;
+  
 `;
 
 const Tag = styled.span`
@@ -180,7 +183,5 @@ const Tag = styled.span`
   box-sizing: border-box;
   color: #ff7775;
   align-items: center;
-  line-height: 1;
-  margin-right: 10px;
-  margin-top: 10px;
+  margin-top: 5px;
 `;

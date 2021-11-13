@@ -2,6 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import logoIcon from "../../Asset/icons/logo_icon.svg";
 
+// import { GlobalStyles } from "../../../styles/globalStyles";
+
 const HoneyButton = ({ value, onClick, main }) => {
   return (
     <HButton onClick={onClick} main={main}>
@@ -32,6 +34,8 @@ const HButton = styled.button`
     left: 0;
     bottom: 0;
   }
+  /* font-family: 'Spoqa Han Sans Neo', 'Spoqa Han Sans JP', Medium; */
+  color: #3C3C3C;
 `;
 
 export default HoneyButton;
