@@ -156,6 +156,7 @@ const CancelButton = styled.div`
     color: #b8b8b8;
     text-align: center;
     margin: 30px;
+    font-size : 18px;
 
 `
 

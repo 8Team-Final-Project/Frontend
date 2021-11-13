@@ -74,7 +74,7 @@ const Nav = styled.div`
   justify-content: space-between;
   & span {
     cursor: pointer;
-    width: 100%;
+    width: 35%;
     text-align: end;
   }
 `;

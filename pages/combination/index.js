@@ -31,7 +31,7 @@ const combination = () => {
         <div>
           <EventBanner src={FirstEventImg.src} />
         </div>
-        <Wrap>
+        <CardWrap>
         {/* post는 객체하나 */}
         {isloaded && (
           <>
@@ -41,7 +41,7 @@ const combination = () => {
               })}
           </>
         )}
-        </Wrap>
+        </CardWrap>
       </PageBox>
     </div>
   );
@@ -62,9 +62,8 @@ const PageBox = styled.div`
   margin: auto;
 `;
 
-const Wrap = styled.div`
-  width : 95%;
-  margin : 8% auto auto auto;
+const CardWrap = styled.div`
+  margin : 8% 6% auto;
 `
 
 export default combination;

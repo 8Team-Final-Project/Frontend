@@ -98,7 +98,9 @@ const DetailContentsBox = (props) => {
           <Label>레시피</Label>
           <Recipe> {post && post.postContent}</Recipe>
         </Content>
-        <IconBox>{post && post.postTag.map((tag, idx) => <Tag is_detail key={idx} value={"#" + tag}></Tag>)}</IconBox>
+        <TagWrap>
+          <IconBox>{post && post.postTag.map((tag, idx) => <Tag is_detail key={idx} value={"#" + tag}></Tag>)}</IconBox>
+        </TagWrap>
         <Btn>
           <IconBox>
             <button
@@ -253,12 +255,16 @@ const Value = styled.span`
   overflow-wrap: break-word;
 `;
 
-const Recipe = styled.div`
+const Recipe = styled.span`
   display: inline-block;
   color: black;
   text-align: left;
   width: calc(100% - 80px);
   overflow-wrap: break-word;
+`;
+
+const TagWrap = styled.div`
+  margin: 15% 0 8.5% 0;
 `;
 
 const Btn = styled.div`

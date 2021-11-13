@@ -121,7 +121,7 @@ const write = () => {
   );
 };
 const CenterBox = styled.div`
-  width: 100%;
+  width: 90%;
   margin: 20px auto;
 `;
 

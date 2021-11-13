@@ -26,6 +26,6 @@ const Floatbtn = styled.img`
   position: fixed;
   right: ${({ locationX }) => locationX && `calc(103vw - ${locationX}px);`};
   bottom: 5%;
-  width: 55px;
+  width: 80px;
   cursor: pointer;
 `;

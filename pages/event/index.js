@@ -60,7 +60,7 @@ const BannerImg = styled.img`
 
 `
 const CardWrap = styled.div`
-    margin : 0px 3%;
+    margin : 8% 6% auto;
 `
 
 export default event;

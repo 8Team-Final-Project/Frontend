@@ -52,7 +52,7 @@ const EventPostEdit = () => {
   };
 
   return (
-    <div>
+    <Grid>
       <ImgMargin>
         <RectangleImage edit saveUrl={setPostImg} imgUrl={postImg ? postImg : false} onChange={setPostImg} />
       </ImgMargin>
@@ -94,9 +94,13 @@ const EventPostEdit = () => {
         />
         <RedButton onClick={editEventPost} value="저장" />
       </Controls>
-    </div>
+    </Grid>
   );
 };
+
+const Grid = styled.div`
+  margin : 0px 5%;
+`
 
 const ImgMargin = styled.div`
   margin: 50px 0px;

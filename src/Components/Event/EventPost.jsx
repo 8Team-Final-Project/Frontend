@@ -95,7 +95,7 @@ const Heart = styled.img`
   display: block;
   text-align: right;
   width: 15px;
-  height: 13px;
+  height: 15px;
   margin-left: 85%;
   margin-top: 1px;
 `;
@@ -103,7 +103,7 @@ const Heart = styled.img`
 const LikeCnt = styled.span`
   margin-left: 7px;
   font-size: 10px;
-  color: red;
+  color: #ff7775;
 `;
 
 export default EventPost;

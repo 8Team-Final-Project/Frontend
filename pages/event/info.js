@@ -11,7 +11,7 @@ const Info = (props) => {
     return (
         <React.Fragment>
             <Wrap>
-           <EventInfoImg src="/test.svg"/>
+           <EventInfoImg src="/eventImg.svg"/>
            <Btn>
            <RedButton main
            value={"이벤트 참여하기"}
@@ -37,7 +37,7 @@ const Btn = styled.div`
     width : 100%;
     align-items : center;
     position : absolute;
-    margin : 333% 0;
+    margin : 321% 0;
 `
 
 

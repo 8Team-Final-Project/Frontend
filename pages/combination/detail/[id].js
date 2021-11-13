@@ -187,9 +187,6 @@ const UserBox = styled.div`
   display: table-column;
 `;
 
-PartyDetail.defaultProps = {
-  src: "/android-icon-192x192.png"
-};
 
 const Grid = styled.div`
   text-align: center;
@@ -252,18 +249,18 @@ const Label = styled.span`
 
 const Value = styled.span`
   display: inline-block;
-  width: 100%;
-  padding-left: 10px;
-  text-align: start;
+  color: black;
+  text-align: left;
+  width: calc(100% - 80px);
+  overflow-wrap: break-word;
 `;
 
 const Recipe = styled.span`
   display: inline-block;
-  width: 100%;
-  height: 5vh;
-  padding-left: 10px;
-  text-align: start;
-  word-wrap: break-word;
+  color: black;
+  text-align: left;
+  width: calc(100% - 80px);
+  overflow-wrap: break-word;
 `;
 
 const Btn = styled.div`

@@ -79,6 +79,7 @@ const Wrapper = styled.div`
 
 const HeaderWrap = styled.div`
   margin : 5%;
+  padding : 0 3%;
 `
 
 // withRedux 함수로 컴포넌트를 감싸준다.
