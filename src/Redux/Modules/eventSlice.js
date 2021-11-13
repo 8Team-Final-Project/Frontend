@@ -103,8 +103,16 @@ const eventSlice = createSlice({
         },
 
         //이벤트 게시글 좋아요
-        [likeEventPostDB.fulfilled]: (state, { payload }) => {
-            state.post = payload;
+        [likeEventPostDB.fulfilled]: (state, { payload : post }) => {
+            window.alert(post.msg);
+            if (post.msg === "좋아요성공") {
+                state.post.likeCnt += 1;
+                state.post.likeStatus = true;
+            }
+            if (post.msg === "취소성공") {
+                state.post.likeCnt -= 1;
+                state.post.likeStatus = false;
+            }
             state.loaded = true;
             state.isFetching = false;
             state.errorMessage = null;
@@ -118,8 +126,14 @@ const eventSlice = createSlice({
         },
 
         //이벤트 게시글 찜
-        [saveEventPostDB.fulfilled]: (state, { payload }) => {
-            state.post = payload;
+        [saveEventPostDB.fulfilled]: (state, { payload : post }) => {
+            window.alert(post.msg);
+                if (post.msg === "게시물이 찜 되었습니다") {
+                    state.post.keepStatus = true;
+                }
+                if (post.msg === "게시물이 찜이 취소 되었습니다") {
+                    state.post.keepStatus = false;
+                }
             state.isFetching = false;
             state.errorMessage = null;
         },

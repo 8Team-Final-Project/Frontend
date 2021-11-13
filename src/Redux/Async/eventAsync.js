@@ -61,22 +61,22 @@ export const deleteEventPostDB = createAsyncThunk("event/deletePost", async (dat
 export const likeEventPostDB = createAsyncThunk("event/likePost", async (data, thunkAPI) => {
   try {
     const response = await eventPostApi.likeEventPost(data);
+
     if (response.statusText === "OK") {
-      if (response.data.likeState === true) {
-        thunkAPI.dispatch(increaseLike());
-      } else {
-        thunkAPI.dispatch(decreaseLike());
-      }
+      return response.data;
     }
   } catch (err) {
     return thunkAPI.rejectWithValue(err.response.message);
   }
 });
 
+
 export const saveEventPostDB = createAsyncThunk("event/savePost", async (data, thunkAPI) => {
   try {
     const response = await eventPostApi.saveEventPost(data);
-    if (response.statusText === "OK") return response.data;
+    if (response.statusText === "OK") {
+      return response.data;
+    }
   } catch (err) {
     return thunkAPI.rejectWithValue(err.response.message);
   }
