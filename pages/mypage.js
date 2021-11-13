@@ -53,7 +53,9 @@ const mypage = (props) => {
       <MyInfoEditModal isOpen={modalOpen} handleClose={() => setModalOpen(false)} />
 
       {/* 작성글 저장글 */}
+      <ListWrap>
       <PostSaveBtn />
+      </ListWrap>
     </>
   );
 };
@@ -105,5 +107,9 @@ const Center = styled.div`
   text-align: center;
   margin-bottom: 6%;
 `;
+
+const ListWrap = styled.div`
+  padding : 5%;
+`
 
 export default mypage;

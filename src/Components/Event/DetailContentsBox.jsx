@@ -3,8 +3,10 @@ import Modal from "react-modal";
 import { useRef, useEffect } from "react";
 import styled from "styled-components";
 import Router, { useRouter } from "next/router";
+import { CopyToClipboard } from "react-copy-to-clipboard";
 import { useDispatch, useSelector } from "react-redux";
 import { getEventPostDB, likeEventPostDB, saveEventPostDB } from "../../Redux/Async/eventAsync";
+import PostBasicProfile from "../../../src/Asset/Images/post-basic-profile.svg";
 
 //component
 import MenuButton from "../Shared/CommentEditDelete";
@@ -12,6 +14,13 @@ import { BsThreeDotsVertical } from "react-icons/bs";
 import Tag from "../Tag";
 import HeartOff from "../../../public/likeOff.png";
 import { red } from "@mui/material/colors";
+
+//img
+import likeOn from "../../../src/Asset/Images/likeOn.svg";
+import likeOff from "../../../src/Asset/Images/likeOff.svg";
+import saveOn from "../../../src/Asset/Images/saveOn.svg";
+import saveOff from "../../../src/Asset/Images/saveOff.svg";
+import shareOn from "../../../src/Asset/Images/shareOn.svg";
 
 const DetailContentsBox = (props) => {
   const dispatch = useDispatch();
@@ -22,27 +31,26 @@ const DetailContentsBox = (props) => {
     query: { id }
   } = useRouter();
 
+  const shareUrl = "kkuljohab.com" + useRouter().asPath;
+
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const post = useSelector((state) => state.event.post);
   const user = useSelector((state) => state.user.user?.userId);
 
-  const [offSave, setOnSave] = useState(true);
-
-  const saveClick = () => {
-    setOnSave(!offSave);
-  };
+  const likeUserId = useSelector((state) => state.combination.post?.likeStatus);
+  const saveUserId = useSelector((state) => state.combination.post?.keepStatus);
 
   const setPostSave = () => {
     dispatch(saveEventPostDB(id));
   };
 
+  const setPostLike = () => {
+    dispatch(likeEventPostDB(id));
+  };
+
   React.useEffect(() => {
     if (id) dispatch(getEventPostDB(id));
   }, [id]);
-
-  const likeEventPost = () => {
-    dispatch(likeEventPostDB(id));
-  };
 
   // Open modal
   const openModal = (e) => {
@@ -64,40 +72,68 @@ const DetailContentsBox = (props) => {
 
   return (
     <React.Fragment>
-      <PostImg src={post?.postImg ? post.postImg : src} />
-      <Title>
-        <strong>{post && post.postTitle}</strong>
-        {post?.userId === user && (
-          <Menu>
-            <BsThreeDotsVertical onClick={openModal} />
-          </Menu>
-        )}
-      </Title>
+      <Grid>
+        <FlexBox>
+          <Image src={PostBasicProfile.src} />
+          <UserBox>
+            <NickName>{post && post.userNickname}</NickName>
+            <PostingDate>{post && post.createDate}</PostingDate>
+          </UserBox>
+          {post?.userId === user && (
+            <Menu>
+              <BsThreeDotsVertical onClick={openModal} />
+            </Menu>
+          )}
+        </FlexBox>
+        <PostImg src={post?.postImg ? post.postImg : src} />
+        <Title>
+          <strong>{post && post.postTitle}</strong>
+        </Title>
 
-      <Wrap>
         <Content>
           <Label>꿀조합</Label>
           <Value>{post && post.postRecipe}</Value>
         </Content>
-
         <Content>
           <Label>레시피</Label>
-          <Value> {post && post.postContent} </Value>
+          <Recipe> {post && post.postContent}</Recipe>
         </Content>
-        {post && post.postTag.map((tag, idx) => <Tag is_detail key={idx} value={"#" + tag}></Tag>)}
-      </Wrap>
-      <Btn>
-        <LikeBtn src="/Vector.svg" onClick={likeEventPost} />
-        {post && post.likeCnt}
-        <SaveBtn
-          src="/Save.svg"
-          onClick={() => {
-            saveClick();
-            setPostSave();
-          }}
-        />
-        저장
-      </Btn>
+        <IconBox>{post && post.postTag.map((tag, idx) => <Tag is_detail key={idx} value={"#" + tag}></Tag>)}</IconBox>
+        <Btn>
+          <IconBox>
+            <button
+              onClick={() => {
+                setPostLike();
+              }}
+            >
+              {likeUserId && likeUserId == true ? <img src={likeOn.src} /> : <img src={likeOff.src} />}
+            </button>
+            <TextBox>{post && post.likeCnt}</TextBox>
+          </IconBox>
+          <IconBoxFlex>
+            <IconBox>
+              <button
+                onClick={() => {
+                  setPostSave();
+                }}
+              >
+                {saveUserId && saveUserId == true ? <img src={saveOn.src} /> : <img src={saveOff.src} />}
+              </button>
+            </IconBox>
+            <IconBox>
+              <CopyToClipboard text={shareUrl}>
+                <button
+                  onClick={() => {
+                    window.alert("링크복사됨~");
+                  }}
+                >
+                  <img src={shareOn.src} />
+                </button>
+              </CopyToClipboard>
+            </IconBox>
+          </IconBoxFlex>
+        </Btn>
+      </Grid>
 
       <ModalFrame>
         <Modal
@@ -119,53 +155,93 @@ DetailContentsBox.defaultProps = {
   src: "/android-icon-192x192.png"
 };
 
+const Image = styled.img`
+  margin-right: 10px;
+  width: 44px;
+  height: 44px;
+  object-fit: none;
+  border-radius: 30px;
+`;
+
+const NickName = styled.div`
+  font-size: 16px;
+  color: #898a8d;
+  text-align: start;
+`;
+
+const PostingDate = styled.div`
+  font-size: 12px;
+  color: #b8b8b8;
+`;
+
+const FlexBox = styled.div`
+  width: 100%;
+  display: flex;
+  margin-top: 20px;
+  padding-top: 15px;
+  border-top: 0.5px solid #e5e5e5;
+`;
+
+const UserBox = styled.div`
+  display: table-column;
+`;
+
+const Grid = styled.div`
+  text-align: center;
+`;
+
+const TextBox = styled.div`
+  color: #b8b8b8;
+  width: auto;
+  line-height: 45px;
+  font-size: 18px;
+`;
+
+const IconBox = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+const IconBoxFlex = styled.div`
+  display: flex;
+  margin: 0 0 0 auto;
+`;
+
 const PostImg = styled.img`
   width: 100%;
-  height: 225px;
-  margin-bottom: 36px;
-  margin-top: 31px;
-  border-radius: 12px;
+  height: 100%;
+  margin: 10px 0;
   object-fit: cover;
 `;
 
 const Title = styled.div`
   display: flex;
-  justify-content: center;
   font-size: 24px;
   font-weight: bold;
   word-break: break-all;
-  margin: 0px 0px 62px 0px;
+  margin: 5px 15px 17px;
   position: relative;
 `;
 
 const Menu = styled.div`
-  display: inline-block;
-  line-height: 1;
   font-size: 20px;
   color: #b8b8b8;
-  text-align: end;
-  cursor: pointer;
-  position: absolute;
-  right: 0;
-`;
-
-const Wrap = styled.div`
-  width: 100%;
+  margin: 0 0 0 auto;
+  align-items: center;
+  line-height: 2.3;
 `;
 
 const Content = styled.div`
-  width: 100%;
-  margin-bottom: 15px;
   display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
+  width: 95%;
+  margin: 10px;
+  font-size: 18px;
 `;
 
 const Label = styled.span`
   display: inline-block;
   color: #878787;
-  text-align: left;
-  margin-bottom: 45px;
   width: 70px;
 `;
 
@@ -177,28 +253,21 @@ const Value = styled.span`
   overflow-wrap: break-word;
 `;
 
+const Recipe = styled.div`
+  display: inline-block;
+  color: black;
+  text-align: left;
+  width: calc(100% - 80px);
+  overflow-wrap: break-word;
+`;
+
 const Btn = styled.div`
   display: flex;
-  justify-content: center;
-  margin-top: 80px;
+  align-items: center;
+  margin-top: 20px;
   color: #b8b8b8;
-`;
-
-const LikeBtn = styled.img`
-  width: 30px;
-  margin-right: 10px;
-  cursor: pointer;
-`;
-
-const SaveBtn = styled.img`
-  width: 20px;
-  margin: 0px 10px 0px 50px;
-  cursor: pointer;
-`;
-
-const ShareBtn = styled.img`
-  width: 30px;
-  margin: 0px 10px 0px 50px;
+  border-top: 0.5px solid #e5e5e5;
+  border-bottom: 0.5px solid #e5e5e5;
 `;
 
 const ModalFrame = styled.div`

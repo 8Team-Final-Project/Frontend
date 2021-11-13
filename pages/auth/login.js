@@ -31,7 +31,7 @@ const login = () => {
     
     return (
         <Container>
-            <div>
+            <Wrap>
                 <Margin>
                     <InputWrap>
                     <ValidationInput 
@@ -50,6 +50,7 @@ const login = () => {
                     />
                     </InputWrap>
                 </Margin>
+                <Btn>
                     <RedButton 
                         onClick={() =>{
                             setLogin()
@@ -60,7 +61,8 @@ const login = () => {
                 <SignupBtn onClick={()=>router.push('/auth/signup')}>
                     회원가입
                 </SignupBtn>
-            </div>
+                </Btn>
+            </Wrap>
         </Container>
     );
 };
@@ -69,13 +71,23 @@ const Container = styled.div`
     position: center;
 `
 
+const Wrap = styled.div`
+    padding : 4%;
+`
+
+
 const Margin = styled.div`
-    margin: 27% 0px;
+    margin: 8% 0px;
 `
 
 const InputWrap = styled.div`
    margin-bottom : 11%;
 `
+const Btn = styled.div`
+    margin-top : 15%;
+`
+
+
 
 const SignupBtn = styled.div`
     color: #b8b8b8;

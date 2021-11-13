@@ -70,7 +70,9 @@ export default function Home() {
           <Description>
             <p>사람들과 나만의 꿀조합도 공유하고,</p> <p>푸짐한 상품도 받아가세요!</p>
           </Description>
+          <Btn>
           <RedButton main onClick={() => router.push("/event")} value="이벤트 보러 가기" />
+          </Btn>
         </DescriptionArea>
       </Container>
 
@@ -141,6 +143,10 @@ const DescriptionArea = styled.div`
     color: inherit;
   }
 `;
+
+const Btn = styled.div`
+  width : 95%;
+`
 
 const Image = styled.img`
   vertical-align: bottom;

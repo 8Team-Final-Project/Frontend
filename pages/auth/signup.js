@@ -12,7 +12,6 @@ import {userApi} from "../../src/Shared/api"
 
 //components
 import RedButton from "../../src/Components/Button/RedButton"
-import WhiteButton from "../../src/Components/Button/WhiteButton"
 import ConfirmValidationInput from "../../src/Components/Input/ConfirmValidationInput"
 import ValidationInput from "../../src/Components/Input/ValidationInput"
 
@@ -68,7 +67,7 @@ const signup = () => {
     };
 
     return (
-        <div>
+        <Wrap>
             <MarginBottom>
                 <InputWrap>
                 <ConfirmValidationInput                 
@@ -118,10 +117,6 @@ const signup = () => {
                 </InputWrap>
             </MarginBottom>
 
-            <br/>
-            <br/>
-
-
             <RedButton 
                 onClick={() => {
                     setSignup()
@@ -133,25 +128,35 @@ const signup = () => {
             />
             <br/>
             <Center>
-            <WhiteButton
-                value="취소"
+            <CancelButton
                 onClick={() => router.push('/')}
-            />
+            >취소</CancelButton>
             </Center>
-        </div>
+        </Wrap>
     );
 };
 
+const Wrap = styled.div`
+    padding : 5%;
+`
+
 const MarginBottom = styled.div`
-    margin: 12% 0px;
+    margin: 3% 0px 30%;
 `
 const InputWrap = styled.div`
-    margin-bottom : 12%;
+    margin-bottom : 10%;
 
 `
 
 const Center = styled.div`
     margin: auto;
+`
+
+const CancelButton = styled.div`
+    color: #b8b8b8;
+    text-align: center;
+    margin: 30px;
+
 `
 
 export default signup;

@@ -18,13 +18,14 @@ RedButton.defaultProps = {
 };
 
 const RButton = styled.button`
-  width: 90%;
+  width: 100%;
   height: 70px;
   background-color: #ff7775;
   padding: 12px 0px;
   border-radius: 10px;
   color: white;
-  font-size: 15px;
+  font-size: 18px;
+  font-weight: medium;
   cursor: pointer;
   ${({ main }) => main && `position:relative;`};
   img {

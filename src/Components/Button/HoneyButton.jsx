@@ -18,7 +18,7 @@ HoneyButton.defaultProps = {
 };
 
 const HButton = styled.button`
-  width: 90%;
+  width: 80%;
   height: 75px;
   background-color: #ffd86b;
   padding: 12px 0px;

@@ -16,8 +16,7 @@ const Info = (props) => {
            <RedButton main
            value={"이벤트 참여하기"}
            onClick={goEvent}
-           > 
-           </RedButton>
+           /> 
            </Btn>
            </Wrap>
         </React.Fragment>
@@ -35,11 +34,10 @@ width : 100%;
 position : absolute;
 `
 const Btn = styled.div`
-    /* margin : 100px; */
     width : 100%;
-    align-content : center;
+    align-items : center;
     position : absolute;
-    margin : 335% 5%
+    margin : 333% 0;
 `
 
 

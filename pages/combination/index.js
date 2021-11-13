@@ -25,12 +25,13 @@ const combination = () => {
   return (
     <div>
       <PageBox>
-        <div>
+        <SearchWrap>
           <SearchInput></SearchInput>
-        </div>
+          </SearchWrap>
         <div>
           <EventBanner src={FirstEventImg.src} />
         </div>
+        <Wrap>
         {/* post는 객체하나 */}
         {isloaded && (
           <>
@@ -40,13 +41,18 @@ const combination = () => {
               })}
           </>
         )}
+        </Wrap>
       </PageBox>
     </div>
   );
 };
 
+const SearchWrap = styled.div`
+  padding : 5%;
+`
+
 const EventBanner = styled.img`
-  margin-top: 15px;
+  margin-top: 2%;
   width: 100%;
 `;
 
@@ -55,5 +61,10 @@ const PageBox = styled.div`
   height: auto;
   margin: auto;
 `;
+
+const Wrap = styled.div`
+  width : 95%;
+  margin : 8% auto auto auto;
+`
 
 export default combination;
