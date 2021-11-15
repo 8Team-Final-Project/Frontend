@@ -80,7 +80,7 @@ export const uploadApi = {
       for (let entry of Object.entries(req)) {
         formData.append(entry[0], entry[1]);
       }
-      const response = await axios.post("https://kkuljohang.shop/api/v1/post/uploadimg", formData);
+      const response = await axios.post("http://kkuljohang.shop/api/v1/post/uploadimg", formData);
       if (response.statusText === "OK") return response;
     } catch (err) {
       alert(err);
