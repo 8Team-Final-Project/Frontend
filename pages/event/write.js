@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addEventPostDB } from "../../src/Redux/Async/eventAsync";
+import { addPostDB } from "../../src/Redux/Async/postAsync";
 import router from "next/router";
 import styled from "styled-components";
 
@@ -49,7 +49,7 @@ const write = () => {
     if (!postTag) {
       return;
     }
-    dispatch(addEventPostDB(content));
+    dispatch(addPostDB(content));
     router.push("/event");
   };
 

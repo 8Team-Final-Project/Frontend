@@ -1,109 +1,116 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { 
-    eventPostListDB, 
-    infinityPostListDB,
-    addEventPostDB, 
-    getEventPostDB, 
-    editEventPostDB, 
-    deleteEventPostDB, 
-    likeEventPostDB,
-    saveEventPostDB
-     } from "../Async/eventAsync";
+    getCombinationListDB,
+    getEventPostListDB,
+    addPostDB,
+    getPostDB,
+    editPostDB,
+    deletePostDB,
+    likePostDB,
+    savePostDB
+     } from "../Async/postAsync";
 
 
 
 const initialState = {
-    list:[{}],
+    list:[],
     post:null
 };
 
-const eventSlice = createSlice({
-    name : "event",
+const postSlice = createSlice({
+    name : "post",
     initialState : initialState,
-    reducers : {
-        increaseLike: (state, action) => {
-            state.post.likeCnt += 1;
-            state.post.likeState = true;
-        },
-        decreaseLike: (state, action) => {
-            state.post.likeCnt -= 1;
-            state.post.likeState = false;
-        },
-    },
+    reducers : {},
 
     extraReducers: {
+        // 꿀조합 게시글 전체 리스트 불러오기
+        [getCombinationListDB.fulfilled]: (state, { payload: postList }) => {
+            state.list = postList;
+            state.loaded = true;
+            state.isFetching = false;
+            state.errorMessage = null;
+        },
+        [getCombinationListDB.pending]: (state, { payload }) => {
+            state.isFetching = true;
+        },
+        [getCombinationListDB.rejected]: (state, { payload: errorMessage }) => {
+            state.isFetching = false;
+            state.errorMessage = errorMessage;
+        },    
+
+
         //이벤트 게시글 전체 조회
-        [eventPostListDB.fulfilled]: (state, { payload }) => {
+        [getEventPostListDB.fulfilled]: (state, { payload }) => {
             state.postlist = payload;
             state.loaded = true;
             state.isFetching = false;
             state.errorMessage = null;
         },
-        [eventPostListDB.pending]: (state, { payload }) => {
+        [getEventPostListDB.pending]: (state, { payload }) => {
             state.isFetching = true;
         },
-        [eventPostListDB.rejected]: (state, { payload: errorMessage }) => {
+        [getEventPostListDB.rejected]: (state, { payload: errorMessage }) => {
             state.isFetching = false;
             state.errorMessage = errorMessage;
         },
 
-        //이벤트 게시글 추가 
-        [addEventPostDB.fulfilled]: (state, { payload }) => {
+        //게시글 추가 
+        [addPostDB.fulfilled]: (state, { payload }) => {
             state.list.unshift(payload);
             state.errorMessage = null;
         },
-        [addEventPostDB.pending]: (state, { payload }) => {
+        [addPostDB.pending]: (state, { payload }) => {
             state.isFetching = true;
         },
-        [addEventPostDB.rejected]: (state, { payload: errorMessage }) => {
+        [addPostDB.rejected]: (state, { payload: errorMessage }) => {
             state.isFetching = false;
             state.errorMessage = errorMessage;
         },
         
         //이벤트 게시글 조회
-        [getEventPostDB.fulfilled]: (state, { payload } ) => {
+        [getPostDB.fulfilled]: (state, { payload } ) => {
             state.post = payload;
             state.isFetching = false;
             state.errorMessage = null;
         },
-        [getEventPostDB.pending]: (state, { payload }) => {
+        [getPostDB.pending]: (state, { payload }) => {
             state.isFetching = true;
         },
-        [getEventPostDB.rejected]: (state, { payload: errorMessage }) => {
+        [getPostDB.rejected]: (state, { payload: errorMessage }) => {
             state.isFetching = false;
             state.errorMessage = errorMessage;
         },
         
         //이벤트 게시글 수정 
-        [editEventPostDB.fulfilled]: (state, {payload}) => {
+        [editPostDB.fulfilled]: (state, {payload}) => {
             state.post = payload;
             state.isFetching = false;
             state.errorMessage = null;
         },
-        [editEventPostDB.pending]: (state, { payload }) => {
+        [editPostDB.pending]: (state, { payload }) => {
             state.isFetching = true;
         },
-        [editEventPostDB.rejected]: (state, { payload: errorMessage }) => {
+        [editPostDB.rejected]: (state, { payload: errorMessage }) => {
             state.isFetching = false;
             state.errorMessage = errorMessage;
         },
         
         //이벤트 게시글 삭제
-        [deleteEventPostDB.fulfilled]: (state, { payload }) => {
+        [deletePostDB.fulfilled]: (state, { payload }) => {
             state.post = payload;
             state.isFetching = false;
             state.errorMessage = null;
         },
-        [deleteEventPostDB.pending]: (state, { payload }) => {
+        [deletePostDB.pending]: (state, { payload }) => {
             state.isFetching = true;
         },
-        [deleteEventPostDB.rejected]: (state, { payload: errorMessage }) => {
+        [deletePostDB.rejected]: (state, { payload: errorMessage }) => {
             state.isFetching = false;
             state.errorMessage = errorMessage;
         },
 
         //이벤트 게시글 좋아요
-        [likeEventPostDB.fulfilled]: (state, { payload : post }) => {
+        [likePostDB.fulfilled]: (state, { payload : post }) => {
             window.alert(post.msg);
             if (post.msg === "좋아요성공") {
                 state.post.likeCnt += 1;
@@ -117,16 +124,16 @@ const eventSlice = createSlice({
             state.isFetching = false;
             state.errorMessage = null;
         },
-        [likeEventPostDB.pending]: (state, { payload }) => {
+        [likePostDB.pending]: (state, { payload }) => {
             state.isFetching = true;
         },
-        [likeEventPostDB.rejected]: (state, { payload: errorMessage }) => {
+        [likePostDB.rejected]: (state, { payload: errorMessage }) => {
             state.isFetching = false;
             state.errorMessage = errorMessage;
         },
 
         //이벤트 게시글 찜
-        [saveEventPostDB.fulfilled]: (state, { payload : post }) => {
+        [savePostDB.fulfilled]: (state, { payload : post }) => {
             window.alert(post.msg);
                 if (post.msg === "게시물이 찜 되었습니다") {
                     state.post.keepStatus = true;
@@ -137,10 +144,10 @@ const eventSlice = createSlice({
             state.isFetching = false;
             state.errorMessage = null;
         },
-        [saveEventPostDB.pending]: (state, { payload }) => {
+        [savePostDB.pending]: (state, { payload }) => {
             state.isFetching = true;
         },
-        [saveEventPostDB.rejected]: (state, { payload: errorMessage }) => {
+        [savePostDB.rejected]: (state, { payload: errorMessage }) => {
             state.isFetching = false;
             state.errorMessage = errorMessage;
         },
@@ -148,4 +155,4 @@ const eventSlice = createSlice({
     }   
 })
 
-export default eventSlice;
+export default postSlice;

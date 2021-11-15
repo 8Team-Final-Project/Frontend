@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
-import { patchCombinationPostDB } from "../../../src/Redux/Async/combinationAsync";
+import { editPostDB } from "../../../src/Redux/Async/postAsync";
 import { useRouter } from "next/router";
 
 import RectangleImage from "../../../src/Components/Shared/RectangleImage";
@@ -20,10 +20,10 @@ const combinationEdit = () => {
   const [postRecipe, setPostRecipe] = useState("");
   const [postContent, setPostContent] = useState("");
 
-  const getPostImg = useSelector((state) => state.combination.post?.postImg);
-  const getPostTitle = useSelector((state) => state.combination.post?.postTitle);
-  const getPostRecipe = useSelector((state) => state.combination.post?.postRecipe);
-  const getPostContent = useSelector((state) => state.combination.post?.postContent);
+  const getPostImg = useSelector((state) => state.post.post?.postImg);
+  const getPostTitle = useSelector((state) => state.post.post?.postTitle);
+  const getPostRecipe = useSelector((state) => state.post.post?.postRecipe);
+  const getPostContent = useSelector((state) => state.post.post?.postContent);
 
   React.useEffect(() => {
     if (getPostImg && getPostImg !== postImg) setPostImg(getPostImg);
@@ -42,7 +42,7 @@ const combinationEdit = () => {
       postContent: postContent,
       postId: postId,
     };
-    disPatch(patchCombinationPostDB(postItem));
+    disPatch(editPostDB(postItem));
     router.push(`/combination/detail/${postId}`)
   };
 

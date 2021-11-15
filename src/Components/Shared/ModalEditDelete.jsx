@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import Router, { useRouter } from "next/router";
 import { useDispatch } from "react-redux";
-import { deleteCombinationPostDB, getCombinationPost, patchCombinationPostDB } from "../../Redux/Async/combinationAsync";
+import { deletePostDB, getPostDB } from "../../Redux/Async/postAsync";
 
 const CommentEditDelete = ({ handleExit }) => {
   const dispatch = useDispatch();
@@ -11,7 +11,7 @@ const CommentEditDelete = ({ handleExit }) => {
   } = useRouter();
 
   React.useEffect(() => {
-    if (id) dispatch(getCombinationPost(id));
+    if (id) dispatch(getPostDB(id));
   }, [id]);
 
   const editpage = () => {
@@ -19,7 +19,7 @@ const CommentEditDelete = ({ handleExit }) => {
   };
 
   const deletePost = () => {
-    dispatch(deleteCombinationPostDB(id));
+    dispatch(deletePostDB(id));
     Router.push("/combination");
   };
 
@@ -31,7 +31,6 @@ const CommentEditDelete = ({ handleExit }) => {
     </>
   );
 };
-
 
 // 수정 버튼
 const EditButton = styled.button`

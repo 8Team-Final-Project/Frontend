@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
-import { eventPostListDB } from "../../src/Redux/Async/eventAsync";
+import { getEventPostListDB } from "../../src/Redux/Async/postAsync";
 import { useRouter } from "next/router";
 
 //component
@@ -11,11 +11,11 @@ import Card from "../../src/Components/Card"
 const event = (props) => {
     const router = useRouter();
     const dispatch = useDispatch();
-    const post_list = useSelector((state) => state.event);
-    const isloaded = useSelector((state) => state.event.loaded);
+    const post_list = useSelector((state) => state.post);
+    const isloaded = useSelector((state) => state.post.loaded);
 
     useEffect(()=>{
-        dispatch(eventPostListDB());
+        dispatch(getEventPostListDB());
     },[])
     
     const goEventInfo = () => {
@@ -33,7 +33,7 @@ const event = (props) => {
             <CardWrap>
             {isloaded && (
                 <>
-                {post_list && post_list.postlist[0].map((p, idx) => {return (<Card {...p} key={p.pid}/>)})} 
+                {post_list && post_list?.postlist[0].map((p, idx) => {return (<Card {...p} key={p.pid}/>)})} 
                 </>
             )}
             </CardWrap>

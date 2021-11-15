@@ -5,22 +5,20 @@ import styled from "styled-components";
 import Router, { useRouter } from "next/router";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { useDispatch, useSelector } from "react-redux";
-import { getEventPostDB, likeEventPostDB, saveEventPostDB } from "../../Redux/Async/eventAsync";
-import PostBasicProfile from "../../../src/Asset/Images/post-basic-profile.svg";
+import { getPostDB, likePostDB, savePostDB } from "../Redux/Async/postAsync";
+import PostBasicProfile from "../../src/Asset/Images/post-basic-profile.svg";
 
 //component
-import MenuButton from "../Shared/CommentEditDelete";
+import MenuButton from "./Shared/CommentEditDelete";
 import { BsThreeDotsVertical } from "react-icons/bs";
-import Tag from "../Tag";
-import HeartOff from "../../../public/likeOff.png";
-import { red } from "@mui/material/colors";
+import Tag from "./Tag";
 
 //img
-import likeOn from "../../Asset/Images/likeOn.svg";
-import likeOff from "../../Asset/Images/likeOff.svg";
-import saveOn from "../../Asset/Images/saveOn.svg";
-import saveOff from "../../Asset/Images/saveOff.svg";
-import shareOn from "../../Asset/Images/shareOn.svg";
+import likeOn from "../Asset/Images/likeOn.svg";
+import likeOff from "../Asset/Images/likeOff.svg";
+import saveOn from "../Asset/Images/saveOn.svg";
+import saveOff from "../Asset/Images/saveOff.svg";
+import shareOn from "../Asset/Images/shareOn.svg";
 
 const DetailContentsBox = (props) => {
   const dispatch = useDispatch();
@@ -34,22 +32,22 @@ const DetailContentsBox = (props) => {
   const shareUrl = "kkuljohab.com" + useRouter().asPath;
 
   const [modalIsOpen, setModalIsOpen] = useState(false);
-  const post = useSelector((state) => state.event.post);
+  const post = useSelector((state) => state.post.post);
   const user = useSelector((state) => state.user.user?.userId);
 
-  const likeUserId = useSelector((state) => state.event.post?.likeStatus);
-  const saveUserId = useSelector((state) => state.event.post?.keepStatus);
+  const likeUserId = useSelector((state) => state.post.post?.likeStatus);
+  const saveUserId = useSelector((state) => state.post.post?.keepStatus);
 
   const setPostSave = () => {
-    dispatch(saveEventPostDB(id));
+    dispatch(savePostDB(id));
   };
 
   const setPostLike = () => {
-    dispatch(likeEventPostDB(id));
+    dispatch(likePostDB(id));
   };
 
   React.useEffect(() => {
-    if (id) dispatch(getEventPostDB(id));
+    if (id) dispatch(getPostDB(id));
   }, [id]);
 
   // Open modal
