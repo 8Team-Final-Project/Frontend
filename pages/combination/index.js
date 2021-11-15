@@ -14,7 +14,7 @@ const combination = () => {
 
   const dispatch = useDispatch();
   const isloaded = useSelector((state) => state.post.loaded);
-  const postList = useSelector((state) => state.post.list[0]);
+  const postList = useSelector((state) => state.post?.list[0]);
   useEffect(() => {
     if (!postList) {
       dispatch(getCombinationListDB());
