@@ -6,25 +6,26 @@ import { useRouter } from "next/router";
 import Tag from "./Tag";
 
 // img
-import likeOn from "../Asset/Images/likeOn.svg"
-import likeOff from "../Asset/Images/likeOff.svg"
+import likeOn from "../Asset/Images/likeOn.svg";
+import likeOff from "../Asset/Images/likeOff.svg";
 
 const Card = (props) => {
   const router = useRouter();
 
   const { src } = props;
 
+  const goDetail = () => {
+    if (router.pathname === "/event") return router.push(`/event/detail/${props._id}`);
+    if (router.pathname === "/combination") return router.push(`/combination/detail/${props._id}`);
+  };
+
   return (
-    <CardBox
-      onClick={() => {
-        router.push(`combination/detail/${props._id}`);
-      }}
-    >
+    <CardBox onClick={goDetail}>
       <LeftBox src={props.postImg ? props.postImg : src} />
       <RightBox>
         <PostTitle>{props && props.postTitle}</PostTitle>
         <TagLine>
-          {props.postTag.map((tag, idx) => (
+          {props?.postTag.map((tag, idx) => (
             <Tag key={idx} value={"#" + tag}></Tag>
           ))}
         </TagLine>

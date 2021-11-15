@@ -1,7 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import {useDispatch, useSelector} from "react-redux"
-import { getEventPostDB, deleteEventPostDB } from "../../../src/Redux/Async/eventAsync";
 
 import DetailContentsBox from '../../../src/Components/Event/DetailContentsBox';
 

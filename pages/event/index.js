@@ -5,7 +5,7 @@ import { eventPostListDB } from "../../src/Redux/Async/eventAsync";
 import { useRouter } from "next/router";
 
 //component
-import EventPost from "../../src/Components/Event/EventPost"
+import Card from "../../src/Components/Card"
 
 
 const event = (props) => {
@@ -33,7 +33,7 @@ const event = (props) => {
             <CardWrap>
             {isloaded && (
                 <>
-                {post_list && post_list.postlist[0].map((p, idx) => {return (<EventPost {...p} key={p.pid}/>)})} 
+                {post_list && post_list.postlist[0].map((p, idx) => {return (<Card {...p} key={p.pid}/>)})} 
                 </>
             )}
             </CardWrap>

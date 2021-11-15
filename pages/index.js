@@ -50,14 +50,14 @@ export default function Home() {
         </TitleArea>
         <DescriptionArea>
           <EventBnr>
-            <EventBnrBox>
-              <Image src={ramen.src} width="85%" />
+            <EventBnrBox1>
+              <Image src={ramen.src} width="80%" />
               <Tag>#라면냠냠</Tag>
-            </EventBnrBox>
-            <EventBnrBox>
-              <Image src={fishBread.src} width="85%" />
+            </EventBnrBox1>
+            <EventBnrBox2>
+              <Image src={fishBread.src} width="80%" />
               <Tag>#붕어빵냠냠</Tag>
-            </EventBnrBox>
+            </EventBnrBox2>
           </EventBnr>
           <Description>
             <p>진행되는 이벤트 주제에 맞는 꿀조합을 지정 태그와 함께 업로드 해주세요!</p>
@@ -166,12 +166,18 @@ const EventBnr = styled.div`
   display: flex;
 `;
 
-const EventBnrBox = styled.div`
+const EventBnrBox1 = styled.div`
   width: 100%;
   margin-left: 23px;
   margin-right: 23px;
   
 `;
+
+const EventBnrBox2 = styled.div`
+  width : 100%;
+  margin : 5px 23px 0px
+
+`
 
 const Tag = styled.span`
   border: 1px solid #ff7775;
