@@ -15,8 +15,8 @@ const Card = (props) => {
   const { src } = props;
 
   const goDetail = () => {
-    if (router.pathname === "/event") return router.push(`/event/detail/${props._id}`);
-    if (router.pathname === "/combination") return router.push(`/combination/detail/${props._id}`);
+    if (props.event1list === true) return router.push(`/event/detail/${props._id}`);
+    else return router.push(`/combination/detail/${props._id}`);
   };
 
   return (
