@@ -5485,6 +5485,11 @@ util@^0.11.0:
   dependencies:
     inherits "2.0.3"
 
+v10@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/v10/-/v10-1.0.1.tgz#8271dd23928c36c04d31cb11d836b1465e60afd2"
+  integrity sha512-ODnaMh/no0vVjs35MmCXFx9GVB9p+sLUQyxTC3t05NjJyiyyMIXvxkPtd1cmat4KNtjfcZGgMM/30VQdCAGieQ==
+
 v8-compile-cache@^2.0.3:
   version "2.3.0"
   resolved "https://registry.npmjs.org/v8-compile-cache/-/v8-compile-cache-2.3.0.tgz"
