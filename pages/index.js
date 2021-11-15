@@ -40,7 +40,7 @@ export default function Home() {
         </TitleArea>
         <DescriptionArea>
           <Image src={mainBnr.src} width="100%" />
-          <Description>나만의 꿀조합 레시피를 다함께 즐겨요</Description>
+          <Description>나만의 꿀조합 레시피를 다함께 즐겨요!</Description>
           <BtnImg src={honeybtn.src} width="80%" onClick={() => {router.push("/combination")}} />
         </DescriptionArea>
       </Container>
