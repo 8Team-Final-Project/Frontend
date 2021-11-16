@@ -4,7 +4,7 @@ import { getToken } from "./util";
 // Axios 인스턴스 설정
 const instance = axios.create({
   // 백엔드 배포 주소
-  baseURL: "https://kkuljohang.shop"
+  baseURL: "http://54.180.137.99"
 });
 
 //interceptor를 통한 header 설정
@@ -23,55 +23,55 @@ instance.interceptors.request.use(async (config) => {
 
 export const userApi = {
   // 회원 가입
-  signup: (user) => instance.post("/api/v1/users/signup", user, {withCredentials:true}),
+  signup: (user) => instance.post("/api/v1/users/signup", user),
 
   // 이메일 중복 확인
-  checkemail: (user) => instance.post("/api/v1/users/checkemail", user, {withCredentials:true}),
+  checkemail: (user) => instance.post("/api/v1/users/checkemail", user),
 
   // 닉네임 중복 확인
-  checknick: (user) => instance.post("/api/v1/users/checknick", user, {withCredentials:true}),
+  checknick: (user) => instance.post("/api/v1/users/checknick", user),
 
   // 로그인
-  login: (user) => instance.post("/api/v1/users/login", user, {withCredentials:true}),
+  login: (user) => instance.post("/api/v1/users/login", user),
 
   // 로그인 유지
-  loginCheck: (user) => instance.get("/api/v1/users/logincheck", user, {withCredentials:true}),
+  loginCheck: (user) => instance.get("/api/v1/users/logincheck", user),
 
   // 로그아웃
-  logout: (user) => instance.get("/api/v1/users/logout", user, {withCredentials:true}),
+  logout: (user) => instance.get("/api/v1/users/logout", user),
 
   // 내 프로필
-  me: (user) => instance.get("/api/v1/users/me", user, {withCredentials:true}),
+  me: (user) => instance.get("/api/v1/users/me", user),
 
   // 프로필 수정
-  userid: (user) => instance.patch("/api/v1/users/userid", user, {withCredentials:true})
+  userid: (user) => instance.patch("/api/v1/users/userid", user)
 };
 
 
 export const postApi = {
   // 꿀조합 게시글 불러오기
-  getPostList: () => instance.get(`/api/v1/post/?page`, {withCredentials:true}),
+  getPostList: () => instance.get(`/api/v1/post/?page`),
 
   // 이벤트 게시글 불러오기
-  getEventPostList : (data) => instance.get("/api/v1/post/event1list", data, {withCredentials:true}),
+  getEventPostList : (data) => instance.get("/api/v1/post/event1list", data),
 
   // 꿀조합 게시글 작성하기
-  addPost: (post) => instance.post("/api/v1/post", post, {withCredentials:true}),
+  addPost: (post) => instance.post("/api/v1/post", post),
 
   // 꿀조합 게시글 수정하기
-  editPost: (post) => instance.patch(`/api/v1/post/postupdate/${post.postId}`, post, {withCredentials:true}),
+  editPost: (post) => instance.patch(`/api/v1/post/postupdate/${post.postId}`, post),
 
   // 꿀조합 게시글 삭제하기
-  deletePost: (postId) => instance.delete(`/api/v1/post/postdelete/${postId}`, {withCredentials:true}),
+  deletePost: (postId) => instance.delete(`/api/v1/post/postdelete/${postId}`),
   
   // 꿀조합 상세포스트 불러오기
-  getPost: (postId) => instance.get(`/api/v1/post/${postId}`, {withCredentials:true}),
+  getPost: (postId) => instance.get(`/api/v1/post/${postId}`),
 
   // 꿀조합 게시물 찜 / 취소
-  savePost: (postId) => instance.patch(`/api/v1/keep/${postId}`, {withCredentials:true}),
+  savePost: (postId) => instance.patch(`/api/v1/keep/${postId}`),
 
   // 꿀조합 게시물 좋아요 / 취소
-  likePost: (postId) => instance.patch(`/api/v1/like/${postId}`, {withCredentials:true})
+  likePost: (postId) => instance.patch(`/api/v1/like/${postId}`)
 };
 
 
@@ -83,7 +83,7 @@ export const uploadApi = {
       for (let entry of Object.entries(req)) {
         formData.append(entry[0], entry[1]);
       }
-      const response = await axios.post("http://kkuljohang.shop/api/v1/post/uploadimg", formData);
+      const response = await axios.post("http://54.180.137.99/api/v1/post/uploadimg", formData);
       if (response.statusText === "OK") return response;
     } catch (err) {
       alert(err);
