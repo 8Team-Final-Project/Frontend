@@ -18,7 +18,7 @@ instance.interceptors.request.use(async (config) => {
 
   //CORS 설정
   var xhr = new XMLHttpRequest();
-  xhr.open('GET', 'https://kkuljohang.shop', true);
+  // xhr.open('GET', 'https://kkuljohang.shop', true);
   xhr.withCredentials = true;
   xhr.send(null);
   
