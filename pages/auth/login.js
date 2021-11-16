@@ -34,20 +34,19 @@ const login = () => {
             <Wrap>
                 <Margin>
                     <InputWrap>
-                    <ValidationInput 
-                        value={userEmail}
-                        setValue={setuserEmail}
-                        label="이메일"
-                    />
-                        </InputWrap>
-                        <InputWrap>
-                    <ValidationInput 
-                        label="비밀번호" 
-                        value={userPassword}
-                        setValue={setuserPassword}
-                        type="password"
-
-                    />
+                        <ValidationInput 
+                            value={userEmail}
+                            setValue={setuserEmail}
+                            label="이메일"
+                        />
+                    </InputWrap>
+                    <InputWrap>
+                        <ValidationInput 
+                            label="비밀번호" 
+                            value={userPassword}
+                            setValue={setuserPassword}
+                            type="password"
+                        />
                     </InputWrap>
                 </Margin>
                 <Btn>
@@ -81,7 +80,7 @@ const Margin = styled.div`
 `
 
 const InputWrap = styled.div`
-   margin-bottom : 11%;
+   margin-bottom : 61px;
 `
 const Btn = styled.div`
     margin-top : 18%;

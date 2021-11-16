@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import mask from "../../Asset/icons/main_event_bnt_mask.svg";
+import mask from "../../Asset/Images/main_event_btn.svg";
+
 
 const RedButton = ({ main, value, onClick }) => {
   return (
