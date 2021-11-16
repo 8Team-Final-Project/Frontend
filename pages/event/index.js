@@ -24,7 +24,7 @@ const event = (props) => {
     
     return (
         <React.Fragment>
-            <EventName>이번주 붕어빵 꿀조합은?</EventName>
+            <EventName>이번주 붕어빵 꿀조합은</EventName>
             <WrapBanner>
                 <BannerImg src="/eventbanner.svg"
                 onClick={goEventInfo}/>
