@@ -14,6 +14,7 @@ import eventBnr2 from "../src/Asset/Images/main_event_bnr2.png";
 import eventBnr3 from "../src/Asset/Images/main_event_bnr3.png";
 import fishBread from "../src/Asset/Images/fish_bread.svg";
 import ramen from "../src/Asset/Images/ramen.svg";
+import honeybtn from "../src/Asset/Images/honeybtn.svg";
 
 //icons
 import questionIcon from "../src/Asset/icons/question_icon.svg";
@@ -21,6 +22,8 @@ import questionIcon from "../src/Asset/icons/question_icon.svg";
 //메인페이지입니다.
 export default function Home() {
   const router = useRouter();
+
+
   return (
     <div>
       <Head>
@@ -38,7 +41,7 @@ export default function Home() {
         <DescriptionArea>
           <Image src={mainBnr.src} width="100%" />
           <Description>나만의 꿀조합 레시피를 다함께 즐겨요!</Description>
-          <HoneyButton main onClick={() => router.push("/combination")} value="꿀조합 보러 가기" />
+          <BtnImg src={honeybtn.src} width="80%" onClick={() => {router.push("/combination")}} />
         </DescriptionArea>
       </Container>
 
@@ -50,14 +53,14 @@ export default function Home() {
         </TitleArea>
         <DescriptionArea>
           <EventBnr>
-            <EventBnrBox>
-              <Image src={ramen.src} width="100%" />
+            <EventBnrBox1>
+              <Image src={ramen.src} width="80%" />
               <Tag>#라면냠냠</Tag>
-            </EventBnrBox>
-            <EventBnrBox>
-              <Image src={fishBread.src} width="100%" />
+            </EventBnrBox1>
+            <EventBnrBox2>
+              <Image src={fishBread.src} width="80%" />
               <Tag>#붕어빵냠냠</Tag>
-            </EventBnrBox>
+            </EventBnrBox2>
           </EventBnr>
           <Description>
             <p>진행되는 이벤트 주제에 맞는 꿀조합을 지정 태그와 함께 업로드 해주세요!</p>
@@ -144,12 +147,16 @@ const DescriptionArea = styled.div`
   }
 `;
 
+const BtnImg = styled.img`
+
+`
+
 const Btn = styled.div`
   width : 95%;
 `
 
 const Image = styled.img`
-  vertical-align: bottom;
+  /* vertical-align: bottom; */
 `;
 
 const Description = styled.div`
@@ -166,9 +173,18 @@ const EventBnr = styled.div`
   display: flex;
 `;
 
-const EventBnrBox = styled.div`
+const EventBnrBox1 = styled.div`
   width: 100%;
+  margin-left: 23px;
+  margin-right: 23px;
+  
 `;
+
+const EventBnrBox2 = styled.div`
+  width : 100%;
+  margin : 5px 23px 0px
+
+`
 
 const Tag = styled.span`
   border: 1px solid #ff7775;
@@ -180,7 +196,5 @@ const Tag = styled.span`
   box-sizing: border-box;
   color: #ff7775;
   align-items: center;
-  line-height: 1;
-  margin-right: 10px;
-  margin-top: 10px;
+  margin-top: 5px;
 `;

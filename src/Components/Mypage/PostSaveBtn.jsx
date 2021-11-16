@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 
 import styled from "styled-components";
-import EventPost from "../Event/EventPost";
+import Card from "../Card";
 
 const PostSaveBtn = (props) => {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -28,7 +28,7 @@ const PostSaveBtn = (props) => {
         <>
           {post &&
             post.map((p) => {
-              return <EventPost {...p} key={p.id} />;
+              return <Card {...p} key={p.id} />;
             })}
         </>
       )
@@ -43,7 +43,7 @@ const PostSaveBtn = (props) => {
         <>
           {save &&
             save.map((p) => {
-              return <EventPost {...p} key={p.id} />;
+              return <Card {...p} key={p.id} />;
             })}
         </>
       )

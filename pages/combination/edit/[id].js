@@ -1,61 +1,67 @@
-import React from "react";
+import React, {useState} from "react";
 import styled from "styled-components";
-import { useDispatch } from "react-redux";
-import { patchCombinationPostDB } from "../../../src/Redux/Async/combinationAsync";
+import { useDispatch, useSelector } from "react-redux";
+import { editPostDB } from "../../../src/Redux/Async/postAsync";
 import { useRouter } from "next/router";
 
 import RectangleImage from "../../../src/Components/Shared/RectangleImage";
 import ValidationInput from "../../../src/Components/Input/ValidationInput";
 import RedButton from "../../../src/Components/Button/RedButton";
 import WhiteButton from "../../../src/Components/Button/WhiteButton";
-import HashTagWriteInput from "../../../src/Components/Input/HashTagWriteInput.jsx"
 
 //꿀조합 수정페이지
 const combinationEdit = () => {
-
   const disPatch = useDispatch();
   const router = useRouter();
-
-  const [postTitle, setTitle] = React.useState("");
-  const [postContent, setContent] = React.useState("");
-  const [postImg, setImg] = React.useState("");
-  const [postTag, setTag] = React.useState("");
-  const [postRecipe, setRecipe] = React.useState("");
-
   const postId = useRouter().query.id;
+
+  const [postImg, setPostImg] = useState("");
+  const [postTitle, setPostTitle] = useState("");
+  const [postRecipe, setPostRecipe] = useState("");
+  const [postContent, setPostContent] = useState("");
+
+  const getPostImg = useSelector((state) => state.post.post?.postImg);
+  const getPostTitle = useSelector((state) => state.post.post?.postTitle);
+  const getPostRecipe = useSelector((state) => state.post.post?.postRecipe);
+  const getPostContent = useSelector((state) => state.post.post?.postContent);
+
+  React.useEffect(() => {
+    if (getPostImg && getPostImg !== postImg) setPostImg(getPostImg);
+    if (getPostTitle && getPostTitle !== postTitle) setPostTitle(getPostTitle);
+    if (getPostRecipe && getPostRecipe !== postRecipe) setPostRecipe(getPostRecipe);
+    if (getPostContent && getPostContent !== postContent) setPostContent(getPostContent);
+  }, [getPostImg, getPostTitle, getPostRecipe, getPostContent]);
+
+
 
   const editPost = () => {
     const postItem = {
-      postTitle: postTitle,
-      postContent: postContent,
-      postRecipe: postRecipe,
       postImg: postImg,
-      postTag: postTag,
+      postTitle: postTitle,
+      postRecipe: postRecipe,
+      postContent: postContent,
       postId: postId,
-      mainlist: true,
-      event1list: false,
-      event2list: false,
-      event3list: false,
-
     };
-    disPatch(patchCombinationPostDB(postItem));
+    disPatch(editPostDB(postItem));
+    router.push(`/combination/detail/${postId}`)
   };
 
   return (
-    <div>
+    <Wrap>
       <WriteBox>
         <CenterBox>
           <RectangleImage
             edit
             imgUrl={postImg? postImg : false}
-            saveUrl={setImg}
+            saveUrl={setPostImg}
             ></RectangleImage>
         </CenterBox>
         <CenterBox>
           <ValidationInput
             label="제목을 입력해주세요"
             value={postTitle}
-            setValue={setTitle}
+            setValue={setPostTitle}
+            onChange={(e) => setPostTitle(e.target.value)}
             maxValue={10}
             defaultText
             important
@@ -65,7 +71,8 @@ const combinationEdit = () => {
          <ValidationInput
             label="재료를 입력해주세요"
             value={postRecipe}
-            setValue={setRecipe}
+            setValue={setPostRecipe}
+            onChange={(e) => setPostRecipe(e.target.value)}
             maxValue={15}
             defaultText
             important
@@ -75,7 +82,8 @@ const combinationEdit = () => {
           <ValidationInput
             label="내용을 입력해주세요"
             value={postContent}
-            setValue={setContent}
+            setValue={setPostContent}
+            onChange={(e) => setPostContent(e.target.value)}
             maxValue={99}
             defaultText
             important
@@ -83,13 +91,7 @@ const combinationEdit = () => {
             rows={5}
           ></ValidationInput>
         </CenterBox>
-        <CenterBox>
-          <HashTagWriteInput
-            tagList= {[...postTag]}
-            setTagList={setTag}
-            label="해시태그를 입력해주세요"
-            important
-          /></CenterBox>
+
         <CenterBox>
          <FlexBox>
             <WhiteButton 
@@ -104,9 +106,13 @@ const combinationEdit = () => {
               /></FlexBox>
         </CenterBox>
       </WriteBox>
-    </div>
+    </Wrap>
   );
 };
+
+const Wrap = styled.div`
+  margin :auto 
+`
 
 const CenterBox = styled.div`
   width: 90%;

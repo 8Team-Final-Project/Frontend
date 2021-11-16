@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
-import { addCombinationPostDB } from "../../src/Redux/Async/combinationAsync";
+import { addPostDB } from "../../src/Redux/Async/postAsync";
 import { useRouter } from "next/router";
 
 // componets
@@ -47,7 +47,7 @@ const write = () => {
     if (!postTag) {
       return;
     }
-    dispatch(addCombinationPostDB(postItem));
+    dispatch(addPostDB(postItem));
     router.push("/combination");
   };
 
@@ -121,7 +121,7 @@ const write = () => {
   );
 };
 const CenterBox = styled.div`
-  width: 100%;
+  width: 90%;
   margin: 20px auto;
 `;
 

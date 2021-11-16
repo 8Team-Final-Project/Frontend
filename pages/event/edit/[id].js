@@ -2,14 +2,13 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
-import { editEventPostDB, getEventPostDB } from "../../../src/Redux/Async/eventAsync";
+import { editPostDB, getPostDB } from "../../../src/Redux/Async/postAsync";
 
 //Component
 import RectangleImage from "../../../src/Components/Shared/RectangleImage";
 import ValidationInput from "../../../src/Components/Input/ValidationInput";
 import RedButton from "../../../src/Components/Button/RedButton";
 import WhiteButton from "../../../src/Components/Button/WhiteButton";
-import { getStepLabelUtilityClass } from "@mui/material";
 
 //주의사항
 //수정페이지에서 새로고침하면 post가 날아간다. => useEffect에 미들웨어를 넣어서 새로고침해도 state 유지..?? getPost
@@ -21,17 +20,17 @@ const EventPostEdit = () => {
   const dispatch = useDispatch();
   const router = useRouter();
   const postId = useRouter().query.id;
-  const post = useSelector((state) => state.event.post);
+  const post = useSelector((state) => state.post.post);
 
   const [postImg, setPostImg] = useState("");
   const [postTitle, setPostTitle] = useState("");
   const [postRecipe, setPostRecipe] = useState("");
   const [postContent, setPostContent] = useState("");
 
-  const getPostImg = useSelector((state) => state.event.post?.postImg);
-  const getPostTitle = useSelector((state) => state.event.post?.postTitle);
-  const getPostRecipe = useSelector((state) => state.event.post?.postRecipe);
-  const getPostContent = useSelector((state) => state.event.post?.postContent);
+  const getPostImg = useSelector((state) => state.post.post?.postImg);
+  const getPostTitle = useSelector((state) => state.post.post?.postTitle);
+  const getPostRecipe = useSelector((state) => state.post.post?.postRecipe);
+  const getPostContent = useSelector((state) => state.post.post?.postContent);
 
   React.useEffect(() => {
     if (getPostImg && getPostImg !== postImg) setPostImg(getPostImg);
@@ -40,6 +39,7 @@ const EventPostEdit = () => {
     if (getPostContent && getPostContent !== postContent) setPostContent(getPostContent);
   }, [getPostImg, getPostTitle, getPostRecipe, getPostContent]);
 
+  
   const editEventPost = () => {
     const content = {
       postImg: postImg,
@@ -48,11 +48,12 @@ const EventPostEdit = () => {
       postContent: postContent,
       postId: postId
     };
-    dispatch(editEventPostDB(content));
+    dispatch(editPostDB(content));
+    router.push(`/event/detail/${postId}`)
   };
 
   return (
-    <div>
+    <Grid>
       <ImgMargin>
         <RectangleImage edit saveUrl={setPostImg} imgUrl={postImg ? postImg : false} onChange={setPostImg} />
       </ImgMargin>
@@ -94,9 +95,13 @@ const EventPostEdit = () => {
         />
         <RedButton onClick={editEventPost} value="저장" />
       </Controls>
-    </div>
+    </Grid>
   );
 };
+
+const Grid = styled.div`
+  margin : 0px 5%;
+`
 
 const ImgMargin = styled.div`
   margin: 50px 0px;

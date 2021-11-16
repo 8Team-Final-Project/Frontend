@@ -1,9 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import {useDispatch, useSelector} from "react-redux"
-import { getEventPostDB, deleteEventPostDB } from "../../../src/Redux/Async/eventAsync";
 
-import DetailContentsBox from '../../../src/Components/Event/DetailContentsBox';
+import DetailContentsBox from '../../../src/Components/DetailContentsBox';
 
 //이벤트상세페이지
 const EventDetail = (props) => {
@@ -19,7 +17,6 @@ const EventDetail = (props) => {
 const Wrap = styled.div`
     text-align : center;
 ` 
-
 
 
 export default EventDetail;

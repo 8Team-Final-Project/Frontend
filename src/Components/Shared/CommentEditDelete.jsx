@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import Router, { useRouter } from "next/router";
 import { useDispatch } from "react-redux";
-import { deleteEventPostDB, getEventPostDB } from "../../Redux/Async/eventAsync";
+import { deletePostDB, getPostDB } from "../../Redux/Async/postAsync";
 
 const CommentEditDelete = ({ handleExit }) => {
   const dispatch = useDispatch();
@@ -11,7 +11,7 @@ const CommentEditDelete = ({ handleExit }) => {
   } = useRouter();
 
   React.useEffect(() => {
-    if (id) dispatch(getEventPostDB(id));
+    if (id) dispatch(getPostDB(id));
   }, [id]);
 
   const editpage = () => {
@@ -19,7 +19,7 @@ const CommentEditDelete = ({ handleExit }) => {
   };
 
   const deleteEventPost = () => {
-    dispatch(deleteEventPostDB(id));
+    dispatch(deletePostDB(id));
     Router.push("/event");
   };
 

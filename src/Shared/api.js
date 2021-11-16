@@ -4,7 +4,7 @@ import { getToken } from "./util";
 // Axios 인스턴스 설정
 const instance = axios.create({
   // 백엔드 배포 주소
-  baseURL: "http://54.180.137.99"
+  baseURL: "https://kkuljohang.shop"
 });
 
 //interceptor를 통한 header 설정
@@ -45,50 +45,31 @@ export const userApi = {
   userid: (user) => instance.patch("/api/v1/users/userid", user)
 };
 
-export const eventPostApi = {
-  //이벤트 게시판 전체 불러오기
-  getEventPostList: (data) => instance.get("/api/v1/post/event1list", data),
 
-  //이벤트 게시물 추가하기
-  addEventPost: (data) => instance.post("/api/v1/post", data),
+export const postApi = {
+  // 꿀조합 게시글 불러오기
+  getPostList: () => instance.get(`/api/v1/post/?page`),
 
-  //이벤트 게시물 불러오기
-  getEventPost: (postId) => instance.get(`/api/v1/post/${postId}`),
+  // 이벤트 게시글 불러오기
+  getEventPostList : (data) => instance.get("/api/v1/post/event1list", data),
 
-  //이벤트 게시물 수정하기
-  editEventPost: (post) => instance.patch(`/api/v1/post/postupdate/${post.postId}`, post),
-
-  //이벤트 게시물 삭제하기
-  deleteEventPost: (postId) => instance.delete(`/api/v1/post/postdelete/${postId}`),
-
-  //좋아요 기능
-  likeEventPost: (postId) => instance.patch(`/api/v1/like/${postId}`),
-
-  //찜 기능
-  saveEventPost: (postId) => instance.patch(`/api/v1/keep/${postId}`)
-};
-
-export const combinationPostApi = {
   // 꿀조합 게시글 작성하기
-  postCombinationPost: (post) => instance.post("/api/v1/post", post),
+  addPost: (post) => instance.post("/api/v1/post", post),
 
   // 꿀조합 게시글 수정하기
-  patchCombinationPost: (post) => instance.patch(`/api/v1/post/postupdate/${post.postId}`, post),
+  editPost: (post) => instance.patch(`/api/v1/post/postupdate/${post.postId}`, post),
 
   // 꿀조합 게시글 삭제하기
-  deleteCombinationPost: (postId) => instance.delete(`/api/v1/post/postdelete/${postId}`),
-
-  // 꿀조합 게시글 불러오기
-  getCombinationList: () => instance.get(`/api/v1/post/?page`),
-
+  deletePost: (postId) => instance.delete(`/api/v1/post/postdelete/${postId}`),
+  
   // 꿀조합 상세포스트 불러오기
-  getCombinationPost: (postId) => instance.get(`/api/v1/post/${postId}`),
+  getPost: (postId) => instance.get(`/api/v1/post/${postId}`),
 
   // 꿀조합 게시물 찜 / 취소
-  patchCombinationSave: (postId) => instance.patch(`/api/v1/keep/${postId}`),
+  savePost: (postId) => instance.patch(`/api/v1/keep/${postId}`),
 
   // 꿀조합 게시물 좋아요 / 취소
-  patchCombinationLike: (postId) => instance.patch(`/api/v1/like/${postId}`)
+  likePost: (postId) => instance.patch(`/api/v1/like/${postId}`)
 };
 
 export const uploadApi = {
@@ -99,7 +80,7 @@ export const uploadApi = {
       for (let entry of Object.entries(req)) {
         formData.append(entry[0], entry[1]);
       }
-      const response = await axios.post("http://54.180.137.99/api/v1/post/uploadimg", formData);
+      const response = await axios.post("https://kkuljohang.shop/api/v1/post/uploadimg", formData);
       if (response.statusText === "OK") return response;
     } catch (err) {
       alert(err);

@@ -20,7 +20,7 @@ export default function Search() {
   const [resultList, setResultList] = useState([]); //태그검색결과가 담기는 곳
 
   //추천태그에 들어갈 항목
-  const recommandedTagList = ["스타벅스", "서브웨이", "편의점", "다이어터", "엽떡", "라면"];
+  const recommandedTagList = ["테스트", "서브웨이", "편의점", "다이어터", "엽떡", "라면"];
 
   useEffect(() => {
     if (tagList.length === 0) return setResultList([]);

@@ -4,15 +4,13 @@ import { combineReducers } from "redux";
 
 //모듈 불러오기
 
-import combinationSlice  from "./Modules/combinationSlice";
-import eventSlice from "./Modules/eventSlice";
+import postSlice  from "./Modules/postSlice";
 import userSlice from "./Modules/userSlice";
 
 
 //리듀서 전달하기
 const reducer = combineReducers({
-    combination: combinationSlice.reducer,
-    event : eventSlice.reducer,
+    post: postSlice.reducer,
     user : userSlice.reducer,
 });
 
