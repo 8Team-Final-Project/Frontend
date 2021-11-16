@@ -37,6 +37,9 @@ const login = () => {
                     <ValidationInput 
                         value={userEmail}
                         setValue={setuserEmail}
+                        defaultText=" " 
+                        // errorText=" "
+                        // successText=" "
                         label="이메일"
                     />
                         </InputWrap>
@@ -45,6 +48,7 @@ const login = () => {
                         label="비밀번호" 
                         value={userPassword}
                         setValue={setuserPassword}
+                        defaultText=" "
                         type="password"
 
                     />
@@ -72,7 +76,7 @@ const Container = styled.div`
 `
 
 const Wrap = styled.div`
-    padding : 4%;
+    padding : 6%;
 `
 
 
@@ -81,7 +85,7 @@ const Margin = styled.div`
 `
 
 const InputWrap = styled.div`
-   margin-bottom : 11%;
+   margin-bottom : 6%;
 `
 const Btn = styled.div`
     margin-top : 18%;

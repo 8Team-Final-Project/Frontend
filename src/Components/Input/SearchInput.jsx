@@ -15,6 +15,7 @@ export default function SearchInput() {
     <Form variant="standard" onClick={() => router.push("/search")}>
       <MuInput
         id="input-with-icon-adornment"
+        placeholder=" 태그로 꿀조합을 검색해보세요! "
         startAdornment={
           <InputAdornment position="start">
             <BsSearch />
@@ -30,5 +31,5 @@ const Form = styled(FormControl)`
 `;
 
 const MuInput = styled(Input)`
-  color: #ff7775;
+  color: #b8b8b8;
 `;

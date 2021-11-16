@@ -15,62 +15,65 @@ instance.interceptors.request.use(async (config) => {
 
   //getToken는 로컬 스토리지에 토큰이 있다면 반환한다 없다면 null 값 반환
   config.headers["Authorization"] = await getToken();
+  //CORS 설정
+
 
   return config;
 });
 
 export const userApi = {
   // 회원 가입
-  signup: (user) => instance.post("/api/v1/users/signup", user),
+  signup: (user) => instance.post("/api/v1/users/signup", user, {withCredentials:true}),
 
   // 이메일 중복 확인
-  checkemail: (user) => instance.post("/api/v1/users/checkemail", user),
+  checkemail: (user) => instance.post("/api/v1/users/checkemail", user, {withCredentials:true}),
 
   // 닉네임 중복 확인
-  checknick: (user) => instance.post("/api/v1/users/checknick", user),
+  checknick: (user) => instance.post("/api/v1/users/checknick", user, {withCredentials:true}),
 
   // 로그인
-  login: (user) => instance.post("/api/v1/users/login", user),
+  login: (user) => instance.post("/api/v1/users/login", user, {withCredentials:true}),
 
   // 로그인 유지
-  loginCheck: (user) => instance.get("/api/v1/users/logincheck", user),
+  loginCheck: (user) => instance.get("/api/v1/users/logincheck", user, {withCredentials:true}),
 
   // 로그아웃
-  logout: (user) => instance.get("/api/v1/users/logout", user),
+  logout: (user) => instance.get("/api/v1/users/logout", user, {withCredentials:true}),
 
   // 내 프로필
-  me: (user) => instance.get("/api/v1/users/me", user),
+  me: (user) => instance.get("/api/v1/users/me", user, {withCredentials:true}),
 
   // 프로필 수정
-  userid: (user) => instance.patch("/api/v1/users/userid", user)
+  userid: (user) => instance.patch("/api/v1/users/userid", user, {withCredentials:true})
 };
 
 
 export const postApi = {
   // 꿀조합 게시글 불러오기
-  getPostList: () => instance.get(`/api/v1/post/?page`),
+  getPostList: () => instance.get(`/api/v1/post/?page`, {withCredentials:true}),
 
   // 이벤트 게시글 불러오기
-  getEventPostList : (data) => instance.get("/api/v1/post/event1list", data),
+  getEventPostList : (data) => instance.get("/api/v1/post/event1list", data, {withCredentials:true}),
 
   // 꿀조합 게시글 작성하기
-  addPost: (post) => instance.post("/api/v1/post", post),
+  addPost: (post) => instance.post("/api/v1/post", post, {withCredentials:true}),
 
   // 꿀조합 게시글 수정하기
-  editPost: (post) => instance.patch(`/api/v1/post/postupdate/${post.postId}`, post),
+  editPost: (post) => instance.patch(`/api/v1/post/postupdate/${post.postId}`, post, {withCredentials:true}),
 
   // 꿀조합 게시글 삭제하기
-  deletePost: (postId) => instance.delete(`/api/v1/post/postdelete/${postId}`),
+  deletePost: (postId) => instance.delete(`/api/v1/post/postdelete/${postId}`, {withCredentials:true}),
   
   // 꿀조합 상세포스트 불러오기
-  getPost: (postId) => instance.get(`/api/v1/post/${postId}`),
+  getPost: (postId) => instance.get(`/api/v1/post/${postId}`, {withCredentials:true}),
 
   // 꿀조합 게시물 찜 / 취소
-  savePost: (postId) => instance.patch(`/api/v1/keep/${postId}`),
+  savePost: (postId) => instance.patch(`/api/v1/keep/${postId}`, {withCredentials:true}),
 
   // 꿀조합 게시물 좋아요 / 취소
-  likePost: (postId) => instance.patch(`/api/v1/like/${postId}`)
+  likePost: (postId) => instance.patch(`/api/v1/like/${postId}`, {withCredentials:true})
 };
+
 
 export const uploadApi = {
   imageUpload: async function (imgObj) {
@@ -80,7 +83,7 @@ export const uploadApi = {
       for (let entry of Object.entries(req)) {
         formData.append(entry[0], entry[1]);
       }
-      const response = await axios.post("https://kkuljohang.shop/api/v1/post/uploadimg", formData);
+      const response = await axios.post("http://kkuljohang.shop/api/v1/post/uploadimg", formData);
       if (response.statusText === "OK") return response;
     } catch (err) {
       alert(err);

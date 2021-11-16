@@ -81,6 +81,7 @@ const signup = () => {
                     errorText='3글자 이상부터 가능해요!'    //식이랑 맞지 않을때 보여줄 텍스트
                     defaultText='닉네임을 입력해 주세요!'    //아무것도 적히지 않았을때 보여줄 텍스트
                     maxValue={10}   //최대길이
+                    successText=' ✓ 사용할 수 있는 닉네임입니다'
                     //successText도 사용하면 성공했을때 텍스트를 보여줄 수 있어요
                 />
                 </InputWrap>
@@ -95,6 +96,7 @@ const signup = () => {
                     regexCheck={regex.email}
                     errorText='2글자 이상 입력해 주세요!'
                     defaultText='이메일을 입력해 주세요!'
+                    successText=' ✓ 사용할 수 있는 이메일입니다'
                 />
                 </InputWrap>
                 <InputWrap>
@@ -104,6 +106,8 @@ const signup = () => {
                     setValue={setuserPassword}
                     regexCheck={regex.password}
                     errorText='6글자 이상 입력해 주세요!'
+                    defaultText='비밀번호를 입력해 주세요!'
+                    successText=' ✓ 사용할 수 있는 비밀번호입니다'
                     type="password"
                 />
                 </InputWrap>
@@ -113,10 +117,13 @@ const signup = () => {
                 value={userconfirmPassword}
                 setValue={setuserconfirmPassword}
                 type="password"
+                errorText=' '
+                defaultText=' '
+                successText=' '
                 />
                 </InputWrap>
             </MarginBottom>
-
+            <Btn>
             <RedButton 
                 onClick={() => {
                     setSignup()
@@ -126,7 +133,7 @@ const signup = () => {
                     marginBottom: "50px"
                 }}
             />
-            <br/>
+            </Btn>
             <Center>
             <CancelButton
                 onClick={() => router.push('/')}
@@ -141,11 +148,15 @@ const Wrap = styled.div`
 `
 
 const MarginBottom = styled.div`
-    margin: 3% 0px 30%;
+    margin: 3% 0px 25%;
 `
 const InputWrap = styled.div`
-    margin-bottom : 10%;
+    margin-bottom : 8%;
 
+`
+
+const Btn = styled.div`
+    width : 100%
 `
 
 const Center = styled.div`

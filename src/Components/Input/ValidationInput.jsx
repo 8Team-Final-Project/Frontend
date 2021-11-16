@@ -100,6 +100,7 @@ const Label = styled.span`
   color: #878787;
   font-size: 18px;
   position: relative;
+  margin-bottom: 4%;
   ::before {
     ${({ important }) => important && importantStyle}
   }
