@@ -15,8 +15,12 @@ instance.interceptors.request.use(async (config) => {
 
   //getToken는 로컬 스토리지에 토큰이 있다면 반환한다 없다면 null 값 반환
   config.headers["Authorization"] = await getToken();
-  //CORS 설정
 
+  //CORS 설정(main 브랜치에서만 주석 제거)
+  // var xhr = new XMLHttpRequest();
+  // xhr.open('GET', 'https://kkuljohang.shop', true);
+  // xhr.withCredentials = true;
+  // xhr.send(null);
 
   return config;
 });
