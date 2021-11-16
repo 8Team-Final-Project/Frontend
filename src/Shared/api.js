@@ -16,6 +16,8 @@ instance.interceptors.request.use(async (config) => {
   //getToken는 로컬 스토리지에 토큰이 있다면 반환한다 없다면 null 값 반환
   config.headers["Authorization"] = await getToken();
   //CORS 설정
+  config.withCredentials = true;
+
 
 
   return config;
