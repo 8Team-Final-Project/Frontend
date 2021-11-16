@@ -4,7 +4,7 @@ import { getToken } from "./util";
 // Axios 인스턴스 설정
 const instance = axios.create({
   // 백엔드 배포 주소
-  baseURL: "https://kkuljohang.shop"
+  baseURL: "http://54.180.137.99"
 });
 
 //interceptor를 통한 header 설정
@@ -45,13 +45,12 @@ export const userApi = {
   userid: (user) => instance.patch("/api/v1/users/userid", user)
 };
 
-
 export const postApi = {
   // 꿀조합 게시글 불러오기
   getPostList: () => instance.get(`/api/v1/post/?page`),
 
   // 이벤트 게시글 불러오기
-  getEventPostList : (data) => instance.get("/api/v1/post/event1list", data),
+  getEventPostList: (data) => instance.get("/api/v1/post/event1list", data),
 
   // 꿀조합 게시글 작성하기
   addPost: (post) => instance.post("/api/v1/post", post),
@@ -61,7 +60,7 @@ export const postApi = {
 
   // 꿀조합 게시글 삭제하기
   deletePost: (postId) => instance.delete(`/api/v1/post/postdelete/${postId}`),
-  
+
   // 꿀조합 상세포스트 불러오기
   getPost: (postId) => instance.get(`/api/v1/post/${postId}`),
 
