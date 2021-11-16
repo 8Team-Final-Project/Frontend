@@ -152,7 +152,7 @@ const BtnImg = styled.img`
 `
 
 const Btn = styled.div`
-  width : 95%;
+  width : 85%;
 `
 
 const Image = styled.img`

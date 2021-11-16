@@ -101,6 +101,7 @@ const Container = styled.div`
 const Label = styled.span`
   color: #878787;
   font-size: 18px;
+  margin-bottom: 4%;
 `;
 
 const Input = styled(TextField)`
@@ -114,13 +115,15 @@ const CheckBnt = styled.button`
   position: absolute;
   right: 0;
   top: 10px;
-  width: 100px;
+  width: 80px;
   height: 40px;
   border: ${({ isCheckOn }) => (isCheckOn ? "1px solid #ff7775;" : "1px solid #d9d9d9")};
   color: ${({ isCheckOn }) => (isCheckOn ? "#FF7775" : "#3C3C3C")};
-  font-size: 16px;
+  font-size: 15px;
   border-radius: 100px;
   text-align: center;
+  font-weight: 500;
+  padding: 0px 7px;
 `;
 
 const CheckSuccessBnt = styled.button`
@@ -135,4 +138,6 @@ const CheckSuccessBnt = styled.button`
   font-size: 16px;
   border-radius: 100px;
   justify-content: center;
+  color: #6b95ff;
+  font-weight: bold;
 `;

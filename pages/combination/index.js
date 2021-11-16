@@ -6,7 +6,7 @@ import { useRouter } from "next/router";
 
 import SearchInput from "../../src/Components/Input/SearchInput";
 import Card from "../../src/Components/Card";
-import FirstEventImg from "../../src/Asset/Images/first-event-bnr.svg";
+import FirstEventImg from "../../src/Asset/Images/eventbnr1.svg";
 
 //꿀조합 페이지
 const combination = () => {
@@ -25,8 +25,8 @@ const combination = () => {
     <div>
       <PageBox>
         <SearchWrap>
-          <SearchInput></SearchInput>
-          </SearchWrap>
+          <SearchInput/>
+        </SearchWrap>
         <div>
           <EventBanner src={FirstEventImg.src} />
         </div>
