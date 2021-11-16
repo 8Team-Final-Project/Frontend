@@ -167,6 +167,7 @@ const Content = styled.div`
 `;
 
 const InputArea = styled.div`
+  margin-top: 30px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -184,7 +185,7 @@ const Controls = styled.div`
   justify-content: center;
   border-top: 1px solid #d9d9d9;
   button {
-    padding: 16px;
+    padding: 20px 16px;
     font-size: 18px;
     width: 100%;
   }
@@ -200,4 +201,6 @@ const Controls = styled.div`
 const LogoutBtn = styled.div`
   color: #b8b8b8;
   margin: 30px 0 10px 0;
+  font-weight: 18px;
+  cursor: pointer;
 `

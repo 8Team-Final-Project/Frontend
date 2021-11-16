@@ -45,7 +45,7 @@ const mypage = (props) => {
       </ProfileBox>
 
       <Center>
-        <h1>{userNickname}</h1>
+        <Nickname>{userNickname}</Nickname>
         <P>{userEmail}</P>
       </Center>
 
@@ -54,11 +54,15 @@ const mypage = (props) => {
 
       {/* 작성글 저장글 */}
       <ListWrap>
-      <PostSaveBtn />
+        <PostSaveBtn />
       </ListWrap>
     </>
   );
 };
+const Nickname = styled.div`
+  font-size: 24px;
+  font-weight: bold;
+`;
 
 const P = styled.p`
   color: #b8b8b8;
@@ -100,7 +104,7 @@ const PencilAlt = styled.button`
   font-size: 20px;
   position: absolute;
   margin-left: 10px;
-  align: center;
+  text-align: center;
 `;
 
 const Center = styled.div`
@@ -109,7 +113,7 @@ const Center = styled.div`
 `;
 
 const ListWrap = styled.div`
-  padding : 5%;
-`
+  padding: 5%;
+`;
 
 export default mypage;

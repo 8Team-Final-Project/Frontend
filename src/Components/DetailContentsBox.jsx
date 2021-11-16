@@ -230,6 +230,7 @@ const Menu = styled.div`
   margin: 0 0 0 auto;
   align-items: center;
   line-height: 2.3;
+  cursor: pointer;
 `;
 
 const Content = styled.div`
