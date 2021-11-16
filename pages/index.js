@@ -54,11 +54,11 @@ export default function Home() {
         <DescriptionArea>
           <EventBnr>
             <EventBnrBox1>
-              <Image src={ramen.src} width="80%" />
+              <Image src={ramen.src} width="100%" />
               <Tag>#라면냠냠</Tag>
             </EventBnrBox1>
             <EventBnrBox2>
-              <Image src={fishBread.src} width="80%" />
+              <Image src={fishBread.src} width="100%" />
               <Tag>#붕어빵냠냠</Tag>
             </EventBnrBox2>
           </EventBnr>
@@ -174,15 +174,14 @@ const EventBnr = styled.div`
 `;
 
 const EventBnrBox1 = styled.div`
-  width: 100%;
-  margin-left: 23px;
-  margin-right: 23px;
+  width: 90%;
+  margin-left: 30px;
   
 `;
 
 const EventBnrBox2 = styled.div`
-  width : 100%;
-  margin : 5px 23px 0px
+  width : 90%;
+  margin : 6px 30px 0px 0px;
 
 `
 

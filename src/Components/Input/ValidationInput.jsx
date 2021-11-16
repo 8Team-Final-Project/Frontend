@@ -98,7 +98,7 @@ const Input = styled(TextField)`
 const Label = styled.span`
   display: inline-block;
   color: #878787;
-  font-size: 18px;
+  font-size: 22px;
   position: relative;
   margin-bottom: 4%;
   ::before {
@@ -112,5 +112,5 @@ const importantStyle = css({
   right: -10,
   top: 0,
   color: "#FF7775",
-  fontSize: "18px"
+  fontSize: "20px"
 });
