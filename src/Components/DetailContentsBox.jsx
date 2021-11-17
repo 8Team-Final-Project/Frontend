@@ -7,6 +7,9 @@ import { CopyToClipboard } from "react-copy-to-clipboard";
 import { useDispatch, useSelector } from "react-redux";
 import { getPostDB, likePostDB, savePostDB } from "../Redux/Async/postAsync";
 import PostBasicProfile from "../../src/Asset/Images/post-basic-profile.svg";
+import { Swiper, SwiperSlide } from "swiper/react";
+import SwiperCore, { Navigation } from "swiper";
+import "swiper/css";
 
 //component
 import MenuButton from "./Shared/CommentEditDelete";
@@ -68,6 +71,9 @@ const DetailContentsBox = (props) => {
     }
   };
 
+  //Swiper
+  SwiperCore.use([Navigation]);
+
   return (
     <React.Fragment>
       <Grid>
@@ -83,7 +89,14 @@ const DetailContentsBox = (props) => {
             </Menu>
           )}
         </FlexBox>
-        <PostImg src={post?.postImg ? post.postImg : src} />
+        <Swiper slidesPerView={1} navigation={true}>
+          <SwiperSlide>
+            <PostImg src={post?.postImg ? post.postImg : src} />
+          </SwiperSlide>
+          <SwiperSlide>hi</SwiperSlide>
+          <SwiperSlide>hello</SwiperSlide>
+          <SwiperSlide>안녕</SwiperSlide>
+        </Swiper>
         <Title>
           <strong>{post && post.postTitle}</strong>
         </Title>
