@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { getCombinationListDB } from "../../src/Redux/Async/postAsync";
 import { useRouter } from "next/router";
+import { useInView } from "react-intersection-observer";
 
 import SearchInput from "../../src/Components/Input/SearchInput";
 import Card from "../../src/Components/Card";
@@ -10,8 +11,6 @@ import FirstEventImg from "../../src/Asset/Images/eventbnr1.svg";
 
 //꿀조합 페이지
 const combination = () => {
-  const router = useRouter();
-
   const dispatch = useDispatch();
   const isloaded = useSelector((state) => state.post.loaded);
   const postList = useSelector((state) => state.post?.list[0]);
@@ -25,21 +24,21 @@ const combination = () => {
     <div>
       <PageBox>
         <SearchWrap>
-          <SearchInput/>
+          <SearchInput />
         </SearchWrap>
         <div>
           <EventBanner src={FirstEventImg.src} />
         </div>
         <CardWrap>
-        {/* post는 객체하나 */}
-        {isloaded && (
-          <>
-            {postList &&
-              postList.map((post) => {
-                return <Card key={post.id} {...post} />;
-              })}
-          </>
-        )}
+          {/* post는 객체하나 */}
+          {isloaded && (
+            <>
+              {postList &&
+                postList.map((post) => {
+                  return <Card key={post.id} {...post} />;
+                })}
+            </>
+          )}
         </CardWrap>
       </PageBox>
     </div>
@@ -47,8 +46,8 @@ const combination = () => {
 };
 
 const SearchWrap = styled.div`
-  padding : 5%;
-`
+  padding: 5%;
+`;
 
 const EventBanner = styled.img`
   margin-top: 2%;
@@ -62,7 +61,7 @@ const PageBox = styled.div`
 `;
 
 const CardWrap = styled.div`
-  margin : 8% 6% auto;
-`
+  margin: 8% 6% auto;
+`;
 
 export default combination;

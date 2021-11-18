@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import styled from "@emotion/styled";
 import { TextField } from "@mui/material";
+import { margin } from "@mui/system";
 
 //handleValueCheck는 중복확인을 할 수 있는 api함수를 담아주면 됩니다.
 //isCheck는 부모로부터 중복확인 여부 state 값을 받아온다.
@@ -90,7 +91,7 @@ ConfirmValidationInput.defaultProps = {
   isCheck: false,
   setIsCheck: () => {},
   handleValueCheck: () => {},
-  successText: " "
+  successText: " ",
 };
 
 const Container = styled.div`
@@ -107,7 +108,11 @@ const Label = styled.span`
 const Input = styled(TextField)`
   width: 100%;
   input {
+    font-size: 18px;
     width: calc(100% - 110px);
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    padding-left: 5px;
   }
 `;
 
@@ -119,7 +124,7 @@ const CheckBnt = styled.button`
   height: 40px;
   border: ${({ isCheckOn }) => (isCheckOn ? "1px solid #ff7775;" : "1px solid #d9d9d9")};
   color: ${({ isCheckOn }) => (isCheckOn ? "#FF7775" : "#3C3C3C")};
-  font-size: 15px;
+  font-size: 16px;
   border-radius: 100px;
   text-align: center;
   font-weight: 500;

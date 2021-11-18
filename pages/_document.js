@@ -1,6 +1,8 @@
 //_document.js
 import Document, { Html, Head, Main, NextScript } from "next/document";
 import { ServerStyleSheet } from "styled-components";
+import Script from "next/script";
+import { GA_TRACKING_ID } from "../src/Shared/gtag";
 
 //next.js에서 제공하는 document를 수정할 수 있다. html이나 head, body를 수정해야될 때는 이 파일을 필수적으로 작성해야함!
 //document는 서버에서만 렌더링되고, onClick같은 이벤트 핸들러는 작용하지 않는다.
@@ -60,10 +62,46 @@ class MyDocument extends Document {
           <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
           <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
           <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+          new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+          j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+          'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+          })(window,document,'script','dataLayer','G-WV8FWTE3H3');`
+            }}
+          />
+
           <link rel="manifest" href="/manifest.json" />
           <meta name="msapplication-TileColor" content="#ffffff" />
           <meta name="msapplication-TileImage" content="/ms-icon-144x144.png" />
           <meta name="theme-color" content="#ffffff" />
+
+          {/* 네이버 애널리틱스 */}
+          <script type="text/javascript" src="//wcs.naver.net/wcslog.js"></script>
+          <script
+            type="text/javascript"
+            dangerouslySetInnerHTML={{
+              __html: `if(!wcs_add) var wcs_add = {}; wcs_add["wa"] = "10c464510b6ffb0"; if(window.wcs) {wcs_do()}`
+            }}
+          ></script>
+
+          {/* Global Site Tag (gtag.js) - Google Analytics */}
+          {/* <script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`} />
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', '${GA_TRACKING_ID}', {
+              page_path: window.location.pathname,
+            });
+          `
+            }}
+          /> */}
         </Head>
         <body>
           <Main />
