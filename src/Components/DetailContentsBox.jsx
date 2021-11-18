@@ -95,9 +95,15 @@ const DetailContentsBox = (props) => {
           <SwiperSlide>
             <PostImg src={post?.postImg ? post.postImg : src} />
           </SwiperSlide>
-          <SwiperSlide>hi</SwiperSlide>
-          <SwiperSlide>hello</SwiperSlide>
-          <SwiperSlide>안녕</SwiperSlide>
+          <SwiperSlide>
+            <PostImg src={post?.postImg ? post.postImg : src} />
+          </SwiperSlide>
+          <SwiperSlide>
+            <PostImg src={post?.postImg ? post.postImg : src} />
+          </SwiperSlide>
+          <SwiperSlide>
+            <PostImg src={post?.postImg ? post.postImg : src} />
+          </SwiperSlide>
         </Swiper>
         <Title>
           <strong>{post && post.postTitle}</strong>
