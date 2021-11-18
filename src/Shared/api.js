@@ -74,9 +74,22 @@ export const postApi = {
   savePost: (postId) => instance.patch(`/api/v1/keep/${postId}`),
 
   // 꿀조합 게시물 좋아요 / 취소
-  likePost: (postId) => instance.patch(`/api/v1/like/${postId}`)
+  likePost: (postId) => instance.patch(`/api/v1/like/${postId}`),
 };
 
+export const commentApi = {
+  // 댓글 작성하기
+  addComment: (postId) => instance.post(`/api/v1/comment/${postId}`),
+
+  // 댓글 불러오기
+  getComment: (postId) => instance.get(`/api/v1/comment/${postId}`),
+  
+  // 댓글 수정하기
+  // editComment: (postId) => instance.patch(`/api/v1/comment/commentupdate/${postId}`),
+  
+  // 댓글 삭제하기
+  // deleteComment: (postId) => instance.delete(`/api/v1/comment/commentdelete/${postId}`),
+}
 
 export const uploadApi = {
   imageUpload: async function (imgObj) {

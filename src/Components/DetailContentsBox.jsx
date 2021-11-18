@@ -1,15 +1,17 @@
 import React, { useState } from "react";
-import Modal from "react-modal";
 import { useRef, useEffect } from "react";
-import styled from "styled-components";
 import Router, { useRouter } from "next/router";
-import { CopyToClipboard } from "react-copy-to-clipboard";
 import { useDispatch, useSelector } from "react-redux";
+import styled from "styled-components";
+
+import Modal from "react-modal";
+import { CopyToClipboard } from "react-copy-to-clipboard";
 import { getPostDB, likePostDB, savePostDB } from "../Redux/Async/postAsync";
 import PostBasicProfile from "../../src/Asset/Images/post-basic-profile.svg";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Navigation } from "swiper";
 import "swiper/css";
+import Comments from "./Comments";
 
 //component
 import MenuButton from "./Shared/CommentEditDelete";
@@ -146,6 +148,8 @@ const DetailContentsBox = (props) => {
             </IconBox>
           </IconBoxFlex>
         </Btn>
+
+        <Comments />
       </Grid>
 
       <ModalFrame>
