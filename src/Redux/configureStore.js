@@ -6,12 +6,15 @@ import { combineReducers } from "redux";
 
 import postSlice  from "./Modules/postSlice";
 import userSlice from "./Modules/userSlice";
+import commentSlice from "./Modules/commentSlice";
 
 
 //리듀서 전달하기
 const reducer = combineReducers({
     post: postSlice.reducer,
     user : userSlice.reducer,
+    comment : commentSlice.reducer,
+    
 });
 
 //미들웨어에 redux-logger 넣기!

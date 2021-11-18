@@ -1,45 +1,71 @@
-import React, {useState} from "react";
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useRouter } from "next/router";
+
 import styled from "styled-components";
 
-function Comments(){
+import { 
+  addCommentDB,
+  getCommentDB
+} from "../Redux/Async/commentAsync";
 
-  let [title, titles] = useState([]);
-  let [text, setText] = useState('');
+
+
+function Comments(){
+  const dispatch = useDispatch();
+  const a = useSelector((state) => state.comment.comment[0])
+  console.log(a)
+
+  
+
+  const router = useRouter();
+  const postId = useRouter().query;
+  console.log(postId)
+
+  const [textContent, setTextContent] = useState("")
+  
+  useEffect(() => {
+    dispatch(getCommentDB(postId));
+  }, []);
+
+  //저장 버튼
+  const setComments = () => {
+    const commentItem = {
+      postId: postId,
+      textContent: textContent,
+    };
+    dispatch(addCommentDB(commentItem));
+  };
 
   return (
     <div>
 
       <div>
-        {/* 댓글창 */}
+        {/* 댓글 입력창 */}
         <DInput>
-          <Input type="text" onChange={(e) => {setText(e.target.value)}} placeholder="욕설은 징계 대상이 될 수 있습니다."/>
+          <Input type="text" onChange={(e) => {setTextContent(e.target.value)}} placeholder="댓글을 입력해주세요."/>
+
+          <SaveButton onClick={() => {
+            setComments()
+          }}>
+            저장
+          </SaveButton>
         </DInput>
-
-        {/* 저장 버튼 */}
-        <SaveButton onClick={() => {
-          var arrayCopy = [...title];
-          arrayCopy.unshift(text);
-          titles( arrayCopy );
-        }}>
-          저장
-        </SaveButton>
-
       </div>
 
-      <Hr />
 
       {/* 댓글창 */}
-      {title.map((t,i)=>{
+      {/* {a.map((t,i)=>{
           return(
             <CommentBox>
               <Nick>닉네임</Nick>
-              <p onClick={()=>{counts(i)}}> {t}</p>
+              <p>{ t }</p>
               <EditBtn>수정</EditBtn>
               <DeleteBtn>삭제</DeleteBtn>
               <Hr/>
             </CommentBox>
           )
-        })}
+        })} */}
       
     </div>
     
@@ -47,7 +73,8 @@ function Comments(){
 }
 
 const DInput = styled.div`
-  width: 100%;
+  display: flex;
+  border: none;
   height:20px;
 `
 const Input = styled.input`
