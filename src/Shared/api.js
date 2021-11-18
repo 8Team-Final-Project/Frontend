@@ -79,13 +79,13 @@ export const postApi = {
 
 export const commentApi = {
   // 댓글 작성하기
-  addComment: (postId) => instance.post(`/api/v1/comment/${postId}`),
+  addComment: (data) => instance.post(`/api/v1/comment/${data.postId}`, {commentContent: data.textContent}),
 
   // 댓글 불러오기
   getComment: (postId) => instance.get(`/api/v1/comment/${postId}`),
   
   // 댓글 수정하기
-  // editComment: (postId) => instance.patch(`/api/v1/comment/commentupdate/${postId}`),
+  editComment: (postId) => instance.patch(`/api/v1/comment/commentupdate/${commentId}`),
   
   // 댓글 삭제하기
   // deleteComment: (postId) => instance.delete(`/api/v1/comment/commentdelete/${postId}`),

@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { 
     addCommentDB,
     getCommentDB,
-    // editCommentDB,
+    editCommentDB,
     // getPostDBdeleteCommentDB,
      } from "../Async/commentAsync";
 
@@ -34,15 +34,15 @@ const commentSlice = createSlice({
         },
 
         // 댓글 불러오기
-        [getCommentDB.fulfilled]: (state, { payload }) => {
+        [editCommentDB.fulfilled]: (state, { payload }) => {
             state.errorMessage = null;
             state.isFetching = false;
             state.comment = payload;
         },
-        [getCommentDB.pending]: (state, { payload }) => {
+        [editCommentDB.pending]: (state, { payload }) => {
             state.isFetching = true;
         },
-        [getCommentDB.rejected]: (state, { payload: errorMessage }) => {
+        [editCommentDB.rejected]: (state, { payload: errorMessage }) => {
             state.isFetching = false;
             state.errorMessage = errorMessage;
         },
