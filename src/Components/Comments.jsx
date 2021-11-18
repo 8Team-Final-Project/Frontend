@@ -13,8 +13,9 @@ import {
 
 function Comments(){
   const dispatch = useDispatch();
-  const a = useSelector((state) => state.comment.comment[0])
-  console.log(a)
+
+  const commentContent = useSelector((state) => state.comment)
+  console.log(commentContent)
 
   
 
