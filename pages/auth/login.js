@@ -9,7 +9,6 @@ import router from "next/router"
 //Component
 import ValidationInput from "../../src/Components/Input/ValidationInput"
 import RedButton from "../../src/Components/Button/RedButton"
-import WhiteButton from "../../src/Components/Button/WhiteButton"
 
 
 const login = () => {
@@ -50,7 +49,6 @@ const login = () => {
                         setValue={setuserPassword}
                         defaultText=" "
                         type="password"
-
                     />
                     </InputWrap>
                 </Margin>

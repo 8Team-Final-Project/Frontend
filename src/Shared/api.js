@@ -4,7 +4,7 @@ import { getToken } from "./util";
 // Axios 인스턴스 설정
 const instance = axios.create({
   // 백엔드 배포 주소
-  baseURL: "https://kkuljohang.shop"
+  baseURL: "http://54.180.137.99"
 });
 
 //interceptor를 통한 header 설정
@@ -16,7 +16,7 @@ instance.interceptors.request.use(async (config) => {
   //getToken는 로컬 스토리지에 토큰이 있다면 반환한다 없다면 null 값 반환
   config.headers["Authorization"] = await getToken();
 
-  //CORS 설정
+  // CORS 설정(main 브랜치에서만 주석 제거)
   var xhr = new XMLHttpRequest();
   xhr.open('GET', 'https://kkuljohang.shop', true);
   xhr.withCredentials = true;
@@ -39,7 +39,7 @@ export const userApi = {
   login: (user) => instance.post("/api/v1/users/login", user),
 
   // 로그인 유지
-  loginCheck: (user) => instance.get("/api/v1/users/logincheck"),
+  loginCheck: (user) => instance.get("/api/v1/users/logincheck", user),
 
   // 로그아웃
   logout: (user) => instance.get("/api/v1/users/logout", user),
@@ -51,13 +51,12 @@ export const userApi = {
   userid: (user) => instance.patch("/api/v1/users/userid", user)
 };
 
-
 export const postApi = {
   // 꿀조합 게시글 불러오기
   getPostList: () => instance.get(`/api/v1/post/?page`),
 
   // 이벤트 게시글 불러오기
-  getEventPostList : (data) => instance.get("/api/v1/post/event1list", data),
+  getEventPostList: (data) => instance.get("/api/v1/post/event1list", data),
 
   // 꿀조합 게시글 작성하기
   addPost: (post) => instance.post("/api/v1/post", post),
@@ -78,6 +77,19 @@ export const postApi = {
   likePost: (postId) => instance.patch(`/api/v1/like/${postId}`)
 };
 
+export const commentApi = {
+  // 댓글 작성하기
+  addComment: (postId) => instance.post(`/api/v1/comment/${postId}`),
+
+  // 댓글 불러오기
+  getComment: (postId) => instance.get(`/api/v1/comment/${postId}`),
+  
+  // 댓글 수정하기
+  // editComment: (postId) => instance.patch(`/api/v1/comment/commentupdate/${postId}`),
+  
+  // 댓글 삭제하기
+  // deleteComment: (postId) => instance.delete(`/api/v1/comment/commentdelete/${postId}`),
+}
 
 export const uploadApi = {
   imageUpload: async function (imgObj) {

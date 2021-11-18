@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 import { getEventPostListDB } from "../../src/Redux/Async/postAsync";
@@ -8,7 +8,7 @@ import { useRouter } from "next/router";
 import Card from "../../src/Components/Card"
 
 
-const event = (props) => {
+const event = () => {
     const router = useRouter();
     const dispatch = useDispatch();
     const post_list = useSelector((state) => state.post);
@@ -21,7 +21,7 @@ const event = (props) => {
     const goEventInfo = () => {
         return router.push("/event/info")
     }
-    
+		
     return (
         <React.Fragment>
             <EventName>이번주 붕어빵 꿀조합은</EventName>

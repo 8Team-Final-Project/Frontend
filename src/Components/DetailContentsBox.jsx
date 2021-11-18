@@ -1,12 +1,17 @@
 import React, { useState } from "react";
-import Modal from "react-modal";
 import { useRef, useEffect } from "react";
-import styled from "styled-components";
 import Router, { useRouter } from "next/router";
-import { CopyToClipboard } from "react-copy-to-clipboard";
 import { useDispatch, useSelector } from "react-redux";
+import styled from "styled-components";
+
+import Modal from "react-modal";
+import { CopyToClipboard } from "react-copy-to-clipboard";
 import { getPostDB, likePostDB, savePostDB } from "../Redux/Async/postAsync";
 import PostBasicProfile from "../../src/Asset/Images/post-basic-profile.svg";
+import { Swiper, SwiperSlide } from "swiper/react";
+import SwiperCore, { Navigation } from "swiper";
+import "swiper/css";
+import Comments from "./Comments";
 
 //component
 import MenuButton from "./Shared/CommentEditDelete";
@@ -68,6 +73,9 @@ const DetailContentsBox = (props) => {
     }
   };
 
+  //Swiper
+  SwiperCore.use([Navigation]);
+
   return (
     <React.Fragment>
       <Grid>
@@ -83,7 +91,20 @@ const DetailContentsBox = (props) => {
             </Menu>
           )}
         </FlexBox>
-        <PostImg src={post?.postImg ? post.postImg : src} />
+        <Swiper slidesPerView={1} navigation={true}>
+          <SwiperSlide>
+            <PostImg src={post?.postImg ? post.postImg : src} />
+          </SwiperSlide>
+          <SwiperSlide>
+            <PostImg src={post?.postImg ? post.postImg : src} />
+          </SwiperSlide>
+          <SwiperSlide>
+            <PostImg src={post?.postImg ? post.postImg : src} />
+          </SwiperSlide>
+          <SwiperSlide>
+            <PostImg src={post?.postImg ? post.postImg : src} />
+          </SwiperSlide>
+        </Swiper>
         <Title>
           <strong>{post && post.postTitle}</strong>
         </Title>
@@ -133,6 +154,8 @@ const DetailContentsBox = (props) => {
             </IconBox>
           </IconBoxFlex>
         </Btn>
+
+        <Comments />
       </Grid>
 
       <ModalFrame>
@@ -230,6 +253,7 @@ const Menu = styled.div`
   margin: 0 0 0 auto;
   align-items: center;
   line-height: 2.3;
+  cursor: pointer;
 `;
 
 const Content = styled.div`

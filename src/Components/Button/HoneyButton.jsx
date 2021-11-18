@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 import logoIcon from "../../Asset/icons/logo_icon.svg";
 
-// import { GlobalStyles } from "../../../styles/globalStyles";
 
 const HoneyButton = ({ value, onClick, main }) => {
   return (
@@ -25,6 +24,7 @@ const HButton = styled.button`
   background-color: #ffd86b;
   padding: 12px 0px;
   border-radius: 10px;
+  /* font-weight: medium; */
   font-size: 18px;
   cursor: pointer;
   ${({ main }) => main && `position:relative;`}

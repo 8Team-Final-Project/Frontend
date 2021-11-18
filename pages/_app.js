@@ -60,7 +60,7 @@ function MyApp({ Component, pageProps }) {
     <GlobalThemeProvider>
       <Wrapper ref={container}>
         <HeaderWrap>
-        <Header />
+          <Header />
         </HeaderWrap>
         <Component {...pageProps} />
         {router.pathname === "/event" || router.pathname === "/combination" ? (
@@ -78,9 +78,9 @@ const Wrapper = styled.div`
 `;
 
 const HeaderWrap = styled.div`
-  margin : 5%;
-  padding : 0 3%;
-`
+  margin: 5%;
+  padding: 0 3%;
+`;
 
 // withRedux 함수로 컴포넌트를 감싸준다.
 export default wrapper.withRedux(MyApp);

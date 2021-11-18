@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { editPostDB } from "../../../src/Redux/Async/postAsync";
@@ -32,29 +32,23 @@ const combinationEdit = () => {
     if (getPostContent && getPostContent !== postContent) setPostContent(getPostContent);
   }, [getPostImg, getPostTitle, getPostRecipe, getPostContent]);
 
-
-
   const editPost = () => {
     const postItem = {
       postImg: postImg,
       postTitle: postTitle,
       postRecipe: postRecipe,
       postContent: postContent,
-      postId: postId,
+      postId: postId
     };
     disPatch(editPostDB(postItem));
-    router.push(`/combination/detail/${postId}`)
+    router.push(`/combination/detail/${postId}`);
   };
 
   return (
     <Wrap>
       <WriteBox>
         <CenterBox>
-          <RectangleImage
-            edit
-            imgUrl={postImg? postImg : false}
-            saveUrl={setPostImg}
-            ></RectangleImage>
+          <RectangleImage edit imgUrl={postImg ? postImg : false} saveUrl={setPostImg}></RectangleImage>
         </CenterBox>
         <CenterBox>
           <ValidationInput
@@ -65,10 +59,10 @@ const combinationEdit = () => {
             maxValue={10}
             defaultText
             important
-            ></ValidationInput>
+          ></ValidationInput>
         </CenterBox>
         <CenterBox>
-         <ValidationInput
+          <ValidationInput
             label="재료를 입력해주세요"
             value={postRecipe}
             setValue={setPostRecipe}
@@ -93,17 +87,25 @@ const combinationEdit = () => {
         </CenterBox>
 
         <CenterBox>
-         <FlexBox>
-            <WhiteButton 
-                value="취소"
-                onClick={() => {
-                {router.push(`/combination/detail/${postId}`)}}}
-              /><RedButton 
-                value="저장"
-                onClick={()=>{
-                editPost()
-                {router.push(`/combination/detail/${postId}`)}}}
-              /></FlexBox>
+          <FlexBox>
+            <WhiteButton
+              value="취소"
+              onClick={() => {
+                {
+                  router.push(`/combination/detail/${postId}`);
+                }
+              }}
+            />
+            <RedButton
+              value="저장"
+              onClick={() => {
+                editPost();
+                {
+                  router.push(`/combination/detail/${postId}`);
+                }
+              }}
+            />
+          </FlexBox>
         </CenterBox>
       </WriteBox>
     </Wrap>
@@ -111,8 +113,8 @@ const combinationEdit = () => {
 };
 
 const Wrap = styled.div`
-  margin :auto 
-`
+  margin: auto;
+`;
 
 const CenterBox = styled.div`
   width: 90%;
