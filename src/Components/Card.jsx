@@ -24,11 +24,7 @@ const Card = (props) => {
       <LeftBox src={props.postImg ? props.postImg : src} />
       <RightBox>
         <PostTitle>{props.postTitle && props.postTitle}</PostTitle>
-        <TagLine>
-          {props.postTag && props.postTag.map((tag, idx) => (
-            <Tag key={idx} value={"#" + tag}></Tag>
-          ))}
-        </TagLine>
+        <TagLine>{props.postTag && props.postTag.map((tag, idx) => <Tag key={idx} value={"#" + tag}></Tag>)}</TagLine>
         <Like>
           {props.likeCnt && props.likeCnt == 0 ? <Heart src={likeOff.src} /> : <Heart src={likeOn.src} />}
           <LikeCnt>
@@ -79,7 +75,7 @@ const CardBox = styled.div`
 // 기본 사진 or 사진 받아오기
 const LeftBox = styled.div`
   width: 30%;
-  height: 105px;
+  height: 110px;
   border-radius: 10px 0 0 10px;
   background-image: url("${(props) => props.src}");
   background-position: center;
@@ -88,7 +84,7 @@ const LeftBox = styled.div`
 
 // 제목, 태그, 좋아요 받아오기
 const RightBox = styled.div`
-  padding: 10px;
+  padding: 10px 10px 10px 20px;
   box-sizing: border-box;
   width: 70%;
   height: 100px;

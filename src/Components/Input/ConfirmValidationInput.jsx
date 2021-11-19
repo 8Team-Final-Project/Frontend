@@ -91,7 +91,7 @@ ConfirmValidationInput.defaultProps = {
   isCheck: false,
   setIsCheck: () => {},
   handleValueCheck: () => {},
-  successText: " ",
+  successText: " "
 };
 
 const Container = styled.div`
@@ -101,12 +101,12 @@ const Container = styled.div`
 
 const Label = styled.span`
   color: #878787;
-  font-size: 18px;
-  margin-bottom: 4%;
+  font-size: 22px;
 `;
 
 const Input = styled(TextField)`
   width: 100%;
+  margin-top: 4%;
   input {
     font-size: 18px;
     width: calc(100% - 110px);
@@ -119,8 +119,8 @@ const Input = styled(TextField)`
 const CheckBnt = styled.button`
   position: absolute;
   right: 0;
-  top: 10px;
-  width: 80px;
+  top: 30%;
+  width: 90px;
   height: 40px;
   border: ${({ isCheckOn }) => (isCheckOn ? "1px solid #ff7775;" : "1px solid #d9d9d9")};
   color: ${({ isCheckOn }) => (isCheckOn ? "#FF7775" : "#3C3C3C")};
@@ -128,17 +128,17 @@ const CheckBnt = styled.button`
   border-radius: 100px;
   text-align: center;
   font-weight: 500;
-  padding: 0px 7px;
+  padding: 0px 12px;
 `;
 
 const CheckSuccessBnt = styled.button`
   display: flex;
   align-items: center;
-  width: 100px;
+  width: 90px;
   height: 40px;
   position: absolute;
   right: 0;
-  top: 10px;
+  top: 30%;
   border: 1px solid #6b95ff;
   font-size: 16px;
   border-radius: 100px;

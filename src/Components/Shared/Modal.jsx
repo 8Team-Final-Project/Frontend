@@ -49,7 +49,7 @@ export default function Modal({ isOpen, handleClose, children, title, width, hei
 }
 
 Modal.defaultProps = {
-  width: "100%",
+  width: "80%",
   height: "calc(100% - 30px)",
   isOpen: false,
   handleClose: () => {},
@@ -63,7 +63,7 @@ const Overlay = styled.div`
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: 120%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -72,8 +72,8 @@ const Overlay = styled.div`
 
 const Container = styled.div`
   background: white;
-  width: ${({ width }) => width};
-  height: ${({ height }) => height};
+  width: 80%;
+  height: 80%;
   border-radius: 15px;
   margin: ${({ isHideDefaultClose }) => (isHideDefaultClose ? 0 : "15px")};
   padding: ${({ isHideDefaultClose }) => (isHideDefaultClose ? 0 : "15px")};

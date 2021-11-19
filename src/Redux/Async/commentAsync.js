@@ -20,7 +20,7 @@ export const addCommentDB = createAsyncThunk("addComment", async (data, thunkAPI
 export const getCommentDB = createAsyncThunk("getComment", async (data, thunkAPI) => {
   try {
     const response = await commentApi.getComment(data);
-    // console.log(response)
+    console.log(response)
     if (response.statusText === "OK"){
       window.alert("댓글불러오기 완료!");
       return response.data;

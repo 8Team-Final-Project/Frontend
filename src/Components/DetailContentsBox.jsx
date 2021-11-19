@@ -296,6 +296,7 @@ const Btn = styled.div`
   color: #b8b8b8;
   border-top: 0.5px solid #e5e5e5;
   border-bottom: 0.5px solid #e5e5e5;
+  padding: 0 5%;
 `;
 
 const ModalFrame = styled.div`
