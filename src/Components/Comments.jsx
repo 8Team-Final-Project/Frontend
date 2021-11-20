@@ -37,8 +37,6 @@ function Comments(){
   const postId = useRouter().query.id;
   console.log("postId", postId)
   const commentList = useSelector((state) => state.comment.comment)
-  const commentComment = useSelector((state) => state.comment.comment)
-  console.log()
 
   const [textContent, setTextContent] = useState("")
   
@@ -62,7 +60,6 @@ function Comments(){
   return (
     <Wrap>
       {/* 댓글 입력창 */}
-          {/* <DetailContentsBox/> */}
       <Box>
         <DInput>
           <Input type="text" onChange={(e) => {setTextContent(e.target.value)}} placeholder="댓글을 입력해주세요."/>
