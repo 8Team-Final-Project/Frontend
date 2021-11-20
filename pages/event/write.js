@@ -15,7 +15,7 @@ import HashTagInput from "../../src/Components/Input/HashTagWriteInput";
 const write = () => {
   const dispatch = useDispatch();
 
-  const [postImg, setPostImg] = useState("");
+  const [postImg1, setPostImg] = useState("");
   const [postTitle, setPostTitle] = useState("");
   const [postRecipe, setPostRecipe] = useState("");
   const [postContent, setPostContent] = useState("");
@@ -27,7 +27,7 @@ const write = () => {
 
   const addEventPost = () => {
     const content = {
-      postImg: postImg,
+      postImg1: postImg1,
       postTitle: postTitle,
       postRecipe: postRecipe,
       postContent: postContent,
@@ -56,7 +56,7 @@ const write = () => {
   return (
       <WriteBox>
         <CenterBox>
-          <RectangleImage edit saveUrl={setPostImg} imgUrl={postImg ? postImg : false} />
+          <RectangleImage edit saveUrl={setPostImg} imgUrl={postImg1 ? postImg1 : false} />
         </CenterBox>
         <CenterBox>
           <CommonInput

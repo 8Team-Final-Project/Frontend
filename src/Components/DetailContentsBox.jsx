@@ -93,16 +93,7 @@ const DetailContentsBox = (props) => {
         </FlexBox>
         <Swiper slidesPerView={1} navigation={true}>
           <SwiperSlide>
-            <PostImg src={post?.postImg ? post.postImg : src} />
-          </SwiperSlide>
-          <SwiperSlide>
-            <PostImg src={post?.postImg ? post.postImg : src} />
-          </SwiperSlide>
-          <SwiperSlide>
-            <PostImg src={post?.postImg ? post.postImg : src} />
-          </SwiperSlide>
-          <SwiperSlide>
-            <PostImg src={post?.postImg ? post.postImg : src} />
+            <PostImg src={post?.postImg1 ? post.postImg1 : src} />
           </SwiperSlide>
         </Swiper>
         <Title>

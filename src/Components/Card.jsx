@@ -21,7 +21,7 @@ const Card = (props) => {
 
   return (
     <CardBox onClick={goDetail}>
-      <LeftBox src={props.postImg ? props.postImg : src} />
+      <LeftBox src={props.postImg1 ? props.postImg1 : src} />
       <RightBox>
         <PostTitle>{props.postTitle && props.postTitle}</PostTitle>
         <TagLine>{props.postTag && props.postTag.map((tag, idx) => <Tag key={idx} value={"#" + tag}></Tag>)}</TagLine>

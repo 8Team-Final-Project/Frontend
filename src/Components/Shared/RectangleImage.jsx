@@ -20,11 +20,12 @@ export default function RectangleImage({ edit, saveUrl, imgUrl }) {
     //서버에 이미지 업로드하여 imgUrl을 받아와서 url을 저장시키는 함수입니다.
 
     const fileObj = e.target.files[0];
+
     const format = ["image/jpg", "image/jpeg", "image/png", "image/gif"];
 
     //파일형식이 지정된 형식과 같다면 서버에 이미지업로드 요청을 보낸다.
     if (format.includes(fileObj && fileObj.type)) {
-      uploadApi.imageUpload(fileObj).then((res) => saveUrl(res.data.postImg));
+      uploadApi.imageUpload(fileObj).then((res) => saveUrl(res.data[0].postImg1));
     }
   };
 
