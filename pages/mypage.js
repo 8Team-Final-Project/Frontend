@@ -7,9 +7,16 @@ import PostSaveBtn from "../src/Components/Mypage/PostSaveBtn";
 import CircleImage from "../src/Components/Shared/CircleImage";
 import MyInfoEditModal from "../src/Components/Mypage/MyInfoEditModal";
 
+import { postLogout } from "../src/Redux/Async/userAsync";
+
 //마이페이지 첫 렌더링시 메이블린 api 가져와서 list에 저장하기
 const mypage = (props) => {
   const dispatch = useDispatch();
+
+  // 로그아웃 버튼
+  const setLogout = () => {
+    dispatch(postLogout());
+  };
 
   //닉네임, 이메일 불러오기
   const userNickname = useSelector((state) => state.user.user?.userNickname);
@@ -51,7 +58,8 @@ const mypage = (props) => {
 
       {/* 프로필 수정 */}
       <MyInfoEditModal isOpen={modalOpen} handleClose={() => setModalOpen(false)} />
-
+      {/* 로그아웃 버튼 */}
+      <LogoutBtn onClick={setLogout}>로그아웃</LogoutBtn>
       {/* 작성글 저장글 */}
       <ListWrap>
         <PostSaveBtn />
@@ -59,6 +67,15 @@ const mypage = (props) => {
     </>
   );
 };
+const LogoutBtn = styled.div`
+  color: #b8b8b8;
+  margin: auto;
+  width: 70px;
+  font-weight: 18px;
+  text-align: center;
+  cursor: pointer;
+`;
+
 const Nickname = styled.div`
   font-size: 24px;
   font-weight: bold;

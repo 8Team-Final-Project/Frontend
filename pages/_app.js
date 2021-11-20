@@ -4,6 +4,7 @@ import { wrapper } from "../src/Redux/configureStore";
 import { useDispatch } from "react-redux";
 import { useRouter } from "next/router";
 import GlobalThemeProvider from "../styles/GlobalThemeProvider";
+import * as gtag from "../src/Shared/gtag";
 
 //api
 import { Me } from "../src/Redux/Async/userAsync";
@@ -16,6 +17,17 @@ import FloatingButton from "../src/Components/Button/FloatingButton";
 function MyApp({ Component, pageProps }) {
   const dispatch = useDispatch();
   const router = useRouter();
+
+  useEffect(() => {
+    const handleRouteChange = (url) => {
+      gtag.pageview(url);
+    };
+    router.events.on("routeChangeComplete", handleRouteChange);
+    return () => {
+      router.events.off("routeChangeComplete", handleRouteChange);
+    };
+  }, [router.events]);
+
   // next js 토큰 확인
   const [locationX, setLocationX] = useState(null);
   const container = useRef(null);
