@@ -3,7 +3,7 @@ import {
     addCommentDB,
     getCommentDB,
     // editCommentDB,
-    // getPostDBdeleteCommentDB,
+    deleteCommentDB,
      } from "../Async/commentAsync";
 
 
@@ -23,7 +23,7 @@ const commentSlice = createSlice({
         [addCommentDB.fulfilled]: (state, { payload }) => {
             state.errorMessage = null;
             state.isFetching = false;
-            state.comment = payload;
+            state.comment.unshift(payload.newComment);
         },
         [addCommentDB.pending]: (state, { payload }) => {
             state.isFetching = true;
@@ -48,10 +48,10 @@ const commentSlice = createSlice({
         },
 
         //댓글 수정하기
-        // [editCommentDB.fulfilled]: (state, {payload}) => {
-        //     state.comment = payload;
-        //     state.isFetching = false;
+        // [editCommentDB.fulfilled]: (state, { payload }) => {
         //     state.errorMessage = null;
+        //     state.isFetching = false;
+        //     state.comment = payload;
         // },
         // [editCommentDB.pending]: (state, { payload }) => {
         //     state.isFetching = true;
@@ -62,19 +62,18 @@ const commentSlice = createSlice({
         // },
 
         //댓글 삭제하기
-        // [getPostDBdeleteCommentDB.fulfilled]: (state, { payload }) => {
-        //     state.comment = payload;
-        //     state.isFetching = false;
-        //     state.errorMessage = null;
-        // },
-        // [getPostDBdeleteCommentDB.pending]: (state, { payload }) => {
-        //     state.isFetching = true;
-        // },
-        // [getPostDBdeleteCommentDB.rejected]: (state, { payload: errorMessage }) => {
-        //     state.isFetching = false;
-        //     state.errorMessage = errorMessage;
-        // },
-
+        [deleteCommentDB.fulfilled]: (state, { payload }) => {
+            state.comment = payload;
+            state.isFetching = false;
+            state.errorMessage = null;
+        },
+        [deleteCommentDB.pending]: (state, { payload }) => {
+            state.isFetching = true;
+        },
+        [deleteCommentDB.rejected]: (state, { payload: errorMessage }) => {
+            state.isFetching = false;
+            state.errorMessage = errorMessage;
+        },
       }
     })
 

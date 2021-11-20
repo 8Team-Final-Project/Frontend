@@ -53,7 +53,7 @@ export const userApi = {
 
 export const postApi = {
   // 꿀조합 게시글 불러오기
-  getPostList: () => instance.get(`/api/v1/post/?page`),
+  getPostList: (page) => instance.get(`/api/v1/post/?page=${page}`),
 
   // 이벤트 게시글 불러오기
   getEventPostList: (data) => instance.get("/api/v1/post/event1list", data),
@@ -79,22 +79,28 @@ export const postApi = {
 
 export const commentApi = {
   // 댓글 작성하기
-  addComment: (postId) => instance.post(`/api/v1/comment/${postId}`),
+  addComment: (data) => 
+  { console.log(data)
+    return instance.post(`/api/v1/comment/${data.postId.id}`, {commentContent: data.textContent})},
 
   // 댓글 불러오기
-  getComment: (postId) => instance.get(`/api/v1/comment/${postId}`),
+  getComment: (postId) => 
+  { console.log(postId)
+    return instance.get(`/api/v1/comment/${postId}`)
+  },
   
   // 댓글 수정하기
-  // editComment: (postId) => instance.patch(`/api/v1/comment/commentupdate/${postId}`),
+  // editComment: (data) => instance.patch(`/api/v1/comment/commentupdate/${commentId}`),
   
   // 댓글 삭제하기
-  // deleteComment: (postId) => instance.delete(`/api/v1/comment/commentdelete/${postId}`),
+  deleteComment: (commentid) => instance.delete(`/api/v1/comment/commentdelete/${commentid}`),
+  
 }
 
 export const uploadApi = {
   imageUpload: async function (imgObj) {
     try {
-      const req = { postImg: imgObj };
+      const req = { postImg : imgObj };
       let formData = new FormData();
       for (let entry of Object.entries(req)) {
         formData.append(entry[0], entry[1]);

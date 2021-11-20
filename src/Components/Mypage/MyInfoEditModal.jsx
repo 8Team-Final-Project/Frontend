@@ -10,7 +10,7 @@ import ConfirmValidationInput from "../Input/ConfirmValidationInput";
 import WhiteButton from "../Button/WhiteButton";
 
 //api
-import { postLogout, patchUserid } from "../../Redux/Async/userAsync";
+import { patchUserid } from "../../Redux/Async/userAsync";
 import { userApi } from "../../Shared/api";
 
 //regex
@@ -58,11 +58,6 @@ export default function MyInfoEditModal({ isOpen, handleClose }) {
     if(isCheckEmail === false || isCheckNickname === false){
       alert("중복 확인을 체크해주세요!")
     }
-  };
-
-  // 로그아웃 버튼
-  const setLogout = () => {
-    dispatch(postLogout());
   };
 
   const handleCheckNickname = () => {
@@ -129,7 +124,6 @@ export default function MyInfoEditModal({ isOpen, handleClose }) {
               defaultText="이메일을 입력해주세요!"
             />
           </InputArea>
-          <LogoutBtn onClick={setLogout}>로그아웃</LogoutBtn>
         </Content>
         <Controls>
           <button onClick={handleClose}>취소</button>
@@ -197,10 +191,3 @@ const Controls = styled.div`
     color: #ff7775;
   }
 `;
-
-const LogoutBtn = styled.div`
-  color: #b8b8b8;
-  margin: 30px 0 10px 0;
-  font-weight: 18px;
-  cursor: pointer;
-`

@@ -4,7 +4,6 @@ import styled from "styled-components";
 
 //components
 import RedButton from "../src/Components/Button/RedButton";
-import HoneyButton from "../src/Components/Button/HoneyButton";
 import AppDownloadBtn from "../src/Components/Shared/AppDownloadBtn";
 
 //images
@@ -15,6 +14,7 @@ import eventBnr3 from "../src/Asset/Images/main_event_bnr3.png";
 import fishBread from "../src/Asset/Images/fish_bread.svg";
 import ramen from "../src/Asset/Images/ramen.svg";
 import honeybtn from "../src/Asset/Images/honeybtn.svg";
+import downloadbtn from "../src/Asset/Images/downloadbtn.svg";
 
 //icons
 import questionIcon from "../src/Asset/icons/question_icon.svg";
@@ -99,7 +99,7 @@ export default function Home() {
             <p>앱을 다운로드하여,</p>
             <p>더욱 편하게 사용해보세요!</p>
           </Description>
-          <AppDownloadBtn />
+          <BtnImg src={downloadbtn.src} width="80%" onClick={() => {router.push("/combination")}} />
         </DescriptionArea>
       </Container>
     </div>
@@ -148,7 +148,7 @@ const DescriptionArea = styled.div`
 `;
 
 const BtnImg = styled.img`
-
+  cursor : pointer;
 `
 
 const Btn = styled.div`
@@ -186,10 +186,10 @@ const EventBnrBox2 = styled.div`
 `
 
 const Tag = styled.span`
-  border: 1px solid #ff7775;
+  border: 2px solid #ff7775;
   display: inline-flex;
   min-width: 50px;
-  padding: 5px;
+  padding: 5px 15px;
   height: 40px;
   border-radius: 100px;
   box-sizing: border-box;

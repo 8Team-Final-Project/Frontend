@@ -17,6 +17,11 @@ const PostSaveBtn = (props) => {
   //저장글 불러오기
   const save = useSelector((state) => state.user.user?.keepPost);
 
+  //const realSave = save.splice(0,1);
+
+  console.log(save);
+  //console.log(realSave);
+
   const tabContArr = [
     {
       tabTitle: (
@@ -41,10 +46,16 @@ const PostSaveBtn = (props) => {
       ),
       tabCont: (
         <>
-          {save &&
+          {/* {save &&
+            save.map((p) => {
+              return <Card {...p} key={p.id} />;
+            })} */}
+         
+         {save &&
             save.map((p) => {
               return <Card {...p} key={p.id} />;
             })}
+
         </>
       )
     }

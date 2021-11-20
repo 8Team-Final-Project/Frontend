@@ -19,7 +19,7 @@ const write = () => {
 
   const [postTitle, setTitle] = useState("");
   const [postContent, setContent] = useState("");
-  const [postImg, setImg] = useState("");
+  const [postImg1, setImg] = useState("");
   const [postTag, setTag] = useState("");
   const [postRecipe, setRecipe] = useState("");
 
@@ -27,7 +27,7 @@ const write = () => {
     const postItem = {
       postTitle: postTitle,
       postContent: postContent,
-      postImg: postImg,
+      postImg1: postImg1,
       postTag: postTag,
       postRecipe: postRecipe,
       mainlist: true,
@@ -55,7 +55,7 @@ const write = () => {
     <div>
       <WriteBox>
         <CenterBox>
-          <RectangleImage edit imgUrl={postImg ? postImg : false} saveUrl={setImg}></RectangleImage>
+          <RectangleImage edit imgUrl={postImg1 ? postImg1 : false} saveUrl={setImg}></RectangleImage>
         </CenterBox>
         <CenterBox>
           <ValidationInput

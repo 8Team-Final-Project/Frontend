@@ -93,16 +93,7 @@ const DetailContentsBox = (props) => {
         </FlexBox>
         <Swiper slidesPerView={1} navigation={true}>
           <SwiperSlide>
-            <PostImg src={post?.postImg ? post.postImg : src} />
-          </SwiperSlide>
-          <SwiperSlide>
-            <PostImg src={post?.postImg ? post.postImg : src} />
-          </SwiperSlide>
-          <SwiperSlide>
-            <PostImg src={post?.postImg ? post.postImg : src} />
-          </SwiperSlide>
-          <SwiperSlide>
-            <PostImg src={post?.postImg ? post.postImg : src} />
+            <PostImg src={post?.postImg1 ? post.postImg1 : src} />
           </SwiperSlide>
         </Swiper>
         <Title>
@@ -296,6 +287,7 @@ const Btn = styled.div`
   color: #b8b8b8;
   border-top: 0.5px solid #e5e5e5;
   border-bottom: 0.5px solid #e5e5e5;
+  padding: 0 5%;
 `;
 
 const ModalFrame = styled.div`

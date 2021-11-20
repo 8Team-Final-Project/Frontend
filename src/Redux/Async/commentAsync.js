@@ -6,7 +6,7 @@ export const addCommentDB = createAsyncThunk("addComment", async (data, thunkAPI
   try {
     const response = await commentApi.addComment(data);
     if (response.statusText === "Created"){
-      window.alert("댓글추가 완료!");
+      // window.alert("댓글 추가 완료!");
       return response.data;
     }
   } catch (err) {
@@ -18,9 +18,7 @@ export const addCommentDB = createAsyncThunk("addComment", async (data, thunkAPI
 export const getCommentDB = createAsyncThunk("getComment", async (data, thunkAPI) => {
   try {
     const response = await commentApi.getComment(data);
-    console.log(response)
     if (response.statusText === "OK"){
-      window.alert("댓글불러오기 완료!");
       return response.data;
     }
   } catch (err) {
@@ -33,18 +31,22 @@ export const getCommentDB = createAsyncThunk("getComment", async (data, thunkAPI
 // export const editCommentDB = createAsyncThunk("editComment", async (data, thunkAPI) => {
 //   try {
 //     const response = await commentApi.editComment(data);
-//     if (response.statausText === "OK") return response.data.newPost;
+//     console.log(response)
+//     if (response.statusText === "OK"){
+//       window.alert("댓글 수정하기 완료!");
+//       return response.data;
+//     }
 //   } catch (err) {
 //     return thunkAPI.rejectWithValue(err.response.message);
 //   }
 // });
 
 // 댓글 삭제하기
-// export const deleteCommentDB = createAsyncThunk("deleteComment", async (data, thunkAPI) => {
-//   try {
-//     const response = await commentApi.deleteComment(data);
-//     if (response.statausText === "OK") return response.data.newPost;
-//   } catch (err) {
-//     return thunkAPI.rejectWithValue(err.response.message);
-//   }
-// });
+export const deleteCommentDB = createAsyncThunk("deleteComment", async (data, thunkAPI) => {
+  try {
+    const response = await commentApi.deleteComment(data);
+    if (response.statausText === "OK") return response.data.newPost;
+  } catch (err) {
+    return thunkAPI.rejectWithValue(err.response.message);
+  }
+});

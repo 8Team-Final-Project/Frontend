@@ -93,6 +93,7 @@ ValidationInput.defaultProps = {
 
 const Input = styled(TextField)`
   width: 100%;
+  font-size: 30px;
 `;
 
 const Label = styled.span`
