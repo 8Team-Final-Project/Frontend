@@ -53,8 +53,8 @@ const combination = (props) => {
           {isloaded && (
             <>
               {postList &&
-                postList.map((post) => {
-                  return <Card key={post.id} {...post} />;
+                postList?.map((post, id) => {
+                  return <Card key={id} {...post} />;
                 })}
             </>
           )}

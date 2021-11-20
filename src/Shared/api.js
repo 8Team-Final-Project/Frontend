@@ -16,11 +16,11 @@ instance.interceptors.request.use(async (config) => {
   //getToken는 로컬 스토리지에 토큰이 있다면 반환한다 없다면 null 값 반환
   config.headers["Authorization"] = await getToken();
 
-  // CORS 설정(main 브랜치에서만 주석 제거)
-  var xhr = new XMLHttpRequest();
-  xhr.open('GET', 'https://kkuljohang.shop', true);
-  xhr.withCredentials = true;
-  xhr.send(null);
+  //CORS 설정(main 브랜치에서만 주석 제거)
+  // var xhr = new XMLHttpRequest();
+  // xhr.open('GET', 'https://kkuljohang.shop', true);
+  // xhr.withCredentials = true;
+  // xhr.send(null);
 
   return config;
 });
@@ -56,7 +56,7 @@ export const postApi = {
   getPostList: (page) => instance.get(`/api/v1/post/?page=${page}`),
 
   // 이벤트 게시글 불러오기
-  getEventPostList: (data) => instance.get("/api/v1/post/event1list", data),
+  getEventPostList: (page) => instance.get(`/api/v1/post/event1list?page=${page}`),
 
   // 꿀조합 게시글 작성하기
   addPost: (post) => instance.post("/api/v1/post", post),
@@ -79,28 +79,28 @@ export const postApi = {
 
 export const commentApi = {
   // 댓글 작성하기
-  addComment: (data) => 
-  { console.log(data)
-    return instance.post(`/api/v1/comment/${data.postId.id}`, {commentContent: data.textContent})},
+  addComment: (data) => {
+    console.log(data);
+    return instance.post(`/api/v1/comment/${data.postId.id}`, { commentContent: data.textContent });
+  },
 
   // 댓글 불러오기
-  getComment: (postId) => 
-  { console.log(postId)
-    return instance.get(`/api/v1/comment/${postId}`)
+  getComment: (postId) => {
+    console.log(postId);
+    return instance.get(`/api/v1/comment/${postId}`);
   },
-  
+
   // 댓글 수정하기
   // editComment: (data) => instance.patch(`/api/v1/comment/commentupdate/${commentId}`),
-  
+
   // 댓글 삭제하기
-  deleteComment: (commentid) => instance.delete(`/api/v1/comment/commentdelete/${commentid}`),
-  
-}
+  deleteComment: (commentid) => instance.delete(`/api/v1/comment/commentdelete/${commentid}`)
+};
 
 export const uploadApi = {
   imageUpload: async function (imgObj) {
     try {
-      const req = { postImg : imgObj };
+      const req = { postImg: imgObj };
       let formData = new FormData();
       for (let entry of Object.entries(req)) {
         formData.append(entry[0], entry[1]);
