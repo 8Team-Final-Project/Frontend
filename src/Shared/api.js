@@ -17,7 +17,6 @@ instance.interceptors.request.use(async (config) => {
   config.headers["Authorization"] = await getToken();
   //CORS 설정
 
-
   return config;
 });
 
@@ -49,7 +48,7 @@ export const userApi = {
 
 export const postApi = {
   // 꿀조합 게시글 불러오기
-  getPostList: () => instance.get(`/api/v1/post/?page`),
+  getPostList: (page) => instance.get(`/api/v1/post/?page=${page}`),
 
   // 이벤트 게시글 불러오기
   getEventPostList: (data) => instance.get("/api/v1/post/event1list", data),
@@ -72,7 +71,6 @@ export const postApi = {
   // 꿀조합 게시물 좋아요 / 취소
   likePost: (postId) => instance.patch(`/api/v1/like/${postId}`)
 };
-
 
 export const uploadApi = {
   imageUpload: async function (imgObj) {
