@@ -32,8 +32,10 @@ const event = (props) => {
   );
 
   useEffect(() => {
-    dispatch(getEventPostListDB());
-  }, []);
+    if (!post_list) {
+      dispatch(getEventPostListDB());
+    }
+  }, [post_list]);
 
   const goEventInfo = () => {
     return router.push("/event/info");
@@ -50,8 +52,8 @@ const event = (props) => {
         {isloaded && (
           <>
             {post_list &&
-              post_list?.postlist[0].map((p, idx) => {
-                return <Card {...p} key={p.pid} />;
+              post_list?.postlist[0].map((p) => {
+                return <Card {...p} key={p.id} />;
               })}
           </>
         )}

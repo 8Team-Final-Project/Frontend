@@ -1,8 +1,6 @@
 //_document.js
 import Document, { Html, Head, Main, NextScript } from "next/document";
 import { ServerStyleSheet } from "styled-components";
-import Script from "next/script";
-import { GA_TRACKING_ID } from "../src/Shared/gtag";
 
 //next.js에서 제공하는 document를 수정할 수 있다. html이나 head, body를 수정해야될 때는 이 파일을 필수적으로 작성해야함!
 //document는 서버에서만 렌더링되고, onClick같은 이벤트 핸들러는 작용하지 않는다.
@@ -63,12 +61,10 @@ class MyDocument extends Document {
           <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
           <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
 
-
           <link rel="manifest" href="/manifest.json" />
           <meta name="msapplication-TileColor" content="#ffffff" />
           <meta name="msapplication-TileImage" content="/ms-icon-144x144.png" />
           <meta name="theme-color" content="#ffffff" />
-
         </Head>
         <body>
           <Main />

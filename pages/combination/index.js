@@ -11,7 +11,7 @@ import Card from "../../src/Components/Card";
 import FirstEventImg from "../../src/Asset/Images/eventbnr1.svg";
 
 //꿀조합 페이지
-const combination = () => {
+const combination = (props) => {
   const dispatch = useDispatch();
   const isloaded = useSelector((state) => state.post.loaded);
   const postList = useSelector((state) => state.post?.list[0]);
