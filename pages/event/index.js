@@ -11,7 +11,7 @@ import Card from "../../src/Components/Card";
 const event = (props) => {
   const router = useRouter();
   const dispatch = useDispatch();
-  const post_list = useSelector((state) => state.post);
+  const post_list = useSelector((state) => state.post?.post);
   const isloaded = useSelector((state) => state.post.loaded);
 
   // pagniation
@@ -32,10 +32,8 @@ const event = (props) => {
   );
 
   useEffect(() => {
-    if (!post_list) {
-      dispatch(getEventPostListDB());
-    }
-  }, [post_list]);
+    dispatch(getEventPostListDB());
+  }, []);
 
   const goEventInfo = () => {
     return router.push("/event/info");
