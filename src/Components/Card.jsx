@@ -74,7 +74,7 @@ const CardBox = styled.div`
 
 // 기본 사진 or 사진 받아오기
 const LeftBox = styled.div`
-  width: 30%;
+  width: 120px;
   height: 110px;
   border-radius: 10px 0 0 10px;
   background-image: url("${(props) => props.src}");
