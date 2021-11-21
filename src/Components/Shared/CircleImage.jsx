@@ -1,4 +1,5 @@
 import React, { useRef } from "react";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
 
 //api
@@ -7,7 +8,7 @@ import { uploadApi } from "../../Shared/api";
 //icons
 import { BsCamera } from "react-icons/bs";
 
-// image 
+// image
 import BasicProfile from "../../Asset/Images/basicprofile.svg";
 
 //edit : 입력하면 수정용으로 바뀝니다.
@@ -15,6 +16,8 @@ import BasicProfile from "../../Asset/Images/basicprofile.svg";
 //imgUrl : 보여줄 이미지 url을 넣어주면 됩니다.
 export default function CircleImage({ edit, saveUrl, imgUrl }) {
   const refFileInput = useRef(null);
+
+  const getUserImg = useSelector((state) => state.user.user.userImg);
 
   const upload = (e) => {
     //서버에 이미지 업로드하여 imgUrl을 받아와서 url을 저장시키는 함수입니다.
@@ -24,20 +27,20 @@ export default function CircleImage({ edit, saveUrl, imgUrl }) {
 
     //파일형식이 지정된 형식과 같다면 서버에 이미지업로드 요청을 보낸다.
     if (format.includes(fileObj && fileObj.type)) {
-      uploadApi.imageUpload(fileObj).then((res) => saveUrl(res.data.postImg));
+      uploadApi.imageUpload(fileObj).then((res) => saveUrl(res.data[0].postImg1));
     }
   };
 
   if (edit)
     return (
       <ImageWrapper onClick={() => refFileInput.current.click()}>
-        <Image src={imgUrl} />
+        <Image src={imgUrl && imgUrl} />
         <BsCamera />
         <FileInput type="file" ref={refFileInput} onChange={upload} />
       </ImageWrapper>
     );
 
-  return <Image src={imgUrl} />;
+  return <Image src={getUserImg} />;
 }
 
 CircleImage.defaultProps = {
