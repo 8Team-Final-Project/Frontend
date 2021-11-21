@@ -166,7 +166,7 @@ const DetailContentsBox = (props) => {
 };
 
 DetailContentsBox.defaultProps = {
-  src: "/android-icon-192x192.png"
+  src: "/defaultImg.svg"
 };
 
 const Image = styled.img`

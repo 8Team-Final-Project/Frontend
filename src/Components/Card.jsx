@@ -37,7 +37,7 @@ const Card = (props) => {
 };
 
 Card.defaultProps = {
-  src: "/android-icon-192x192.png"
+  src: "/defaultImg.svg"
 };
 
 const PostTitle = styled.div`
@@ -74,8 +74,8 @@ const CardBox = styled.div`
 
 // 기본 사진 or 사진 받아오기
 const LeftBox = styled.div`
-  width: 120px;
-  height: 110px;
+  width: 110px;
+  height: 100px;
   border-radius: 10px 0 0 10px;
   background-image: url("${(props) => props.src}");
   background-position: center;
@@ -93,20 +93,19 @@ const RightBox = styled.div`
 
 const Like = styled.div`
   display: flex;
-  margin-right: 10px;
+  float: right;
+  margin-right: 3%;
 `;
 
 const Heart = styled.img`
   display: block;
   text-align: right;
   width: 15px;
-  height: 13px;
-  margin-left: 85%;
-  margin-top: 1px;
+  height: 100%;
 `;
 
 const LikeCnt = styled.span`
-  margin-left: 7px;
+  margin-left: 5px;
   font-size: 10px;
   color: red;
 `;
