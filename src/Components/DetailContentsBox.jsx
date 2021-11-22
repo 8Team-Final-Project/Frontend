@@ -202,7 +202,7 @@ const UserBox = styled.div`
 `;
 
 const Grid = styled.div`
-  text-align: center;
+  text-align: left;
 `;
 
 const TextBox = styled.div`
