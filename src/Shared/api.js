@@ -97,6 +97,13 @@ export const commentApi = {
   deleteComment: (commentid) => instance.delete(`/api/v1/comment/commentdelete/${commentid}`)
 };
 
+// 태그 랭킹 받아오기
+export const tagRankingApi = {
+  getTagRanking: () => {
+    return instance.get(`/api/v1/tag`);
+  }
+};
+
 export const uploadApi = {
   imageUpload: async function (imgObj) {
     try {
