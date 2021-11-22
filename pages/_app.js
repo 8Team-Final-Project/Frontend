@@ -18,6 +18,8 @@ function MyApp({ Component, pageProps }) {
   const dispatch = useDispatch();
   const router = useRouter();
 
+  // 구글 애널리틱스
+  const router = useRouter();
   useEffect(() => {
     const handleRouteChange = (url) => {
       gtag.pageview(url);

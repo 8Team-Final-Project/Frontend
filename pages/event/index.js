@@ -15,7 +15,7 @@ const event = (props) => {
   const isloaded = useSelector((state) => state.post.loaded);
 
   // pagniation
-  const allPostList = useSelector((state) => state.post?.list[1]?.countAllpost);
+  const allPostList = useSelector((state) => state.post?.postlist?.[1]?.countAllpost);
 
   const [page, setPage] = useState(1);
 
@@ -26,13 +26,13 @@ const event = (props) => {
 
   const pagiNation = useCallback(
     (page) => {
-      dispatch(getCombinationListDB(page));
+      dispatch(getEventPostListDB(page));
     },
     [dispatch]
   );
 
   useEffect(() => {
-    dispatch(getEventPostListDB());
+    dispatch(getEventPostListDB(page));
   }, []);
 
   const goEventInfo = () => {
@@ -50,8 +50,8 @@ const event = (props) => {
         {isloaded && (
           <>
             {post_list &&
-              post_list?.postlist[0].map((p, idx) => {
-                return <Card {...p} key={p.pid} />;
+              post_list?.postlist?.[0].map((p, id) => {
+                return <Card {...p} key={id} />;
               })}
           </>
         )}

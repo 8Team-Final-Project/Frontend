@@ -1,4 +1,4 @@
-// lib/gtag.js
+// shared/gtag.js
 
 export const GA_TRACKING_ID = "G-WV8FWTE3H3";
 

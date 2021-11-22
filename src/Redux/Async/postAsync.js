@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { postApi } from "../../Shared/api";
 
-// 꿀조합 게시글리스트 불러오기 
+// 꿀조합 게시글리스트 불러오기
 export const getCombinationListDB = createAsyncThunk("combination/getList", async (data, thunkAPI) => {
   try {
     const response = await postApi.getPostList(data);
@@ -11,25 +11,22 @@ export const getCombinationListDB = createAsyncThunk("combination/getList", asyn
   }
 });
 
-
-// 이벤트 게시글 리스트 불러오기 
-export const getEventPostListDB = createAsyncThunk("event/getList", async (data,thunkAPI) => {
-  try { 
+// 이벤트 게시글 리스트 불러오기
+export const getEventPostListDB = createAsyncThunk("event/getList", async (data, thunkAPI) => {
+  try {
     const response = await postApi.getEventPostList(data);
     if (response.statusText === "OK") return response.data;
-  }
-  catch (err) {
+  } catch (err) {
     return thunkAPI.rejectWithValue(err.response.message);
   }
 });
 
-
 // 게시글 추가하기
 export const addPostDB = createAsyncThunk("addPost", async (data, thunkAPI) => {
   try {
-    console.log(data)
+    console.log(data);
     const response = await postApi.addPost(data);
-    console.log(response)
+    console.log(response);
     if (response.statusText === "OK") return response.data.newPost;
   } catch (err) {
     return thunkAPI.rejectWithValue(err.response.message);
@@ -61,14 +58,13 @@ export const deletePostDB = createAsyncThunk("deletePost", async (data, thunkAPI
   try {
     const response = await postApi.deletePost(data);
     if (response.statusText === "OK") {
-      alert("게시물이 삭제되었습니다")
-      return response.data.postId;}
+      alert("게시물이 삭제되었습니다");
+      return response.data.postId;
+    }
   } catch (err) {
     return thunkAPI.rejectWithValue(err.response.message);
   }
 });
-
-
 
 // 게시물 좋아요
 export const likePostDB = createAsyncThunk("likePost", async (data, thunkAPI) => {
