@@ -84,7 +84,7 @@ export const savePostDB = createAsyncThunk("savePost", async (data, thunkAPI) =>
   try {
     const response = await postApi.savePost(data);
     if (response.statusText === "OK") {
-      return response.data;
+      return response.data; 
     }
   } catch (err) {
     return thunkAPI.rejectWithValue(err.response.message);
