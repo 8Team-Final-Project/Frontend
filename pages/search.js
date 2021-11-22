@@ -56,10 +56,10 @@ export default function Search(props) {
       //값이 없으면 추가하지 않는다.
       if (!e.target.value) return;
 
-      if (tagList.length >= 1) {
+      if (tagList.length == 1) {
         //태그목록은 3개까지만 추가하도록 한다.
         setTerm("");
-        return alert("태그는 3개까지만 설정할 수 있어요");
+        return alert("태그를 지우고 다시 검색해주세요!");
       }
 
       setTagList([...tagList, e.target.value.replace(/ /g, "")]);
@@ -74,7 +74,7 @@ export default function Search(props) {
 
   const clickRecommendedTag = (keyword) => {
     //추천태그를 클릭하면 태그목록에 담는 함수
-    if (tagList.length >= 3) return alert("태그는 3개까지만 설정할 수 있어요");
+    if (tagList.length == 1) return alert("태그를 지우고 다시 검색해주세요!");
     setTagList([...tagList, keyword]);
   };
 
