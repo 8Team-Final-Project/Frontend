@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled from "@emotion/styled";
+import { useDispatch, useSelector } from "react-redux";
 
 //materia-ui
 import Input from "@mui/material/Input";
@@ -10,19 +11,28 @@ import FormControl from "@mui/material/FormControl";
 import { BsSearch } from "react-icons/bs";
 import { BiX } from "react-icons/bi";
 import { searchApi } from "../src/Shared/api";
+import { getTagRankingDB } from "../src/Redux/Async/tagRankingAsync";
 
 //components
 import Card from "../src/Components/Card";
 
-export default function Search() {
+export default function Search(props) {
   const [term, setTerm] = useState(""); //검색어가 담기는 곳
   const [tagList, setTagList] = useState([]); //태그목록이 담기는 곳
   const [resultList, setResultList] = useState([]); //태그검색결과가 담기는 곳
+
+  // 태그 순위 받기
+  const dispatch = useDispatch();
+  const tagRanking = useSelector((state) => state.tagRanking?.tagRanking?.tags);
+
+  console.log(tagRanking);
 
   //추천태그에 들어갈 항목
   const recommandedTagList = ["테스트", "서브웨이", "편의점", "다이어터", "엽떡", "라면"];
 
   useEffect(() => {
+    // 태그 순위 받는 구독
+    dispatch(getTagRankingDB());
     if (tagList.length === 0) return setResultList([]);
 
     if (tagList.length > 0) {
@@ -46,10 +56,10 @@ export default function Search() {
       //값이 없으면 추가하지 않는다.
       if (!e.target.value) return;
 
-      if (tagList.length >= 3) {
+      if (tagList.length == 1) {
         //태그목록은 3개까지만 추가하도록 한다.
         setTerm("");
-        return alert("태그는 3개까지만 설정할 수 있어요");
+        return alert("태그를 지우고 다시 검색해주세요!");
       }
 
       setTagList([...tagList, e.target.value.replace(/ /g, "")]);
@@ -64,7 +74,7 @@ export default function Search() {
 
   const clickRecommendedTag = (keyword) => {
     //추천태그를 클릭하면 태그목록에 담는 함수
-    if (tagList.length >= 3) return alert("태그는 3개까지만 설정할 수 있어요");
+    if (tagList.length == 1) return alert("태그를 지우고 다시 검색해주세요!");
     setTagList([...tagList, keyword]);
   };
 
@@ -99,11 +109,12 @@ export default function Search() {
       <RecommendedTagWrapper>
         <Label>추천태그</Label>
         <RecommandedTagBox>
-          {recommandedTagList.map((tag, idx) => (
-            <RecommandedTag key={idx} onClick={() => clickRecommendedTag(tag)}>
-              #{tag}
-            </RecommandedTag>
-          ))}
+          {tagRanking &&
+            tagRanking?.map((tag, idx) => (
+              <RecommandedTag key={idx} onClick={() => clickRecommendedTag(tag.tagName)}>
+                #{tag.tagName}
+              </RecommandedTag>
+            ))}
         </RecommandedTagBox>
       </RecommendedTagWrapper>
 
@@ -141,13 +152,17 @@ const RecommandedTag = styled.button`
   }
 `;
 
-const PostWrapper = styled.div``;
+const PostWrapper = styled.div`
+
+`;
 
 const Post = styled.div`
   border: 1px solid black;
 `;
 
-const Container = styled.div``;
+const Container = styled.div`
+  padding : 0px 5%;
+`;
 
 const MuiForm = styled(FormControl)`
   width: 100%;
@@ -172,7 +187,7 @@ const Tag = styled.span`
   border: 1px solid #ff7775;
   display: inline-flex;
   min-width: 50px;
-  padding: 5px;
+  padding: 0px 10px;
   height: 40px;
   border-radius: 100px;
   box-sizing: border-box;

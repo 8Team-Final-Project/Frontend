@@ -23,6 +23,7 @@ import regex from "../../Shared/regex";
 export default function MyInfoEditModal({ isOpen, handleClose }) {
   const dispatch = useDispatch();
   //input 값을 담는 state
+  const [userImg, setUserImg] = useState("");
   const [nickname, setNickname] = useState(""); //닉네임의 변경과 저장을 위한 state
   const [userEmail, setUserEmail] = useState(""); //이메일 변경과 저장을 위한 state
 
@@ -31,11 +32,14 @@ export default function MyInfoEditModal({ isOpen, handleClose }) {
   const [isCheckEmail, setIsCheckEmail] = useState(true);
 
   //기존 유저정보값
+  const userImgFromStore = useSelector((state) => state.user.user?.userImg);
   const nicknameFromStore = useSelector((state) => state.user.user?.userNickname);
   const emailFromsStore = useSelector((state) => state.user.user?.userEmail);
 
   useEffect(() => {
     //기존 유저네임,유저이메일을 state에 저장하는 함수
+
+    if (userImgFromStore && userImgFromStore !== userImg) setNickname(userImgFromStore);
     if (nicknameFromStore && nicknameFromStore !== nickname) setNickname(nicknameFromStore);
     if (emailFromsStore && emailFromsStore !== userEmail) setUserEmail(emailFromsStore);
   }, [nicknameFromStore, emailFromsStore]);
@@ -47,16 +51,17 @@ export default function MyInfoEditModal({ isOpen, handleClose }) {
 
   const handleSave = () => {
     //유저정보수정하는 함수
-    if(isCheckEmail === true && isCheckNickname === true) {
+    if (isCheckEmail === true && isCheckNickname === true) {
       const editProfile = {
+        userImg: userImg,
         userNickname: nickname,
         userEmail: userEmail
       };
       dispatch(patchUserid(editProfile));
       handleClose();
     }
-    if(isCheckEmail === false || isCheckNickname === false){
-      alert("중복 확인을 체크해주세요!")
+    if (isCheckEmail === false || isCheckNickname === false) {
+      alert("중복 확인을 체크해주세요!");
     }
   };
 
@@ -75,7 +80,6 @@ export default function MyInfoEditModal({ isOpen, handleClose }) {
         }
       })
       .catch((err) => alert("사용 중인 닉네임입니다"));
-
   };
 
   const handleCheckEmail = () => {
@@ -93,14 +97,13 @@ export default function MyInfoEditModal({ isOpen, handleClose }) {
         }
       })
       .catch((err) => alert("사용 중인 이메일입니다"));
-
   };
 
   return (
     <Modal isOpen={isOpen} handleClose={handleClose} isHideDefaultClose height="auto" width="100%">
       <Container>
         <Content>
-          <CircleImage imgUrl={false} saveUrl={saveUrl} edit />
+          <CircleImage edit imgUrl={userImg ? userImg : false} saveUrl={setUserImg} onChange={setUserImg} />
           <InputArea>
             <ConfirmValidationInput
               value={nickname}
