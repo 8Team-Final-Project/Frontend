@@ -1,6 +1,7 @@
 //_document.js
 import Document, { Html, Head, Main, NextScript } from "next/document";
 import { ServerStyleSheet } from "styled-components";
+import { GA_TRACKING_ID } from "../src/Shared/gtag";
 
 //next.js에서 제공하는 document를 수정할 수 있다. html이나 head, body를 수정해야될 때는 이 파일을 필수적으로 작성해야함!
 //document는 서버에서만 렌더링되고, onClick같은 이벤트 핸들러는 작용하지 않는다.
@@ -60,6 +61,37 @@ class MyDocument extends Document {
           <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
           <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
           <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+
+          {/* Global Site Tag (gtag.js) - Google Analytics */}
+          <script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`} />
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', '${GA_TRACKING_ID}', {
+              page_path: window.location.pathname,
+            });
+          `
+            }}
+          />
+          {/* 네이버 애널리틱스 */}
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `
+              <script type="text/javascript" src="//wcs.naver.net/wcslog.js"></script>
+              <script type="text/javascript">
+              if(!wcs_add) var wcs_add = {};
+              wcs_add["wa"] = "10c464510b6ffb0";
+              if(window.wcs) {
+                wcs_do();
+              }
+              </script>
+          `
+            }}
+          />
 
           <link rel="manifest" href="/manifest.json" />
           <meta name="msapplication-TileColor" content="#ffffff" />
