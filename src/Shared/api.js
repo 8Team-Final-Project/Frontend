@@ -80,12 +80,13 @@ export const postApi = {
 export const commentApi = {
   // 댓글 작성하기
   addComment: (data) => {
-    console.log(data)
+    // console.log(data)
     return instance.post(`/api/v1/comment/${data.postId}`, { commentContent: data.commentContent });
   },
 
   // 댓글 불러오기
   getComment: (postId) => {
+    // console.log(postId);
     return instance.get(`/api/v1/comment/${postId}`);
   },
 
@@ -94,14 +95,7 @@ export const commentApi = {
 
   // 댓글 삭제하기
   deleteComment: (commentId) => {
-    console.log(commentId)
-    return instance.delete(`/api/v1/comment/commentdelete/${commentId}`)}
-};
-
-// 태그 랭킹 받아오기
-export const tagRankingApi = {
-  getTagRanking: () => {
-    return instance.get(`/api/v1/tag`);
+    return instance.delete(`/api/v1/comment/commentdelete/${commentId}`)
   }
 };
 

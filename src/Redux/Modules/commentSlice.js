@@ -61,20 +61,20 @@ const commentSlice = createSlice({
     //     state.errorMessage = errorMessage;
     // },
 
-    //댓글 삭제하기
-    [deleteCommentDB.fulfilled]: (state, { payload }) => {
-      state.comment = payload;
-      state.isFetching = false;
-      state.errorMessage = null;
-    },
-    [deleteCommentDB.pending]: (state, { payload }) => {
-      state.isFetching = true;
-    },
-    [deleteCommentDB.rejected]: (state, { payload: errorMessage }) => {
-      state.isFetching = false;
-      state.errorMessage = errorMessage;
-    }
-  }
-});
+        //댓글 삭제하기
+        [deleteCommentDB.fulfilled]: (state, { payload }) => {
+            state.comment = payload;
+            state.isFetching = false;
+            state.errorMessage = null;
+        },
+        [deleteCommentDB.pending]: (state, { payload }) => {
+            state.isFetching = true;
+        },
+        [deleteCommentDB.rejected]: (state, { payload: errorMessage }) => {
+            state.isFetching = false;
+            state.errorMessage = errorMessage;
+        },
+      }
+    })
 
 export default commentSlice;

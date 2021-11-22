@@ -38,9 +38,11 @@ const DetailContentsBox = (props) => {
 
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const post = useSelector((state) => state.post.post);
+  console.log(post)
   const user = useSelector((state) => state.user.user?.userId);
 
   const likeUserId = useSelector((state) => state.post.post?.likeStatus);
+  console.log(likeUserId)
   const saveUserId = useSelector((state) => state.post.post?.keepStatus);
 
   const setPostSave = () => {
