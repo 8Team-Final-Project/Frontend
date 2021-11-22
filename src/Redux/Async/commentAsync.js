@@ -5,7 +5,7 @@ import { commentApi } from "../../Shared/api";
 export const addCommentDB = createAsyncThunk("addComment", async (data, thunkAPI) => {
   try {
     const response = await commentApi.addComment(data);
-    // console.log(response)
+    console.log(response)
     if (response.statusText === "OK"){
       window.alert("댓글 추가 완료!");
       return response.data;
@@ -47,7 +47,8 @@ export const getCommentDB = createAsyncThunk("getComment", async (data, thunkAPI
 export const deleteCommentDB = createAsyncThunk("deleteComment", async (data, thunkAPI) => {
   try {
     const response = await commentApi.deleteComment(data);
-    if (response.statausText === "OK") return response.data.newPost;
+    console.log(response)
+    if (response.statausText === "OK") return response.data;
   } catch (err) {
     return thunkAPI.rejectWithValue(err.response.message);
   }

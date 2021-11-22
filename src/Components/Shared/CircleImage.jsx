@@ -34,7 +34,7 @@ export default function CircleImage({ edit, saveUrl, imgUrl }) {
   if (edit)
     return (
       <ImageWrapper onClick={() => refFileInput.current.click()}>
-        <Image src={imgUrl && imgUrl} />
+        <Image src={getUserImg && getUserImg} />
         <BsCamera />
         <FileInput type="file" ref={refFileInput} onChange={upload} />
       </ImageWrapper>
@@ -44,7 +44,7 @@ export default function CircleImage({ edit, saveUrl, imgUrl }) {
 }
 
 CircleImage.defaultProps = {
-  imgUrl: BasicProfile.src,
+  getUserImg: BasicProfile.src,
   saveUrl: () => {},
   edit: false
 };

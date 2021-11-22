@@ -81,7 +81,7 @@ export const commentApi = {
   // 댓글 작성하기
   addComment: (data) => {
     console.log(data)
-    return instance.post(`/api/v1/comment/${data.postId.id}`, { commentContent: data.commentContent });
+    return instance.post(`/api/v1/comment/${data.postId}`, { commentContent: data.commentContent });
   },
 
   // 댓글 불러오기
@@ -93,7 +93,9 @@ export const commentApi = {
   // editComment: (data) => instance.patch(`/api/v1/comment/commentupdate/${commentId}`),
 
   // 댓글 삭제하기
-  deleteComment: (commentid) => instance.delete(`/api/v1/comment/commentdelete/${commentid}`)
+  deleteComment: (commentId) => {
+    console.log(commentId)
+    return instance.delete(`/api/v1/comment/commentdelete/${commentId}`)}
 };
 
 export const uploadApi = {

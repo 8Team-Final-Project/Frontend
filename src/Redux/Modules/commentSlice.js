@@ -2,8 +2,8 @@ import { createSlice } from "@reduxjs/toolkit";
 import { 
     addCommentDB,
     getCommentDB,
-    // editCommentDB,
     deleteCommentDB,
+    // editCommentDB,
      } from "../Async/commentAsync";
 
 
@@ -36,7 +36,6 @@ const commentSlice = createSlice({
 
         // 댓글 불러오기
         [getCommentDB.fulfilled]: (state, { payload }) => {
-            console.log(payload)
             state.errorMessage = null;
             state.isFetching = false;
             state.comment = payload;

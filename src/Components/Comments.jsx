@@ -3,41 +3,21 @@ import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router";
 
 import styled from "styled-components";
-// import DetailContentsBox from "./DetailContentsBox";
 
 import {
   addCommentDB,
-  getCommentDB
-  // deleteCommentDB,
+  getCommentDB,
+  deleteCommentDB
   // editCommentDB,
 } from "../Redux/Async/commentAsync";
 
 function Comments() {
   const dispatch = useDispatch();
-
-  // const {
-  //   query: { id }
-  // } = useRouter();
-
-  // React.useEffect(() => {
-  //   if (id) dispatch(getCommentDB(id));
-  // }, [id]);
-
-  // const deleteComment = () => {
-  //   dispatch(deleteCommentDB(id));
-  //   Router.push("/");
-  // };
-
-  // const comment = useSelector((state) => {
-  //   // console.log(state.comment)
-  //   return state.comment.comment.newComment})
-
   const router = useRouter();
   const postId = useRouter().query.id;
+
   const commentList = useSelector((state) => state.comment.comment);
-
-  const [textContent, setTextContent] = useState("");
-
+  // const commentId = useSelector((state) => state.comment.comment[0]?._id);
   const [commentContent, setCommentContent] = useState("");
 
   useEffect(() => {
@@ -83,18 +63,23 @@ function Comments() {
       <Hr />
 
       {/* 댓글창 */}
-      {commentList.map((comment, idx) => {
-        return (
-          <Box>
-            <Container>
-              <H4>{comment && comment.userNickname}</H4>
-              <P>{comment && comment.commentContent}</P>
-              <P2>{comment && comment.createDate}</P2>
-              {/* <button onClick={deleteComment}>삭제</button> */}
-            </Container>
-          </Box>
-        );
-      })}
+      {commentList &&
+        commentList.map((comment, idx) => {
+          const deleteComment = () => {
+            dispatch(deleteCommentDB(comment._id));
+          };
+
+          return (
+            <Box>
+              <Container>
+                <H4>{comment && comment.userNickname}</H4>
+                <P>{comment && comment.commentContent}</P>
+                <P2>{comment && comment.createDate}</P2>
+                <button onClick={deleteComment}>삭제</button>
+              </Container>
+            </Box>
+          );
+        })}
     </Wrap>
   );
 }

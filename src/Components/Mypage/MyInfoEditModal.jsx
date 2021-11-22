@@ -103,7 +103,7 @@ export default function MyInfoEditModal({ isOpen, handleClose }) {
     <Modal isOpen={isOpen} handleClose={handleClose} isHideDefaultClose height="auto" width="100%">
       <Container>
         <Content>
-          <CircleImage imgUrl={userImg ? userImg : false} saveUrl={setUserImg} onChange={setUserImg} edit />
+          <CircleImage edit imgUrl={userImg ? userImg : false} saveUrl={setUserImg} onChange={setUserImg} />
           <InputArea>
             <ConfirmValidationInput
               value={nickname}
