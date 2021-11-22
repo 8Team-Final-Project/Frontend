@@ -7,8 +7,8 @@ import { uploadApi } from "../../Shared/api";
 //icons
 import { BsCamera } from "react-icons/bs";
 
-// image 
-import BasicProfile from "../../Asset/Images/basicprofile.svg";
+// image
+import BasicProfile from "../../Asset/Images/basic-profile.svg";
 
 //edit : 입력하면 수정용으로 바뀝니다.
 //saveUrl : 이미지 업로드 후 부모컴포넌트 state에 저장하기 위한 함수입니다. 부모컴포넌트에서 업로드 후 url을 저장할 setState 함수를 넣어주세요!
