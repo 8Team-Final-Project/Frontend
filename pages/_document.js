@@ -92,6 +92,7 @@ class MyDocument extends Document {
           `
             }}
           />
+          <meta name="naver-site-verification" content="8a0f2d2bf1a2fb152d6d2124b8bb0ac1fc43eca6" />
 
           <link rel="manifest" href="/manifest.json" />
           <meta name="msapplication-TileColor" content="#ffffff" />
