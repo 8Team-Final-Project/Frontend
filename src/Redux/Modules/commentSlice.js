@@ -65,6 +65,7 @@ const commentSlice = createSlice({
 
         //댓글 삭제하기
         [deleteCommentDB.fulfilled]: (state, { payload }) => {
+            console.log(payload)
             state.comment = payload;
             state.isFetching = false;
             state.errorMessage = null;

@@ -47,7 +47,8 @@ export const getCommentDB = createAsyncThunk("getComment", async (data, thunkAPI
 export const deleteCommentDB = createAsyncThunk("deleteComment", async (data, thunkAPI) => {
   try {
     const response = await commentApi.deleteComment(data);
-    if (response.statausText === "OK") return response.data.newPost;
+    console.log(response)
+    if (response.statausText === "OK") return response.data;
   } catch (err) {
     return thunkAPI.rejectWithValue(err.response.message);
   }

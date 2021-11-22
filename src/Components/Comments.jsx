@@ -8,45 +8,35 @@ import styled from "styled-components";
 import { 
   addCommentDB,
   getCommentDB,
-  // deleteCommentDB,
+  deleteCommentDB,
   // editCommentDB,
 } from "../Redux/Async/commentAsync";
 
 
 function Comments(){
   const dispatch = useDispatch();
-
-  // const {
-  //   query: { id }
-  // } = useRouter();
-
-  // React.useEffect(() => {
-  //   if (id) dispatch(getCommentDB(id));
-  // }, [id]);
-
-  // const deleteComment = () => {
-  //   dispatch(deleteCommentDB(id));
-  //   Router.push("/");
-  // };
-
-  // const comment = useSelector((state) => {
-  //   // console.log(state.comment)
-  //   return state.comment.comment.newComment})
-
+    
   const router = useRouter();
   const postId = useRouter().query.id;
   console.log("postId", postId)
+
   const commentList = useSelector((state) => state.comment.comment)
 
-  const [commentContent, setCommentContent] = useState("")
+  const user = useSelector((state) => state.user.user?.userId);
+
   
+  const [commentContent, setCommentContent] = useState("")
+
+
+  
+  // 댓글 불러오기
   useEffect(() => {
     if(postId){
       dispatch(getCommentDB(postId));
     }
   }, [postId]);
 
-  //저장 버튼
+  // 댓글 저장
   const setComments = () => {
     const commentItem = {
       postId: postId,
@@ -54,8 +44,6 @@ function Comments(){
     };
     dispatch(addCommentDB(commentItem));
   };
-
-
 
   return (
     <Wrap>
@@ -78,16 +66,31 @@ function Comments(){
 
       {/* 댓글창 */}
       {
-        commentList.map((comment, idx) => {
+        commentList&&commentList.map((comment, idx) => {
+          // 댓글 삭제
+          const deleteComment = () => {
+            dispatch(deleteCommentDB(comment._id));
+            // router.push(`/combination/detail/${postId}`);
+          };
+
+
           return(
-            <Box>
+            <div>
+              <Box>
                 <Container>
                   <H4>{ comment && comment.userNickname }</H4>
-                  <P>{ comment && comment.commentContent }</P>
-                  <P2>{ comment && comment.createDate }</P2>
-                  {/* <button onClick={deleteComment}>삭제</button> */}
                 </Container>
-            </Box>
+                <Container>
+                  <P2>{ comment && comment.createDate }</P2>
+                </Container>
+              </Box>
+              <Box2>
+                <P>{ comment && comment.commentContent }</P>
+                { comment.userId === user && (
+                    <P><button onClick={deleteComment}>삭제</button></P>
+                )}
+              </Box2>
+            </div>
           )
         })
       }
@@ -105,6 +108,14 @@ const Wrap = styled.div`
 const Box = styled.div`
   padding: 0px 20px;
   display: flex;
+  `
+
+const Box2 = styled.div`
+  padding: 0px 20px;
+  display: flex;
+  text-align: left;
+  margin-bottom: 15px;
+
 `
 
 const DInput = styled.div`
@@ -141,18 +152,19 @@ const Container = styled.div`
 `
 
 const H4 = styled.div`
-  margin-right: 5px;
-  font-weight: bold;
+  margin-right: 10px;
   font-size: 20px;
+  color: #878787;
 `
 const P = styled.div`
   font-size: 18px;
+  color: #3c3c3c;
+
 `
 
 const P2 = styled.div`
-  margin-bottom: 10px;
-  font-size: 18px;
-  color: #d9d9d9;
+  font-size: 15px;
+  color: #b8b8b8;
 `
 
 const Nick = styled.div`
