@@ -181,6 +181,7 @@ const NickName = styled.div`
   font-size: 16px;
   color: #898a8d;
   text-align: start;
+  margin-bottom: 3%;
 `;
 
 const PostingDate = styled.div`

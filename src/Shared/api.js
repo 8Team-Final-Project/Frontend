@@ -80,13 +80,11 @@ export const postApi = {
 export const commentApi = {
   // 댓글 작성하기
   addComment: (data) => {
-    console.log(data);
     return instance.post(`/api/v1/comment/${data.postId.id}`, { commentContent: data.textContent });
   },
 
   // 댓글 불러오기
   getComment: (postId) => {
-    console.log(postId);
     return instance.get(`/api/v1/comment/${postId}`);
   },
 

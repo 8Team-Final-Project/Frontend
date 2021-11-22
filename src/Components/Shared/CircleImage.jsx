@@ -17,7 +17,7 @@ import BasicProfile from "../../Asset/Images/basicprofile.svg";
 export default function CircleImage({ edit, saveUrl, imgUrl }) {
   const refFileInput = useRef(null);
 
-  const getUserImg = useSelector((state) => state.user.user.userImg);
+  const getUserImg = useSelector((state) => state.user.user?.userImg);
 
   const upload = (e) => {
     //서버에 이미지 업로드하여 imgUrl을 받아와서 url을 저장시키는 함수입니다.

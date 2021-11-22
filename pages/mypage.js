@@ -57,7 +57,9 @@ const mypage = (props) => {
       </Center>
 
       {/* 프로필 수정 */}
+      <ModalWrap>
       <MyInfoEditModal isOpen={modalOpen} handleClose={() => setModalOpen(false)} />
+      </ModalWrap>
       {/* 로그아웃 버튼 */}
       <LogoutBtn onClick={setLogout}>로그아웃</LogoutBtn>
       {/* 작성글 저장글 */}
@@ -132,5 +134,10 @@ const Center = styled.div`
 const ListWrap = styled.div`
   padding: 5%;
 `;
+
+const ModalWrap = styled.div`
+  position : fixed;
+  overflow : hidden;
+`
 
 export default mypage;

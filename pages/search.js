@@ -141,13 +141,17 @@ const RecommandedTag = styled.button`
   }
 `;
 
-const PostWrapper = styled.div``;
+const PostWrapper = styled.div`
+
+`;
 
 const Post = styled.div`
   border: 1px solid black;
 `;
 
-const Container = styled.div``;
+const Container = styled.div`
+  padding : 0px 5%;
+`;
 
 const MuiForm = styled(FormControl)`
   width: 100%;
@@ -172,7 +176,7 @@ const Tag = styled.span`
   border: 1px solid #ff7775;
   display: inline-flex;
   min-width: 50px;
-  padding: 5px;
+  padding: 0px 10px;
   height: 40px;
   border-radius: 100px;
   box-sizing: border-box;

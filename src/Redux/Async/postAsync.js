@@ -24,9 +24,7 @@ export const getEventPostListDB = createAsyncThunk("event/getList", async (data,
 // 게시글 추가하기
 export const addPostDB = createAsyncThunk("addPost", async (data, thunkAPI) => {
   try {
-    console.log(data);
     const response = await postApi.addPost(data);
-    console.log(response);
     if (response.statusText === "OK") return response.data.newPost;
   } catch (err) {
     return thunkAPI.rejectWithValue(err.response.message);

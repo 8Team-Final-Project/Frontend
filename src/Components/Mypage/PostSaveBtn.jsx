@@ -19,9 +19,6 @@ const PostSaveBtn = (props) => {
 
   //const realSave = save.splice(0,1);
 
-  console.log(save);
-  //console.log(realSave);
-
   const tabContArr = [
     {
       tabTitle: (
@@ -50,12 +47,11 @@ const PostSaveBtn = (props) => {
             save.map((p) => {
               return <Card {...p} key={p.id} />;
             })} */}
-         
-         {save &&
+
+          {save &&
             save.map((p) => {
               return <Card {...p} key={p.id} />;
             })}
-
         </>
       )
     }
