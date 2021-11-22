@@ -21,6 +21,7 @@ const commentSlice = createSlice({
     extraReducers: {
         //댓글 추가하기
         [addCommentDB.fulfilled]: (state, { payload }) => {
+            console.log(payload)
             state.errorMessage = null;
             state.isFetching = false;
             state.comment.unshift(payload.newComment);
@@ -35,6 +36,7 @@ const commentSlice = createSlice({
 
         // 댓글 불러오기
         [getCommentDB.fulfilled]: (state, { payload }) => {
+            console.log(payload)
             state.errorMessage = null;
             state.isFetching = false;
             state.comment = payload;

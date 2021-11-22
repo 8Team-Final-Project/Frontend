@@ -80,8 +80,8 @@ export const postApi = {
 export const commentApi = {
   // 댓글 작성하기
   addComment: (data) => {
-    console.log(data);
-    return instance.post(`/api/v1/comment/${data.postId.id}`, { commentContent: data.textContent });
+    console.log(data)
+    return instance.post(`/api/v1/comment/${data.postId.id}`, { commentContent: data.commentContent });
   },
 
   // 댓글 불러오기
@@ -105,7 +105,7 @@ export const uploadApi = {
       for (let entry of Object.entries(req)) {
         formData.append(entry[0], entry[1]);
       }
-      const response = await axios.post("https://kkuljohang.shop/api/v1/post/uploadimg", formData);
+      const response = await axios.post("http://54.180.137.99/api/v1/post/uploadimg", formData);
       if (response.statusText === "OK") return response;
     } catch (err) {
       alert(err);
