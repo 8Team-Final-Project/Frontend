@@ -7,36 +7,38 @@ import styled from "styled-components";
 
 import {
   addCommentDB,
-  getCommentDB,
-  deleteCommentDB
+  getCommentDB
+  // deleteCommentDB,
   // editCommentDB,
 } from "../Redux/Async/commentAsync";
 
 function Comments() {
   const dispatch = useDispatch();
 
-  const {
-    query: { id }
-  } = useRouter();
+  // const {
+  //   query: { id }
+  // } = useRouter();
 
-  React.useEffect(() => {
-    if (id) dispatch(getCommentDB(id));
-  }, [id]);
+  // React.useEffect(() => {
+  //   if (id) dispatch(getCommentDB(id));
+  // }, [id]);
 
-  const deleteComment = () => {
-    dispatch(deleteCommentDB(id));
-    // Router.push("/");
-  };
+  // const deleteComment = () => {
+  //   dispatch(deleteCommentDB(id));
+  //   Router.push("/");
+  // };
 
-  const comment = useSelector((state) => {
-    return state.comment.comment.newComment;
-  });
+  // const comment = useSelector((state) => {
+  //   // console.log(state.comment)
+  //   return state.comment.comment.newComment})
 
   const router = useRouter();
   const postId = useRouter().query.id;
   const commentList = useSelector((state) => state.comment.comment);
 
   const [textContent, setTextContent] = useState("");
+
+  const [commentContent, setCommentContent] = useState("");
 
   useEffect(() => {
     if (postId) {
@@ -48,7 +50,7 @@ function Comments() {
   const setComments = () => {
     const commentItem = {
       postId: postId,
-      textContent: textContent
+      commentContent: commentContent
     };
     dispatch(addCommentDB(commentItem));
   };
@@ -61,7 +63,7 @@ function Comments() {
           <Input
             type="text"
             onChange={(e) => {
-              setTextContent(e.target.value);
+              setCommentContent(e.target.value);
             }}
             placeholder="댓글을 입력해주세요."
           />
@@ -88,7 +90,7 @@ function Comments() {
               <H4>{comment && comment.userNickname}</H4>
               <P>{comment && comment.commentContent}</P>
               <P2>{comment && comment.createDate}</P2>
-              <button onClick={deleteComment}>삭제</button>
+              {/* <button onClick={deleteComment}>삭제</button> */}
             </Container>
           </Box>
         );
