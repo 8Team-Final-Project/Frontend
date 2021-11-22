@@ -17,8 +17,6 @@ const PostSaveBtn = (props) => {
   //저장글 불러오기
   const save = useSelector((state) => state.user.user?.keepPost);
 
-  //const realSave = save.splice(0,1);
-
   const tabContArr = [
     {
       tabTitle: (
