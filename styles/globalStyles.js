@@ -67,7 +67,7 @@ export const GlobalStyles = createGlobalStyle`
 
   body {
     width: 100%;
-    background-image : url('${webImg}');
+    background : #fff;
     display: flex;
     justify-content: center;
   }

@@ -8,22 +8,18 @@ import {
   deleteCommentDB
   // editCommentDB,
 } from "../Redux/Async/commentAsync";
+import Comment from "./Comment";
 
 function Comments() {
   const dispatch = useDispatch();
-  const router = useRouter();
   const postId = useRouter().query.id;
 
   const commentList = useSelector((state) => state.comment.comment);
   const user = useSelector((state) => state.user.user?.userId);
   const [commentContent, setCommentContent] = useState("");
 
-  const onChangeInput = e => {
+  const onChangeInput = (e) => {
     setCommentContent(e.target.value);
-  };
-  
-  const onReset = () => {
-    setCommentContent("");
   };
 
   // 댓글 불러오기
@@ -40,7 +36,6 @@ function Comments() {
       commentContent: commentContent
     };
     dispatch(addCommentDB(commentItem));
-
   };
 
   return (
@@ -48,19 +43,12 @@ function Comments() {
       {/* 댓글 입력창 */}
       <Box>
         <DInput>
-          <Input
-            type="text"
-            onChange={onChangeInput}
-            placeholder="댓글을 입력해주세요."
-          />
+          <Input type="text" onChange={onChangeInput} placeholder="댓글을 입력해주세요." />
         </DInput>
         <DInput2>
           <SaveButton
             onClick={() => {
               setComments();
-            }}
-            onChange={() => {
-              onReset()
             }}
           >
             작성
@@ -68,44 +56,14 @@ function Comments() {
         </DInput2>
       </Box>
       <Hr />
-      {/* 댓글창 */}
+      {/* 댓글 */}
       {commentList &&
         commentList.map((comment, idx) => {
-          // 댓글 삭제
-          const deleteComment = () => {
-            dispatch(deleteCommentDB(comment._id));
-            // router.push(`/combination/detail/${postId}`);
-          };
-          return (
-            <Container>
-              <NicBox>
-                {/* 닉네임, 날짜 */}
-                <NicBox2>
-                  <Nickname>{comment && comment.userNickname}</Nickname>
-                  <Date>{comment && comment.createDate}</Date>
-                </NicBox2>
-
-                {/* 삭제 버튼 */}
-                <DeleteBox>
-                {comment.userId === user && (
-                  <X>
-                    <Xbutton onClick={deleteComment}>✕</Xbutton>
-                  </X>
-                )}
-                </DeleteBox>
-              </NicBox>
-              
-              {/* 댓글박스 */}
-              <CommentBox>
-                <P>{comment && comment.commentContent}</P>
-              </CommentBox>
-            </Container>
-          );
+          return <Comment {...comment} key={idx} />;
         })}
     </Wrap>
   );
 }
-
 
 const Wrap = styled.div`
   width: 100%;
@@ -151,7 +109,6 @@ const Container = styled.div`
   margin: 0 25px;
 `;
 
-
 const P = styled.div`
   font-size: 18px;
   color: #3c3c3c;
@@ -166,7 +123,6 @@ const Xbutton = styled.div`
   font-size: 18px;
   color: #b8b8b8;
 `;
-
 
 const Nickname = styled.div`
   margin-right: 10px;
@@ -198,7 +154,6 @@ const CommentBox = styled.div`
   margin-top: 5px;
   margin-bottom: 25px;
   color: #3c3c3c;
-
 `;
 
 export default Comments;
