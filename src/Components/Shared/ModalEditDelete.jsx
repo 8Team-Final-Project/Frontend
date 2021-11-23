@@ -44,6 +44,7 @@ const EditButton = styled.button`
   color: #878787;
   cursor: pointer;
 `;
+
 // 삭제 버튼
 const DeleteButton = styled.button`
   width: 100%;
@@ -56,6 +57,7 @@ const DeleteButton = styled.button`
   margin-bottom: 10px;
   cursor: pointer;
 `;
+
 const CancelButton = styled.button`
   width: 100%;
   height: 70px;

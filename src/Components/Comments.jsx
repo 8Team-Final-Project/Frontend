@@ -16,7 +16,6 @@ function Comments() {
 
   const router = useRouter();
   const postId = useRouter().query.id;
-  console.log("postId", postId);
 
   const commentList = useSelector((state) => state.comment.comment);
 
