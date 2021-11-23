@@ -22,18 +22,18 @@ const EventPostEdit = () => {
   const postId = useRouter().query.id;
   const post = useSelector((state) => state.post.post);
 
-  const [postImg, setPostImg] = useState("");
+  const [postImg1, setPostImg] = useState("");
   const [postTitle, setPostTitle] = useState("");
   const [postRecipe, setPostRecipe] = useState("");
   const [postContent, setPostContent] = useState("");
 
-  const getPostImg = useSelector((state) => state.post.post?.postImg);
+  const getPostImg = useSelector((state) => state.post.post?.postImg1);
   const getPostTitle = useSelector((state) => state.post.post?.postTitle);
   const getPostRecipe = useSelector((state) => state.post.post?.postRecipe);
   const getPostContent = useSelector((state) => state.post.post?.postContent);
 
   React.useEffect(() => {
-    if (getPostImg && getPostImg !== postImg) setPostImg(getPostImg);
+    if (getPostImg && getPostImg !== postImg1) setPostImg(getPostImg);
     if (getPostTitle && getPostTitle !== postTitle) setPostTitle(getPostTitle);
     if (getPostRecipe && getPostRecipe !== postRecipe) setPostRecipe(getPostRecipe);
     if (getPostContent && getPostContent !== postContent) setPostContent(getPostContent);
@@ -42,7 +42,7 @@ const EventPostEdit = () => {
   
   const editEventPost = () => {
     const content = {
-      postImg: postImg,
+      postImg1: postImg1,
       postTitle: postTitle,
       postRecipe: postRecipe,
       postContent: postContent,
@@ -55,7 +55,7 @@ const EventPostEdit = () => {
   return (
     <Grid>
       <ImgMargin>
-        <RectangleImage edit saveUrl={setPostImg} imgUrl={postImg ? postImg : false} onChange={setPostImg} />
+        <RectangleImage edit saveUrl={setPostImg} imgUrl={postImg1 ? postImg1 : false} onChange={setPostImg} />
       </ImgMargin>
       <InputMargin>
         <ValidationInput

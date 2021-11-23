@@ -60,6 +60,7 @@ const userSlice = createSlice({
     [Me.fulfilled]: (state, { payload }) => {
       state.isFetching = false;
       state.user = payload;
+      state.user.keepPost.shift();
       state.isLogin = true;
       state.errorMessage = "";
     },
