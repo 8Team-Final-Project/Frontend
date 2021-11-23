@@ -58,6 +58,7 @@ export default function Search(props) {
 
       if (tagList.length == 1) {
         //태그목록은 3개까지만 추가하도록 한다.
+        // ㅇㅇㅇㅇ
         setTerm("");
         return alert("태그를 지우고 다시 검색해주세요!");
       }
@@ -152,16 +153,14 @@ const RecommandedTag = styled.button`
   }
 `;
 
-const PostWrapper = styled.div`
-
-`;
+const PostWrapper = styled.div``;
 
 const Post = styled.div`
   border: 1px solid black;
 `;
 
 const Container = styled.div`
-  padding : 0px 5%;
+  padding: 0px 5%;
 `;
 
 const MuiForm = styled(FormControl)`
