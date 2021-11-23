@@ -5,14 +5,19 @@ import { getEventPostListDB } from "../../src/Redux/Async/postAsync";
 import { useRouter } from "next/router";
 import Pagination from "react-js-pagination";
 import { Swiper, SwiperSlide } from 'swiper/react';
+import SwiperCore, {Autoplay,Navigation} from 'swiper';
 import "swiper/css";
 import "swiper/css/pagination";
+import "swiper/css/navigation"
 import "swiper/css/effect-fade"
 
 //component
 import Card from "../../src/Components/Card";
 import FirstEventImg from "../../src/Asset/Images/eventbnr1.svg";
 import SecondEventImg from "../../src/Asset/Images/eventbnr2.svg";
+
+SwiperCore.use([Autoplay,Navigation]);
+
 
 const event = (props) => {
   const router = useRouter();
@@ -53,8 +58,11 @@ const event = (props) => {
           spaceBetween = {30}
           slidesPerView = {1}
           loop={true}
+          autoplay={{
+            delay : 2500,
+            disableOnInteraction : false
+          }}
           // initialSlide = {2}
-          navigation={true}
         >
           <SwiperSlide>
           <BannerImg src={FirstEventImg.src} onClick={goEventInfo} />
