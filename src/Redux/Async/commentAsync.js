@@ -6,7 +6,7 @@ export const addCommentDB = createAsyncThunk("addComment", async (data, thunkAPI
   try {
     const response = await commentApi.addComment(data);
     if (response.statusText === "OK"){
-      window.alert("댓글 추가 완료!");
+      // window.alert("댓글 추가 완료!");
       return response.data;
     }
   } catch (err) {
@@ -46,7 +46,7 @@ export const deleteCommentDB = createAsyncThunk("deleteComment", async (data, th
   try {
     const response = await commentApi.deleteComment(data);
     if (response.statausText === "OK") {
-      window.alert("댓글이 삭제되었습니다");
+      // window.alert("댓글이 삭제되었습니다");
       return data._id;}
   } catch (err) {
     return thunkAPI.rejectWithValue(err.response.message);
