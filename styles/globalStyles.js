@@ -1,5 +1,5 @@
 import { createGlobalStyle } from "styled-components";
-
+import webImg from "../src/Asset/Images/backImg.svg"
 export const GlobalStyles = createGlobalStyle`
 @import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css);
 
@@ -67,7 +67,7 @@ export const GlobalStyles = createGlobalStyle`
 
   body {
     width: 100%;
-    background: #fff;
+    background-image : url('${webImg}');
     display: flex;
     justify-content: center;
   }

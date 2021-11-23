@@ -9,7 +9,7 @@ import { uploadApi } from "../../Shared/api";
 import { BsCamera } from "react-icons/bs";
 
 // image
-import BasicProfile from "../../Asset/Images/basicprofile.svg";
+import BasicProfile from "../../Asset/Images/BasicProfile.svg";
 
 //edit : 입력하면 수정용으로 바뀝니다.
 //saveUrl : 이미지 업로드 후 부모컴포넌트 state에 저장하기 위한 함수입니다. 부모컴포넌트에서 업로드 후 url을 저장할 setState 함수를 넣어주세요!
@@ -34,17 +34,17 @@ export default function CircleImage({ edit, saveUrl, imgUrl }) {
   if (edit)
     return (
       <ImageWrapper onClick={() => refFileInput.current.click()}>
-        <Image src={getUserImg && getUserImg} />
+        <Image src={imgUrl && imgUrl} />
         <BsCamera />
         <FileInput type="file" ref={refFileInput} onChange={upload} />
       </ImageWrapper>
     );
 
-  return <Image src={getUserImg} />;
+  return <Image src={getUserImg && getUserImg} />;
 }
 
 CircleImage.defaultProps = {
-  getUserImg: BasicProfile.src,
+  imgUrl: BasicProfile.src,
   saveUrl: () => {},
   edit: false
 };
@@ -52,7 +52,7 @@ CircleImage.defaultProps = {
 const Image = styled.img`
   width: 130px;
   height: 130px;
-  object-fit: none;
+  object-fit: cover;
   border-radius: 50%;
   // border: 1px solid #B8B8B8;
 `;
