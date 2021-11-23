@@ -112,7 +112,7 @@ const DetailContentsBox = (props) => {
           <IconBox>
             <button
               onClick={() => {
-                setPostLike();
+                post?.userId && setPostLike();
               }}
             >
               {likeUserId && likeUserId == true ? <img src={likeOn.src} /> : <img src={likeOff.src} />}
@@ -123,7 +123,7 @@ const DetailContentsBox = (props) => {
             <IconBox>
               <button
                 onClick={() => {
-                  setPostSave();
+                  post?.userId && setPostSave();
                 }}
               >
                 {saveUserId && saveUserId == true ? <img src={saveOn.src} /> : <img src={saveOff.src} />}
@@ -225,6 +225,7 @@ const PostImg = styled.img`
   height: 100%;
   margin: 10px 0;
   object-fit: cover;
+  background-color: #F8F8F8;
 `;
 
 const Title = styled.div`
