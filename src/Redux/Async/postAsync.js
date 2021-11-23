@@ -81,7 +81,6 @@ export const likePostDB = createAsyncThunk("likePost", async (data, thunkAPI) =>
 export const savePostDB = createAsyncThunk("savePost", async (data, thunkAPI) => {
   try {
     const response = await postApi.savePost(data);
-    console.log(response)
     if (response.statusText === "OK") {
       return response.data; 
     }

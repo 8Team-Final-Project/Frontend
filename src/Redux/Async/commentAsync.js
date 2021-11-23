@@ -18,7 +18,6 @@ export const addCommentDB = createAsyncThunk("addComment", async (data, thunkAPI
 export const getCommentDB = createAsyncThunk("getComment", async (data, thunkAPI) => {
   try {
     const response = await commentApi.getComment(data);
-    // console.log(response)
     if (response.statusText === "OK"){
       return response.data;
     }
@@ -46,7 +45,6 @@ export const getCommentDB = createAsyncThunk("getComment", async (data, thunkAPI
 export const deleteCommentDB = createAsyncThunk("deleteComment", async (data, thunkAPI) => {
   try {
     const response = await commentApi.deleteComment(data);
-    console.log(response)
     if (response.statausText === "OK") {
       window.alert("댓글이 삭제되었습니다");
       return data._id;}
