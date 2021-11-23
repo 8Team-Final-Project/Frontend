@@ -2,7 +2,9 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router";
 
+import Modal from "react-modal";
 import styled from "styled-components";
+import { BsThreeDotsVertical } from "react-icons/bs";
 
 import {
   addCommentDB,
@@ -17,6 +19,8 @@ function Comments() {
   const router = useRouter();
   const postId = useRouter().query.id;
   console.log("postId", postId);
+
+  const [modalIsOpen, setModalIsOpen] = useState(false);
 
   const commentList = useSelector((state) => state.comment.comment);
 
@@ -38,6 +42,16 @@ function Comments() {
       commentContent: commentContent
     };
     dispatch(addCommentDB(commentItem));
+  };
+
+  // Open modal
+  const openModal = (e) => {
+    setModalIsOpen(true);
+  };
+
+  // Close modal
+  const closeModal = () => {
+    setModalIsOpen(false);
   };
 
   return (
@@ -65,7 +79,11 @@ function Comments() {
         </DInput2>
       </Box>
 
+      {/* <ModalEditDelete /> */}
+
       <Hr />
+
+      
 
       {/* 댓글창 */}
       {commentList &&
@@ -78,21 +96,28 @@ function Comments() {
 
           return (
             <div>
-              <Box>
-                <Container>
-                  <H4>{comment && comment.userNickname}</H4>
-                </Container>
-                <Container>
-                  <P2>{comment && comment.createDate}</P2>
-                </Container>
-              </Box>
+              {comment.userId === user && (
+                <Box>
+                  <div>
+                    <Container>
+                      <H4>{comment && comment.userNickname}</H4>
+                    </Container>
+                    <Container>
+                      <P2>{comment && comment.createDate}</P2>
+                    </Container>
+                  </div>
+                  <div>
+                    <BsThreeDotsVertical onClick={openModal} />
+                  </div>
+                </Box>
+              )}
               <Box2>
                 <P>{comment && comment.commentContent}</P>
-                {comment.userId === user && (
+                {/* {comment.userId === user && ( */}
                   <P>
                     <button onClick={deleteComment}>삭제</button>
                   </P>
-                )}
+                {/* )} */}
               </Box2>
             </div>
           );
@@ -108,6 +133,7 @@ const Wrap = styled.div`
 const Box = styled.div`
   padding: 0px 20px;
   display: flex;
+  justify-content: space-between;
 `;
 
 const Box2 = styled.div`
