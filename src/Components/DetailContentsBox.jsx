@@ -38,11 +38,10 @@ const DetailContentsBox = (props) => {
 
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const post = useSelector((state) => state.post.post);
-  console.log(post)
   const user = useSelector((state) => state.user.user?.userId);
+  const userImg = useSelector((state) => state.user.user?.userImg);
 
   const likeUserId = useSelector((state) => state.post.post?.likeStatus);
-  console.log(likeUserId)
   const saveUserId = useSelector((state) => state.post.post?.keepStatus);
 
   const setPostSave = () => {
@@ -82,7 +81,7 @@ const DetailContentsBox = (props) => {
     <React.Fragment>
       <Grid>
         <FlexBox>
-          <Image src={PostBasicProfile.src} />
+          <Image src={userImg && userImg} />
           <UserBox>
             <NickName>{post && post.userNickname}</NickName>
             <PostingDate>{post && post.createDate}</PostingDate>
@@ -93,11 +92,7 @@ const DetailContentsBox = (props) => {
             </Menu>
           )}
         </FlexBox>
-        <Swiper slidesPerView={1} navigation={true}>
-          <SwiperSlide>
-            <PostImg src={post?.postImg1 ? post.postImg1 : src} />
-          </SwiperSlide>
-        </Swiper>
+        <PostImg src={post?.postImg1 ? post.postImg1 : src} />
         <Title>
           <strong>{post && post.postTitle}</strong>
         </Title>
@@ -175,7 +170,7 @@ const Image = styled.img`
   margin-right: 10px;
   width: 44px;
   height: 44px;
-  object-fit: none;
+  object-fit: cover;
   border-radius: 30px;
 `;
 
