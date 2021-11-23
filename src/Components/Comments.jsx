@@ -17,14 +17,18 @@ function Comments() {
 
   const commentList = useSelector((state) => state.comment.comment);
   const user = useSelector((state) => state.user.user?.userId);
+
   const [commentContent, setCommentContent] = useState("");
 
-  const onChangeInput = e => {
+  const onChangeInput = (e) => {
     setCommentContent(e.target.value);
   };
+
   
   const onReset = () => {
     setCommentContent("");
+    // Ref.current.clear();
+    
   };
 
   // 댓글 불러오기
@@ -40,8 +44,9 @@ function Comments() {
       postId: postId,
       commentContent: commentContent
     };
+    onReset();
     dispatch(addCommentDB(commentItem));
-
+    setCommentContent("");
   };
 
   return (
@@ -57,12 +62,7 @@ function Comments() {
         </DInput>
         <DInput2>
           <SaveButton
-            onClick={() => {
-              setComments();
-            }}
-            onChange={() => {
-              onReset()
-            }}
+            onClick={setComments}
           >
             작성
           </SaveButton>
