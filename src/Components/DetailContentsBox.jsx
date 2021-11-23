@@ -38,9 +38,11 @@ const DetailContentsBox = (props) => {
 
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const post = useSelector((state) => state.post.post);
+  console.log(post)
   const user = useSelector((state) => state.user.user?.userId);
 
   const likeUserId = useSelector((state) => state.post.post?.likeStatus);
+  console.log(likeUserId)
   const saveUserId = useSelector((state) => state.post.post?.keepStatus);
 
   const setPostSave = () => {
@@ -166,7 +168,7 @@ const DetailContentsBox = (props) => {
 };
 
 DetailContentsBox.defaultProps = {
-  src: "/android-icon-192x192.png"
+  src: "/defaultImg.svg"
 };
 
 const Image = styled.img`
@@ -181,6 +183,7 @@ const NickName = styled.div`
   font-size: 16px;
   color: #898a8d;
   text-align: start;
+  margin-bottom: 3%;
 `;
 
 const PostingDate = styled.div`
@@ -201,7 +204,7 @@ const UserBox = styled.div`
 `;
 
 const Grid = styled.div`
-  text-align: center;
+  text-align: left;
 `;
 
 const TextBox = styled.div`

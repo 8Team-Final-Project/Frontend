@@ -3,12 +3,17 @@ import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { getCombinationListDB } from "../../src/Redux/Async/postAsync";
 import { useRouter } from "next/router";
-import { useInView } from "react-intersection-observer";
 import Pagination from "react-js-pagination";
+import { Swiper, SwiperSlide } from 'swiper/react';
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/effect-fade"
+// import "swiper/css/navigation";
 
 import SearchInput from "../../src/Components/Input/SearchInput";
 import Card from "../../src/Components/Card";
 import FirstEventImg from "../../src/Asset/Images/eventbnr1.svg";
+import SecondEventImg from "../../src/Asset/Images/eventbnr2.svg";
 
 //꿀조합 페이지
 const combination = (props) => {
@@ -39,15 +44,31 @@ const combination = (props) => {
     }
   }, [postList]);
 
+  const goEventInfo = () => {
+    return router.push("/event/info");
+  };
+
   return (
     <div>
       <PageBox>
         <SearchWrap>
           <SearchInput />
         </SearchWrap>
-        <div>
-          <EventBanner src={FirstEventImg.src} />
-        </div>
+        <Swiper
+          spaceBetween = {30}
+          slidesPerView = {1}
+          loop={true}
+          // initialSlide = {2}
+          navigation={true}
+        >
+          <SwiperSlide>
+          <EventBanner src={FirstEventImg.src} onClick={goEventInfo} />
+          {/* slide1 */}
+          </SwiperSlide>
+          <SwiperSlide>
+          <EventBanner src={SecondEventImg.src} />
+          </SwiperSlide>
+        </Swiper>
         <CardWrap>
           {/* post는 객체하나 */}
           {isloaded && (

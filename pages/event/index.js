@@ -4,9 +4,15 @@ import { useSelector, useDispatch } from "react-redux";
 import { getEventPostListDB } from "../../src/Redux/Async/postAsync";
 import { useRouter } from "next/router";
 import Pagination from "react-js-pagination";
+import { Swiper, SwiperSlide } from 'swiper/react';
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/effect-fade"
 
 //component
 import Card from "../../src/Components/Card";
+import FirstEventImg from "../../src/Asset/Images/eventbnr1.svg";
+import SecondEventImg from "../../src/Asset/Images/eventbnr2.svg";
 
 const event = (props) => {
   const router = useRouter();
@@ -42,9 +48,22 @@ const event = (props) => {
   return (
     <React.Fragment>
       <EventName>이번주 붕어빵 꿀조합은?</EventName>
-      <WrapBanner>
-        <BannerImg src="/eventbanner.svg" onClick={goEventInfo} />
-      </WrapBanner>
+
+      <Swiper
+          spaceBetween = {30}
+          slidesPerView = {1}
+          loop={true}
+          // initialSlide = {2}
+          navigation={true}
+        >
+          <SwiperSlide>
+          <BannerImg src={FirstEventImg.src} onClick={goEventInfo} />
+          {/* slide1 */}
+          </SwiperSlide>
+          <SwiperSlide>
+          <BannerImg src={SecondEventImg.src} />
+          </SwiperSlide>
+        </Swiper>
 
       <CardWrap>
         {isloaded && (
