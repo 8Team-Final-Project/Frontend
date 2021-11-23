@@ -22,8 +22,8 @@ const postSlice = createSlice({
 
   extraReducers: {
     // 꿀조합 게시글 전체 리스트 불러오기
-    [getCombinationListDB.fulfilled]: (state, { payload: postList }) => {
-      state.list = postList;
+    [getCombinationListDB.fulfilled]: (state, { payload }) => {
+      state.postlist = payload;
       state.loaded = true;
       state.isFetching = false;
       state.errorMessage = null;

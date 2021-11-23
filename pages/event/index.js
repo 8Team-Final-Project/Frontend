@@ -4,10 +4,10 @@ import { useSelector, useDispatch } from "react-redux";
 import { getEventPostListDB } from "../../src/Redux/Async/postAsync";
 import { useRouter } from "next/router";
 import Pagination from "react-js-pagination";
-import { Swiper, SwiperSlide } from 'swiper/react';
+import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
-import "swiper/css/effect-fade"
+import "swiper/css/effect-fade";
 
 //component
 import Card from "../../src/Components/Card";
@@ -50,20 +50,20 @@ const event = (props) => {
       <EventName>이번주 붕어빵 꿀조합은?</EventName>
 
       <Swiper
-          spaceBetween = {30}
-          slidesPerView = {1}
-          loop={true}
-          // initialSlide = {2}
-          navigation={true}
-        >
-          <SwiperSlide>
+        spaceBetween={30}
+        slidesPerView={1}
+        loop={true}
+        // initialSlide = {2}
+        navigation={true}
+      >
+        <SwiperSlide>
           <BannerImg src={FirstEventImg.src} onClick={goEventInfo} />
           {/* slide1 */}
-          </SwiperSlide>
-          <SwiperSlide>
+        </SwiperSlide>
+        <SwiperSlide>
           <BannerImg src={SecondEventImg.src} />
-          </SwiperSlide>
-        </Swiper>
+        </SwiperSlide>
+      </Swiper>
 
       <CardWrap>
         {isloaded && (
@@ -94,7 +94,7 @@ const StylePagination = styled.div`
   > .pagination {
     display: flex;
     justify-content: center;
-    margin-top: 15px;
+    margin: 15px 0px;
   }
   ul {
     list-style: none;
@@ -104,37 +104,38 @@ const StylePagination = styled.div`
     display: inline-block;
     width: 30px;
     height: 30px;
-    border: 1px solid #e2e2e2;
+    // border: 1px solid #e2e2e2;
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 1rem;
   }
   ul.pagination li:first-child {
-    border-radius: 5px 0 0 5px;
+    // border-radius: 5px 0 0 5px;
   }
   ul.pagination li:last-child {
-    border-radius: 0 5px 5px 0;
+    // border-radius: 0 5px 5px 0;
   }
   ul.pagination li a {
     text-decoration: none;
-    color: #337ab7;
+    color: #3c3c3c;
     font-size: 1rem;
   }
   ul.pagination li.active a {
     color: white;
   }
   ul.pagination li.active {
-    background-color: #337ab7;
+    background-color: #ffd86b;
+    border-radius: 20px;
   }
   ul.pagination li a:hover,
   ul.pagination li a.active {
-    color: blue;
+    color: #ffd86b;
   }
   .page-selection {
     width: 48px;
     height: 30px;
-    color: #337ab7;
+    color: #ffd86b;
   }
 `;
 

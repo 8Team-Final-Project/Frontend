@@ -38,6 +38,7 @@ const Card = (props) => {
 
 Card.defaultProps = {
   src: "/defaultImg.svg"
+  
 };
 
 const PostTitle = styled.div`
@@ -75,11 +76,12 @@ const CardBox = styled.div`
 // 기본 사진 or 사진 받아오기
 const LeftBox = styled.div`
   width: 110px;
-  height: 100px;
+  height: 110px;
   border-radius: 10px 0 0 10px;
   background-image: url("${(props) => props.src}");
   background-position: center;
   background-size: cover;
+  background-color:#F8F8F8;
 `;
 
 // 제목, 태그, 좋아요 받아오기
@@ -87,7 +89,7 @@ const RightBox = styled.div`
   padding: 10px 10px 10px 20px;
   box-sizing: border-box;
   width: 70%;
-  height: 100px;
+  height: 110px;
   border-radius: 0 10px 10px 0;
 `;
 

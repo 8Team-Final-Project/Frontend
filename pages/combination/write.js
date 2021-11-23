@@ -110,9 +110,7 @@ const write = () => {
             />
             <RedButton
               value="작성"
-              onClick={() => {
-                setPost();
-              }}
+              onClick={setPost}
             />
           </FlexBox>
         </CenterBox>
