@@ -1,11 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router";
-
-import Modal from "react-modal";
 import styled from "styled-components";
-import { BsThreeDotsVertical } from "react-icons/bs";
-
 import {
   addCommentDB,
   getCommentDB,
@@ -15,18 +11,21 @@ import {
 
 function Comments() {
   const dispatch = useDispatch();
-
   const router = useRouter();
   const postId = useRouter().query.id;
   console.log("postId", postId);
 
-  const [modalIsOpen, setModalIsOpen] = useState(false);
-
   const commentList = useSelector((state) => state.comment.comment);
-
   const user = useSelector((state) => state.user.user?.userId);
-
   const [commentContent, setCommentContent] = useState("");
+
+  const onChangeInput = e => {
+    setCommentContent(e.target.value);
+  };
+  
+  const onReset = () => {
+    setCommentContent("");
+  };
 
   // 댓글 불러오기
   useEffect(() => {
@@ -42,16 +41,7 @@ function Comments() {
       commentContent: commentContent
     };
     dispatch(addCommentDB(commentItem));
-  };
 
-  // Open modal
-  const openModal = (e) => {
-    setModalIsOpen(true);
-  };
-
-  // Close modal
-  const closeModal = () => {
-    setModalIsOpen(false);
   };
 
   return (
@@ -61,30 +51,24 @@ function Comments() {
         <DInput>
           <Input
             type="text"
-            onChange={(e) => {
-              setCommentContent(e.target.value);
-            }}
+            onChange={onChangeInput}
             placeholder="댓글을 입력해주세요."
           />
         </DInput>
-
         <DInput2>
           <SaveButton
             onClick={() => {
               setComments();
+            }}
+            onChange={() => {
+              onReset()
             }}
           >
             작성
           </SaveButton>
         </DInput2>
       </Box>
-
-      {/* <ModalEditDelete /> */}
-
       <Hr />
-
-      
-
       {/* 댓글창 */}
       {commentList &&
         commentList.map((comment, idx) => {
@@ -93,54 +77,45 @@ function Comments() {
             dispatch(deleteCommentDB(comment._id));
             // router.push(`/combination/detail/${postId}`);
           };
-
           return (
-            <div>
-              {comment.userId === user && (
-                <Box>
-                  <div>
-                    <Container>
-                      <H4>{comment && comment.userNickname}</H4>
-                    </Container>
-                    <Container>
-                      <P2>{comment && comment.createDate}</P2>
-                    </Container>
-                  </div>
-                  <div>
-                    <BsThreeDotsVertical onClick={openModal} />
-                  </div>
-                </Box>
-              )}
-              <Box2>
+            <Container>
+              <NicBox>
+                {/* 닉네임, 날짜 */}
+                <NicBox2>
+                  <Nickname>{comment && comment.userNickname}</Nickname>
+                  <Date>{comment && comment.createDate}</Date>
+                </NicBox2>
+
+                {/* 삭제 버튼 */}
+                <DeleteBox>
+                {comment.userId === user && (
+                  <X>
+                    <Xbutton onClick={deleteComment}>✕</Xbutton>
+                  </X>
+                )}
+                </DeleteBox>
+              </NicBox>
+              
+              {/* 댓글박스 */}
+              <CommentBox>
                 <P>{comment && comment.commentContent}</P>
-                {/* {comment.userId === user && ( */}
-                  <P>
-                    <button onClick={deleteComment}>삭제</button>
-                  </P>
-                {/* )} */}
-              </Box2>
-            </div>
+              </CommentBox>
+            </Container>
           );
         })}
     </Wrap>
   );
 }
 
+
 const Wrap = styled.div`
   width: 100%;
+  margin-top: 50px;
 `;
 
 const Box = styled.div`
   padding: 0px 20px;
   display: flex;
-  justify-content: space-between;
-`;
-
-const Box2 = styled.div`
-  padding: 0px 20px;
-  display: flex;
-  text-align: left;
-  margin-bottom: 15px;
 `;
 
 const DInput = styled.div`
@@ -150,11 +125,13 @@ const DInput = styled.div`
 const DInput2 = styled.div`
   width: 20%;
 `;
+
 const Input = styled.input`
   width: 100%;
   margin-top: 10px;
   font-size: 18px;
   border: none;
+  color: #878787;
 `;
 
 const SaveButton = styled.button`
@@ -162,45 +139,67 @@ const SaveButton = styled.button`
   margin-top: 10px;
   font-size: 18px;
   text-align: right;
-`;
-
-const Left = styled.button`
-  text-align: left;
+  color: #878787;
 `;
 
 const Hr = styled.hr`
   width: 90%;
+  margin-bottom: 30px;
 `;
 
 const Container = styled.div`
   text-align: left;
+  margin: 0 25px;
 `;
 
-const H4 = styled.div`
-  margin-right: 10px;
-  font-size: 20px;
-  color: #878787;
-`;
+
 const P = styled.div`
   font-size: 18px;
   color: #3c3c3c;
 `;
 
-const P2 = styled.div`
-  font-size: 15px;
+const X = styled.div`
+  font-size: 18px;
   color: #b8b8b8;
 `;
 
-const Nick = styled.div`
-  font-weight: bold;
+const Xbutton = styled.div`
+  font-size: 18px;
+  color: #b8b8b8;
 `;
 
-const EditBtn = styled.button`
-  border: solid 1px;
+
+const Nickname = styled.div`
+  margin-right: 10px;
+  font-size: 20px;
+  color: #878787;
 `;
 
-const DeleteBtn = styled.button`
-  border: solid 1px;
+const Date = styled.div`
+  font-size: 15px;
+  color: #b8b8b8;
+  padding-top: 4px;
+`;
+
+const NicBox = styled.div`
+  display: flex;
+`;
+
+const NicBox2 = styled.div`
+  display: flex;
+  width: 100%;
+`;
+
+const DeleteBox = styled.div`
+  width: 16px;
+  color: #b8b8b8;
+`;
+
+const CommentBox = styled.div`
+  margin-top: 5px;
+  margin-bottom: 25px;
+  color: #3c3c3c;
+
 `;
 
 export default Comments;
