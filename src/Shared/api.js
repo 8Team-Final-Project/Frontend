@@ -86,7 +86,6 @@ export const commentApi = {
 
   // 댓글 불러오기
   getComment: (postId) => {
-    // console.log(postId);
     return instance.get(`/api/v1/comment/${postId}`);
   },
 

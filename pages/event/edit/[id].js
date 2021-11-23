@@ -20,7 +20,6 @@ const EventPostEdit = () => {
   const dispatch = useDispatch();
   const router = useRouter();
   const postId = useRouter().query.id;
-  const post = useSelector((state) => state.post.post);
 
   const [postImg1, setPostImg] = useState("");
   const [postTitle, setPostTitle] = useState("");

@@ -60,7 +60,6 @@ const userSlice = createSlice({
     [Me.fulfilled]: (state, { payload }) => {
       state.isFetching = false;
       state.user = payload;
-      state.user.keepPost.shift();
       state.isLogin = true;
       state.errorMessage = "";
     },
@@ -72,8 +71,9 @@ const userSlice = createSlice({
       state.errorMessage = errorMessage;
     },
 
-    // 프로필 수정
+    // 프로필 수정 
     [patchUserid.fulfilled]: (state, { payload }) => {
+      state.user.userImg = payload.userImg
       state.user.userNickname = payload.userNickname;
       state.user.userEmail = payload.userEmail;
       state.isFetching = false;

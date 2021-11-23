@@ -1,22 +1,21 @@
 import React from "react";
 import styled from "styled-components";
-import Router, { useRouter } from "next/router";
 import { useDispatch } from "react-redux";
-import { deletePostDB, getPostDB } from "../../Redux/Async/postAsync";
+import Router, { useRouter } from "next/router";
 
-const CommentEditDelete = ({ handleExit }) => {
-  const dispatch = useDispatch();
-  const {
-    query: { id }
-  } = useRouter();
 
-  React.useEffect(() => {
-    if (id) dispatch(getPostDB(id));
-  }, [id]);
 
-  const editpage = () => {
-    Router.push(`/combination/edit/${id}`);
-  };
+const CommentModalBtn = ({ closeModal, deleteComment }) => {
+
+    const dispatch = useDispatch();
+    const {
+      query: { id }
+    } = useRouter();
+
+  // const editpage = () => {
+  //   Router.push(`/combination/edit/${id}`);
+  // };
+
 
   const deletePost = () => {
     dispatch(deletePostDB(id));
@@ -25,11 +24,11 @@ const CommentEditDelete = ({ handleExit }) => {
 
   return (
     <>
-      <EditButton onClick={editpage}>수정</EditButton>
-      <DeleteButton onClick={deletePost}>삭제</DeleteButton>
-      <CancelButton onClick={handleExit}>취소</CancelButton>
+      <EditButton >수정</EditButton>
+      <DeleteButton onClick={deleteComment}>삭제</DeleteButton>
+      <CancelButton onClick={closeModal}>취소</CancelButton>
     </>
-  );
+  )
 };
 
 // 수정 버튼
@@ -44,7 +43,6 @@ const EditButton = styled.button`
   color: #878787;
   cursor: pointer;
 `;
-
 // 삭제 버튼
 const DeleteButton = styled.button`
   width: 100%;
@@ -57,7 +55,6 @@ const DeleteButton = styled.button`
   margin-bottom: 10px;
   cursor: pointer;
 `;
-
 const CancelButton = styled.button`
   width: 100%;
   height: 70px;
@@ -70,4 +67,4 @@ const CancelButton = styled.button`
   cursor: pointer;
 `;
 
-export default CommentEditDelete;
+export default CommentModalBtn;

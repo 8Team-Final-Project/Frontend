@@ -7,7 +7,6 @@ import { useSelector, useDispatch } from "react-redux";
 import Modal from "../Shared/Modal";
 import CircleImage from "../Shared/CircleImage";
 import ConfirmValidationInput from "../Input/ConfirmValidationInput";
-import WhiteButton from "../Button/WhiteButton";
 
 //api
 import { patchUserid } from "../../Redux/Async/userAsync";
@@ -22,14 +21,15 @@ import regex from "../../Shared/regex";
 
 export default function MyInfoEditModal({ isOpen, handleClose }) {
   const dispatch = useDispatch();
-  //input 값을 담는 state
-  const [userImg, setUserImg] = useState("");
-  const [nickname, setNickname] = useState(""); //닉네임의 변경과 저장을 위한 state
-  const [userEmail, setUserEmail] = useState(""); //이메일 변경과 저장을 위한 state
 
   //중복체크했는지 안했는지 여부값
   const [isCheckNickname, setIsCheckNickname] = useState(true);
   const [isCheckEmail, setIsCheckEmail] = useState(true);
+
+  //input 값을 담는 state
+  const [userImg, setUserImg] = useState("");
+  const [nickname, setNickname] = useState(""); //닉네임의 변경과 저장을 위한 state
+  const [userEmail, setUserEmail] = useState(""); //이메일 변경과 저장을 위한 state
 
   //기존 유저정보값
   const userImgFromStore = useSelector((state) => state.user.user?.userImg);
