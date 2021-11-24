@@ -33,7 +33,7 @@ export const deleteCommentDB = createAsyncThunk("deleteComment", async (data, th
     const response = await commentApi.deleteComment(data);
 
     if (response.statusText === "OK") {
-      window.alert("댓글이 삭제되었습니다");
+      // window.alert("댓글이 삭제되었습니다");
       return response.data;
     }
   } catch (err) {
