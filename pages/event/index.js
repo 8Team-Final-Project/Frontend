@@ -4,19 +4,19 @@ import { useSelector, useDispatch } from "react-redux";
 import { getEventPostListDB } from "../../src/Redux/Async/postAsync";
 import { useRouter } from "next/router";
 import Pagination from "react-js-pagination";
-import { Swiper, SwiperSlide } from 'swiper/react';
-import SwiperCore, {Autoplay,Navigation} from 'swiper';
+import { Swiper, SwiperSlide } from "swiper/react";
+import SwiperCore, { Autoplay, Navigation } from "swiper";
 import "swiper/css";
 import "swiper/css/pagination";
-import "swiper/css/navigation"
+import "swiper/css/navigation";
 
 //component
 import Card from "../../src/Components/Card";
 import FirstEventImg from "../../src/Asset/Images/eventbnr1.svg";
 import SecondEventImg from "../../src/Asset/Images/eventbnr2.svg";
+import ThirdEventImg from "../../src/Asset/Images/ramenbanner.svg";
 
-SwiperCore.use([Autoplay,Navigation]);
-
+SwiperCore.use([Autoplay, Navigation]);
 
 const event = (props) => {
   const router = useRouter();
@@ -54,21 +54,26 @@ const event = (props) => {
       <EventName>이번주 붕어빵 꿀조합은?</EventName>
 
       <Swiper
-          spaceBetween = {30}
-          slidesPerView = {1}
-          loop={true}
-          autoplay={{
-            delay : 2500,
-            disableOnInteraction : false
-          }}
-          // initialSlide = {2}
-        >
-          <SwiperSlide>
+        spaceBetween={30}
+        slidesPerView={1}
+        loop={true}
+        autoplay={{
+          delay: 4000,
+          disableOnInteraction: false
+        }}
+        // initialSlide = {2}
+      >
+        <SwiperSlide>
           <BannerImg src={FirstEventImg.src} onClick={goEventInfo} />
           {/* slide1 */}
         </SwiperSlide>
         <SwiperSlide>
-          <BannerImg src={SecondEventImg.src} />
+          <a target="_blank" href="https://wpub6shfa65.typeform.com/to/rhCKtx33">
+            <BannerImg src={SecondEventImg.src} />
+          </a>
+        </SwiperSlide>
+        <SwiperSlide>
+          <BannerImg src={ThirdEventImg.src} />
         </SwiperSlide>
       </Swiper>
 
@@ -134,10 +139,11 @@ const StylePagination = styled.div`
   ul.pagination li.active {
     background-color: #ffd86b;
     border-radius: 20px;
+    color: white;
   }
   ul.pagination li a:hover,
   ul.pagination li a.active {
-    color: #ffd86b;
+    color: white;
   }
   .page-selection {
     width: 48px;
@@ -161,6 +167,7 @@ const WrapBanner = styled.div`
 
 const BannerImg = styled.img`
   width: 100%;
+  cursor: pointer;
 `;
 const CardWrap = styled.div`
   margin: 8% 6% auto;

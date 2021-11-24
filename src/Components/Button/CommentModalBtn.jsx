@@ -1,26 +1,15 @@
 import React from "react";
 import styled from "styled-components";
-import { useDispatch } from "react-redux";
-import Router, { useRouter } from "next/router";
+import { useRouter } from "next/router";
 
 
 
 const CommentModalBtn = ({ closeModal, deleteComment }) => {
 
-    const dispatch = useDispatch();
-    const {
-      query: { id }
-    } = useRouter();
+  const {
+    query: { id }
+  } = useRouter();
 
-  // const editpage = () => {
-  //   Router.push(`/combination/edit/${id}`);
-  // };
-
-
-  const deletePost = () => {
-    dispatch(deletePostDB(id));
-    Router.push("/combination");
-  };
 
   return (
     <>
