@@ -1,6 +1,8 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { userApi } from "../../Shared/api";
 import router from "next/router";
+// import Swal from "sweetalert2";
+
 
 // 미들웨어
 
@@ -14,6 +16,7 @@ export const postSignup = createAsyncThunk("/user/postSignup", async (data, thun
       return response.data.msg;
     }
   } catch (err) {
+    alert("ㅇㅇㅇㅇㅇㅇㅇ");
     return thunkAPI.rejectWithValue(err.response.message);
   }
 });
@@ -40,7 +43,7 @@ export const postLogout = createAsyncThunk("user/postLogout", async (data, thunk
   try {
     const response = await userApi.logout(data);
     if (response.data.success === true) {
-      window.alert("로그아웃 완료");
+      // window.alert("로그아웃 완료");
       localStorage.removeItem("token");
       router.push("/");
       return response.data.msg;
