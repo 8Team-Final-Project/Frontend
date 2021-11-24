@@ -2,12 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router";
 import styled from "styled-components";
-import {
-  addCommentDB,
-  getCommentDB,
-  deleteCommentDB
-  // editCommentDB,
-} from "../Redux/Async/commentAsync";
+import { addCommentDB, getCommentDB } from "../Redux/Async/commentAsync";
 import Comment from "./Comment";
 
 function Comments() {
@@ -15,7 +10,6 @@ function Comments() {
   const postId = useRouter().query.id;
 
   const commentList = useSelector((state) => state.comment.comment);
-  const user = useSelector((state) => state.user.user?.userId);
 
   const [commentContent, setCommentContent] = useState("");
 
@@ -25,7 +19,6 @@ function Comments() {
 
   const onReset = () => {
     setCommentContent("");
-    // Ref.current.clear();
   };
 
   // 댓글 불러오기
@@ -104,58 +97,6 @@ const SaveButton = styled.button`
 const Hr = styled.hr`
   width: 90%;
   margin-bottom: 30px;
-`;
-
-const Container = styled.div`
-  text-align: left;
-  margin: 0 25px;
-`;
-
-const P = styled.div`
-  font-size: 18px;
-  color: #3c3c3c;
-`;
-
-const X = styled.div`
-  font-size: 18px;
-  color: #b8b8b8;
-`;
-
-const Xbutton = styled.div`
-  font-size: 18px;
-  color: #b8b8b8;
-`;
-
-const Nickname = styled.div`
-  margin-right: 10px;
-  font-size: 20px;
-  color: #878787;
-`;
-
-const Date = styled.div`
-  font-size: 15px;
-  color: #b8b8b8;
-  padding-top: 4px;
-`;
-
-const NicBox = styled.div`
-  display: flex;
-`;
-
-const NicBox2 = styled.div`
-  display: flex;
-  width: 100%;
-`;
-
-const DeleteBox = styled.div`
-  width: 16px;
-  color: #b8b8b8;
-`;
-
-const CommentBox = styled.div`
-  margin-top: 5px;
-  margin-bottom: 25px;
-  color: #3c3c3c;
 `;
 
 export default Comments;

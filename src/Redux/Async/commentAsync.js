@@ -26,28 +26,14 @@ export const getCommentDB = createAsyncThunk("getComment", async (data, thunkAPI
   }
 });
 
-
-// 댓글 수정하기
-// export const editCommentDB = createAsyncThunk("editComment", async (data, thunkAPI) => {
-//   try {
-//     const response = await commentApi.editComment(data);
-//     console.log(response)
-//     if (response.statusText === "OK"){
-//       window.alert("댓글 수정하기 완료!");
-//       return response.data;
-//     }
-//   } catch (err) {
-//     return thunkAPI.rejectWithValue(err.response.message);
-//   }
-// });
-
 // 댓글 삭제하기
 export const deleteCommentDB = createAsyncThunk("deleteComment", async (data, thunkAPI) => {
   try {
     const response = await commentApi.deleteComment(data);
-    if (response.statausText === "OK") {
+
+    if (response.statusText === "OK") {
       window.alert("댓글이 삭제되었습니다");
-      return data._id;}
+      return response.data;}
   } catch (err) {
     return thunkAPI.rejectWithValue(err.response.message);
   }

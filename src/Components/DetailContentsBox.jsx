@@ -81,7 +81,7 @@ const DetailContentsBox = (props) => {
     <React.Fragment>
       <Grid>
         <FlexBox>
-          <Image src={userImg && userImg} />
+          <Image src={userImg ? userImg : src} />
           <UserBox>
             <NickName>{post && post.userNickname}</NickName>
             <PostingDate>{post && post.createDate}</PostingDate>
@@ -225,7 +225,7 @@ const PostImg = styled.img`
   height: 100%;
   margin: 10px 0;
   object-fit: cover;
-  background-color: #F8F8F8;
+  background-color: #f8f8f8;
 `;
 
 const Title = styled.div`
