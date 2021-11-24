@@ -22,7 +22,7 @@ import likeOff from "../Asset/Images/likeOff.svg";
 import saveOn from "../Asset/Images/saveOn.svg";
 import saveOff from "../Asset/Images/saveOff.svg";
 import shareOn from "../Asset/Images/shareOn.svg";
-import BasicProfile from "../../src/Asset/Images/BasicProfile.svg";
+// import BasicProfile from "../../src/Asset/Images/BasicProfile.svg";
 
 const DetailContentsBox = (props) => {
   const dispatch = useDispatch();
@@ -80,7 +80,7 @@ const DetailContentsBox = (props) => {
     <React.Fragment>
       <Grid>
         <FlexBox>
-          <Image src={userImg ? userImg : src1} />
+          <Image src={userImg && userImg} />
           <UserBox>
             <NickName>{post && post.userNickname}</NickName>
             <PostingDate>{post && post.createDate}</PostingDate>
@@ -162,8 +162,8 @@ const DetailContentsBox = (props) => {
 };
 
 DetailContentsBox.defaultProps = {
-  src: "/defaultImg.svg",
-  src1: BasicProfile.src
+  src: "/defaultImg.svg"
+  // src1: BasicProfile.src
 };
 
 const Image = styled.img`
