@@ -81,7 +81,7 @@ const DetailContentsBox = (props) => {
     <React.Fragment>
       <Grid>
         <FlexBox>
-          <Image src={userImg && userImg} />
+          <Image src={userImg ? userImg : src} />
           <UserBox>
             <NickName>{post && post.userNickname}</NickName>
             <PostingDate>{post && post.createDate}</PostingDate>
@@ -133,7 +133,7 @@ const DetailContentsBox = (props) => {
               <CopyToClipboard text={shareUrl}>
                 <button
                   onClick={() => {
-                    window.alert("링크복사됨~");
+                    window.alert("복사 완료! 채팅창에 링크를 공유해 주세요❤︎");
                   }}
                 >
                   <img src={shareOn.src} />
@@ -167,7 +167,7 @@ DetailContentsBox.defaultProps = {
 };
 
 const Image = styled.img`
-  margin-right: 10px;
+  margin: 0 15px;
   width: 44px;
   height: 44px;
   object-fit: cover;
@@ -225,7 +225,7 @@ const PostImg = styled.img`
   height: 100%;
   margin: 10px 0;
   object-fit: cover;
-  background-color: #F8F8F8;
+  background-color: #f8f8f8;
 `;
 
 const Title = styled.div`
@@ -233,7 +233,7 @@ const Title = styled.div`
   font-size: 24px;
   font-weight: bold;
   word-break: break-all;
-  margin: 5px 15px 17px;
+  margin: 5px 15px 17px 20px;
   position: relative;
 `;
 
@@ -249,7 +249,7 @@ const Menu = styled.div`
 const Content = styled.div`
   display: flex;
   width: 95%;
-  margin: 10px;
+  margin: 10px 20px;
   font-size: 18px;
 `;
 

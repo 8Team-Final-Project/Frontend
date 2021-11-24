@@ -2,20 +2,16 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router";
 import styled from "styled-components";
-import {
-  addCommentDB,
-  getCommentDB,
-  deleteCommentDB
-  // editCommentDB,
-} from "../Redux/Async/commentAsync";
+import { addCommentDB, getCommentDB } from "../Redux/Async/commentAsync";
 import Comment from "./Comment";
 
 function Comments() {
+  const is_login = useSelector((state) => state.user.isLogin);
+
   const dispatch = useDispatch();
   const postId = useRouter().query.id;
 
   const commentList = useSelector((state) => state.comment.comment);
-  const user = useSelector((state) => state.user.user?.userId);
 
   const [commentContent, setCommentContent] = useState("");
 
@@ -25,7 +21,6 @@ function Comments() {
 
   const onReset = () => {
     setCommentContent("");
-    // Ref.current.clear();
   };
 
   // 댓글 불러오기
@@ -46,18 +41,31 @@ function Comments() {
     setCommentContent("");
   };
 
+  
   return (
+    
     <Wrap>
       {/* 댓글 입력창 */}
+
+      {is_login && (
+      <>
       <Box>
         <DInput>
-          <Input type="text" onChange={onChangeInput} placeholder="댓글을 입력해주세요." />
+          <Input
+          type="text" 
+          onChange={onChangeInput} 
+          placeholder="댓글을 입력해주세요." 
+          value={commentContent} //인풋 초기화
+          />
         </DInput>
         <DInput2>
           <SaveButton onClick={setComments}>작성</SaveButton>
         </DInput2>
       </Box>
       <Hr />
+      </>
+      )}
+
       {/* 댓글 */}
       {commentList &&
         commentList.map((comment, idx) => {
@@ -104,58 +112,6 @@ const SaveButton = styled.button`
 const Hr = styled.hr`
   width: 90%;
   margin-bottom: 30px;
-`;
-
-const Container = styled.div`
-  text-align: left;
-  margin: 0 25px;
-`;
-
-const P = styled.div`
-  font-size: 18px;
-  color: #3c3c3c;
-`;
-
-const X = styled.div`
-  font-size: 18px;
-  color: #b8b8b8;
-`;
-
-const Xbutton = styled.div`
-  font-size: 18px;
-  color: #b8b8b8;
-`;
-
-const Nickname = styled.div`
-  margin-right: 10px;
-  font-size: 20px;
-  color: #878787;
-`;
-
-const Date = styled.div`
-  font-size: 15px;
-  color: #b8b8b8;
-  padding-top: 4px;
-`;
-
-const NicBox = styled.div`
-  display: flex;
-`;
-
-const NicBox2 = styled.div`
-  display: flex;
-  width: 100%;
-`;
-
-const DeleteBox = styled.div`
-  width: 16px;
-  color: #b8b8b8;
-`;
-
-const CommentBox = styled.div`
-  margin-top: 5px;
-  margin-bottom: 25px;
-  color: #3c3c3c;
 `;
 
 export default Comments;

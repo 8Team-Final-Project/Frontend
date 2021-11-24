@@ -14,6 +14,7 @@ import SearchInput from "../../src/Components/Input/SearchInput";
 import Card from "../../src/Components/Card";
 import FirstEventImg from "../../src/Asset/Images/eventbnr1.svg";
 import SecondEventImg from "../../src/Asset/Images/eventbnr2.svg";
+import ThirdEventImg from "../../src/Asset/Images/ramenbanner.svg";
 
 
 SwiperCore.use([Autoplay,Navigation]);
@@ -62,7 +63,7 @@ const combination = (props) => {
           slidesPerView={1}
           loop={true}
           autoplay={{
-            delay : 2500,
+            delay : 4000,
             disableOnInteraction : false
           }}
           // initialSlide = {2}
@@ -74,6 +75,9 @@ const combination = (props) => {
           <SwiperSlide>
             <EventBanner src={SecondEventImg.src} />
           </SwiperSlide>
+          <SwiperSlide>
+          <EventBanner src={ThirdEventImg.src} />
+        </SwiperSlide>
         </Swiper>
         <CardWrap>
           {/* post는 객체하나 */}
@@ -142,7 +146,7 @@ const StylePagination = styled.div`
   }
   ul.pagination li a:hover,
   ul.pagination li a.active {
-    color: #ffd86b;
+    color: white;
   }
   .page-selection {
     width: 48px;
