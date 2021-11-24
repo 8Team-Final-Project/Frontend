@@ -16,7 +16,7 @@ export const postSignup = createAsyncThunk("/user/postSignup", async (data, thun
       return response.data.msg;
     }
   } catch (err) {
-    alert("ㅇㅇㅇㅇㅇㅇㅇ");
+    alert("빈칸을 채워주세요!");
     return thunkAPI.rejectWithValue(err.response.message);
   }
 });
@@ -27,13 +27,13 @@ export const postLogin = createAsyncThunk("user/postLogin", async (data, thunkAP
     const response = await userApi.login(data);
     if (response.data.result === "success") {
       const token = response.data.token;
-      window.alert("로그인 완료!");
+      // window.alert("로그인 완료!");
       localStorage.setItem("token", token);
       router.push("/");
       return response.data.msg;
     }
   } catch (err) {
-    alert("로그인을 다시 시도해 주세요!");
+    alert("이메일 혹은 비밀번호를 다시 확인해 주세요!");
     return thunkAPI.rejectWithValue(err.response.message);
   }
 });

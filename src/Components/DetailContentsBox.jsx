@@ -133,7 +133,7 @@ const DetailContentsBox = (props) => {
               <CopyToClipboard text={shareUrl}>
                 <button
                   onClick={() => {
-                    window.alert("링크복사됨~");
+                    window.alert("복사 완료! 채팅창에 링크를 공유해 주세요❤︎");
                   }}
                 >
                   <img src={shareOn.src} />
