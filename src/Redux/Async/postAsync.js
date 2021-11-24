@@ -2,8 +2,6 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import { postApi } from "../../Shared/api";
 import { useRouter } from "next/router";
 
-const router = useRouter();
-
 // 꿀조합 게시글리스트 불러오기
 export const getCombinationListDB = createAsyncThunk("combination/getList", async (data, thunkAPI) => {
   try {
@@ -30,6 +28,7 @@ export const addPostDB = createAsyncThunk("addPost", async (data, thunkAPI) => {
     const response = await postApi.addPost(data);
     if (response.statusText === "OK") return response.data.newPost;
   } catch (err) {
+    const router = useRouter();
     router.replace("/error");
     return thunkAPI.rejectWithValue(err.response.message);
   }
@@ -41,6 +40,7 @@ export const getPostDB = createAsyncThunk("getPost", async (data, thunkAPI) => {
     const response = await postApi.getPost(data);
     if (response.statusText === "OK") return response.data;
   } catch (err) {
+    const router = useRouter();
     router.replace("/error");
     return thunkAPI.rejectWithValue(err.response.message);
   }
@@ -52,6 +52,7 @@ export const editPostDB = createAsyncThunk("editPost", async (data, thunkAPI) =>
     const response = await postApi.editPost(data);
     if (response.data.success) return response.data;
   } catch (err) {
+    const router = useRouter();
     router.replace("/error");
     return thunkAPI.rejectWithValue(err.response.message);
   }
@@ -66,6 +67,7 @@ export const deletePostDB = createAsyncThunk("deletePost", async (data, thunkAPI
       return response.data.postId;
     }
   } catch (err) {
+    const router = useRouter();
     router.replace("/error");
     return thunkAPI.rejectWithValue(err.response.message);
   }

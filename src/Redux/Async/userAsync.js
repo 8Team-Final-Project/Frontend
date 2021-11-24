@@ -1,9 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { userApi } from "../../Shared/api";
-import { useRouter } from "next/router";
 
-const router = useRouter();
-router.replace("/error");
 // 미들웨어
 
 // 회원가입
