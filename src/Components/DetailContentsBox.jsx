@@ -38,7 +38,7 @@ const DetailContentsBox = (props) => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const post = useSelector((state) => state.post.post);
   const user = useSelector((state) => state.user.user?.userId);
-  const userImg = useSelector((state) => state.user.user?.userImg);
+  // const userImg = useSelector((state) => state.post.post?.userImg);
 
   const likeUserId = useSelector((state) => state.post.post?.likeStatus);
   const saveUserId = useSelector((state) => state.post.post?.keepStatus);
@@ -80,7 +80,7 @@ const DetailContentsBox = (props) => {
     <React.Fragment>
       <Grid>
         <FlexBox>
-          <Image src={userImg && userImg} />
+          <Image src={post && post.userImg} />
           <UserBox>
             <NickName>{post && post.userNickname}</NickName>
             <PostingDate>{post && post.createDate}</PostingDate>
