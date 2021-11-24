@@ -70,7 +70,7 @@ const combination = (props) => {
             {/* slide1 */}
           </SwiperSlide>
           <SwiperSlide>
-            <a href="https://wpub6shfa65.typeform.com/to/rhCKtx33">
+            <a target="_blank" href="https://wpub6shfa65.typeform.com/to/rhCKtx33">
               <EventBanner src={SecondEventImg.src} />
             </a>
           </SwiperSlide>

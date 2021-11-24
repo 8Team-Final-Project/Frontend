@@ -68,7 +68,7 @@ const event = (props) => {
           {/* slide1 */}
         </SwiperSlide>
         <SwiperSlide>
-          <a href="https://wpub6shfa65.typeform.com/to/rhCKtx33">
+          <a target="_blank" href="https://wpub6shfa65.typeform.com/to/rhCKtx33">
             <BannerImg src={SecondEventImg.src} />
           </a>
         </SwiperSlide>
