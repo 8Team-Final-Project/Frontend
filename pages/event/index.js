@@ -14,6 +14,7 @@ import "swiper/css/navigation"
 import Card from "../../src/Components/Card";
 import FirstEventImg from "../../src/Asset/Images/eventbnr1.svg";
 import SecondEventImg from "../../src/Asset/Images/eventbnr2.svg";
+import ThirdEventImg from "../../src/Asset/Images/ramenbanner.svg";
 
 SwiperCore.use([Autoplay,Navigation]);
 
@@ -69,6 +70,9 @@ const event = (props) => {
         </SwiperSlide>
         <SwiperSlide>
           <BannerImg src={SecondEventImg.src} />
+        </SwiperSlide>
+        <SwiperSlide>
+          <BannerImg src={ThirdEventImg.src} />
         </SwiperSlide>
       </Swiper>
 
@@ -134,10 +138,11 @@ const StylePagination = styled.div`
   ul.pagination li.active {
     background-color: #ffd86b;
     border-radius: 20px;
+    color : white;
   }
   ul.pagination li a:hover,
   ul.pagination li a.active {
-    color: #ffd86b;
+    color: white;
   }
   .page-selection {
     width: 48px;
