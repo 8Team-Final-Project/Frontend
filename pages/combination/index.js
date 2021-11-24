@@ -76,7 +76,7 @@ const combination = (props) => {
             <EventBanner src={SecondEventImg.src} />
           </SwiperSlide>
           <SwiperSlide>
-          <BannerImg src={ThirdEventImg.src} />
+          <EventBanner src={ThirdEventImg.src} />
         </SwiperSlide>
         </Swiper>
         <CardWrap>
