@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useRef, useEffect } from "react";
 import Router, { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
@@ -7,8 +6,6 @@ import styled from "styled-components";
 import Modal from "react-modal";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { getPostDB, likePostDB, savePostDB } from "../Redux/Async/postAsync";
-import PostBasicProfile from "../../src/Asset/Images/post-basic-profile.svg";
-import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Navigation } from "swiper";
 import "swiper/css";
 import CommentList from "./CommentList";
@@ -39,7 +36,7 @@ const DetailContentsBox = (props) => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const post = useSelector((state) => state.post.post);
   const user = useSelector((state) => state.user.user?.userId);
-  const userImg = useSelector((state) => state.user.user?.userImg);
+  // const userImg = useSelector((state) => state.user.user?.userImg);
 
   const likeUserId = useSelector((state) => state.post.post?.likeStatus);
   const saveUserId = useSelector((state) => state.post.post?.keepStatus);
@@ -81,7 +78,7 @@ const DetailContentsBox = (props) => {
     <React.Fragment>
       <Grid>
         <FlexBox>
-          <Image src={userImg && userImg} />
+          <Image src={post && post.userImg} />
           <UserBox>
             <NickName>{post && post.userNickname}</NickName>
             <PostingDate>{post && post.createDate}</PostingDate>
