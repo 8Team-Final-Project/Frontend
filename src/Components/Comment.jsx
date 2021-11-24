@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect,useCallback } from "react";
 import styled from "styled-components";
 import { useRouter } from "next/router";
 import { useSelector, useDispatch } from "react-redux";
@@ -18,6 +18,11 @@ const Comment = (props) => {
     }
   }, [props.postId]);
 
+  // const reComment = useCallback(
+  //   () => {
+  //       dispatch(getCommentDB(props.postId));
+  //   }, [props.postId]);
+
   return (
     <Container>
       <NicBox>
@@ -31,7 +36,10 @@ const Comment = (props) => {
         <DeleteBox>
           {props.userId === user && (
             <X>
-              <Xbutton onClick={deleteComment}>✕</Xbutton>
+              <Xbutton onClick={()=>{
+                deleteComment()
+                // reComment()
+                }}>✕</Xbutton>
             </X>
           )}
         </DeleteBox>
@@ -58,6 +66,7 @@ const P = styled.div`
 const X = styled.div`
   font-size: 18px;
   color: #b8b8b8;
+  cursor: pointer;
 `;
 
 const Xbutton = styled.div`

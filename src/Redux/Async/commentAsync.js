@@ -5,7 +5,7 @@ import { commentApi } from "../../Shared/api";
 export const addCommentDB = createAsyncThunk("addComment", async (data, thunkAPI) => {
   try {
     const response = await commentApi.addComment(data);
-    if (response.statusText === "OK"){
+    if (response.statusText === "OK") {
       window.alert("댓글 추가 완료!");
       return response.data;
     }
@@ -18,14 +18,13 @@ export const addCommentDB = createAsyncThunk("addComment", async (data, thunkAPI
 export const getCommentDB = createAsyncThunk("getComment", async (data, thunkAPI) => {
   try {
     const response = await commentApi.getComment(data);
-    if (response.statusText === "OK"){
+    if (response.statusText === "OK") {
       return response.data;
     }
   } catch (err) {
     return thunkAPI.rejectWithValue(err.response.message);
   }
 });
-
 
 // 댓글 수정하기
 // export const editCommentDB = createAsyncThunk("editComment", async (data, thunkAPI) => {
@@ -45,9 +44,10 @@ export const getCommentDB = createAsyncThunk("getComment", async (data, thunkAPI
 export const deleteCommentDB = createAsyncThunk("deleteComment", async (data, thunkAPI) => {
   try {
     const response = await commentApi.deleteComment(data);
-    if (response.statausText === "OK") {
+    if (response.statusText === "OK") {
       window.alert("댓글이 삭제되었습니다");
-      return data._id;}
+      return response.data;
+    }
   } catch (err) {
     return thunkAPI.rejectWithValue(err.response.message);
   }
