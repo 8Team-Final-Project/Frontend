@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useRef, useEffect } from "react";
 import Router, { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
@@ -7,8 +6,7 @@ import styled from "styled-components";
 import Modal from "react-modal";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { getPostDB, likePostDB, savePostDB } from "../Redux/Async/postAsync";
-import PostBasicProfile from "../../src/Asset/Images/post-basic-profile.svg";
-import { Swiper, SwiperSlide } from "swiper/react";
+
 import SwiperCore, { Navigation } from "swiper";
 import "swiper/css";
 import CommentList from "./CommentList";
@@ -24,6 +22,7 @@ import likeOff from "../Asset/Images/likeOff.svg";
 import saveOn from "../Asset/Images/saveOn.svg";
 import saveOff from "../Asset/Images/saveOff.svg";
 import shareOn from "../Asset/Images/shareOn.svg";
+import BasicProfile from "../../src/Asset/Images/BasicProfile.svg";
 
 const DetailContentsBox = (props) => {
   const dispatch = useDispatch();
@@ -164,7 +163,7 @@ const DetailContentsBox = (props) => {
 
 DetailContentsBox.defaultProps = {
   src: "/defaultImg.svg",
-  src1: "/BasicProfile.src"
+  src1: BasicProfile.src
 };
 
 const Image = styled.img`
