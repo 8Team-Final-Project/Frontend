@@ -4,7 +4,7 @@ import { getToken } from "./util";
 // Axios 인스턴스 설정
 const instance = axios.create({
   // 백엔드 배포 주소
-  baseURL: "https://kkuljohang.shop"
+  baseURL: "http://54.180.137.99"
 });
 
 //interceptor를 통한 header 설정
@@ -16,11 +16,11 @@ instance.interceptors.request.use(async (config) => {
   //getToken는 로컬 스토리지에 토큰이 있다면 반환한다 없다면 null 값 반환
   config.headers["Authorization"] = await getToken();
 
-  // CORS 설정(main 브랜치에서만 주석 제거)
-  var xhr = new XMLHttpRequest();
-  xhr.open('GET', 'https://kkuljohang.shop', true);
-  xhr.withCredentials = true;
-  xhr.send(null);
+  //CORS 설정(main 브랜치에서만 주석 제거)
+  // var xhr = new XMLHttpRequest();
+  // xhr.open('GET', 'https://kkuljohang.shop', true);
+  // xhr.withCredentials = true;
+  // xhr.send(null);
 
   return config;
 });
@@ -109,7 +109,7 @@ export const uploadApi = {
       for (let entry of Object.entries(req)) {
         formData.append(entry[0], entry[1]);
       }
-      const response = await axios.post("https://kkuljohang.shop/api/v1/post/uploadimg", formData);
+      const response = await axios.post("http://54.180.137.99/api/v1/post/uploadimg", formData);
       if (response.statusText === "OK") return response;
     } catch (err) {
       alert(err);

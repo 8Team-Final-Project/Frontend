@@ -81,7 +81,7 @@ const DetailContentsBox = (props) => {
     <React.Fragment>
       <Grid>
         <FlexBox>
-          <Image src={userImg ? userImg : src1} />
+          <Image src={userImg && userImg} />
           <UserBox>
             <NickName>{post && post.userNickname}</NickName>
             <PostingDate>{post && post.createDate}</PostingDate>
@@ -163,8 +163,7 @@ const DetailContentsBox = (props) => {
 };
 
 DetailContentsBox.defaultProps = {
-  src: "/defaultImg.svg",
-  src1: "/BasicProfile.src"
+  src: "/defaultImg.svg"
 };
 
 const Image = styled.img`
