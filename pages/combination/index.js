@@ -4,11 +4,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { getCombinationListDB } from "../../src/Redux/Async/postAsync";
 import { useRouter } from "next/router";
 import Pagination from "react-js-pagination";
-import { Swiper, SwiperSlide } from 'swiper/react';
-import SwiperCore, {Autoplay,Navigation} from 'swiper';
+import { Swiper, SwiperSlide } from "swiper/react";
+import SwiperCore, { Autoplay, Navigation } from "swiper";
 import "swiper/css";
 import "swiper/css/pagination";
-
 
 import SearchInput from "../../src/Components/Input/SearchInput";
 import Card from "../../src/Components/Card";
@@ -16,9 +15,7 @@ import FirstEventImg from "../../src/Asset/Images/eventbnr1.svg";
 import SecondEventImg from "../../src/Asset/Images/eventbnr2.svg";
 import ThirdEventImg from "../../src/Asset/Images/ramenbanner.svg";
 
-
-SwiperCore.use([Autoplay,Navigation]);
-
+SwiperCore.use([Autoplay, Navigation]);
 
 //꿀조합 페이지
 const combination = (props) => {
@@ -63,8 +60,8 @@ const combination = (props) => {
           slidesPerView={1}
           loop={true}
           autoplay={{
-            delay : 4000,
-            disableOnInteraction : false
+            delay: 4000,
+            disableOnInteraction: false
           }}
           // initialSlide = {2}
         >
@@ -73,11 +70,13 @@ const combination = (props) => {
             {/* slide1 */}
           </SwiperSlide>
           <SwiperSlide>
-            <EventBanner src={SecondEventImg.src} />
+            <a target="_blank" href="https://wpub6shfa65.typeform.com/to/rhCKtx33">
+              <EventBanner src={SecondEventImg.src} />
+            </a>
           </SwiperSlide>
           <SwiperSlide>
-          <EventBanner src={ThirdEventImg.src} />
-        </SwiperSlide>
+            <EventBanner src={ThirdEventImg.src} />
+          </SwiperSlide>
         </Swiper>
         <CardWrap>
           {/* post는 객체하나 */}
@@ -162,6 +161,7 @@ const SearchWrap = styled.div`
 const EventBanner = styled.img`
   margin-top: 2%;
   width: 100%;
+  cursor: pointer;
 `;
 
 const PageBox = styled.div`

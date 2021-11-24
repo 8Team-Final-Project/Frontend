@@ -3,7 +3,6 @@ import { userApi } from "../../Shared/api";
 import router from "next/router";
 // import Swal from "sweetalert2";
 
-
 // 미들웨어
 
 // 회원가입
@@ -12,7 +11,7 @@ export const postSignup = createAsyncThunk("/user/postSignup", async (data, thun
     const response = await userApi.signup(data);
     if (response.data.result === "success") {
       window.alert("회원가입 완료");
-      router.push('/auth/login')
+      router.push("/auth/login");
       return response.data.msg;
     }
   } catch (err) {

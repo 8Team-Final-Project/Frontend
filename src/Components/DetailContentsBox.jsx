@@ -11,7 +11,7 @@ import PostBasicProfile from "../../src/Asset/Images/post-basic-profile.svg";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Navigation } from "swiper";
 import "swiper/css";
-import Comments from "./Comments";
+import CommentList from "./CommentList";
 
 //component
 import MenuButton from "./Shared/CommentEditDelete";
@@ -143,7 +143,7 @@ const DetailContentsBox = (props) => {
           </IconBoxFlex>
         </Btn>
 
-        <Comments />
+        <CommentList />
       </Grid>
 
       <ModalFrame>

@@ -66,7 +66,7 @@ export const postApi = {
 
   // 꿀조합 게시글 삭제하기
   deletePost: (postId) => instance.delete(`/api/v1/post/postdelete/${postId}`),
-  
+
   // 꿀조합 상세포스트 불러오기
   getPost: (postId) => instance.get(`/api/v1/post/${postId}`),
 
@@ -90,7 +90,14 @@ export const commentApi = {
 
   // 댓글 삭제하기
   deleteComment: (commentId) => {
-    return instance.delete(`/api/v1/comment/commentdelete/${commentId}`)
+    return instance.delete(`/api/v1/comment/commentdelete/${commentId}`);
+  }
+};
+
+export const tagRankingApi = {
+  // 태그 랭킹 받아오기
+  getTagRanking: (data) => {
+    return instance.get(`/api/v1/tag`, data);
   }
 };
 
