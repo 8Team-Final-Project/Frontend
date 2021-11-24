@@ -6,6 +6,8 @@ import { addCommentDB, getCommentDB } from "../Redux/Async/commentAsync";
 import Comment from "./Comment";
 
 function Comments() {
+  const is_login = useSelector((state) => state.user.isLogin);
+
   const dispatch = useDispatch();
   const postId = useRouter().query.id;
 
@@ -39,18 +41,31 @@ function Comments() {
     setCommentContent("");
   };
 
+  
   return (
+    
     <Wrap>
       {/* 댓글 입력창 */}
+
+      {is_login && (
+      <>
       <Box>
         <DInput>
-          <Input type="text" onChange={onChangeInput} placeholder="댓글을 입력해주세요." />
+          <Input
+          type="text" 
+          onChange={onChangeInput} 
+          placeholder="댓글을 입력해주세요." 
+          value={commentContent} //인풋 초기화
+          />
         </DInput>
         <DInput2>
           <SaveButton onClick={setComments}>작성</SaveButton>
         </DInput2>
       </Box>
       <Hr />
+      </>
+      )}
+
       {/* 댓글 */}
       {commentList &&
         commentList.map((comment, idx) => {

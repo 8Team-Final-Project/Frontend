@@ -6,7 +6,7 @@ export const addCommentDB = createAsyncThunk("addComment", async (data, thunkAPI
   try {
     const response = await commentApi.addComment(data);
     if (response.statusText === "OK"){
-      window.alert("댓글 추가 완료!");
+      // window.alert("댓글 추가 완료!");
       return response.data;
     }
   } catch (err) {
