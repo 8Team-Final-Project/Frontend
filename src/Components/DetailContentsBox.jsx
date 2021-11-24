@@ -17,6 +17,7 @@ import CommentList from "./CommentList";
 import MenuButton from "./Shared/CommentEditDelete";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import Tag from "./Tag";
+import LikeEffect from "./Shared/LikeEffect";
 
 //img
 import likeOn from "../Asset/Images/likeOn.svg";
@@ -27,6 +28,7 @@ import shareOn from "../Asset/Images/shareOn.svg";
 
 const DetailContentsBox = (props) => {
   const dispatch = useDispatch();
+  const [showLottie, setShowLottie] = useState(false)
 
   const { src } = props;
 
@@ -43,6 +45,20 @@ const DetailContentsBox = (props) => {
 
   const likeUserId = useSelector((state) => state.post.post?.likeStatus);
   const saveUserId = useSelector((state) => state.post.post?.keepStatus);
+
+  useEffect(()=>{
+    if(likeUserId){
+      setShowLottie(true)
+    }
+  },[likeUserId])
+
+  useEffect(() => {
+    if(likeUserId){
+      setTimeout(() => {
+        setShowLottie(false)
+      },1500);
+    }
+  },[likeUserId])
 
   const setPostSave = () => {
     dispatch(savePostDB(id));
@@ -79,7 +95,9 @@ const DetailContentsBox = (props) => {
 
   return (
     <React.Fragment>
+      
       <Grid>
+      {showLottie && <LikeEffect/>}
         <FlexBox>
           <Image src={userImg && userImg} />
           <UserBox>
@@ -96,7 +114,7 @@ const DetailContentsBox = (props) => {
         <Title>
           <strong>{post && post.postTitle}</strong>
         </Title>
-
+        
         <Content>
           <Label>꿀조합</Label>
           <Value>{post && post.postRecipe}</Value>
@@ -200,6 +218,7 @@ const UserBox = styled.div`
 
 const Grid = styled.div`
   text-align: left;
+  position: relative;
 `;
 
 const TextBox = styled.div`
