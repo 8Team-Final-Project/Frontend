@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import { addPostDB } from "../../src/Redux/Async/postAsync";
 import { useRouter } from "next/router";
+import { postTagRankingDB } from "../../src/Redux/Async/tagRankingAsync";
 
 // componets
 import HashTagWriteInput from "../../src/Components/Input/HashTagWriteInput";
@@ -48,6 +49,7 @@ const write = () => {
       return;
     }
     dispatch(addPostDB(postItem));
+    dispatch(postTagRankingDB());
     router.push("/combination");
   };
 
@@ -108,10 +110,7 @@ const write = () => {
                 }
               }}
             />
-            <RedButton
-              value="작성"
-              onClick={setPost}
-            />
+            <RedButton value="작성" onClick={setPost} />
           </FlexBox>
         </CenterBox>
       </WriteBox>
