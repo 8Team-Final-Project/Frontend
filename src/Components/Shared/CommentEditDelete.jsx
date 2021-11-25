@@ -1,11 +1,13 @@
 import React from "react";
 import styled from "styled-components";
-import Router, { useRouter } from "next/router";
+import { useRouter } from "next/router";
 import { useDispatch } from "react-redux";
 import { deletePostDB, getPostDB } from "../../Redux/Async/postAsync";
 
 const CommentEditDelete = ({ handleExit }) => {
   const dispatch = useDispatch();
+  const router = useRouter();
+  console.log(router);
   const {
     query: { id }
   } = useRouter();
@@ -14,19 +16,25 @@ const CommentEditDelete = ({ handleExit }) => {
     if (id) dispatch(getPostDB(id));
   }, [id]);
 
-  const editpage = () => {
-    Router.push(`/event/edit/${id}`);
+  // const goEditPage = () => {
+  //   Router.push(`/event/edit/${id}`);
+  // };
+
+  const deletePost = () => {
+    dispatch(deletePostDB(id));
+    if (!router.pathname.indexOf("event") == -1) return router.push("/event");
+    else return router.push("/combination");
   };
 
-  const deleteEventPost = () => {
-    dispatch(deletePostDB(id));
-    Router.push("/event");
+  const goEditPage = () => {
+    if (!router.pathname.indexOf("event") == -1) return router.push(`/event/edit/${id}`);
+    else return router.push(`/combination/detail/${id}`);
   };
 
   return (
     <>
-      <EditButton onClick={editpage}>수정</EditButton>
-      <DeleteButton onClick={deleteEventPost}>삭제</DeleteButton>
+      <EditButton onClick={goEditPage}>수정</EditButton>
+      <DeleteButton onClick={deletePost}>삭제</DeleteButton>
       <CancelButton onClick={handleExit}>취소</CancelButton>
     </>
   );
