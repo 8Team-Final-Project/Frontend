@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 import logoIcon from "../../Asset/icons/logo_icon.svg";
 
-
 const HoneyButton = ({ value, onClick, main }) => {
   return (
     <HButton onClick={onClick} main={main}>
@@ -19,13 +18,13 @@ HoneyButton.defaultProps = {
 };
 
 const HButton = styled.button`
-  width: 85%;
-  height: 75px;
+  width: 80%;
+  height: 80px;
   background-color: #ffd86b;
   padding: 12px 0px;
   border-radius: 10px;
-  /* font-weight: medium; */
-  font-size: 18px;
+  font-weight: 700;
+  font-size: 17px;
   cursor: pointer;
   ${({ main }) => main && `position:relative;`}
   img {
@@ -35,7 +34,7 @@ const HButton = styled.button`
     bottom: 0;
   }
   /* font-family: 'Spoqa Han Sans Neo', 'Spoqa Han Sans JP', Medium; */
-  color: #3C3C3C;
+  color: #3c3c3c;
 `;
 
 export default HoneyButton;
