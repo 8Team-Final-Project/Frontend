@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Router, { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
@@ -26,7 +26,7 @@ import shareOn from "../Asset/Images/shareOn.svg";
 
 const DetailContentsBox = (props) => {
   const dispatch = useDispatch();
-  const [showLottie, setShowLottie] = useState(false)
+  const [showLottie, setShowLottie] = useState(false);
 
   const { src } = props;
 
@@ -43,19 +43,19 @@ const DetailContentsBox = (props) => {
   const likeUserId = useSelector((state) => state.post.post?.likeStatus);
   const saveUserId = useSelector((state) => state.post.post?.keepStatus);
 
-  useEffect(()=>{
-    if(likeUserId){
-      setShowLottie(true)
+  useEffect(() => {
+    if (likeUserId) {
+      setShowLottie(true);
     }
-  },[likeUserId])
+  }, [likeUserId]);
 
   useEffect(() => {
-    if(likeUserId){
+    if (likeUserId) {
       setTimeout(() => {
-        setShowLottie(false)
-      },1500);
+        setShowLottie(false);
+      }, 1500);
     }
-  },[likeUserId])
+  }, [likeUserId]);
 
   const setPostSave = () => {
     dispatch(savePostDB(id));
@@ -92,9 +92,8 @@ const DetailContentsBox = (props) => {
 
   return (
     <React.Fragment>
-      
       <Grid>
-      {showLottie && <LikeEffect/>}
+        {showLottie && <LikeEffect />}
         <FlexBox>
           <Image src={post && post.userImg} />
           <UserBox>
@@ -111,7 +110,7 @@ const DetailContentsBox = (props) => {
         <Title>
           <strong>{post && post.postTitle}</strong>
         </Title>
-        
+
         <Content>
           <Label>꿀조합</Label>
           <Value>{post && post.postRecipe}</Value>
