@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { tagRankingApi } from "../../Shared/api";
-import { getTagRankingDB } from "../Async/tagRankingAsync";
+import { getTagRankingDB, postTagRankingDB } from "../Async/tagRankingAsync";
 
 const initialState = {};
 
@@ -10,7 +10,7 @@ const tagRankingSlice = createSlice({
   reducers: {},
 
   extraReducers: {
-    // 태그 랭킹
+    // 태그 랭킹 받아오기
     [getTagRankingDB.fulfilled]: (state, { payload }) => {
       state.tagRanking = payload;
       state.isFetching = false;
@@ -20,6 +20,19 @@ const tagRankingSlice = createSlice({
       state.isFetching = true;
     },
     [getTagRankingDB.rejected]: (state, { payload: errorMessage }) => {
+      state.isFetching = false;
+      state.errorMessage = errorMessage;
+    },
+    // 태그 랭크 넣어주기
+    [postTagRankingDB.fulfilled]: (state, { payload }) => {
+      state.tagRanking = payload;
+      state.isFetching = false;
+      state.errorMessage = null;
+    },
+    [postTagRankingDB.pending]: (state, { payload }) => {
+      state.isFetching = true;
+    },
+    [postTagRankingDB.rejected]: (state, { payload: errorMessage }) => {
       state.isFetching = false;
       state.errorMessage = errorMessage;
     }

@@ -54,60 +54,60 @@ const write = () => {
   };
 
   return (
-      <WriteBox>
-        <CenterBox>
-          <RectangleImage edit saveUrl={setPostImg} imgUrl={postImg1 ? postImg1 : false} />
-        </CenterBox>
-        <CenterBox>
-          <CommonInput
-            defaultText="제목을 입력해주세요"
-            important
-            label={"나의 꿀조합"}
-            value={postTitle}
-            setValue={setPostTitle}
+    <WriteBox>
+      <CenterBox>
+        <RectangleImage edit saveUrl={setPostImg} imgUrl={postImg1 ? postImg1 : false} />
+      </CenterBox>
+      <CenterBox>
+        <CommonInput
+          defaultText="제목을 입력해주세요"
+          important
+          label={"나의 꿀조합"}
+          value={postTitle}
+          setValue={setPostTitle}
+        />
+      </CenterBox>
+      <CenterBox>
+        <CommonInput
+          defaultText="꿀조합 재료를 입력해주세요"
+          important
+          label={"꿀조합 재료"}
+          value={postRecipe}
+          setValue={setPostRecipe}
+        />
+      </CenterBox>
+      <CenterBox>
+        <CommonInput
+          label={"꿀조합 비법"}
+          value={postContent}
+          setValue={setPostContent}
+          defaultText="꿀조합 비법을 설명해주세요"
+          important
+          multiline
+          rows={3}
+        />
+      </CenterBox>
+      <CenterBox>
+        <HashTagInput
+          important
+          label="해시태그"
+          tagList={postTag}
+          placeholder="입력후 스페이스바 딸깍"
+          setTagList={setPostTag}
+        />
+      </CenterBox>
+      <CenterBox>
+        <FlexBox>
+          <WhiteButton
+            onClick={() => {
+              router.push("/event");
+            }}
+            value="취소"
           />
-        </CenterBox>
-        <CenterBox>
-          <CommonInput
-            defaultText="꿀조합 재료를 입력해주세요"
-            important
-            label={"꿀조합 재료"}
-            value={postRecipe}
-            setValue={setPostRecipe}
-          />
-        </CenterBox>
-        <CenterBox>
-          <CommonInput
-            label={"꿀조합 비법"}
-            value={postContent}
-            setValue={setPostContent}
-            defaultText="꿀조합 비법을 설명해주세요"
-            important
-            multiline
-            rows={3}
-          />
-        </CenterBox>
-        <CenterBox>
-          <HashTagInput
-            important
-            label="해시태그"
-            tagList={postTag}
-            placeholder="입력후 스페이스바 딸깍"
-            setTagList={setPostTag}
-          />
-        </CenterBox>
-        <CenterBox>
-          <FlexBox>
-            <WhiteButton
-              onClick={() => {
-                router.push("/event");
-              }}
-              value="취소"
-            />
-            <RedButton onClick={addEventPost} value="저장" />
-          </FlexBox>
-        </CenterBox>
-      </WriteBox>
+          <RedButton onClick={addEventPost} value="저장" />
+        </FlexBox>
+      </CenterBox>
+    </WriteBox>
   );
 };
 const CenterBox = styled.div`
@@ -118,7 +118,7 @@ const CenterBox = styled.div`
 const WriteBox = styled.div`
   width: 90%;
   height: auto;
-  margin : auto;
+  margin: auto;
 `;
 const FlexBox = styled.div`
   display: flex;
