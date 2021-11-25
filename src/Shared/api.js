@@ -95,6 +95,10 @@ export const commentApi = {
 };
 
 export const tagRankingApi = {
+  // 태그 랭킹 보내기
+  postTagRanking: (data) => {
+    return instance.post(`/api/v1/tag`, data);
+  },
   // 태그 랭킹 받아오기
   getTagRanking: (data) => {
     return instance.get(`/api/v1/tag`, data);

@@ -25,7 +25,6 @@ export default function Search(props) {
   const dispatch = useDispatch();
   const tagRanking = useSelector((state) => state.tagRanking?.tagRanking?.tags);
 
-
   //추천태그에 들어갈 항목
   const recommandedTagList = ["테스트", "서브웨이", "편의점", "다이어터", "엽떡", "라면"];
 
