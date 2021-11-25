@@ -82,7 +82,7 @@ export default function Home() {
           <Image width="80px" height="90px" src={questionIcon.src} />
           <Description>
             <p>
-              궁금하신 점은 <a href="#">여기</a>를 눌러
+              궁금하신 점은 <a href="https://wpub6shfa65.typeform.com/to/rhCKtx33">여기</a>를 눌러
             </p>
             <p>문의해주세요!</p>
           </Description>
