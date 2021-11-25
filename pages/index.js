@@ -71,7 +71,7 @@ export default function Home() {
             <p>사람들과 나만의 꿀조합도 공유하고,</p> <p>푸짐한 상품도 받아가세요!</p>
           </Description>
           <Btn>
-          <BtnImg src={goeventbtn.src} width="80%" onClick={() => {router.push("/combination")}} />
+          <BtnImg src={goeventbtn.src} width="80%" onClick={() => {router.push("/event")}} />
           </Btn>
         </DescriptionArea>
       </Container>
