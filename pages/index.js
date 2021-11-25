@@ -2,6 +2,7 @@ import Head from "next/head";
 import { useRouter } from "next/dist/client/router";
 import styled from "styled-components";
 
+
 //images
 import mainBnr from "../src/Asset/Images/main_bnr.svg";
 import eventBnr1 from "../src/Asset/Images/main_event_bnr1.png";
@@ -10,8 +11,8 @@ import eventBnr3 from "../src/Asset/Images/main_event_bnr3.png";
 import fishBread from "../src/Asset/Images/fish_bread.svg";
 import ramen from "../src/Asset/Images/ramen.svg";
 import honeybtn from "../src/Asset/Images/honeybtn.svg";
-import downloadbtn from "../src/Asset/Images/downloadbtn.svg";
 import goeventbtn from "../src/Asset/Images/goeventbtn.svg";
+import AppDownloadBtn from '../src/Components/Shared/AppDownloadBtn';
 
 //icons
 import questionIcon from "../src/Asset/icons/question_icon.svg";
@@ -96,7 +97,8 @@ export default function Home() {
             <p>앱을 다운로드하여,</p>
             <p>더욱 편하게 사용해보세요!</p>
           </Description>
-          <BtnImg src={downloadbtn.src} width="80%" onClick={() => {router.push("/combination")}} />
+          {/* <BtnImg src={downloadbtn.src} width="80%" onClick={() => {router.push("/combination")}} /> */}
+          <AppDownloadBtn/>
         </DescriptionArea>
       </Container>
     </div>
