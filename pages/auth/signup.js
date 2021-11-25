@@ -52,15 +52,14 @@ const signup = () => {
       .checknick(nickname)
       .then((res) => {
         if (res.statusText === "OK") {
-          alert("사용 가능한 닉네임 입니다");
+          alert("사용 가능한 닉네임입니다");
           setIsCheckNickname(true);
         }
       })
-      .catch((err) => alert(err));
+      .catch((err) => alert("중복된 닉네임입니다!"));
   };
 
   const handleCheckEmail = () => {
-    //여기에도 위랑 똑같이 만들어주면돼요!
     const checkemail = {
       userEmail
     };
@@ -73,7 +72,7 @@ const signup = () => {
           setIsCheckEmail(true);
         }
       })
-      .catch((err) => alert(err));
+      .catch((err) => alert("중복된 이메일입니다!"));
   };
 
   return (
@@ -88,10 +87,10 @@ const signup = () => {
             isCheck={isCheckNickname} //check했는지 안했는지 담는 state
             setIsCheck={setIsCheckNickname} //isCheck를 변경시키는 setState
             regexCheck={regex.nickname} //정규식 shared/regex 에서 가져와서 사용하세요.
-            errorText="3글자 이상부터 가능해요!" //식이랑 맞지 않을때 보여줄 텍스트
+            errorText="특수문자 제외 3글자 이상 작성해 주세요! " //식이랑 맞지 않을때 보여줄 텍스트
             defaultText="닉네임을 입력해 주세요!" //아무것도 적히지 않았을때 보여줄 텍스트
             maxValue={10} //최대길이
-            successText=" ✓ 사용할 수 있는 닉네임입니다"
+            successText=" ✓ 사용할 수 있는 닉네임입니다."
             //successText도 사용하면 성공했을때 텍스트를 보여줄 수 있어요
           />
         </InputWrap>
@@ -104,7 +103,7 @@ const signup = () => {
             isCheck={isCheckEmail}
             setIsCheck={setIsCheckEmail}
             regexCheck={regex.email}
-            errorText="2글자 이상 입력해 주세요!"
+            errorText="이메일 형식에 맞게 입력해 주세요!"
             defaultText="이메일을 입력해 주세요!"
             successText=" ✓ 사용할 수 있는 이메일입니다"
           />
@@ -115,7 +114,7 @@ const signup = () => {
             value={userPassword}
             setValue={setuserPassword}
             regexCheck={regex.password}
-            errorText="6글자 이상 입력해 주세요!"
+            errorText="특수문자 제외 영문, 숫자 포함 6글자 이상 입력해 주세요!"
             defaultText="비밀번호를 입력해 주세요!"
             successText=" ✓ 사용할 수 있는 비밀번호입니다"
             type="password"

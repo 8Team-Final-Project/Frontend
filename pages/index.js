@@ -2,9 +2,6 @@ import Head from "next/head";
 import { useRouter } from "next/dist/client/router";
 import styled from "styled-components";
 
-//components
-import RedButton from "../src/Components/Button/RedButton";
-import AppDownloadBtn from "../src/Components/Shared/AppDownloadBtn";
 
 //images
 import mainBnr from "../src/Asset/Images/main_bnr.svg";
@@ -14,7 +11,8 @@ import eventBnr3 from "../src/Asset/Images/main_event_bnr3.png";
 import fishBread from "../src/Asset/Images/fish_bread.svg";
 import ramen from "../src/Asset/Images/ramen.svg";
 import honeybtn from "../src/Asset/Images/honeybtn.svg";
-import downloadbtn from "../src/Asset/Images/downloadbtn.svg";
+import goeventbtn from "../src/Asset/Images/goeventbtn.svg";
+import AppDownloadBtn from '../src/Components/Shared/AppDownloadBtn';
 
 //icons
 import questionIcon from "../src/Asset/icons/question_icon.svg";
@@ -74,23 +72,23 @@ export default function Home() {
             <p>사람들과 나만의 꿀조합도 공유하고,</p> <p>푸짐한 상품도 받아가세요!</p>
           </Description>
           <Btn>
-          <RedButton main onClick={() => router.push("/event")} value="이벤트 보러 가기" />
+          <BtnImg src={goeventbtn.src} width="80%" onClick={() => {router.push("/event")}} />
           </Btn>
         </DescriptionArea>
       </Container>
 
       {/* 문의  */}
-      {/* <Container>
+      <Container>
         <DescriptionArea>
           <Image width="80px" height="90px" src={questionIcon.src} />
           <Description>
             <p>
-              궁금하신 점은 <a href="#">여기</a>를 눌러
+              궁금하신 점은 <a href="https://wpub6shfa65.typeform.com/to/rhCKtx33">여기</a>를 눌러
             </p>
             <p>문의해주세요!</p>
           </Description>
         </DescriptionArea>
-      </Container> */}
+      </Container>
 
       {/* 다운로드 */}
       <Container>
@@ -99,7 +97,8 @@ export default function Home() {
             <p>앱을 다운로드하여,</p>
             <p>더욱 편하게 사용해보세요!</p>
           </Description>
-          <BtnImg src={downloadbtn.src} width="80%" onClick={() => {router.push("/combination")}} />
+          {/* <BtnImg src={downloadbtn.src} width="80%" onClick={() => {router.push("/combination")}} /> */}
+          <AppDownloadBtn/>
         </DescriptionArea>
       </Container>
     </div>
@@ -152,7 +151,7 @@ const BtnImg = styled.img`
 `
 
 const Btn = styled.div`
-  width : 85%;
+  width : 100%;
 `
 
 const Image = styled.img`

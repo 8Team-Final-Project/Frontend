@@ -20,7 +20,6 @@ const EventPostEdit = () => {
   const dispatch = useDispatch();
   const router = useRouter();
   const postId = useRouter().query.id;
-  const post = useSelector((state) => state.post.post);
 
   const [postImg1, setPostImg] = useState("");
   const [postTitle, setPostTitle] = useState("");
@@ -39,7 +38,6 @@ const EventPostEdit = () => {
     if (getPostContent && getPostContent !== postContent) setPostContent(getPostContent);
   }, [getPostImg, getPostTitle, getPostRecipe, getPostContent]);
 
-  
   const editEventPost = () => {
     const content = {
       postImg1: postImg1,
@@ -49,7 +47,7 @@ const EventPostEdit = () => {
       postId: postId
     };
     dispatch(editPostDB(content));
-    router.push(`/event/detail/${postId}`)
+    router.push(`/event/detail/${postId}`);
   };
 
   return (
@@ -100,8 +98,8 @@ const EventPostEdit = () => {
 };
 
 const Grid = styled.div`
-  margin : 0px 5%;
-`
+  margin: 0px 5%;
+`;
 
 const ImgMargin = styled.div`
   margin: 50px 0px;

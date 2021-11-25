@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 import mask from "../../Asset/Images/main_event_btn.svg";
 
-
 const RedButton = ({ main, value, onClick }) => {
   return (
     <RButton onClick={onClick} main={main}>
@@ -23,7 +22,7 @@ const RButton = styled.button`
   height: 70px;
   background-color: #ff7775;
   padding: 12px 0px;
-  border-radius: 10px;
+  border-radius: 15px;
   color: white;
   font-size: 18px;
   font-weight: medium;

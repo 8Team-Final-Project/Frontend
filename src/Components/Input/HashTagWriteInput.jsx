@@ -24,8 +24,8 @@ export default function HashTagInput({ tagList, setTagList, important, label, pl
   };
 
   const handleOnKeyUp = (e) => {
-    const { code: keyValue } = e;
-    if (keyValue === "Space") {
+    const { key: keyName } = e;
+    if (keyName === "Enter") {
       //스페이스바를 누르면 term을 태그목록에 추가하도록 한다.
 
       //값이 없으면 추가하지 않는다.

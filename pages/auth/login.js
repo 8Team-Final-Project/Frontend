@@ -96,7 +96,7 @@ const SignupBtn = styled.div`
     text-align: center;
     margin: 30px;
     font-size : 18px;
-
+    cursor : pointer;
 `
 
 export default login;

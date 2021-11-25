@@ -20,7 +20,6 @@ export default function RectangleImage({ edit, saveUrl, imgUrl }) {
     //서버에 이미지 업로드하여 imgUrl을 받아와서 url을 저장시키는 함수입니다.
 
     const fileObj = e.target.files[0];
-
     const format = ["image/jpg", "image/jpeg", "image/png", "image/gif"];
 
     //파일형식이 지정된 형식과 같다면 서버에 이미지업로드 요청을 보낸다.
@@ -52,8 +51,6 @@ export default function RectangleImage({ edit, saveUrl, imgUrl }) {
 }
 
 RectangleImage.defaultProps = {
-  imgUrl:
-    "https://images.unsplash.com/photo-1484723091739-30a097e8f929?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=749&q=80",
   saveUrl: () => {},
   edit: false
 };

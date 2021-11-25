@@ -80,22 +80,28 @@ export const postApi = {
 export const commentApi = {
   // 댓글 작성하기
   addComment: (data) => {
-    // console.log(data)
     return instance.post(`/api/v1/comment/${data.postId}`, { commentContent: data.commentContent });
   },
 
   // 댓글 불러오기
   getComment: (postId) => {
-    // console.log(postId);
     return instance.get(`/api/v1/comment/${postId}`);
   },
-
-  // 댓글 수정하기
-  // editComment: (data) => instance.patch(`/api/v1/comment/commentupdate/${commentId}`),
 
   // 댓글 삭제하기
   deleteComment: (commentId) => {
     return instance.delete(`/api/v1/comment/commentdelete/${commentId}`);
+  }
+};
+
+export const tagRankingApi = {
+  // 태그 랭킹 보내기
+  postTagRanking: (data) => {
+    return instance.post(`/api/v1/tag`, data);
+  },
+  // 태그 랭킹 받아오기
+  getTagRanking: (data) => {
+    return instance.get(`/api/v1/tag`, data);
   }
 };
 
@@ -107,7 +113,7 @@ export const uploadApi = {
       for (let entry of Object.entries(req)) {
         formData.append(entry[0], entry[1]);
       }
-      const response = await axios.post("http://54.180.137.99/api/v1/post/uploadimg", formData);
+      const response = await axios.post("https://kkuljohab.shop/api/v1/post/uploadimg", formData);
       if (response.statusText === "OK") return response;
     } catch (err) {
       alert(err);

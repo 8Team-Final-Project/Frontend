@@ -1,22 +1,20 @@
-import React, { useState } from "react";
-import { useRef, useEffect } from "react";
-import Router, { useRouter } from "next/router";
+import React, { useState, useEffect } from "react";
+import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 
 import Modal from "react-modal";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { getPostDB, likePostDB, savePostDB } from "../Redux/Async/postAsync";
-import PostBasicProfile from "../../src/Asset/Images/post-basic-profile.svg";
-import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Navigation } from "swiper";
 import "swiper/css";
-import Comments from "./Comments";
+import CommentList from "./CommentList";
 
 //component
 import MenuButton from "./Shared/CommentEditDelete";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import Tag from "./Tag";
+import LikeEffect from "./Shared/LikeEffect";
 
 //img
 import likeOn from "../Asset/Images/likeOn.svg";
@@ -24,9 +22,11 @@ import likeOff from "../Asset/Images/likeOff.svg";
 import saveOn from "../Asset/Images/saveOn.svg";
 import saveOff from "../Asset/Images/saveOff.svg";
 import shareOn from "../Asset/Images/shareOn.svg";
+// import BasicProfile from "../../src/Asset/Images/BasicProfile.svg";
 
 const DetailContentsBox = (props) => {
   const dispatch = useDispatch();
+  const [showLottie, setShowLottie] = useState(false);
 
   const { src } = props;
 
@@ -38,12 +38,24 @@ const DetailContentsBox = (props) => {
 
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const post = useSelector((state) => state.post.post);
-  console.log(post)
   const user = useSelector((state) => state.user.user?.userId);
 
   const likeUserId = useSelector((state) => state.post.post?.likeStatus);
-  console.log(likeUserId)
   const saveUserId = useSelector((state) => state.post.post?.keepStatus);
+
+  useEffect(() => {
+    if (likeUserId) {
+      setShowLottie(true);
+    }
+  }, [likeUserId]);
+
+  useEffect(() => {
+    if (likeUserId) {
+      setTimeout(() => {
+        setShowLottie(false);
+      }, 1500);
+    }
+  }, [likeUserId]);
 
   const setPostSave = () => {
     dispatch(savePostDB(id));
@@ -81,8 +93,9 @@ const DetailContentsBox = (props) => {
   return (
     <React.Fragment>
       <Grid>
+        {showLottie && <LikeEffect />}
         <FlexBox>
-          <Image src={PostBasicProfile.src} />
+          <Image src={post && post.userImg} />
           <UserBox>
             <NickName>{post && post.userNickname}</NickName>
             <PostingDate>{post && post.createDate}</PostingDate>
@@ -93,11 +106,7 @@ const DetailContentsBox = (props) => {
             </Menu>
           )}
         </FlexBox>
-        <Swiper slidesPerView={1} navigation={true}>
-          <SwiperSlide>
-            <PostImg src={post?.postImg1 ? post.postImg1 : src} />
-          </SwiperSlide>
-        </Swiper>
+        <PostImg src={post?.postImg1 ? post.postImg1 : src} />
         <Title>
           <strong>{post && post.postTitle}</strong>
         </Title>
@@ -117,7 +126,7 @@ const DetailContentsBox = (props) => {
           <IconBox>
             <button
               onClick={() => {
-                setPostLike();
+                post?.userId && setPostLike();
               }}
             >
               {likeUserId && likeUserId == true ? <img src={likeOn.src} /> : <img src={likeOff.src} />}
@@ -128,7 +137,7 @@ const DetailContentsBox = (props) => {
             <IconBox>
               <button
                 onClick={() => {
-                  setPostSave();
+                  post?.userId && setPostSave();
                 }}
               >
                 {saveUserId && saveUserId == true ? <img src={saveOn.src} /> : <img src={saveOff.src} />}
@@ -138,7 +147,7 @@ const DetailContentsBox = (props) => {
               <CopyToClipboard text={shareUrl}>
                 <button
                   onClick={() => {
-                    window.alert("링크복사됨~");
+                    window.alert("복사 완료! 채팅창에 링크를 공유해 주세요❤︎");
                   }}
                 >
                   <img src={shareOn.src} />
@@ -148,7 +157,7 @@ const DetailContentsBox = (props) => {
           </IconBoxFlex>
         </Btn>
 
-        <Comments />
+        <CommentList />
       </Grid>
 
       <ModalFrame>
@@ -172,10 +181,10 @@ DetailContentsBox.defaultProps = {
 };
 
 const Image = styled.img`
-  margin-right: 10px;
+  margin: 0 15px;
   width: 44px;
   height: 44px;
-  object-fit: none;
+  object-fit: cover;
   border-radius: 30px;
 `;
 
@@ -205,6 +214,7 @@ const UserBox = styled.div`
 
 const Grid = styled.div`
   text-align: left;
+  position: relative;
 `;
 
 const TextBox = styled.div`
@@ -230,6 +240,7 @@ const PostImg = styled.img`
   height: 100%;
   margin: 10px 0;
   object-fit: cover;
+  background-color: #f8f8f8;
 `;
 
 const Title = styled.div`
@@ -237,7 +248,7 @@ const Title = styled.div`
   font-size: 24px;
   font-weight: bold;
   word-break: break-all;
-  margin: 5px 15px 17px;
+  margin: 5px 15px 17px 20px;
   position: relative;
 `;
 
@@ -253,7 +264,7 @@ const Menu = styled.div`
 const Content = styled.div`
   display: flex;
   width: 95%;
-  margin: 10px;
+  margin: 10px 20px;
   font-size: 18px;
 `;
 

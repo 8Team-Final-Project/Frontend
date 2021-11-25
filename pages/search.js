@@ -25,8 +25,6 @@ export default function Search(props) {
   const dispatch = useDispatch();
   const tagRanking = useSelector((state) => state.tagRanking?.tagRanking?.tags);
 
-  console.log(tagRanking);
-
   //추천태그에 들어갈 항목
   const recommandedTagList = ["테스트", "서브웨이", "편의점", "다이어터", "엽떡", "라면"];
 
@@ -49,16 +47,15 @@ export default function Search(props) {
 
   const handleOnKeyUp = (e) => {
     //검색어 입력 후, 스페이스바 입력시 검색어가 태그목록에 추가되는 함수
-    const { code: keyValue } = e;
-    if (keyValue === "Space") {
-      //스페이스바를 누르면 term을 태그목록에 추가하도록 한다.
+    const { key: keyName } = e;
+    if (keyName === "Enter") {
+      //엔터를 누르면 term을 태그목록에 추가하도록 한다.
 
       //값이 없으면 추가하지 않는다.
-      if (!e.target.value) return;
+      if (!e.target.value || e.target.value.indexOf(" ") == 0) return;
 
-      if (tagList.length == 1) {
+      if (tagList.length >= 1) {
         //태그목록은 3개까지만 추가하도록 한다.
-        // ㅇㅇㅇㅇ
         setTerm("");
         return alert("태그를 지우고 다시 검색해주세요!");
       }
@@ -93,7 +90,7 @@ export default function Search(props) {
             </InputAdornment>
           }
         />
-        <HelperText>태그는 스페이스로 구분해주세요</HelperText>
+        <HelperText>태그는 엔터로 구분해주세요</HelperText>
       </MuiForm>
       <TagWrapper>
         {tagList.map((ele, idx) => (
