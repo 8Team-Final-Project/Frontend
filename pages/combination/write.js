@@ -96,7 +96,7 @@ const write = () => {
             tagList={[...postTag]}
             setTagList={setTag}
             label="해시태그"
-            placeholder="입력후 스페이스바 딸깍"
+            placeholder="태그입력 후 엔터를 입력해주세요"
             important
           />
         </CenterBox>
