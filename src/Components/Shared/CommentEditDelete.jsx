@@ -22,12 +22,12 @@ const CommentEditDelete = ({ handleExit }) => {
 
   const deletePost = () => {
     dispatch(deletePostDB(id));
-    if (!router.pathname.indexOf("event") == -1) return router.push("/event");
+    if (router.pathname.indexOf("/event/detail/[id]") == 0) return router.push("/event");
     else return router.push("/combination");
   };
 
   const goEditPage = () => {
-    if (!router.pathname.indexOf("event") == -1) return router.push(`/event/edit/${id}`);
+    if (router.pathname.indexOf("/event/detail/[id]") == 0) return router.push(`/event/edit/${id}`);
     else return router.push(`/combination/detail/${id}`);
   };
 
