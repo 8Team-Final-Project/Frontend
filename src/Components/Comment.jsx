@@ -1,4 +1,4 @@
-import React, { useEffect,useCallback } from "react";
+import React, { useEffect, useCallback } from "react";
 import styled from "styled-components";
 import { useRouter } from "next/router";
 import { useSelector, useDispatch } from "react-redux";
@@ -11,17 +11,6 @@ const Comment = (props) => {
   };
 
   const user = useSelector((state) => state.user.user?.userId);
-
-  useEffect(() => {
-    if (props.postId) {
-      dispatch(getCommentDB(props.postId));
-    }
-  }, [props.postId]);
-
-  // const reComment = useCallback(
-  //   () => {
-  //       dispatch(getCommentDB(props.postId));
-  //   }, [props.postId]);
 
   return (
     <Container>
@@ -36,10 +25,14 @@ const Comment = (props) => {
         <DeleteBox>
           {props.userId === user && (
             <X>
-              <Xbutton onClick={()=>{
-                deleteComment()
-                // reComment()
-                }}>✕</Xbutton>
+              <Xbutton
+                onClick={() => {
+                  deleteComment();
+                  // reComment()
+                }}
+              >
+                ✕
+              </Xbutton>
             </X>
           )}
         </DeleteBox>
