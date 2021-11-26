@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 // import EventPost from "../src/Components/Layout/EventPost"
 
@@ -7,7 +7,7 @@ import PostSaveBtn from "../src/Components/Mypage/PostSaveBtn";
 import CircleImage from "../src/Components/Shared/CircleImage";
 import MyInfoEditModal from "../src/Components/Mypage/MyInfoEditModal";
 
-import { postLogout } from "../src/Redux/Async/userAsync";
+import { postLogout, Me } from "../src/Redux/Async/userAsync";
 
 //마이페이지 첫 렌더링시 메이블린 api 가져와서 list에 저장하기
 const mypage = (props) => {
@@ -24,6 +24,10 @@ const mypage = (props) => {
 
   //수정 모달창
   const [modalOpen, setModalOpen] = useState(false);
+
+  useEffect(()=> {
+    dispatch(Me())
+  })
 
   return (
     <>

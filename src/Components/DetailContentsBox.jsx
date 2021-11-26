@@ -27,7 +27,6 @@ import shareOn from "../Asset/Images/shareOn.svg";
 const DetailContentsBox = (props) => {
   const dispatch = useDispatch();
   const [showLottie, setShowLottie] = useState(false);
-
   const { src } = props;
 
   const {
@@ -42,20 +41,6 @@ const DetailContentsBox = (props) => {
 
   const likeUserId = useSelector((state) => state.post.post?.likeStatus);
   const saveUserId = useSelector((state) => state.post.post?.keepStatus);
-
-  useEffect(() => {
-    if (likeUserId) {
-      setShowLottie(true);
-    }
-  }, [likeUserId]);
-
-  useEffect(() => {
-    if (likeUserId) {
-      setTimeout(() => {
-        setShowLottie(false);
-      }, 1500);
-    }
-  }, [likeUserId]);
 
   const setPostSave = () => {
     dispatch(savePostDB(id));

@@ -4,7 +4,7 @@ import { getToken } from "./util";
 // Axios 인스턴스 설정
 const instance = axios.create({
   // 백엔드 배포 주소
-  baseURL: "https://kkuljohab.shop"
+  baseURL: "http://54.180.137.99"
 });
 
 //interceptor를 통한 header 설정

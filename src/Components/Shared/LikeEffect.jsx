@@ -20,13 +20,12 @@ export default function LikeEffect() {
   );
 }
 
-const Container = styled.div`
-  //position: absolute;
-`;
+const Container = styled.div``;
+
 const Lottie = styled.div`
-width: 100%;
-height: 100%;
-margin: 0 auto;
-position: absolute;
-z-index:1000;
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+  position: absolute;
+  z-index: 1000;
 `;
