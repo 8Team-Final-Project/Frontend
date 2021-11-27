@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { userApi } from "../../Shared/api";
 import router from "next/router";
-import sweetAlert from "sweetalert"
+import Swal from "sweetalert2"
 
 // 미들웨어
 
@@ -10,12 +10,12 @@ export const postSignup = createAsyncThunk("/user/postSignup", async (data, thun
   try {
     const response = await userApi.signup(data);
     if (response.data.result === "success") {
-      sweetAlert("회원가입 완료", "", "success");
+      Swal.fire("회원가입 완료", "", "success");
       router.push("/auth/login");
       return response.data.msg;
     }
   } catch (err) {
-    sweetAlert("빈칸을 채워주세요!", "", "error");
+    Swal.fire("빈칸을 채워주세요!", "", "error");
     return thunkAPI.rejectWithValue(err.response.message);
   }
 });
@@ -26,13 +26,13 @@ export const postLogin = createAsyncThunk("user/postLogin", async (data, thunkAP
     const response = await userApi.login(data);
     if (response.data.result === "success") {
       const token = response.data.token;
-      sweetAlert("로그인완료", "", "success")
+      Swal.fire("로그인완료", "", "success")
       localStorage.setItem("token", token);
       router.push("/");
       return response.data.msg;
     }
   } catch (err) {
-    sweetAlert("이메일 혹은 비밀번호를 다시 확인해 주세요!", "", "error");
+    Swal.fire("이메일 혹은 비밀번호를 다시 확인해 주세요!", "", "error");
     return thunkAPI.rejectWithValue(err.response.message);
   }
 });
@@ -67,7 +67,7 @@ export const Me = createAsyncThunk("user/profile", async (data, thunkAPI) => {
 export const patchUserid = createAsyncThunk("/user/patchuserid", async (data, thunkAPI) => {
   try {
     const response = await userApi.userid(data);
-    sweetAlert("프로필 수정 완료!", "", "success");
+    Swal.fire("프로필 수정 완료!", "", "success");
     if (response.statusText === "OK") {
       return data;
     }

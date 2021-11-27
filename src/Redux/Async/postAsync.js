@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { postApi } from "../../Shared/api";
 import { useRouter } from "next/router";
-import sweetAlert from "sweetalert"
+import Swal from "sweetalert2"
 
 // 꿀조합 게시글리스트 불러오기
 export const getCombinationListDB = createAsyncThunk("combination/getList", async (data, thunkAPI) => {
@@ -64,7 +64,7 @@ export const deletePostDB = createAsyncThunk("deletePost", async (data, thunkAPI
   try {
     const response = await postApi.deletePost(data);
     if (response.statusText === "OK") {
-      sweetAlert("게시물이 삭제되었습니다", "", "success");
+      Swal.fire("게시물이 삭제되었습니다", "", "success");
       return response.data.postId;
     }
   } catch (err) {
