@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import styled, { css } from "styled-components";
-import sweetAlert from "sweetalert";
+import Swal from "sweetalert2";
 
 //materia-ui
 import Input from "@mui/material/Input";
@@ -35,7 +35,7 @@ export default function HashTagInput({ tagList, setTagList, important, label, pl
       if (tagList.length >= 3) {
         //태그목록은 3개까지만 추가하도록 한다.
         setTerm("");
-        return sweetAlert("태그는 3개까지만 설정할 수 있어요", "", "error");
+        return Swal.fire("태그는 3개까지만 설정할 수 있어요", "", "error");
       }
 
       setTagList([...tagList, e.target.value.replace(/ /g, "")]);

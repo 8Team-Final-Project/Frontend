@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styled from "@emotion/styled";
 import { useDispatch, useSelector } from "react-redux";
-import sweetAlert from "sweetalert";
+import Swal from "sweetalert2";
 
 //materia-ui
 import Input from "@mui/material/Input";
@@ -58,7 +58,7 @@ export default function Search(props) {
       if (tagList.length >= 1) {
         //태그목록은 3개까지만 추가하도록 한다.
         setTerm("");
-        return sweetAlert("태그를 지우고 다시 검색해주세요!", "", "error");
+        return Swal.fire("태그를 지우고 다시 검색해주세요!", "", "error");
       }
 
       setTagList([...tagList, e.target.value.replace(/ /g, "")]);
@@ -73,7 +73,7 @@ export default function Search(props) {
 
   const clickRecommendedTag = (keyword) => {
     //추천태그를 클릭하면 태그목록에 담는 함수
-    if (tagList.length == 1) return sweetAlert("태그를 지우고 다시 검색해주세요!", "", "error");
+    if (tagList.length == 1) return Swal.fire("태그를 지우고 다시 검색해주세요!", "", "error");
     setTagList([...tagList, keyword]);
   };
 
