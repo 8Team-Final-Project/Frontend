@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
+import sweetAlert from "sweetalert";
 
 //components
 import Modal from "../Shared/Modal";
@@ -61,7 +62,7 @@ export default function MyInfoEditModal({ isOpen, handleClose }) {
       handleClose();
     }
     if (isCheckEmail === false || isCheckNickname === false) {
-      alert("중복 확인을 체크해주세요!");
+      sweetAlert("중복 확인을 체크해주세요!", "", "warning");
     }
   };
 
@@ -75,11 +76,11 @@ export default function MyInfoEditModal({ isOpen, handleClose }) {
       .checknick(nickname)
       .then((res) => {
         if (res.statusText === "OK") {
-          alert("사용가능한 닉네임입니다");
+          sweetAlert("사용가능한 닉네임입니다", "", "success");
           setIsCheckNickname(true);
         }
       })
-      .catch((err) => alert("사용 중인 닉네임입니다"));
+      .catch((err) => sweetAlert("사용 중인 닉네임입니다", "", "warning"));
   };
 
   const handleCheckEmail = () => {
@@ -96,7 +97,7 @@ export default function MyInfoEditModal({ isOpen, handleClose }) {
           setIsCheckEmail(true);
         }
       })
-      .catch((err) => alert("사용 중인 이메일입니다"));
+      .catch((err) => sweetAlert("사용 중인 이메일입니다", "", "warning"));
   };
 
   return (
