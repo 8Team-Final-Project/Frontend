@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
+import sweetAlert from "sweetalert";
 
 import Modal from "react-modal";
 import { CopyToClipboard } from "react-copy-to-clipboard";
@@ -132,7 +133,7 @@ const DetailContentsBox = (props) => {
               <CopyToClipboard text={shareUrl}>
                 <button
                   onClick={() => {
-                    window.alert("복사 완료! 채팅창에 링크를 공유해 주세요❤︎");
+                    sweetAlert("복사 완료", "링크를 공유해주세요!", "sucess");
                   }}
                 >
                   <img src={shareOn.src} />

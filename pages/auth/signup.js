@@ -2,6 +2,7 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import router from "next/router";
 import styled from "styled-components";
+import sweetAlert from "sweetalert";
 
 //function
 import { postSignup } from "../../src/Redux/Async/userAsync";
@@ -39,7 +40,7 @@ const signup = () => {
     if (userPassword === userconfirmPassword) {
       return dispatch(postSignup(signup));
     } else {
-      alert("비밀번호를 체크해주세요");
+      sweetAlert("비밀번호를 체크해주세요", "", "warning");
     }
   };
 
@@ -52,11 +53,11 @@ const signup = () => {
       .checknick(nickname)
       .then((res) => {
         if (res.statusText === "OK") {
-          alert("사용 가능한 닉네임입니다");
+          sweetAlert("사용 가능한 닉네임입니다", "", "success");
           setIsCheckNickname(true);
         }
       })
-      .catch((err) => alert("중복된 닉네임입니다!"));
+      .catch((err) => sweetAlert("중복된 닉네임입니다!", "", "warning"));
   };
 
   const handleCheckEmail = () => {
@@ -68,11 +69,11 @@ const signup = () => {
       .checkemail(checkemail)
       .then((res) => {
         if (res.statusText === "OK") {
-          alert("사용 가능한 이메일입니다");
+          sweetAlert("사용 가능한 이메일입니다", "", "success");
           setIsCheckEmail(true);
         }
       })
-      .catch((err) => alert("중복된 이메일입니다!"));
+      .catch((err) => sweetAlert("중복된 이메일입니다!", "", "warning"));
   };
 
   return (
