@@ -73,8 +73,8 @@ const Overlay = styled.div`
 
 const Container = styled.div`
   background: white;
-  width: 80%;
-  height: 80%;
+  width: 333px;
+  height: 600px;
   border-radius: 15px;
   margin: ${({ isHideDefaultClose }) => (isHideDefaultClose ? 0 : "15px")};
   padding: ${({ isHideDefaultClose }) => (isHideDefaultClose ? 0 : "15px")};

@@ -101,7 +101,7 @@ export default function MyInfoEditModal({ isOpen, handleClose }) {
   };
 
   return (
-    <Modal isOpen={isOpen} handleClose={handleClose} isHideDefaultClose height="auto" width="100%">
+    <Modal isOpen={isOpen} handleClose={handleClose} isHideDefaultClose>
       <Container>
         <Content>
           <CircleImage edit imgUrl={userImg ? userImg : false} saveUrl={setUserImg} onChange={setUserImg} />

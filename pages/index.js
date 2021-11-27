@@ -61,7 +61,7 @@ export default function Home() {
             </EventBnrBox2>
           </EventBnr>
           <Description>
-            <p>진행되는 이벤트 주제에 맞는 꿀조합을 지정 태그와 함께 업로드 해주세요!</p>
+            <p>진행되는 이벤트 주제에 맞는 꿀조합을 위의 태그와 함께 업로드 해주세요!</p>
           </Description>
         </DescriptionArea>
         <DescriptionArea>
