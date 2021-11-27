@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import Swal from 'sweetalert2';
 import {
   getCombinationListDB,
   getEventPostListDB,
@@ -126,6 +127,7 @@ const postSlice = createSlice({
     [likePostDB.rejected]: (state, { payload: errorMessage }) => {
       state.isFetching = false;
       state.errorMessage = errorMessage;
+      Swal.fire("로그인을 먼저 해주세요", "", "error")
     },
 
     //이벤트 게시글 찜
@@ -145,6 +147,7 @@ const postSlice = createSlice({
     [savePostDB.rejected]: (state, { payload: errorMessage }) => {
       state.isFetching = false;
       state.errorMessage = errorMessage;
+      Swal.fire("로그인을 먼저 해주세요" ,"" , "error")
     }
   }
 });
