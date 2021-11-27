@@ -11,7 +11,7 @@ const Info = (props) => {
     return (
         <React.Fragment>
             <Wrap>
-           <EventInfoImg src="/eventInfoImg.svg"/>
+           <EventInfoImg src="/eventInfoImg.png"/>
            <Btn>
            <RedButton 
            main
