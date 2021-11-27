@@ -13,7 +13,7 @@ import SearchInput from "../../src/Components/Input/SearchInput";
 import Card from "../../src/Components/Card";
 import FirstEventImg from "../../src/Asset/Images/eventbnr1.svg";
 import SecondEventImg from "../../src/Asset/Images/eventbnr2.svg";
-import ThirdEventImg from "../../src/Asset/Images/ramenbanner.svg";
+import ThirdEventImg from "../../src/Asset/Images/eventbnr3.svg"
 
 SwiperCore.use([Autoplay, Navigation]);
 
@@ -66,17 +66,16 @@ const combination = (props) => {
           // initialSlide = {2}
         >
           <SwiperSlide>
-            <EventBanner src={FirstEventImg.src} onClick={goEventInfo} />
-            {/* slide1 */}
-          </SwiperSlide>
-          <SwiperSlide>
-            <a target="_blank" href="https://wpub6shfa65.typeform.com/to/rhCKtx33">
-              <EventBanner src={SecondEventImg.src} />
-            </a>
-          </SwiperSlide>
-          <SwiperSlide>
-            <EventBanner src={ThirdEventImg.src} />
-          </SwiperSlide>
+          <EventBanner src={FirstEventImg.src} onClick={goEventInfo} />
+        </SwiperSlide>
+        <SwiperSlide>
+          <a target="_blank" href="https://wpub6shfa65.typeform.com/to/rhCKtx33">
+            <EventBanner src={SecondEventImg.src} />
+          </a>
+        </SwiperSlide>
+        <SwiperSlide>
+          <EventBanner src={ThirdEventImg.src}/>
+        </SwiperSlide>
         </Swiper>
         <CardWrap>
           {/* post는 객체하나 */}

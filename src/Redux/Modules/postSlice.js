@@ -108,7 +108,6 @@ const postSlice = createSlice({
 
     //이벤트 게시글 좋아요
     [likePostDB.fulfilled]: (state, { payload: post }) => {
-      // window.alert(post.msg);
       if (post.msg === "좋아요성공") {
         state.post.likeCnt += 1;
         state.post.likeStatus = true;
@@ -131,7 +130,6 @@ const postSlice = createSlice({
 
     //이벤트 게시글 찜
     [savePostDB.fulfilled]: (state, { payload: post }) => {
-      // window.alert(post.msg);
       if (post.msg === "게시물이 찜 되었습니다") {
         state.post.keepStatus = true;
       }

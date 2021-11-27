@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { userApi } from "../../Shared/api";
 import router from "next/router";
-// import Swal from "sweetalert2";
+import sweetAlert from "sweetalert"
 
 // 미들웨어
 
@@ -10,12 +10,12 @@ export const postSignup = createAsyncThunk("/user/postSignup", async (data, thun
   try {
     const response = await userApi.signup(data);
     if (response.data.result === "success") {
-      window.alert("회원가입 완료");
+      sweetAlert("회원가입 완료", "", "success");
       router.push("/auth/login");
       return response.data.msg;
     }
   } catch (err) {
-    alert("빈칸을 채워주세요!");
+    sweetAlert("빈칸을 채워주세요!", "", "error");
     return thunkAPI.rejectWithValue(err.response.message);
   }
 });
@@ -26,13 +26,13 @@ export const postLogin = createAsyncThunk("user/postLogin", async (data, thunkAP
     const response = await userApi.login(data);
     if (response.data.result === "success") {
       const token = response.data.token;
-      // window.alert("로그인 완료!");
+      sweetAlert("로그인완료", "", "success")
       localStorage.setItem("token", token);
       router.push("/");
       return response.data.msg;
     }
   } catch (err) {
-    alert("이메일 혹은 비밀번호를 다시 확인해 주세요!");
+    sweetAlert("이메일 혹은 비밀번호를 다시 확인해 주세요!", "", "error");
     return thunkAPI.rejectWithValue(err.response.message);
   }
 });
@@ -42,7 +42,6 @@ export const postLogout = createAsyncThunk("user/postLogout", async (data, thunk
   try {
     const response = await userApi.logout(data);
     if (response.data.success === true) {
-      // window.alert("로그아웃 완료");
       localStorage.removeItem("token");
       router.push("/");
       return response.data.msg;
@@ -68,7 +67,7 @@ export const Me = createAsyncThunk("user/profile", async (data, thunkAPI) => {
 export const patchUserid = createAsyncThunk("/user/patchuserid", async (data, thunkAPI) => {
   try {
     const response = await userApi.userid(data);
-    window.alert("프로필 수정 완료!");
+    sweetAlert("프로필 수정 완료!", "", "success");
     if (response.statusText === "OK") {
       return data;
     }

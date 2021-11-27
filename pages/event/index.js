@@ -14,7 +14,7 @@ import "swiper/css/navigation";
 import Card from "../../src/Components/Card";
 import FirstEventImg from "../../src/Asset/Images/eventbnr1.svg";
 import SecondEventImg from "../../src/Asset/Images/eventbnr2.svg";
-import ThirdEventImg from "../../src/Asset/Images/ramenbanner.svg";
+import ThirdEventImg from "../../src/Asset/Images/eventbnr3.svg"
 
 SwiperCore.use([Autoplay, Navigation]);
 
@@ -51,7 +51,7 @@ const event = (props) => {
 
   return (
     <React.Fragment>
-      <EventName>이번주 붕어빵 꿀조합은?</EventName>
+      <EventName>이번주 라면 꿀조합은?</EventName>
 
       <Swiper
         spaceBetween={30}
@@ -61,11 +61,9 @@ const event = (props) => {
           delay: 4000,
           disableOnInteraction: false
         }}
-        // initialSlide = {2}
       >
         <SwiperSlide>
           <BannerImg src={FirstEventImg.src} onClick={goEventInfo} />
-          {/* slide1 */}
         </SwiperSlide>
         <SwiperSlide>
           <a target="_blank" href="https://wpub6shfa65.typeform.com/to/rhCKtx33">
@@ -73,7 +71,7 @@ const event = (props) => {
           </a>
         </SwiperSlide>
         <SwiperSlide>
-          <BannerImg src={ThirdEventImg.src} />
+          <BannerImg src={ThirdEventImg.src}/>
         </SwiperSlide>
       </Swiper>
 
