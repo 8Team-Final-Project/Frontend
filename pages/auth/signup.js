@@ -40,7 +40,7 @@ const signup = () => {
     if (userPassword === userconfirmPassword) {
       return dispatch(postSignup(signup));
     } else {
-      Swal.fire("비밀번호를 체크해주세요", "", "warning");
+      Swal.fire("비밀번호를 확인해주세요", "", "warning");
     }
   };
 

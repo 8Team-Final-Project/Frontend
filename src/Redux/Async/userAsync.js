@@ -15,7 +15,7 @@ export const postSignup = createAsyncThunk("/user/postSignup", async (data, thun
       return response.data.msg;
     }
   } catch (err) {
-    Swal.fire("빈칸을 채워주세요!", "", "error");
+    Swal.fire("중복확인을 완료해주세요!", "", "error");
     return thunkAPI.rejectWithValue(err.response.message);
   }
 });
