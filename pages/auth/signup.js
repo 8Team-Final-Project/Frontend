@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import router from "next/router";
 import styled from "styled-components";
-import sweetAlert from "sweetalert";
+import Swal from "sweetalert2";
 
 //function
 import { postSignup } from "../../src/Redux/Async/userAsync";
@@ -40,7 +40,7 @@ const signup = () => {
     if (userPassword === userconfirmPassword) {
       return dispatch(postSignup(signup));
     } else {
-      sweetAlert("비밀번호를 체크해주세요", "", "warning");
+      Swal.fire("비밀번호를 체크해주세요", "", "warning");
     }
   };
 
@@ -53,11 +53,11 @@ const signup = () => {
       .checknick(nickname)
       .then((res) => {
         if (res.statusText === "OK") {
-          sweetAlert("사용 가능한 닉네임입니다", "", "success");
+          Swal.fire("사용 가능한 닉네임입니다", "", "success");
           setIsCheckNickname(true);
         }
       })
-      .catch((err) => sweetAlert("중복된 닉네임입니다!", "", "warning"));
+      .catch((err) => Swal.fire("중복된 닉네임입니다!", "", "warning"));
   };
 
   const handleCheckEmail = () => {
@@ -69,11 +69,11 @@ const signup = () => {
       .checkemail(checkemail)
       .then((res) => {
         if (res.statusText === "OK") {
-          sweetAlert("사용 가능한 이메일입니다", "", "success");
+          Swal.fire("사용 가능한 이메일입니다", "", "success");
           setIsCheckEmail(true);
         }
       })
-      .catch((err) => sweetAlert("중복된 이메일입니다!", "", "warning"));
+      .catch((err) => Swal.fire("중복된 이메일입니다!", "", "warning"));
   };
 
   return (
