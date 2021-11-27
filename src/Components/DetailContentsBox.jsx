@@ -28,6 +28,8 @@ import shareOn from "../Asset/Images/shareOn.svg";
 const DetailContentsBox = (props) => {
   const dispatch = useDispatch();
   const [showLottie, setShowLottie] = useState(false);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+
   const { src } = props;
 
   const {
@@ -36,7 +38,6 @@ const DetailContentsBox = (props) => {
 
   const shareUrl = "kkuljohab.com" + useRouter().asPath;
 
-  const [modalIsOpen, setModalIsOpen] = useState(false);
   const post = useSelector((state) => state.post.post);
   const user = useSelector((state) => state.user.user?.userId);
 
@@ -49,6 +50,12 @@ const DetailContentsBox = (props) => {
 
   const setPostLike = () => {
     dispatch(likePostDB(id));
+    if (likeUserId == false) {
+      setShowLottie(true);
+      setTimeout(() => {
+        setShowLottie(false);
+      }, 1000);
+    }
   };
 
   React.useEffect(() => {
