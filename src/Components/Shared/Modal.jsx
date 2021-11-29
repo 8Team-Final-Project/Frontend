@@ -18,6 +18,7 @@ export default function Modal({ isOpen, handleClose, children, title, width, hei
     setIsBrowser(true);
   }, []);
 
+  //닫기
   const handleCloseClick = (e) => {
     e.preventDefault();
     handleClose();
@@ -58,6 +59,7 @@ Modal.defaultProps = {
   isHideDefaultClose: false
 };
 
+// styled-component
 const Overlay = styled.div`
   position: fixed;
   top: 0;

@@ -2,7 +2,6 @@ import { useRouter } from "next/dist/client/router";
 import React from "react";
 import styled from "styled-components";
 import refreshIcon from "../src/Asset/icons/refresh_icon.svg";
-import Loading from "../src/Components/Shared/Loading";
 
 export default function Error() {
   const router = useRouter();
@@ -17,6 +16,7 @@ export default function Error() {
   );
 }
 
+// styled-component
 const Container = styled.div`
   width: 100vw;
   height: 100vh;

@@ -24,6 +24,7 @@ const write = () => {
   const [postTag, setTag] = useState("");
   const [postRecipe, setRecipe] = useState("");
 
+  //게시물 추가하기 
   const setPost = () => {
     const postItem = {
       postTitle: postTitle,
@@ -117,6 +118,8 @@ const write = () => {
     </div>
   );
 };
+
+// styled-component
 const CenterBox = styled.div`
   width: 90%;
   margin: 20px auto;
@@ -127,6 +130,7 @@ const WriteBox = styled.div`
   height: auto;
   margin: auto;
 `;
+
 const FlexBox = styled.div`
   display: flex;
   margin-top: 60px;

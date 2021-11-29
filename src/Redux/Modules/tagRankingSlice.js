@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { tagRankingApi } from "../../Shared/api";
 import { getTagRankingDB, postTagRankingDB } from "../Async/tagRankingAsync";
 
 const initialState = {};

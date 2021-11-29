@@ -1,5 +1,7 @@
 import React from "react";
 import styled from "styled-components";
+
+//Img
 import mask from "../../Asset/Images/main_event_btn.svg";
 import mask2 from "../../Asset/Images/goeventrbtn.svg";
 
@@ -20,6 +22,7 @@ RedButton.defaultProps = {
   info: false
 };
 
+// styled-component
 const RButton = styled.button`
   width: 100%;
   height: 70px;

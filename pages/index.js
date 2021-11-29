@@ -2,7 +2,6 @@ import Head from "next/head";
 import { useRouter } from "next/dist/client/router";
 import styled from "styled-components";
 
-
 //images
 import mainBnr from "../src/Asset/Images/main_bnr.svg";
 import eventBnr1 from "../src/Asset/Images/main_event_bnr1.png";
@@ -12,7 +11,6 @@ import fishBread from "../src/Asset/Images/fish_bread.svg";
 import ramen from "../src/Asset/Images/ramen.svg";
 import honeybtn from "../src/Asset/Images/honeybtn.svg";
 import goeventbtn from "../src/Asset/Images/goeventbtn.svg";
-import AppDownloadBtn from '../src/Components/Shared/AppDownloadBtn';
 
 //icons
 import questionIcon from "../src/Asset/icons/question_icon.svg";
@@ -20,7 +18,6 @@ import questionIcon from "../src/Asset/icons/question_icon.svg";
 //메인페이지입니다.
 export default function Home() {
   const router = useRouter();
-
 
   return (
     <div>
@@ -90,21 +87,20 @@ export default function Home() {
         </DescriptionArea>
       </Container>
 
-      {/* 다운로드 */}
+      {/* //다운로드
       <Container>
         <DescriptionArea>
           <Description>
             <p>앱을 다운로드하여,</p>
             <p>더욱 편하게 사용해보세요!</p>
           </Description>
-          {/* <BtnImg src={downloadbtn.src} width="80%" onClick={() => {router.push("/combination")}} /> */}
-          <AppDownloadBtn/>
         </DescriptionArea>
-      </Container>
+      </Container> */}
     </div>
   );
 }
 
+// styled-component
 const Container = styled.div`
   width: 100%;
   padding: 60px 0 100px 0;

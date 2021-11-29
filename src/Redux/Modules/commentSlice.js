@@ -3,7 +3,6 @@ import {
   addCommentDB,
   getCommentDB,
   deleteCommentDB
-  // editCommentDB,
 } from "../Async/commentAsync";
 
 const initialState = {

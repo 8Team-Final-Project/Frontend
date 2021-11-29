@@ -39,7 +39,6 @@ export default function MyInfoEditModal({ isOpen, handleClose }) {
 
   useEffect(() => {
     //기존 유저네임,유저이메일을 state에 저장하는 함수
-
     if (userImgFromStore && userImgFromStore !== userImg) setUserImg(userImgFromStore);
     if (nicknameFromStore && nicknameFromStore !== nickname) setNickname(nicknameFromStore);
     if (emailFromsStore && emailFromsStore !== userEmail) setUserEmail(emailFromsStore);
@@ -147,6 +146,7 @@ MyInfoEditModal.defaultProps = {
   imgUrl: null
 };
 
+// styled-component
 const Container = styled.div`
   width: 100%;
   height: 100%;

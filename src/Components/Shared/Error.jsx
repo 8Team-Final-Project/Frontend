@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import { useRouter } from "next/dist/client/router";
+
+//Img
 import refreshIcon from "../src/Asset/icons/refresh_icon.svg";
 
 export default function Error() {
@@ -16,6 +18,7 @@ export default function Error() {
   );
 }
 
+// styled-component
 const Container = styled.div`
   width: 100vw;
   height: 100vh;

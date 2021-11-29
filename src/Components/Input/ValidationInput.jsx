@@ -90,6 +90,7 @@ ValidationInput.defaultProps = {
   rows: 1
 };
 
+// styled-component
 const Input = styled(TextField)`
   width: 100%;
   font-size: 30px;

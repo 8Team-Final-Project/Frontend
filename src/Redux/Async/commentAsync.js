@@ -1,6 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { commentApi } from "../../Shared/api";
-import { useRouter } from "next/router";
 
 // 댓글 추가하기
 export const addCommentDB = createAsyncThunk("addComment", async (data, thunkAPI) => {

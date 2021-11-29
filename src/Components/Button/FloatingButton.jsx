@@ -1,10 +1,12 @@
 import * as React from "react";
 import styled from "styled-components";
-import Box from "@mui/material/Box";
-import router from "next/router";
 import { useSelector } from "react-redux";
 
+//material
+import Box from "@mui/material/Box";
+
 export default function FloatingButton({ onClick, locationX }) {
+  //로그인 체크
   const is_login = useSelector((state) => state.user.isLogin);
 
   return (
@@ -22,6 +24,7 @@ FloatingButton.defaultProps = {
   onClick: () => {}
 };
 
+// styled-component
 const Floatbtn = styled.img`
   position: fixed;
   right: ${({ locationX }) => locationX && `calc(103vw - ${locationX}px);`};

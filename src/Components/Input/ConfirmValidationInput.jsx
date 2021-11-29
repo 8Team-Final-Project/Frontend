@@ -1,8 +1,9 @@
 //Confirmvalidationinput
 import React, { useState } from "react";
 import styled from "@emotion/styled";
+
+//material
 import { TextField } from "@mui/material";
-import { margin } from "@mui/system";
 
 //handleValueCheck는 중복확인을 할 수 있는 api함수를 담아주면 됩니다.
 //isCheck는 부모로부터 중복확인 여부 state 값을 받아온다.
@@ -94,6 +95,7 @@ ConfirmValidationInput.defaultProps = {
   successText: " "
 };
 
+// styled-component
 const Container = styled.div`
   position: relative;
   width: 100%;
