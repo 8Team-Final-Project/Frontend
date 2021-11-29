@@ -15,6 +15,8 @@ function Comments() {
 
   const [commentContent, setCommentContent] = useState("");
 
+
+
   const onChangeInput = (e) => {
     setCommentContent(e.target.value);
   };
@@ -36,9 +38,14 @@ function Comments() {
       postId: postId,
       commentContent: commentContent
     };
-    onReset();
-    dispatch(addCommentDB(commentItem));
-    setCommentContent("");
+    
+    if(commentContent === "") {
+      alert("dddd")
+    } else {
+      onReset();
+      dispatch(addCommentDB(commentItem));
+      setCommentContent("");
+    }
   };
 
   
@@ -54,7 +61,7 @@ function Comments() {
           <Input
           type="text" 
           onChange={onChangeInput} 
-          placeholder="댓글을 입력해주세요." 
+          placeholder="댓글을 입력해주세요."
           value={commentContent} //인풋 초기화
           />
         </DInput>
