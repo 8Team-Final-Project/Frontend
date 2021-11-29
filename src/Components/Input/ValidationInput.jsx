@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import styled, { css } from "styled-components";
 import { TextField } from "@mui/material";
-import { boxSizing } from "@mui/system";
 
 //label : input 제목  ex)label='제목'
 //type : input의 type ex)type='password'

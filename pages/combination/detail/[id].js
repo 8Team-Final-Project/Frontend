@@ -13,6 +13,7 @@ const CombinationDetail = (props) => {
   );
 };
 
+// styled-component
 const Wrap = styled.div`
     text-align : center;
 ` 

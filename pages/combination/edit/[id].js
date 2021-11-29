@@ -15,11 +15,13 @@ const combinationEdit = () => {
   const router = useRouter();
   const postId = useRouter().query.id;
 
+  // state관리
   const [postImg, setPostImg] = useState("");
   const [postTitle, setPostTitle] = useState("");
   const [postRecipe, setPostRecipe] = useState("");
   const [postContent, setPostContent] = useState("");
 
+  // state에서 값 가져오기 
   const getPostImg = useSelector((state) => state.post.post?.postImg);
   const getPostTitle = useSelector((state) => state.post.post?.postTitle);
   const getPostRecipe = useSelector((state) => state.post.post?.postRecipe);
@@ -32,6 +34,7 @@ const combinationEdit = () => {
     if (getPostContent && getPostContent !== postContent) setPostContent(getPostContent);
   }, [getPostImg, getPostTitle, getPostRecipe, getPostContent]);
 
+  //게시글 수정하기
   const editPost = () => {
     const postItem = {
       postImg: postImg,
@@ -112,6 +115,7 @@ const combinationEdit = () => {
   );
 };
 
+// styled-component
 const Wrap = styled.div`
   margin: auto;
 `;
