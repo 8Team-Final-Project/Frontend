@@ -1,14 +1,14 @@
 import React from "react";
 import styled from "styled-components";
 import mask from "../../Asset/Images/main_event_btn.svg";
-import info from "../../Asset/Images/goeventrbtn.svg";
+import mask2 from "../../Asset/Images/goeventrbtn.svg";
 
 const RedButton = ({ main, value, onClick, info }) => {
   return (
     <RButton onClick={onClick} main={main} info={info}>
       {value}
       {main && <img src={mask.src} />}
-      {info && <img src={mask.src} />}
+      {info && <img src={mask2.src} />}
     </RButton>
   );
 };
