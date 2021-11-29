@@ -6,7 +6,6 @@ import Swal from "sweetalert2";
 
 //function
 import { postSignup } from "../../src/Redux/Async/userAsync";
-
 import { userApi } from "../../src/Shared/api";
 
 //components
@@ -17,19 +16,17 @@ import ValidationInput from "../../src/Components/Input/ValidationInput";
 //regex
 import regex from "../../src/Shared/regex";
 
-// import { actionCreators as userActions } from "../redux/modules/user";
-
 const signup = () => {
   const dispatch = useDispatch();
-  //값 state
+
   const [userNickname, setuserNickname] = React.useState("");
   const [userEmail, setuserEmail] = React.useState("");
   const [userPassword, setuserPassword] = React.useState("");
   const [userconfirmPassword, setuserconfirmPassword] = React.useState("");
-
-  //체크 state
-  const [isCheckNickname, setIsCheckNickname] = React.useState(false); //nickname을 썼을땐 setisCheckNickname을 썼고, email일땐 setIsCheckEmail 쓰면되겠죠?
+  const [isCheckNickname, setIsCheckNickname] = React.useState(false);
   const [isCheckEmail, setIsCheckEmail] = React.useState(false);
+
+  // 회원가입하기
   const setSignup = () => {
     const signup = {
       userEmail,
@@ -48,7 +45,8 @@ const signup = () => {
     const nickname = {
       userNickname
     };
-    //여기서 바로 api 연결해서, 사용가능한 것으로 확인되면 바로 setIsCheckNickname을 true로 바꿔줍니다. isCheckNickname이 true면 방금처럼 '확인' 으로 바뀝니다.
+    //여기서 바로 api 연결해서, 사용가능한 것으로 확인되면 바로 setIsCheckNickname을 true로 바꿔줍니다. 
+    // isCheckNickname이 true면 '확인' 으로 바뀝니다.
     userApi
       .checknick(nickname)
       .then((res) => {
@@ -60,11 +58,9 @@ const signup = () => {
       .catch((err) => Swal.fire("중복된 닉네임입니다!", "", "warning"));
   };
 
+  // 이메일 중복확인
   const handleCheckEmail = () => {
-    const checkemail = {
-      userEmail
-    };
-
+    const checkemail = {userEmail};
     userApi
       .checkemail(checkemail)
       .then((res) => {
@@ -91,8 +87,7 @@ const signup = () => {
             errorText="특수문자 제외 3글자 이상 작성해 주세요! " //식이랑 맞지 않을때 보여줄 텍스트
             defaultText="닉네임을 입력해 주세요!" //아무것도 적히지 않았을때 보여줄 텍스트
             maxValue={10} //최대길이
-            successText=" ✓ 사용할 수 있는 닉네임입니다."
-            //successText도 사용하면 성공했을때 텍스트를 보여줄 수 있어요
+            successText=" ✓ 사용할 수 있는 닉네임입니다." 
           />
         </InputWrap>
         <InputWrap>
@@ -151,6 +146,7 @@ const signup = () => {
   );
 };
 
+// styled-component 
 const Wrap = styled.div`
   padding: 5%;
 `;

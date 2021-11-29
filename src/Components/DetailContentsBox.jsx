@@ -23,7 +23,6 @@ import likeOff from "../Asset/Images/likeOff.svg";
 import saveOn from "../Asset/Images/saveOn.svg";
 import saveOff from "../Asset/Images/saveOff.svg";
 import shareOn from "../Asset/Images/shareOn.svg";
-// import BasicProfile from "../../src/Asset/Images/BasicProfile.svg";
 
 const DetailContentsBox = (props) => {
   const dispatch = useDispatch();

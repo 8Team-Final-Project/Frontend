@@ -3,8 +3,6 @@ import { userApi } from "../../Shared/api";
 import router from "next/router";
 import Swal from "sweetalert2"
 
-// 미들웨어
-
 // 회원가입
 export const postSignup = createAsyncThunk("/user/postSignup", async (data, thunkAPI) => {
   try {

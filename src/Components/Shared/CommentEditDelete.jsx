@@ -16,10 +16,6 @@ const CommentEditDelete = ({ handleExit }) => {
     if (id) dispatch(getPostDB(id));
   }, [id]);
 
-  // const goEditPage = () => {
-  //   Router.push(`/event/edit/${id}`);
-  // };
-
   const deletePost = () => {
     dispatch(deletePostDB(id));
     if (router.pathname.indexOf("/event/detail/[id]") == 0) return router.push("/event");

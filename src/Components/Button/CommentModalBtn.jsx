@@ -1,23 +1,14 @@
 import React from "react";
 import styled from "styled-components";
-import { useRouter } from "next/router";
-
-
 
 const CommentModalBtn = ({ closeModal, deleteComment }) => {
-
-  const {
-    query: { id }
-  } = useRouter();
-
-
   return (
     <>
-      <EditButton >수정</EditButton>
+      <EditButton>수정</EditButton>
       <DeleteButton onClick={deleteComment}>삭제</DeleteButton>
       <CancelButton onClick={closeModal}>취소</CancelButton>
     </>
-  )
+  );
 };
 
 // 수정 버튼

@@ -4,18 +4,18 @@ import { useRouter } from "next/router";
 import styled from "styled-components";
 import { addCommentDB, getCommentDB } from "../Redux/Async/commentAsync";
 import Comment from "./Comment";
+import Swal from "sweetalert2";
 
 function Comments() {
-  const is_login = useSelector((state) => state.user.isLogin);
-
   const dispatch = useDispatch();
   const postId = useRouter().query.id;
 
+  // is_login : 로그인 확인
+  // commentList : 댓글 전체
+  const is_login = useSelector((state) => state.user.isLogin);
   const commentList = useSelector((state) => state.comment.comment);
 
   const [commentContent, setCommentContent] = useState("");
-
-
 
   const onChangeInput = (e) => {
     setCommentContent(e.target.value);
@@ -38,9 +38,9 @@ function Comments() {
       postId: postId,
       commentContent: commentContent
     };
-    
-    if(commentContent === "") {
-      alert("dddd")
+
+    if (commentContent === "") {
+      Swal.fire("댓글을 입력해주세요", "", "error");
     } else {
       onReset();
       dispatch(addCommentDB(commentItem));
@@ -48,32 +48,28 @@ function Comments() {
     }
   };
 
-  
   return (
-    
     <Wrap>
       {/* 댓글 입력창 */}
 
       {is_login && (
-      <>
-      <Box>
-        <DInput>
-          <Input
-          type="text" 
-          onChange={onChangeInput} 
-          placeholder="댓글을 입력해주세요."
-          value={commentContent} //인풋 초기화
-          />
-        </DInput>
-        <DInput2>
-          <SaveButton onClick={setComments}>작성</SaveButton>
-        </DInput2>
-      </Box>
-      <Hr />
-      </>
+        <>
+          <Box>
+            <DInput>
+              <Input
+                type="text"
+                onChange={onChangeInput}
+                placeholder="댓글을 입력해주세요."
+                value={commentContent} //인풋 초기화
+              />
+            </DInput>
+            <DInput2>
+              <SaveButton onClick={setComments}>작성</SaveButton>
+            </DInput2>
+          </Box>
+          <Hr />
+        </>
       )}
-
-      {/* 댓글 */}
       {commentList &&
         commentList.map((comment, idx) => {
           return <Comment {...comment} key={idx} />;

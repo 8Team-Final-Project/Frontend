@@ -16,24 +16,26 @@ import FirstEventImg from "../../src/Asset/Images/eventbnr1.svg";
 import SecondEventImg from "../../src/Asset/Images/eventbnr2.svg";
 import ThirdEventImg from "../../src/Asset/Images/eventbnr3.svg"
 
+//swiper 설정
 SwiperCore.use([Autoplay, Navigation]);
 
 const event = (props) => {
   const router = useRouter();
   const dispatch = useDispatch();
-  const post_list = useSelector((state) => state.post);
-  const isloaded = useSelector((state) => state.post.loaded);
-
-  // pagniation
-  const allPostList = useSelector((state) => state.post?.postlist?.[1]?.countAllpost);
-
+  
   const [page, setPage] = useState(1);
 
+  const post_list = useSelector((state) => state.post);
+  const isloaded = useSelector((state) => state.post.loaded);
+  const allPostList = useSelector((state) => state.post?.postlist?.[1]?.countAllpost);
+
+  // 페이지 변경
   const handlePageChange = (page) => {
     setPage(page);
     pagiNation(page);
   };
 
+  // 
   const pagiNation = useCallback(
     (page) => {
       dispatch(getEventPostListDB(page));
@@ -45,6 +47,7 @@ const event = (props) => {
     dispatch(getEventPostListDB(page));
   }, []);
 
+  // 이벤트 안내페이지로 가기 
   const goEventInfo = () => {
     return router.push("/event/info");
   };

@@ -14,6 +14,7 @@ const EventDetail = (props) => {
     );
 };
 
+//styled-component
 const Wrap = styled.div`
     text-align : center;
 ` 
