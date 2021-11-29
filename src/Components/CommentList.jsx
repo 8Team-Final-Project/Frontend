@@ -40,7 +40,7 @@ function Comments() {
     };
     
     if(commentContent === "") {
-      alert("dddd")
+      alert("댓글을 입력해 주세요!")
     } else {
       onReset();
       dispatch(addCommentDB(commentItem));
