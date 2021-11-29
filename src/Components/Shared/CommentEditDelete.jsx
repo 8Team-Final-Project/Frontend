@@ -16,17 +16,18 @@ const CommentEditDelete = ({ handleExit }) => {
     if (id) dispatch(getPostDB(id));
   }, [id]);
 
+  //수정페이지로 가기
+  const goEditPage = () => {
+    console.log(router);
+    if (router.pathname.indexOf("/event/detail/[id]") == 0) return router.push(`/event/edit/${id}`);
+    else return router.push(`/combination/edit/${id}`);
+  };
+
   //삭제 페이지로 가기
   const deletePost = () => {
     dispatch(deletePostDB(id));
     if (router.pathname.indexOf("/event/detail/[id]") == 0) return router.push("/event");
     else return router.push("/combination");
-  };
-
-  //수정페이지로 가기
-  const goEditPage = () => {
-    if (router.pathname.indexOf("/event/detail/[id]") == 0) return router.push(`/event/edit/${id}`);
-    else return router.push(`/combination/detail/${id}`);
   };
 
   return (

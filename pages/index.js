@@ -87,7 +87,7 @@ export default function Home() {
         </DescriptionArea>
       </Container>
 
-      {/* 다운로드 */}
+      {/* //다운로드
       <Container>
         <DescriptionArea>
           <Description>
@@ -95,7 +95,7 @@ export default function Home() {
             <p>더욱 편하게 사용해보세요!</p>
           </Description>
         </DescriptionArea>
-      </Container>
+      </Container> */}
     </div>
   );
 }
