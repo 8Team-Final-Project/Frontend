@@ -9,8 +9,11 @@ import SwiperCore, { Autoplay, Navigation } from "swiper";
 import "swiper/css";
 import "swiper/css/pagination";
 
-import SearchInput from "../../src/Components/Input/SearchInput";
+//Component
 import Card from "../../src/Components/Card";
+import SearchInput from "../../src/Components/Input/SearchInput";
+
+//Img
 import FirstEventImg from "../../src/Asset/Images/eventbnr1.svg";
 import SecondEventImg from "../../src/Asset/Images/eventbnr2.svg";
 import ThirdEventImg from "../../src/Asset/Images/eventbnr3.svg"
@@ -21,30 +24,33 @@ SwiperCore.use([Autoplay, Navigation]);
 const combination = (props) => {
   const router = useRouter();
   const dispatch = useDispatch();
-  const isloaded = useSelector((state) => state.post.loaded);
-  const postList = useSelector((state) => state.post?.postlist?.[0]);
-
-  // pagniation
-  const allPostList = useSelector((state) => state.post?.postlist?.[1]?.countAllpost);
-
+  
   const [page, setPage] = useState(1);
 
+
+  const isloaded = useSelector((state) => state.post.loaded);
+  const postList = useSelector((state) => state.post?.postlist?.[0]);
+  const allPostList = useSelector((state) => state.post?.postlist?.[1]?.countAllpost);
+
+  useEffect(() => {
+    dispatch(getCombinationListDB(page));
+  }, []);
+
+  // 페이지 변경
   const handlePageChange = (page) => {
     setPage(page);
     pagiNation(page);
   };
 
+  // 페이지에 게시글 가져오기
   const pagiNation = useCallback(
     (page) => {
       dispatch(getCombinationListDB(page));
     },
     [dispatch]
   );
-
-  useEffect(() => {
-    dispatch(getCombinationListDB(page));
-  }, []);
-
+  
+  // 이벤트 안내 페이지로 가기 
   const goEventInfo = () => {
     return router.push("/event/info");
   };
@@ -63,7 +69,6 @@ const combination = (props) => {
             delay: 4000,
             disableOnInteraction: false
           }}
-          // initialSlide = {2}
         >
           <SwiperSlide>
           <EventBanner src={FirstEventImg.src} onClick={goEventInfo} />

@@ -1,10 +1,8 @@
 import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
 import styled from "styled-components"
-import { 
-    postLogin,
-} from "../../src/Redux/Async/userAsync";
 import router from "next/router"
+import { useDispatch } from "react-redux";
+import { postLogin } from "../../src/Redux/Async/userAsync";
 
 //Component
 import ValidationInput from "../../src/Components/Input/ValidationInput"
@@ -37,8 +35,6 @@ const login = () => {
                         value={userEmail}
                         setValue={setuserEmail}
                         defaultText=" " 
-                        // errorText=" "
-                        // successText=" "
                         label="이메일"
                     />
                         </InputWrap>
