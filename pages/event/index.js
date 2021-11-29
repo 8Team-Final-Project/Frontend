@@ -19,7 +19,7 @@ import ThirdEventImg from "../../src/Asset/Images/eventbnr3.svg"
 //swiper 설정
 SwiperCore.use([Autoplay, Navigation]);
 
-const event = (props) => {
+const event = () => {
   const router = useRouter();
   const dispatch = useDispatch();
   
@@ -35,7 +35,7 @@ const event = (props) => {
     pagiNation(page);
   };
 
-  // 
+  // 설명필요함
   const pagiNation = useCallback(
     (page) => {
       dispatch(getEventPostListDB(page));
@@ -103,6 +103,8 @@ const event = (props) => {
   );
 };
 
+
+// styled-component
 const StylePagination = styled.div`
   > .pagination {
     display: flex;
@@ -170,6 +172,7 @@ const BannerImg = styled.img`
   width: 100%;
   cursor: pointer;
 `;
+
 const CardWrap = styled.div`
   margin: 8% 6% auto;
 `;

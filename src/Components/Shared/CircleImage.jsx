@@ -49,12 +49,12 @@ CircleImage.defaultProps = {
   edit: false
 };
 
+// styled-component
 const Image = styled.img`
   width: 130px;
   height: 130px;
   object-fit: cover;
   border-radius: 50%;
-  // border: 1px solid #B8B8B8;
 `;
 
 const ImageWrapper = styled.div`

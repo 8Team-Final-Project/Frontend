@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 
-//components
+//ㅊomponents
 import WhiteButton from "../Button/WhiteButton";
 import HoneyButton from "../Button/HoneyButton";
 

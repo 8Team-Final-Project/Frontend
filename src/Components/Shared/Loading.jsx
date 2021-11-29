@@ -1,7 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import { useRouter } from "next/dist/client/router";
-
 import LogoEffect from "./LogoEffect";
 
 export default function Loading() {
@@ -15,6 +13,7 @@ export default function Loading() {
   );
 }
 
+// styled-component
 const Container = styled.div`
   width: 100vw;
   height: 100vh;

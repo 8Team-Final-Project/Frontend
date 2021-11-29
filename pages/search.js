@@ -122,14 +122,18 @@ export default function Search(props) {
   );
 }
 
+// styled-component
 const RecommendedTagWrapper = styled.div`
   margin-top: 70px;
 `;
+
 const Label = styled.span`
   color: #b8b8b8;
   font-size: 14px;
 `;
+
 const RecommandedTagBox = styled.div``;
+
 const RecommandedTag = styled.button`
   border: 1px solid #b8b8b8;
   display: inline-flex;

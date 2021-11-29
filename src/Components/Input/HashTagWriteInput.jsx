@@ -90,6 +90,7 @@ HashTagInput.defaultProps = {
   setTagList: () => {}
 };
 
+// styled-component
 const Container = styled.div`
   width: 100%;
 `;

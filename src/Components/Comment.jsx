@@ -1,8 +1,8 @@
 import React, { useEffect, useCallback } from "react";
 import styled from "styled-components";
-import { useRouter } from "next/router";
+
 import { useSelector, useDispatch } from "react-redux";
-import { deleteCommentDB, getCommentDB } from "../Redux/Async/commentAsync";
+import { deleteCommentDB } from "../Redux/Async/commentAsync";
 
 const Comment = (props) => {
   const dispatch = useDispatch();

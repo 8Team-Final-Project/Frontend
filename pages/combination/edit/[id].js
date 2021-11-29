@@ -130,6 +130,7 @@ const WriteBox = styled.div`
   height: auto;
   margin: auto;
 `;
+
 const FlexBox = styled.div`
   display: flex;
 `;

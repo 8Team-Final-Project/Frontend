@@ -5,6 +5,7 @@ import router from "next/router";
 
 //헤더영역을 이루는 컴포넌트입니다.
 const Header = () => {
+  //로그인 체크
   const is_login = useSelector((state) => state.user.isLogin);
 
   return (
@@ -53,6 +54,7 @@ const Header = () => {
   );
 };
 
+// styled-component
 const Wrap = styled.div`
   position: relative;
   width: 100%;

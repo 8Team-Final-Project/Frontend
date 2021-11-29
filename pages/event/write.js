@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import styled from "styled-components";
+import { useDispatch } from "react-redux";
 import { addPostDB } from "../../src/Redux/Async/postAsync";
 import router from "next/router";
-import styled from "styled-components";
 
 //components
 import RectangleImage from "../../src/Components/Shared/RectangleImage";
@@ -120,6 +120,7 @@ const WriteBox = styled.div`
   height: auto;
   margin: auto;
 `;
+
 const FlexBox = styled.div`
   display: flex;
   margin-top: 60px;

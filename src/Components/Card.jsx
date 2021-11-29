@@ -11,9 +11,9 @@ import likeOff from "../Asset/Images/likeOff.svg";
 
 const Card = (props) => {
   const router = useRouter();
-
   const { src } = props;
 
+  //상세페이지 이동
   const goDetail = () => {
     if (props.event1list === true) return router.push(`/event/detail/${props._id}`);
     else return router.push(`/combination/detail/${props._id}`);
@@ -38,9 +38,9 @@ const Card = (props) => {
 
 Card.defaultProps = {
   src: "/defaultImg.svg"
-  
 };
 
+// styled-component
 const PostTitle = styled.div`
   font-size: 18px;
   margin-bottom: 7px;
@@ -81,7 +81,7 @@ const LeftBox = styled.div`
   background-image: url("${(props) => props.src}");
   background-position: center;
   background-size: cover;
-  background-color:#F8F8F8;
+  background-color: #f8f8f8;
 `;
 
 // 제목, 태그, 좋아요 받아오기

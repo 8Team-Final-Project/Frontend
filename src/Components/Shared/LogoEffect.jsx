@@ -26,6 +26,7 @@ LogoEffect.defaultProps = {
   height: "auto"
 };
 
+// styled-component
 const Container = styled.div`
   width: ${({ width }) => width};
   height: ${({ height }) => height};

@@ -21,7 +21,7 @@ import ThirdEventImg from "../../src/Asset/Images/eventbnr3.svg"
 SwiperCore.use([Autoplay, Navigation]);
 
 //꿀조합 페이지
-const combination = (props) => {
+const combination = () => {
   const router = useRouter();
   const dispatch = useDispatch();
   
@@ -83,7 +83,6 @@ const combination = (props) => {
         </SwiperSlide>
         </Swiper>
         <CardWrap>
-          {/* post는 객체하나 */}
           {isloaded && (
             <>
               {postList &&
@@ -109,6 +108,8 @@ const combination = (props) => {
   );
 };
 
+
+// styled-component
 const StylePagination = styled.div`
   > .pagination {
     display: flex;

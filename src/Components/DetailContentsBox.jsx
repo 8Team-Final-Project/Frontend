@@ -2,20 +2,22 @@ import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
+import { getPostDB, likePostDB, savePostDB } from "../Redux/Async/postAsync";
 import Swal from "sweetalert2";
 
 import Modal from "react-modal";
 import { CopyToClipboard } from "react-copy-to-clipboard";
-import { getPostDB, likePostDB, savePostDB } from "../Redux/Async/postAsync";
 import SwiperCore, { Navigation } from "swiper";
 import "swiper/css";
-import CommentList from "./CommentList";
 
 //component
+import CommentList from "./CommentList";
 import MenuButton from "./Shared/CommentEditDelete";
-import { BsThreeDotsVertical } from "react-icons/bs";
 import Tag from "./Tag";
 import LikeEffect from "./Shared/LikeEffect";
+
+//icon
+import { BsThreeDotsVertical } from "react-icons/bs";
 
 //img
 import likeOn from "../Asset/Images/likeOn.svg";
@@ -26,27 +28,28 @@ import shareOn from "../Asset/Images/shareOn.svg";
 
 const DetailContentsBox = (props) => {
   const dispatch = useDispatch();
+  const {
+    query: { id }
+  } = useRouter();
+
   const [showLottie, setShowLottie] = useState(false);
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
   const { src } = props;
 
-  const {
-    query: { id }
-  } = useRouter();
-
   const shareUrl = "kkuljohab.com" + useRouter().asPath;
 
   const post = useSelector((state) => state.post.post);
   const user = useSelector((state) => state.user.user?.userId);
-
   const likeUserId = useSelector((state) => state.post.post?.likeStatus);
   const saveUserId = useSelector((state) => state.post.post?.keepStatus);
 
+  //
   const setPostSave = () => {
     dispatch(savePostDB(id));
   };
 
+  //
   const setPostLike = () => {
     dispatch(likePostDB(id));
     if (likeUserId == false) {
@@ -111,9 +114,7 @@ const DetailContentsBox = (props) => {
           <Label>레시피</Label>
           <Recipe> {post && post.postContent}</Recipe>
         </Content>
-        <TagWrap>
-          <IconBox>{post && post.postTag.map((tag, idx) => <Tag is_detail key={idx} value={"#" + tag}></Tag>)}</IconBox>
-        </TagWrap>
+        <TagWrap>{post && post.postTag.map((tag, idx) => <Tag is_detail key={idx} value={"#" + tag}></Tag>)}</TagWrap>
         <Btn>
           <IconBox>
             <button
@@ -172,6 +173,7 @@ DetailContentsBox.defaultProps = {
   src: "/defaultImg.svg"
 };
 
+// styled-component
 const Image = styled.img`
   margin: 0 15px;
   width: 44px;
@@ -284,6 +286,7 @@ const Recipe = styled.span`
 
 const TagWrap = styled.div`
   margin: 15% 0 8.5% 0;
+  text-align: center;
 `;
 
 const Btn = styled.div`

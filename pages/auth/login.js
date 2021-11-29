@@ -23,8 +23,6 @@ const login = () => {
         }
         dispatch(postLogin(login))
     }
-
-    
     
     return (
         <Container>
@@ -50,12 +48,9 @@ const login = () => {
                 </Margin>
                 <Btn>
                     <RedButton 
-                        onClick={() =>{
-                            setLogin()
-                        }}
+                        onClick={() =>{setLogin()}}
                         value="로그인"
                     />
-
                 <SignupBtn onClick={()=>router.push('/auth/signup')}>
                     회원가입
                 </SignupBtn>
@@ -65,6 +60,7 @@ const login = () => {
     );
 };
 
+// styled-componenet
 const Container = styled.div`
     position: center;
 `
@@ -73,7 +69,6 @@ const Wrap = styled.div`
     padding : 6%;
 `
 
-
 const Margin = styled.div`
     margin: 8% 0px;
 `
@@ -81,11 +76,10 @@ const Margin = styled.div`
 const InputWrap = styled.div`
    margin-bottom : 6%;
 `
+
 const Btn = styled.div`
     margin-top : 18%;
 `
-
-
 
 const SignupBtn = styled.div`
     color: #b8b8b8;

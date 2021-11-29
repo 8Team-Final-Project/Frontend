@@ -4,7 +4,6 @@ import { wrapper } from "../src/Redux/configureStore";
 import { useDispatch } from "react-redux";
 import { useRouter } from "next/router";
 import GlobalThemeProvider from "../styles/GlobalThemeProvider";
-import * as gtag from "../src/Shared/gtag";
 
 //api
 import { Me } from "../src/Redux/Async/userAsync";
@@ -12,6 +11,9 @@ import { Me } from "../src/Redux/Async/userAsync";
 //components
 import Header from "../src/Components/Layout/Header";
 import FloatingButton from "../src/Components/Button/FloatingButton";
+
+//Google Analytics
+import * as gtag from "../src/Shared/gtag";
 
 //전체 레이아웃을 담당하는 컴포넌트입니다.
 function MyApp({ Component, pageProps }) {
@@ -40,6 +42,7 @@ function MyApp({ Component, pageProps }) {
     }
   }, [isToken]);
 
+  // 모바일 확인
   useEffect(() => {
     function isMobile() {
       const user = navigator.userAgent;
@@ -55,15 +58,18 @@ function MyApp({ Component, pageProps }) {
       return is_mobile;
     }
 
+    //모바일과 웹 넓이 구분
     if (!isMobile()) setLocationX(container.current.offsetParent.offsetWidth - container.current.offsetLeft);
     if (isMobile()) setLocationX(container.current.offsetWidth);
 
+    // 설명필요함
     window.addEventListener("resize", () => {
       setLocationX(container.current.offsetParent.offsetWidth - container.current.offsetLeft);
     });
     return window.removeEventListener("resize", () => {});
   }, []);
 
+  //플로팅 버튼 router 처리 
   const floatButton = () => {
     if (router.pathname === "/event") return router.push("/event/write");
     if (router.pathname === "/combination") return router.push("/combination/write");
@@ -84,6 +90,7 @@ function MyApp({ Component, pageProps }) {
   );
 }
 
+// styled-component
 const Wrapper = styled.div`
   max-width: 500px;
   width: 100vw;

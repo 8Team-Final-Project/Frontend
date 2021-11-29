@@ -20,6 +20,7 @@ export default function LikeEffect() {
   );
 }
 
+// styled-component
 const Container = styled.div``;
 
 const Lottie = styled.div`

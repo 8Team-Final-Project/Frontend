@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-// import EventPost from "../src/Components/Layout/EventPost"
-
 import styled from "styled-components";
+import { postLogout, Me } from "../src/Redux/Async/userAsync";
+
+//Component
 import PostSaveBtn from "../src/Components/Mypage/PostSaveBtn";
 import CircleImage from "../src/Components/Shared/CircleImage";
+
 import MyInfoEditModal from "../src/Components/Mypage/MyInfoEditModal";
 
-import { postLogout, Me } from "../src/Redux/Async/userAsync";
 
 //마이페이지 첫 렌더링시 메이블린 api 가져와서 list에 저장하기
 const mypage = (props) => {
@@ -73,6 +74,8 @@ const mypage = (props) => {
     </>
   );
 };
+
+// styled-component
 const LogoutBtn = styled.div`
   color: #b8b8b8;
   margin: auto;

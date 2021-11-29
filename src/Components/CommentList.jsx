@@ -51,17 +51,11 @@ function Comments() {
   return (
     <Wrap>
       {/* 댓글 입력창 */}
-
       {is_login && (
         <>
           <Box>
             <DInput>
-              <Input
-                type="text"
-                onChange={onChangeInput}
-                placeholder="댓글을 입력해주세요."
-                value={commentContent} //인풋 초기화
-              />
+              <Input type="text" onChange={onChangeInput} placeholder="댓글을 입력해주세요." value={commentContent} />
             </DInput>
             <DInput2>
               <SaveButton onClick={setComments}>작성</SaveButton>
@@ -78,6 +72,7 @@ function Comments() {
   );
 }
 
+// styled-component
 const Wrap = styled.div`
   width: 100%;
   margin-top: 50px;

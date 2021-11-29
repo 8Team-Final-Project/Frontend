@@ -154,6 +154,7 @@ const Wrap = styled.div`
 const MarginBottom = styled.div`
   margin: 3% 0px 25%;
 `;
+
 const InputWrap = styled.div`
   margin-bottom: 8%;
 `;

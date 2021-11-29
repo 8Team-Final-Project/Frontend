@@ -1,5 +1,7 @@
 import React from "react";
 import styled from "styled-components";
+
+//icon
 import logoIcon from "../../Asset/icons/logo_icon.svg";
 
 const HoneyButton = ({ value, onClick, main }) => {
@@ -17,6 +19,7 @@ HoneyButton.defaultProps = {
   main: false
 };
 
+// styled-component
 const HButton = styled.button`
   width: 80%;
   height: 80px;

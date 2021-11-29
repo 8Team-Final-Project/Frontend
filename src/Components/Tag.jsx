@@ -1,7 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import { useSelector } from "react-redux";
-import { color } from "@mui/system";
 
 // 검색 기능에서 input 값을 가져와서 뿌려준다.
 // useState로 값을 받아오기
@@ -16,6 +14,7 @@ const Tag = (props) => {
   return <BlackTagBox>{value}</BlackTagBox>;
 };
 
+// styled-component
 const RedTagBox = styled.div`
   background-color: #ffffff;
   display: inline-block;
@@ -26,7 +25,7 @@ const RedTagBox = styled.div`
   height: 27.41px;
   border-radius: 74px;
   border: 2px solid #ff7775;
-  margin: 0px 10px 5px 10px;
+  margin: 5px;
 `;
 
 const BlackTagBox = styled.div`

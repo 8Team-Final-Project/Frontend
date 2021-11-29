@@ -1,20 +1,20 @@
 import React, { useState } from "react";
+import styled from "styled-components";
 import { useSelector } from "react-redux";
 
-import styled from "styled-components";
+//component
 import Card from "../Card";
 
-const PostSaveBtn = (props) => {
+const PostSaveBtn = () => {
   const [activeIndex, setActiveIndex] = useState(0);
 
   const tabClickHandler = (index) => {
     setActiveIndex(index);
   };
 
-  //작성글 불러오기
+  //myPost : 작성한 글
+  //keepPost : 저장한 글
   const post = useSelector((state) => state.user.user?.myPost);
-
-  //저장글 불러오기
   const save = useSelector((state) => state.user.user?.keepPost);
 
   const tabContArr = [
@@ -41,11 +41,6 @@ const PostSaveBtn = (props) => {
       ),
       tabCont: (
         <>
-          {/* {save &&
-            save.map((p) => {
-              return <Card {...p} key={p.id} />;
-            })} */}
-
           {save &&
             save.map((p) => {
               return <Card {...p} key={p.id} />;
@@ -75,6 +70,7 @@ PostSaveBtn.defaultProps = {
   onClick: () => {}
 };
 
+// styled-component
 const Center = styled.div`
   text-align: center;
 `;

@@ -26,6 +26,7 @@ export default function SearchInput() {
   );
 }
 
+// styled-component
 const Form = styled(FormControl)`
   width: 100%;
 `;

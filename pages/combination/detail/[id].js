@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import DetailContentsBox from '../../../src/Components/DetailContentsBox';
 
 //꿀조합 상세페이지
-const CombinationDetail = (props) => {
+const CombinationDetail = () => {
   return (
     <React.Fragment>
         <Wrap>
