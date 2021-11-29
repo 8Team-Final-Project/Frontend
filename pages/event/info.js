@@ -14,7 +14,7 @@ const Info = (props) => {
            <EventInfoImg src="/eventInfoImg.png"/>
            <Btn>
            <RedButton 
-           main
+           info
            value={"이벤트 참여하기"}
            onClick={goEvent}
            /> 
