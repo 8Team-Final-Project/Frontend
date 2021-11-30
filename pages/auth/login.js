@@ -1,7 +1,9 @@
-import React, { useEffect } from "react";
+import React from "react";
 import styled from "styled-components"
 import router from "next/router"
 import { useDispatch } from "react-redux";
+
+//function
 import { postLogin } from "../../src/Redux/Async/userAsync";
 
 //Component
@@ -9,13 +11,14 @@ import ValidationInput from "../../src/Components/Input/ValidationInput"
 import RedButton from "../../src/Components/Button/RedButton"
 
 
+
 const login = () => {
     const dispatch = useDispatch();
 
-    const [userEmail, setuserEmail] = React.useState("");
-    const [userPassword, setuserPassword] = React.useState("");
+    const [userEmail, setuserEmail] = React.useState(""); // 유저 이메일
+    const [userPassword, setuserPassword] = React.useState(""); // 유저 비밀번호
     
-    // 로그인 버튼
+    // 로그인하기
     const setLogin = () => {
         const login = {
             userEmail : userEmail,

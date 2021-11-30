@@ -1,13 +1,18 @@
 import React, { useEffect, useState, useCallback } from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
-import { getCombinationListDB } from "../../src/Redux/Async/postAsync";
 import { useRouter } from "next/router";
+
+//library
 import Pagination from "react-js-pagination";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Autoplay, Navigation } from "swiper";
 import "swiper/css";
 import "swiper/css/pagination";
+SwiperCore.use([Autoplay, Navigation]); // Autoplay : 자동 넘김, Navigation : 화살표 표시
+
+//function
+import { getCombinationListDB } from "../../src/Redux/Async/postAsync";
 
 //Component
 import Card from "../../src/Components/Card";
@@ -18,20 +23,20 @@ import FirstEventImg from "../../src/Asset/Images/eventbnr1.svg";
 import SecondEventImg from "../../src/Asset/Images/eventbnr2.svg";
 import ThirdEventImg from "../../src/Asset/Images/eventbnr3.svg"
 
-SwiperCore.use([Autoplay, Navigation]);
 
 //꿀조합 페이지
 const combination = () => {
   const router = useRouter();
   const dispatch = useDispatch();
   
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(1); // 페이지
 
 
-  const isloaded = useSelector((state) => state.post.loaded);
-  const postList = useSelector((state) => state.post?.postlist?.[0]);
-  const allPostList = useSelector((state) => state.post?.postlist?.[1]?.countAllpost);
+  const isloaded = useSelector((state) => state.post.loaded); //map 오류 제거용
+  const postList = useSelector((state) => state.post?.postlist?.[0]); // 게시물 리스트
+  const allPostList = useSelector((state) => state.post?.postlist?.[1]?.countAllpost); // 게시물 숫자
 
+  //렌더링시 실행
   useEffect(() => {
     dispatch(getCombinationListDB(page));
   }, []);

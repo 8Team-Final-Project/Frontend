@@ -2,7 +2,6 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import router from "next/router";
 import styled from "styled-components";
-import Swal from "sweetalert2";
 
 //function
 import { postSignup } from "../../src/Redux/Async/userAsync";
@@ -13,18 +12,21 @@ import RedButton from "../../src/Components/Button/RedButton";
 import ConfirmValidationInput from "../../src/Components/Input/ConfirmValidationInput";
 import ValidationInput from "../../src/Components/Input/ValidationInput";
 
+//library
+import Swal from "sweetalert2";
+
 //regex
 import regex from "../../src/Shared/regex";
 
 const signup = () => {
   const dispatch = useDispatch();
 
-  const [userNickname, setuserNickname] = React.useState("");
-  const [userEmail, setuserEmail] = React.useState("");
-  const [userPassword, setuserPassword] = React.useState("");
-  const [userconfirmPassword, setuserconfirmPassword] = React.useState("");
-  const [isCheckNickname, setIsCheckNickname] = React.useState(false);
-  const [isCheckEmail, setIsCheckEmail] = React.useState(false);
+  const [userNickname, setuserNickname] = React.useState(""); // 유저닉네임
+  const [userEmail, setuserEmail] = React.useState(""); // 유저 이메일
+  const [userPassword, setuserPassword] = React.useState(""); // 유저 비밀번호
+  const [userconfirmPassword, setuserconfirmPassword] = React.useState(""); // 유저 비밀번호 확인
+  const [isCheckNickname, setIsCheckNickname] = React.useState(false); // 유저 닉네임 중복확인
+  const [isCheckEmail, setIsCheckEmail] = React.useState(false); // 유저 이메일 중복확인
 
   // 회원가입하기
   const setSignup = () => {
@@ -34,6 +36,7 @@ const signup = () => {
       userPassword,
       userconfirmPassword
     };
+    // 비밀번호와 비밀번호 확인이 일치여부
     if (userPassword === userconfirmPassword) {
       return dispatch(postSignup(signup));
     } else {
@@ -41,6 +44,7 @@ const signup = () => {
     }
   };
 
+  //닉네임 중복확인
   const handleCheckNickname = () => {
     const nickname = {
       userNickname
@@ -83,11 +87,11 @@ const signup = () => {
             handleValueCheck={handleCheckNickname} //서버랑 연결해서 ok뜨면 true로 바꿔주는 함수 만들기
             isCheck={isCheckNickname} //check했는지 안했는지 담는 state
             setIsCheck={setIsCheckNickname} //isCheck를 변경시키는 setState
-            regexCheck={regex.nickname} //정규식 shared/regex 에서 가져와서 사용하세요.
+            regexCheck={regex.nickname} //정규식 shared/regex 에서 가져와서 사용
             errorText="특수문자 제외 3글자 이상 작성해 주세요! " //식이랑 맞지 않을때 보여줄 텍스트
             defaultText="닉네임을 입력해 주세요!" //아무것도 적히지 않았을때 보여줄 텍스트
             maxValue={10} //최대길이
-            successText=" ✓ 사용할 수 있는 닉네임입니다." 
+            successText=" ✓ 사용할 수 있는 닉네임입니다." // 정규식에 맞게 비밀번호를 입력했을 때 뜨는 텍스트
           />
         </InputWrap>
         <InputWrap>

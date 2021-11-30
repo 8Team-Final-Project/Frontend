@@ -1,14 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
-import { getPostDB, likePostDB, savePostDB } from "../Redux/Async/postAsync";
-import Swal from "sweetalert2";
 
+//library
+import Swal from "sweetalert2";
 import Modal from "react-modal";
 import { CopyToClipboard } from "react-copy-to-clipboard";
-import SwiperCore, { Navigation } from "swiper";
-import "swiper/css";
+
+//function
+import { getPostDB, likePostDB, savePostDB } from "../Redux/Async/postAsync";
 
 //component
 import CommentList from "./CommentList";
@@ -30,21 +31,21 @@ const DetailContentsBox = (props) => {
   const dispatch = useDispatch();
   const {
     query: { id }
-  } = useRouter();
+  } = useRouter(); // postID
 
-  const [showLottie, setShowLottie] = useState(false);
-  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [showLottie, setShowLottie] = useState(false); // 로티
+  const [modalIsOpen, setModalIsOpen] = useState(false); // 모달 controll
 
   const { src } = props;
 
   const shareUrl = "kkuljohab.com" + useRouter().asPath;
 
-  const post = useSelector((state) => state.post.post);
-  const user = useSelector((state) => state.user.user?.userId);
-  const likeUserId = useSelector((state) => state.post.post?.likeStatus);
-  const saveUserId = useSelector((state) => state.post.post?.keepStatus);
+  const post = useSelector((state) => state.post.post); // 포스트 정보
+  const user = useSelector((state) => state.user.user?.userId); // 유저id
+  const likeUserId = useSelector((state) => state.post.post?.likeStatus); // 좋아요 표시한 유저 id
+  const saveUserId = useSelector((state) => state.post.post?.keepStatus); // 찜하기 누른 유저 id
 
-  //
+  //찜하기
   const setPostSave = () => {
     dispatch(savePostDB(id));
   };
@@ -81,9 +82,6 @@ const DetailContentsBox = (props) => {
       width: "100%"
     }
   };
-
-  //Swiper
-  SwiperCore.use([Navigation]);
 
   return (
     <React.Fragment>

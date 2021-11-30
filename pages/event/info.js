@@ -1,8 +1,11 @@
 import React from "react";
 import styled from "styled-components"
 import {useRouter} from "next/router"
+
+//componenet
 import RedButton from "../../src/Components/Button/RedButton";
 
+//이벤트에 대한 정보 페이지
 const Info = () => {
     const router = useRouter();
 

@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
+
+//function
 import { postLogout, Me } from "../src/Redux/Async/userAsync";
 
 //Component
 import PostSaveBtn from "../src/Components/Mypage/PostSaveBtn";
 import CircleImage from "../src/Components/Shared/CircleImage";
-
 import MyInfoEditModal from "../src/Components/Mypage/MyInfoEditModal";
 
 

@@ -1,9 +1,13 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
-import { addPostDB } from "../../src/Redux/Async/postAsync";
 import router from "next/router";
+
+//library
 import Swal from "sweetalert2";
+
+//function
+import { addPostDB } from "../../src/Redux/Async/postAsync";
 
 //components
 import RectangleImage from "../../src/Components/Shared/RectangleImage";
@@ -16,16 +20,17 @@ import HashTagInput from "../../src/Components/Input/HashTagWriteInput";
 const write = () => {
   const dispatch = useDispatch();
 
-  const [postImg1, setPostImg] = useState("");
-  const [postTitle, setPostTitle] = useState("");
-  const [postRecipe, setPostRecipe] = useState("");
-  const [postContent, setPostContent] = useState("");
-  const [postTag, setPostTag] = useState();
-  const [mainlist, setMainList] = useState(false);
-  const [event1list, setEvent1list] = useState(true);
-  const [event2list, setEvent2list] = useState(false);
-  const [event3list, setEvent3list] = useState(false);
+  const [postImg1, setPostImg] = useState(""); // 게시물 이미지
+  const [postTitle, setPostTitle] = useState(""); // 게시물 제목
+  const [postRecipe, setPostRecipe] = useState(""); // 게시물 레시피
+  const [postContent, setPostContent] = useState(""); // 게시물 본문
+  const [postTag, setPostTag] = useState(); // 게시물 태그
+  const [mainlist, setMainList] = useState(false); // 꿀조합게시글
+  const [event1list, setEvent1list] = useState(true); // 이벤트1 게시글
+  const [event2list, setEvent2list] = useState(false); // 이벤트2 게시글
+  const [event3list, setEvent3list] = useState(false); // 이벤트3 게시글
 
+  // 게시물 추가 
   const addEventPost = () => {
     const content = {
       postImg1: postImg1,
@@ -38,6 +43,7 @@ const write = () => {
       event2list: event2list,
       event3list: event3list
     };
+    //모든 빈칸을 채워야 게시물 추가가 가능 
     if (!postTitle) {
       return Swal.fire("제목을 입력해주세요", "", "error");
     }
@@ -111,6 +117,8 @@ const write = () => {
     </WriteBox>
   );
 };
+
+//styled-component
 const CenterBox = styled.div`
   width: 100%;
   margin: 20px auto;

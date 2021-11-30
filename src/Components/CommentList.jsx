@@ -2,9 +2,15 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router";
 import styled from "styled-components";
-import { addCommentDB, getCommentDB } from "../Redux/Async/commentAsync";
-import Comment from "./Comment";
+
+//library
 import Swal from "sweetalert2";
+
+//function
+import { addCommentDB, getCommentDB } from "../Redux/Async/commentAsync";
+
+//component
+import Comment from "./Comment";
 
 function Comments() {
   const dispatch = useDispatch();

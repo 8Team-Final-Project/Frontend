@@ -1,5 +1,7 @@
 import React from "react";
 import styled from "styled-components";
+
+//component
 import DetailContentsBox from '../../../src/Components/DetailContentsBox';
 
 //꿀조합 상세페이지

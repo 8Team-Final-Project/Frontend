@@ -1,7 +1,8 @@
 import React, { useEffect, useCallback } from "react";
 import styled from "styled-components";
-
 import { useSelector, useDispatch } from "react-redux";
+
+//function
 import { deleteCommentDB } from "../Redux/Async/commentAsync";
 
 const Comment = (props) => {
