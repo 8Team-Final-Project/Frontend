@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from "react";
 import lottie from "lottie-web";
 import styled from "styled-components";
 
+//좋아요 이팩트
 export default function LikeEffect() {
   const ref = useRef();
   useEffect(() => {

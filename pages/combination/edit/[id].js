@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
-import { editPostDB } from "../../../src/Redux/Async/postAsync";
 import { useRouter } from "next/router";
 
+//function
+import { editPostDB } from "../../../src/Redux/Async/postAsync";
+
+//component
 import RectangleImage from "../../../src/Components/Shared/RectangleImage";
 import ValidationInput from "../../../src/Components/Input/ValidationInput";
 import RedButton from "../../../src/Components/Button/RedButton";
@@ -16,17 +19,18 @@ const combinationEdit = () => {
   const postId = useRouter().query.id;
 
   // state관리
-  const [postImg, setPostImg] = useState("");
-  const [postTitle, setPostTitle] = useState("");
-  const [postRecipe, setPostRecipe] = useState("");
-  const [postContent, setPostContent] = useState("");
+  const [postImg, setPostImg] = useState(""); //게시물 이미지 관리
+  const [postTitle, setPostTitle] = useState(""); //게시물 제목 관리
+  const [postRecipe, setPostRecipe] = useState(""); // 게시물 레시피 관리
+  const [postContent, setPostContent] = useState(""); // 게시물 본문 관리
 
   // state에서 값 가져오기 
-  const getPostImg = useSelector((state) => state.post.post?.postImg);
-  const getPostTitle = useSelector((state) => state.post.post?.postTitle);
-  const getPostRecipe = useSelector((state) => state.post.post?.postRecipe);
-  const getPostContent = useSelector((state) => state.post.post?.postContent);
+  const getPostImg = useSelector((state) => state.post.post?.postImg); //게시물 이미지
+  const getPostTitle = useSelector((state) => state.post.post?.postTitle); //게시물 제목
+  const getPostRecipe = useSelector((state) => state.post.post?.postRecipe); //게시물 레시피
+  const getPostContent = useSelector((state) => state.post.post?.postContent); // 게시물 본문
 
+  //렌더링시 동작
   React.useEffect(() => {
     if (getPostImg && getPostImg !== postImg) setPostImg(getPostImg);
     if (getPostTitle && getPostTitle !== postTitle) setPostTitle(getPostTitle);

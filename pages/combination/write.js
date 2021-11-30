@@ -1,10 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
-import { addPostDB } from "../../src/Redux/Async/postAsync";
 import { useRouter } from "next/router";
-import { postTagRankingDB } from "../../src/Redux/Async/tagRankingAsync";
+
+//library
 import Swal from 'sweetalert2';
+
+//function
+import { postTagRankingDB } from "../../src/Redux/Async/tagRankingAsync";
+import { addPostDB } from "../../src/Redux/Async/postAsync";
 
 // componets
 import HashTagWriteInput from "../../src/Components/Input/HashTagWriteInput";
@@ -12,7 +16,6 @@ import RectangleImage from "../../src/Components/Shared/RectangleImage";
 import ValidationInput from "../../src/Components/Input/ValidationInput";
 import RedButton from "../../src/Components/Button/RedButton";
 import WhiteButton from "../../src/Components/Button/WhiteButton";
-import LikeEffect from "../../src/Components/Shared/LikeEffect";
 
 //꿀조합 작성페이지
 const write = () => {

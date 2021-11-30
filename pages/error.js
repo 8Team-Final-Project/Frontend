@@ -1,6 +1,8 @@
 import { useRouter } from "next/dist/client/router";
 import React from "react";
 import styled from "styled-components";
+
+//Img
 import refreshIcon from "../src/Asset/icons/refresh_icon.svg";
 
 export default function Error() {

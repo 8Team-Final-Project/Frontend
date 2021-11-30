@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
-import { wrapper } from "../src/Redux/configureStore";
 import { useDispatch } from "react-redux";
 import { useRouter } from "next/router";
 import GlobalThemeProvider from "../styles/GlobalThemeProvider";
 
-//api
+//function
 import { Me } from "../src/Redux/Async/userAsync";
+import { wrapper } from "../src/Redux/configureStore";
 
 //components
 import Header from "../src/Components/Layout/Header";

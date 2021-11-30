@@ -2,6 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import { useRouter } from "next/router";
 import { useDispatch } from "react-redux";
+
+//function
 import { deletePostDB, getPostDB } from "../../Redux/Async/postAsync";
 
 const CommentEditDelete = ({ handleExit }) => {

@@ -1,14 +1,19 @@
 import React, { useEffect, useState, useCallback } from "react";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
-import { getEventPostListDB } from "../../src/Redux/Async/postAsync";
 import { useRouter } from "next/router";
+
+//library
 import Pagination from "react-js-pagination";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Autoplay, Navigation } from "swiper";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
+SwiperCore.use([Autoplay, Navigation]); // Autoplay : 자동 슬라이드, Navigation : 방향 표시
+
+//function
+import { getEventPostListDB } from "../../src/Redux/Async/postAsync";
 
 //component
 import Card from "../../src/Components/Card";
@@ -16,18 +21,15 @@ import FirstEventImg from "../../src/Asset/Images/eventbnr1.svg";
 import SecondEventImg from "../../src/Asset/Images/eventbnr2.svg";
 import ThirdEventImg from "../../src/Asset/Images/eventbnr3.svg"
 
-//swiper 설정
-SwiperCore.use([Autoplay, Navigation]);
-
 const event = () => {
   const router = useRouter();
   const dispatch = useDispatch();
   
   const [page, setPage] = useState(1);
 
-  const post_list = useSelector((state) => state.post);
-  const isloaded = useSelector((state) => state.post.loaded);
-  const allPostList = useSelector((state) => state.post?.postlist?.[1]?.countAllpost);
+  const post_list = useSelector((state) => state.post); // 게시물전체
+  const isloaded = useSelector((state) => state.post.loaded); // map오류 해결용
+  const allPostList = useSelector((state) => state.post?.postlist?.[1]?.countAllpost); // 게시물 총 갯수
 
   // 페이지 변경
   const handlePageChange = (page) => {
