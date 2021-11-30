@@ -114,7 +114,7 @@ const signup = () => {
             value={userPassword}
             setValue={setuserPassword}
             regexCheck={regex.password}
-            errorText="특수문자 제외 영문, 숫자 포함 6글자 이상 입력해 주세요!"
+            errorText="특수문자 제외 영문, 숫자 포함 6글자 이상 10글자 이하로 입력해 주세요!"
             defaultText="비밀번호를 입력해 주세요!"
             successText=" ✓ 사용할 수 있는 비밀번호입니다"
             type="password"
