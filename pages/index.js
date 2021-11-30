@@ -36,7 +36,13 @@ export default function Home() {
         <DescriptionArea>
           <Image src={mainBnr.src} width="100%" />
           <Description>나만의 꿀조합 레시피를 다함께 즐겨요!</Description>
-          <BtnImg src={honeybtn.src} width="80%" onClick={() => {router.push("/combination")}} />
+          <BtnImg
+            src={honeybtn.src}
+            width="80%"
+            onClick={() => {
+              router.push("/combination");
+            }}
+          />
         </DescriptionArea>
       </Container>
 
@@ -69,7 +75,13 @@ export default function Home() {
             <p>사람들과 나만의 꿀조합도 공유하고,</p> <p>푸짐한 상품도 받아가세요!</p>
           </Description>
           <Btn>
-          <BtnImg src={goeventbtn.src} width="80%" onClick={() => {router.push("/event/info")}} />
+            <BtnImg
+              src={goeventbtn.src}
+              width="80%"
+              onClick={() => {
+                router.push("/event/info");
+              }}
+            />
           </Btn>
         </DescriptionArea>
       </Container>
@@ -80,7 +92,11 @@ export default function Home() {
           <Image width="80px" height="90px" src={questionIcon.src} />
           <Description>
             <p>
-              궁금하신 점은 <a href="https://wpub6shfa65.typeform.com/to/rhCKtx33">여기</a>를 눌러
+              궁금하신 점은{" "}
+              <a target="_blank" href="https://forms.gle/d1XdNAdGfpLFufHt5">
+                여기
+              </a>
+              를 눌러
             </p>
             <p>문의해주세요!</p>
           </Description>
@@ -143,12 +159,12 @@ const DescriptionArea = styled.div`
 `;
 
 const BtnImg = styled.img`
-  cursor : pointer;
-`
+  cursor: pointer;
+`;
 
 const Btn = styled.div`
-  width : 100%;
-`
+  width: 100%;
+`;
 
 const Image = styled.img`
   /* vertical-align: bottom; */
@@ -171,14 +187,12 @@ const EventBnr = styled.div`
 const EventBnrBox1 = styled.div`
   width: 90%;
   margin-left: 30px;
-  
 `;
 
 const EventBnrBox2 = styled.div`
-  width : 90%;
-  margin : 6px 30px 0px 0px;
-
-`
+  width: 90%;
+  margin: 6px 30px 0px 0px;
+`;
 
 const Tag = styled.span`
   border: 2px solid #ff7775;

@@ -48,6 +48,13 @@ class MyDocument extends Document {
           <title>세상의 모든 음식 조합 - 꿀조합</title>
           <link rel="manifest" href="/manifest.json" />
 
+          {/* Open Graph */}
+          <meta property="og:url" content="https://www.kkuljohab.com/" />
+          <meta property="og:type" content="website" />
+          <meta property="og:title" content="꿀조합" />
+          <meta property="og:description" content="세상의 모든 음식 조합들을 만나보세요!" />
+          <meta property="og:image" content="../src/Asset/Images/ogImage.png" />
+
           <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png" />
           <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png" />
           <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png" />

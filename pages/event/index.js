@@ -19,12 +19,12 @@ import { getEventPostListDB } from "../../src/Redux/Async/postAsync";
 import Card from "../../src/Components/Card";
 import FirstEventImg from "../../src/Asset/Images/eventbnr1.svg";
 import SecondEventImg from "../../src/Asset/Images/eventbnr2.svg";
-import ThirdEventImg from "../../src/Asset/Images/eventbnr3.svg"
+import ThirdEventImg from "../../src/Asset/Images/eventbnr3.svg";
 
 const event = () => {
   const router = useRouter();
   const dispatch = useDispatch();
-  
+
   const [page, setPage] = useState(1);
 
   const post_list = useSelector((state) => state.post); // 게시물전체
@@ -49,7 +49,7 @@ const event = () => {
     dispatch(getEventPostListDB(page));
   }, []);
 
-  // 이벤트 안내페이지로 가기 
+  // 이벤트 안내페이지로 가기
   const goEventInfo = () => {
     return router.push("/event/info");
   };
@@ -76,7 +76,7 @@ const event = () => {
           </a>
         </SwiperSlide>
         <SwiperSlide>
-          <BannerImg src={ThirdEventImg.src}/>
+          <BannerImg src={ThirdEventImg.src} />
         </SwiperSlide>
       </Swiper>
 
@@ -105,13 +105,12 @@ const event = () => {
   );
 };
 
-
 // styled-component
 const StylePagination = styled.div`
   > .pagination {
     display: flex;
     justify-content: center;
-    margin: 15px 0px;
+    padding: 5px 15px 35px 15px;
   }
   ul {
     list-style: none;

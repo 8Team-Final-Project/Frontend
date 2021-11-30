@@ -21,16 +21,14 @@ import SearchInput from "../../src/Components/Input/SearchInput";
 //Img
 import FirstEventImg from "../../src/Asset/Images/eventbnr1.svg";
 import SecondEventImg from "../../src/Asset/Images/eventbnr2.svg";
-import ThirdEventImg from "../../src/Asset/Images/eventbnr3.svg"
-
+import ThirdEventImg from "../../src/Asset/Images/eventbnr3.svg";
 
 //꿀조합 페이지
 const combination = () => {
   const router = useRouter();
   const dispatch = useDispatch();
-  
-  const [page, setPage] = useState(1); // 페이지
 
+  const [page, setPage] = useState(1); // 페이지
 
   const isloaded = useSelector((state) => state.post.loaded); //map 오류 제거용
   const postList = useSelector((state) => state.post?.postlist?.[0]); // 게시물 리스트
@@ -54,8 +52,8 @@ const combination = () => {
     },
     [dispatch]
   );
-  
-  // 이벤트 안내 페이지로 가기 
+
+  // 이벤트 안내 페이지로 가기
   const goEventInfo = () => {
     return router.push("/event/info");
   };
@@ -76,16 +74,16 @@ const combination = () => {
           }}
         >
           <SwiperSlide>
-          <EventBanner src={FirstEventImg.src} onClick={goEventInfo} />
-        </SwiperSlide>
-        <SwiperSlide>
-          <a target="_blank" href="https://wpub6shfa65.typeform.com/to/rhCKtx33">
-            <EventBanner src={SecondEventImg.src} />
-          </a>
-        </SwiperSlide>
-        <SwiperSlide>
-          <EventBanner src={ThirdEventImg.src}/>
-        </SwiperSlide>
+            <EventBanner src={FirstEventImg.src} onClick={goEventInfo} />
+          </SwiperSlide>
+          <SwiperSlide>
+            <a target="_blank" href="https://wpub6shfa65.typeform.com/to/rhCKtx33">
+              <EventBanner src={SecondEventImg.src} />
+            </a>
+          </SwiperSlide>
+          <SwiperSlide>
+            <EventBanner src={ThirdEventImg.src} />
+          </SwiperSlide>
         </Swiper>
         <CardWrap>
           {isloaded && (
@@ -113,13 +111,12 @@ const combination = () => {
   );
 };
 
-
 // styled-component
 const StylePagination = styled.div`
   > .pagination {
     display: flex;
     justify-content: center;
-    margin: 15px 0px;
+    padding: 5px 15px 35px 15px;
   }
   ul {
     list-style: none;

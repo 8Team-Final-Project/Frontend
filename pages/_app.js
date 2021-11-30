@@ -69,7 +69,7 @@ function MyApp({ Component, pageProps }) {
     return window.removeEventListener("resize", () => {});
   }, []);
 
-  //플로팅 버튼 router 처리 
+  //플로팅 버튼 router 처리
   const floatButton = () => {
     if (router.pathname === "/event") return router.push("/event/write");
     if (router.pathname === "/combination") return router.push("/combination/write");
@@ -95,11 +95,16 @@ const Wrapper = styled.div`
   max-width: 500px;
   width: 100vw;
   box-sizing: border-box;
+  background: #ffffff;
 `;
 
 const HeaderWrap = styled.div`
-  margin: 5%;
-  padding: 0 3%;
+  padding: 5% 7%;
+  position: sticky;
+  top: 0;
+  background-color: #ffffff;
+  z-index: 5;
+  border-bottom: 1px solid #e8e8e8;
 `;
 
 // withRedux 함수로 컴포넌트를 감싸준다.
