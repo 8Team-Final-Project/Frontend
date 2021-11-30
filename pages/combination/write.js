@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { addPostDB } from "../../src/Redux/Async/postAsync";
 import { useRouter } from "next/router";
 import { postTagRankingDB } from "../../src/Redux/Async/tagRankingAsync";
+import Swal from 'sweetalert2';
 
 // componets
 import HashTagWriteInput from "../../src/Components/Input/HashTagWriteInput";
@@ -38,16 +39,16 @@ const write = () => {
       event3list: false
     };
     if (!postTitle) {
-      return;
+      return Swal.fire("제목을 입력해주세요", "", "error");
     }
     if (!postRecipe) {
-      return;
+      return Swal.fire("재료를 입력해주세요", "", "error");
     }
     if (!postContent) {
-      return;
+      return Swal.fire("내용을 입력해주세요", "", "error");
     }
     if (!postTag) {
-      return;
+      return Swal.fire("엔터로 태그를 입력해주세요", "", "error");
     }
     dispatch(addPostDB(postItem));
     dispatch(postTagRankingDB());
@@ -97,7 +98,7 @@ const write = () => {
             tagList={[...postTag]}
             setTagList={setTag}
             label="해시태그"
-            placeholder="태그입력 후 엔터를 입력해주세요"
+            placeholder="엔터를 눌러 태그를 완성해주세요"
             important
           />
         </CenterBox>
