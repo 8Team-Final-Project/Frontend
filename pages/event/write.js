@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import { addPostDB } from "../../src/Redux/Async/postAsync";
 import router from "next/router";
+import Swal from "sweetalert2";
 
 //components
 import RectangleImage from "../../src/Components/Shared/RectangleImage";
@@ -38,16 +39,16 @@ const write = () => {
       event3list: event3list
     };
     if (!postTitle) {
-      return;
+      return Swal.fire("제목을 입력해주세요", "", "error");
     }
     if (!postRecipe) {
-      return;
+      return Swal.fire("재료를 입력해주세요", "", "error");
     }
     if (!postContent) {
-      return;
+      return Swal.fire("내용을 입력해주세요", "", "error");
     }
     if (!postTag) {
-      return;
+      return Swal.fire("태그를 완성해주세요", "", "error");
     }
     dispatch(addPostDB(content));
     router.push("/event");
@@ -92,7 +93,7 @@ const write = () => {
           important
           label="해시태그"
           tagList={postTag}
-          placeholder="태그입력 후 엔터를 눌러주세요"
+          placeholder="엔터를 눌러 태그를 완성해주세요"
           setTagList={setPostTag}
         />
       </CenterBox>

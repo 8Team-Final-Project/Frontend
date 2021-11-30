@@ -123,7 +123,7 @@ const MuiForm = styled(FormControl)`
 `;
 
 const MuiInput = styled(Input)`
-  color: #ff7775;
+  color: #9c9999;
 `;
 
 const TagWrapper = styled.div`
