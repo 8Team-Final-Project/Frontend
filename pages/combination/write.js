@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { useRouter } from "next/router";
 
 //library
-import Swal from 'sweetalert2';
+import Swal from "sweetalert2";
 
 //function
 import { postTagRankingDB } from "../../src/Redux/Async/tagRankingAsync";
@@ -28,8 +28,11 @@ const write = () => {
   const [postTag, setTag] = useState("");
   const [postRecipe, setRecipe] = useState("");
 
-  //게시물 추가하기 
+  //게시물 추가하기
   const setPost = () => {
+    const tagItem = {
+      tagName: postTag[0]
+    };
     const postItem = {
       postTitle: postTitle,
       postContent: postContent,
@@ -54,7 +57,7 @@ const write = () => {
       return Swal.fire("엔터로 태그를 입력해주세요", "", "error");
     }
     dispatch(addPostDB(postItem));
-    dispatch(postTagRankingDB());
+    dispatch(postTagRankingDB(tagItem));
     router.push("/combination");
   };
 
