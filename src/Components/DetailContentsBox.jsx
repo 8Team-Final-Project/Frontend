@@ -195,9 +195,7 @@ const PostingDate = styled.div`
 const FlexBox = styled.div`
   width: 100%;
   display: flex;
-  margin-top: 20px;
   padding-top: 15px;
-  border-top: 0.5px solid #e5e5e5;
 `;
 
 const UserBox = styled.div`
