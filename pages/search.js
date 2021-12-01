@@ -161,7 +161,10 @@ const Post = styled.div`
 `;
 
 const Container = styled.div`
-  padding: 0px 5%;
+  padding: 0 30px 5%;
+  height: 100%;
+  min-height: 720px;
+  background: #ffffff;
 `;
 
 const MuiForm = styled(FormControl)`
