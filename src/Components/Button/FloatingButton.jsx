@@ -27,8 +27,8 @@ FloatingButton.defaultProps = {
 // styled-component
 const Floatbtn = styled.img`
   position: fixed;
-  right: ${({ locationX }) => locationX && `calc(104vw - ${locationX}px);`};
-  bottom: 140px;
+  right: ${({ locationX }) => locationX && `calc(103vw - ${locationX}px);`};
+  bottom: 120px;
   width: 76px;
   cursor: pointer;
 `;
