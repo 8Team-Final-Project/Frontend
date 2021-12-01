@@ -5,7 +5,7 @@ import { commentApi } from "../../Shared/api";
 export const addCommentDB = createAsyncThunk("addComment", async (data, thunkAPI) => {
   try {
     const response = await commentApi.addComment(data);
-    if (response.statusText === "OK") {
+    if (response.statusText === "Created") {
       return response.data;
     }
   } catch (err) {
