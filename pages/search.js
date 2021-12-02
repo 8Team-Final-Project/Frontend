@@ -36,6 +36,9 @@ export default function Search(props) {
     if (tagList.length > 0) {
       searchApi.searchTag(tagList).then((res) => {
         setResultList(res);
+        if (res[0].length === 0) {
+          Swal.fire("검색 결과가 없습니다!", "", "error");
+        }
       });
     }
   }, [tagList]);

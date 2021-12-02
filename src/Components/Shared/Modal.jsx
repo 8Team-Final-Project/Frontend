@@ -71,6 +71,7 @@ const Overlay = styled.div`
   align-items: center;
   background-color: rgba(0, 0, 0, 0.5);
   overflow-y: hidden;
+  z-index: 6;
 `;
 
 const Container = styled.div`
