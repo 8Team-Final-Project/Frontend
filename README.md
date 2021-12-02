@@ -55,6 +55,8 @@ https://www.kkuljohab.com
 - sweetalert2
 - swiper
 - pagination
+- copy-to-clipboard
+- react-modal
 
 <br/>
 <br/>
