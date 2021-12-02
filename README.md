@@ -34,7 +34,7 @@ https://www.kkuljohab.com
 <br/>
 <br/>
 
-# :octocat: Schema
+# 🗂 Schema
 ![image](https://user-images.githubusercontent.com/90602950/144431021-2a59ed80-8287-4355-848d-50244aa1a207.png)
 
 
