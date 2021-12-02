@@ -42,7 +42,7 @@ https://www.kkuljohab.com
 
 # 💻 사용기술
 
-- React
+- React, Next.js
 - 상태관리 : Reduck, Reduxjs/toolkit
 - 미들웨어 : (Reduxjs/toolkit createAsyncThunk)
 - 배포 : AWS S3
