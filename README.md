@@ -45,7 +45,7 @@ https://www.kkuljohab.com
 - React, Next.js
 - 상태관리 : Reduck, Reduxjs/toolkit
 - 미들웨어 : (Reduxjs/toolkit createAsyncThunk)
-- 배포 : AWS S3
+- 배포 : AWS S3, Amplify
 - 통신 : Axios
 - 라우터 : connected-react-router
 - 스타일 : styled-components (createGlobalStyle)
