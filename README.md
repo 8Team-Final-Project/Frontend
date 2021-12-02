@@ -66,11 +66,11 @@ https://www.kkuljohab.com
 # 👨‍👩‍👧‍👦 멤버소개
 
 ### Front ([저장소](https://github.com/hanghae99-final-3/UFO-frontend))
-
+- 권지영 ([Github](https://github.com/che-ri))
 - 류은설 ([Github](https://github.com/eunseolryu))
 - 박주승 ([Github](https://github.com/GitPJS))
 - 배수인 ([Github](https://github.com/waterhumanB))
-- 권지영 ([Github](https://github.com/che-ri))
+
 
 ### Back ([저장소](https://github.com/hanghae99-final-3/ufo-backend))
 
