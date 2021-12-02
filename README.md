@@ -33,7 +33,7 @@ https://www.kkuljohab.com
 # **🔗** URL
 
 - 사이트 : [https://www.kkuljohab.com/](https://www.kkuljohab.com/)
-- YOUTUBE :
+- YOUTUBE : [https://www.youtube.com/watch?v=xW12ZN4M5bE](https://www.youtube.com/watch?v=xW12ZN4M5bE)
 
 <br/>
 <br/>
