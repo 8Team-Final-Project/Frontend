@@ -20,6 +20,8 @@ https://www.kkuljohab.com
 # 🧾 개요
 
 기간 : 2021-10-23 ~ 2021-12-02
+소개 : 음식 조합을 고민하는 사람들을 위해 서로의 다양한 음식 조합을 공유하는 서비스입니다.
+
 
 <br/>
 <br/>
@@ -79,7 +81,7 @@ https://www.kkuljohab.com
 
 ### Design
 
-- 유효진
+- 유효진([Youtube](https://www.youtube.com/channel/UCBkM4AelNJQoFKqx1JrvFuw))
 - 장세린
 
 <br/>
