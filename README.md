@@ -1,1 +1,102 @@
-# 꿀조합
+# 🍯꿀조합
+<img width="1488" alt="Group 8061" src="https://user-images.githubusercontent.com/90916599/144426720-28cf399e-64ca-433d-84dd-7c9632480eb0.png">
+https://www.kkuljohab.com
+<br/>
+<br/>
+
+# 📋 목차
+
+### [1. 개요](#-개요)
+
+### [2. 사용기술](#-사용기술)
+
+### [3. 프로젝트 구조](#-프로젝트-구조)
+
+### [4. 기능소개](#-기능소개)
+
+### [5. 멤버소개](#-멤버소개)
+
+<br/>
+<br/>
+
+# 🧾 개요
+
+개발 기간 : 2021-10-23 ~ 2021-12-02 (6주)<br/>
+소개 : 유저들끼리 서로의 다양한 음식 꿀조합을 공유하는 서비스입니다.
+
+
+
+
+<br/>
+<br/>
+
+# **🔗** URL
+
+- 사이트 : [https://www.kkuljohab.com/](https://www.kkuljohab.com/)
+- YOUTUBE : [https://www.youtube.com/watch?v=xW12ZN4M5bE](https://www.youtube.com/watch?v=xW12ZN4M5bE)
+
+<br/>
+<br/>
+
+# 🗂 프로젝트 구조
+![image](https://user-images.githubusercontent.com/90602950/144431021-2a59ed80-8287-4355-848d-50244aa1a207.png)
+
+
+# 💻 사용기술
+
+- React, Next.js
+- 상태관리 : Reduck, Reduxjs/toolkit
+- 미들웨어 : (Reduxjs/toolkit createAsyncThunk)
+- 배포 : AWS S3, Amplify
+- 통신 : Axios
+- 라우터 : connected-react-router
+- 스타일 : styled-components (createGlobalStyle)
+
+> **라이브러리**
+> 
+- sweetalert2
+- swiper
+- pagination
+- copy-to-clipboard
+- react-modal
+
+<br/>
+<br/>
+
+# 💡 기능소개
+
+- 로그인/회원가입/로그인유지 (JWT인증방식)
+- 이벤트와 꿀조합 게시판을 나눠서 유저에게 제공
+- 자신의 글과 찜한 글을 편하게 관리할 수 있도록 마이페이지를 제공
+- 원하는 음식태그를 검색할 수 있는 태그 검색기능
+- 모바일 사용자의 수요를 반영하여 모바일 최적화 UI와 PWA를 적용 
+- 구글애널리틱스와 사용성 테스트로 다양한 유저피드백 해결
+
+<br/>
+<br/>
+
+# 👨‍👩‍👧‍👦 멤버소개
+
+### Front ([저장소](https://github.com/hanghae99-final-3/UFO-frontend))
+- 권지영 ([Github](https://github.com/che-ri))
+- 류은설 ([Github](https://github.com/eunseolryu))
+- 박주승 ([Github](https://github.com/GitPJS))
+- 배수인 ([Github](https://github.com/waterhumanB))
+
+
+### Back ([저장소](https://github.com/hanghae99-final-3/ufo-backend))
+
+- 박선웅 ([Github](https://github.com/seonung-park))
+- 주동재 ([Github](https://github.com/Judongjae))
+
+### Design
+
+- 유효진([Youtube](https://www.youtube.com/channel/UCBkM4AelNJQoFKqx1JrvFuw))
+- 장세린
+
+<br/>
+<br/>
+
+> 더 궁금한 점이 있다면 노션을 방문해주세요!
+> <br/>
+> [꿀조합 공용 노션 보러가기](https://www.notion.so/99-3-36a83d6f3fa548dbad72204c7cacfcdb)
